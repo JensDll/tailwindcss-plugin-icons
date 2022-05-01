@@ -1,5 +1,5 @@
 {
-  "name": "example",
+  "name": "tailwindcss-plugin-icons",
   "version": "0.0.0",
   "description": "description",
   "license": "",
@@ -25,6 +25,7 @@
   "main": "./index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
-  "unpkg": "./dist/index.iife.js",
-  "jsdelivr": "./dist/index.iife.js"
+  "peerDependencies": {
+    "tailwindcss": "3.x"
+  }
 }

@@ -1,0 +1,11 @@
+{
+  "css.validate": false,
+  "[vue]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+    "editor.codeActionsOnSave": {
+      "source.fixAll": true
+    }
+  },
+  "volar.completion.preferredTagNameCase": "pascal"
+}

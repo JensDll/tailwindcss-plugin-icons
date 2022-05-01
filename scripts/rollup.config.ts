@@ -1,9 +1,9 @@
 import replace from '@rollup/plugin-replace'
-import type { OutputOptions, RollupOptions } from 'rollup'
+import type { OutputOptions, RollupOptions, ExternalOption } from 'rollup'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 
-type PackageName = 'example'
+type PackageName = 'tailwindcss-plugin-icons'
 
 const plugin = {
   dts: dts(),
@@ -52,25 +52,12 @@ const output = (name: PackageName): OutputReturn => ({
     {
       file: `packages/${name}/dist/index.cjs`,
       format: 'cjs'
-    },
-    {
-      file: `packages/${name}/dist/index.iife.js`,
-      format: 'iife',
-      name: 'Example',
-      extend: true
     }
   ],
   prod: [
     {
       file: `packages/${name}/dist/index.min.cjs`,
       format: 'cjs',
-      plugins: [plugin.minify]
-    },
-    {
-      file: `packages/${name}/dist/index.iife.min.js`,
-      format: 'iife',
-      name: 'Example',
-      extend: true,
       plugins: [plugin.minify]
     }
   ],
@@ -80,30 +67,30 @@ const output = (name: PackageName): OutputReturn => ({
   }
 })
 
-const baseExternals: string[] = []
+const baseExternals: ExternalOption = [/tailwindcss*/, 'fs']
 
-const exampleInput = input('example')
-const exampleOutput = output('example')
+const packageInput = input('tailwindcss-plugin-icons')
+const packageOutput = output('tailwindcss-plugin-icons')
 
 const configs: RollupOptions[] = [
   {
-    input: exampleInput,
-    output: [exampleOutput.esm],
+    input: packageInput,
+    output: [packageOutput.esm],
     plugins: [plugin.replace.esm, plugin.esbuild]
   },
   {
-    input: exampleInput,
-    output: exampleOutput.dev,
+    input: packageInput,
+    output: packageOutput.dev,
     plugins: [plugin.replace.dev, plugin.esbuild]
   },
   {
-    input: exampleInput,
-    output: exampleOutput.prod,
+    input: packageInput,
+    output: packageOutput.prod,
     plugins: [plugin.replace.prod, plugin.esbuild]
   },
   {
-    input: exampleInput,
-    output: exampleOutput.dts,
+    input: packageInput,
+    output: packageOutput.dts,
     plugins: [plugin.dts]
   }
 ]
@@ -111,7 +98,7 @@ const configs: RollupOptions[] = [
 configs.forEach(config => {
   if (config.external) {
     if (!Array.isArray(config.external)) {
-      throw new Error('External must be an array')
+      throw new Error('External option must be an array')
     }
     config.external.push(...baseExternals)
   } else {

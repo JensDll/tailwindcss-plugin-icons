@@ -2,7 +2,7 @@ import fs from 'fs-extra'
 
 import { run } from './utils'
 
-const basePath = 'packages/example'
+const basePath = 'packages/tailwindcss-plugin-icons'
 
 await run('rollup', ['--config'])
 
