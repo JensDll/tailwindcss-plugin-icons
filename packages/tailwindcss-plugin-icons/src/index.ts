@@ -91,7 +91,7 @@ export function Icons(options: Options) {
         iconSetName === 'custom'
           ? options!.custom!.location
           : require.resolve(`@iconify-json/${iconSetName}/icons.json`),
-        'utf8'
+        'ascii'
       )
     )
 
@@ -110,7 +110,7 @@ export function Icons(options: Options) {
         iconSetName === 'custom'
           ? options!.custom!.location
           : require.resolve(`@iconify-json/${iconSetName}/icons.json`),
-        'utf8'
+        'ascii'
       )
     )
 
