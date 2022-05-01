@@ -10,7 +10,11 @@ module.exports = {
   plugins: [
     Icons({
       asMask: {
-        'heroicons-solid': []
+        'heroicons-solid': ['trash'],
+        'heroicons-outline': ['trash', 'lock-open', 'lock-closed']
+      },
+      asBackground: {
+        'heroicons-solid': ['trash']
       }
     })
   ]

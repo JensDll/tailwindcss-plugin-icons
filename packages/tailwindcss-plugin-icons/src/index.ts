@@ -90,7 +90,7 @@ export function Icons(options: Options) {
       fs.readFileSync(
         iconSetName === 'custom'
           ? options!.custom!.location
-          : require.resolve(`@iconify-json`),
+          : require.resolve(`@iconify-json/${iconSetName}/icons.json`),
         'utf8'
       )
     )
