@@ -1,0 +1,7 @@
+node_modules
+publish
+temp
+tmp
+coverage
+dist
+*.log
