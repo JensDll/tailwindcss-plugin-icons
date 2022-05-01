@@ -1,16 +1,16 @@
 {
   "name": "tailwindcss-plugin-icons",
   "version": "0.0.0",
-  "description": "description",
-  "license": "",
+  "description": "Tailwindcss icons",
+  "license": "MIT",
   "author": {
-    "name": "name",
-    "email": "name@example.com",
-    "url": "https://"
+    "name": "Jens Döllmann",
+    "email": "jens@doellmann.com",
+    "url": "https://github.com/JensDll"
   },
   "repository": {
     "type": "git",
-    "url": "https://",
+    "url": "https://github.com/JensDll/tailwindcss-plugin-icons",
     "directory": "packages/example"
   },
   "keywords": [],
