@@ -91,6 +91,10 @@ export const Icons = plugin.withOptions<Options>(options => {
 
   const customLocation = path.resolve(options.custom.location)
 
+  if (!fs.existsSync(customLocation)) {
+    return () => {}
+  }
+
   for (const [iconSetName, iconNames] of Object.entries(options.asMask)) {
     const iconSet = JSON.parse(
       fs.readFileSync(

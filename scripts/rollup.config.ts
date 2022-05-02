@@ -75,6 +75,11 @@ const packageOutput = output('tailwindcss-plugin-icons')
 const configs: RollupOptions[] = [
   {
     input: packageInput,
+    output: [packageOutput.esm],
+    plugins: [plugin.replace.esm, plugin.esbuild]
+  },
+  {
+    input: packageInput,
     output: packageOutput.dev,
     plugins: [plugin.replace.dev, plugin.esbuild]
   },

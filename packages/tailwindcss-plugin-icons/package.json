@@ -1,7 +1,7 @@
 {
   "name": "tailwindcss-plugin-icons",
-  "version": "0.0.0",
-  "description": "Tailwindcss icons",
+  "version": "0.0.1",
+  "description": "Tailwind CSS icons",
   "license": "MIT",
   "author": {
     "name": "Jens Döllmann",
@@ -18,10 +18,12 @@
   "exports": {
     ".": {
       "require": "./index.cjs",
+      "import": "./dist/index.mjs",
       "types": "./dist/index.d.ts"
     }
   },
   "main": "./index.cjs",
+  "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
   "peerDependencies": {
     "tailwindcss": "3.x"
