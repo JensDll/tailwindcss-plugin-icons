@@ -15,6 +15,10 @@ module.exports = {
       },
       asBackground: {
         'heroicons-solid': ['trash']
+      },
+      custom: {
+        asMask: ['loading'],
+        location: './src/icons.json'
       }
     })
   ]

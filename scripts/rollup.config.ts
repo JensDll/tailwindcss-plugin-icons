@@ -67,17 +67,12 @@ const output = (name: PackageName): OutputReturn => ({
   }
 })
 
-const baseExternals: ExternalOption = [/tailwindcss*/, 'fs']
+const baseExternals: ExternalOption = [/tailwindcss*/, 'fs', 'path']
 
 const packageInput = input('tailwindcss-plugin-icons')
 const packageOutput = output('tailwindcss-plugin-icons')
 
 const configs: RollupOptions[] = [
-  {
-    input: packageInput,
-    output: [packageOutput.esm],
-    plugins: [plugin.replace.esm, plugin.esbuild]
-  },
   {
     input: packageInput,
     output: packageOutput.dev,

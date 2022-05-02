@@ -3,6 +3,11 @@ declare module 'tailwindcss/lib/util/flattenColorPalette' {
   export default flattenColorPalette
 }
 
+declare module 'tailwindcss/lib/util/resolveConfigPath' {
+  declare function resolveConfigPath(pathOrConfig?: string | object): any
+  export default resolveConfigPath
+}
+
 declare module 'tailwindcss/lib/util/color' {
   type Color = {
     mode: 'rgb' | 'hsl'

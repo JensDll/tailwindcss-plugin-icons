@@ -1,0 +1,9 @@
+{
+  "icons": {
+    "loading": {
+      "body": "<path d=\"M9.219 3.44A9 9 0 0 1 21 12\" stroke=\"currentColor\" stroke-opacity=\".75\" stroke-width=\"4\"/><path d=\"M21 12A9 9 0 1 1 9.219 3.44\" stroke=\"currentColor\" stroke-opacity=\".25\" stroke-width=\"4\"/>"
+    }
+  },
+  "width": 24,
+  "height": 24
+}

@@ -1,4 +1,5 @@
 import fs from 'fs'
+import path from 'path'
 
 import plugin from 'tailwindcss/plugin'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
@@ -18,7 +19,7 @@ export type Options = {
   custom?: {
     asMask?: string[]
     asBackground?: string[]
-    location: string
+    location?: string
   }
 }
 
@@ -70,9 +71,12 @@ const getIconAsBackground =
     }
   }
 
-export function Icons(options: Options) {
+export const Icons = plugin.withOptions<Options>(options => {
+  options ??= {}
   options.asMask ??= {}
   options.asBackground ??= {}
+  options.custom ??= {}
+  options.custom.location ??= '.'
 
   if (options.custom?.asMask) {
     options.asMask.custom = options.custom.asMask
@@ -85,11 +89,13 @@ export function Icons(options: Options) {
   const asMask: Record<string, unknown> = {}
   const asBackground: Record<string, unknown> = {}
 
+  const customLocation = path.resolve(options.custom.location)
+
   for (const [iconSetName, iconNames] of Object.entries(options.asMask)) {
     const iconSet = JSON.parse(
       fs.readFileSync(
         iconSetName === 'custom'
-          ? options!.custom!.location
+          ? customLocation
           : require.resolve(`@iconify-json/${iconSetName}/icons.json`),
         'ascii'
       )
@@ -108,7 +114,7 @@ export function Icons(options: Options) {
     const iconSet = JSON.parse(
       fs.readFileSync(
         iconSetName === 'custom'
-          ? options!.custom!.location
+          ? customLocation
           : require.resolve(`@iconify-json/${iconSetName}/icons.json`),
         'ascii'
       )
@@ -123,12 +129,11 @@ export function Icons(options: Options) {
     }
   }
 
-  return plugin(({ addUtilities, matchUtilities, theme }) => {
+  return function ({ addUtilities, matchUtilities, theme }) {
     addUtilities(asMask)
-
     matchUtilities(asBackground, {
       values: flattenColorPalette(theme('colors')),
       type: ['color', 'any']
     })
-  })
-}
+  }
+})
