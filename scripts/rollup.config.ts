@@ -67,7 +67,7 @@ const output = (name: PackageName): OutputReturn => ({
   }
 })
 
-const baseExternals: ExternalOption = [/tailwindcss*/, 'fs', 'path']
+const baseExternals: ExternalOption = ['fs', 'path', /tailwindcss\/.+/]
 
 const packageInput = input('tailwindcss-plugin-icons')
 const packageOutput = output('tailwindcss-plugin-icons')

@@ -51,8 +51,7 @@ importers:
 
   playground/vue:
     specifiers:
-      '@iconify-json/heroicons-outline': 1.1.1
-      '@iconify-json/heroicons-solid': 1.1.1
+      '@iconify/json': 2.1.35
       '@vitejs/plugin-vue': 2.3.1
       autoprefixer: 10.4.5
       postcss: 8.4.13
@@ -63,8 +62,7 @@ importers:
       vue: 3.2.33
       vue-tsc: 0.34.11
     dependencies:
-      '@iconify-json/heroicons-outline': 1.1.1
-      '@iconify-json/heroicons-solid': 1.1.1
+      '@iconify/json': 2.1.35
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.6+vue@3.2.33
       autoprefixer: 10.4.5_postcss@8.4.13
       postcss: 8.4.13
@@ -400,16 +398,11 @@ packages:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
     dev: false
 
-  /@iconify-json/heroicons-outline/1.1.1:
-    resolution: {integrity: sha512-Jy/aFbNQdszRxzhBvHB2AVu/IeMcK/YG3qJVf3XeqvBvhcPq/rWFEmo7jshzBclR/wbt9ylcBEUY1qRFcCXS9Q==}
+  /@iconify/json/2.1.35:
+    resolution: {integrity: sha512-VFPRA58gMmT3bAPBhPTyN3KCcrImeiMzHEAPzRRUaz6SGaXvpKlGDJa+qUVHaJKL3Ht1UYUv1cY0t0wNKM/3Bg==}
     dependencies:
       '@iconify/types': 1.1.0
-    dev: false
-
-  /@iconify-json/heroicons-solid/1.1.1:
-    resolution: {integrity: sha512-yTq+PjF543FEp37gqLLQLMGBhZXaHJOY8wLPsWyQZzIDJ9h773ofvp32fgMh9YlgQT4MaeDH2VULvFBBCRmJgQ==}
-    dependencies:
-      '@iconify/types': 1.1.0
+      pathe: 0.2.0
     dev: false
 
   /@iconify/types/1.1.0:
@@ -2712,6 +2705,10 @@ packages:
 
   /path-parse/1.0.7:
     resolution: {integrity: sha512-LDJzPVEEEPR+y48z93A0Ed0yXb8pAByGWo/k5YYdYgpY2/2EsOsksJrq7lOHxryrVOn1ejG6oAp8ahvOIQD8sw==}
+    dev: false
+
+  /pathe/0.2.0:
+    resolution: {integrity: sha512-sTitTPYnn23esFR3RlqYBWn4c45WGeLcsKzQiUpXJAyfcWkolvlYpV8FLo7JishK946oQwMFUCHXQ9AjGPKExw==}
     dev: false
 
   /picocolors/1.0.0:

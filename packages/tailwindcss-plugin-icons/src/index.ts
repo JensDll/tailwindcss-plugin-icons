@@ -4,6 +4,8 @@ import path from 'path'
 import plugin from 'tailwindcss/plugin'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 
+import { toKebabCase } from './utils'
+
 export interface IconSet {}
 
 export type IconSetSelector = {
@@ -71,12 +73,46 @@ const getIconAsBackground =
     }
   }
 
+const getIconSourcePaths = (options: Options) => {
+  const { asMask, asBackground } = options
+
+  const iconSourcePaths: Record<string, string> = {}
+
+  for (const iconSetName of Object.keys({ ...asMask, ...asBackground })) {
+    const kebabCaseIconSetName = toKebabCase(iconSetName)
+
+    try {
+      const path = require.resolve(
+        `@iconify-json/${kebabCaseIconSetName}/icons.json`
+      )
+      iconSourcePaths[iconSetName] = path
+      continue
+    } catch {}
+
+    try {
+      const path = require.resolve(
+        `@iconify/json/json/${kebabCaseIconSetName}.json`
+      )
+      iconSourcePaths[iconSetName] = path
+      continue
+    } catch {}
+
+    console.warn(
+      `Icon set with name "${iconSetName}" not found. Try installing it with "npm install @iconify/${kebabCaseIconSetName}".`
+    )
+  }
+
+  return iconSourcePaths
+}
+
 export const Icons = plugin.withOptions<Options>(options => {
   options ??= {}
   options.asMask ??= {}
   options.asBackground ??= {}
   options.custom ??= {}
   options.custom.location ??= '.'
+
+  const iconSourcePaths = getIconSourcePaths(options)
 
   if (options.custom?.asMask) {
     options.asMask.custom = options.custom.asMask
@@ -100,13 +136,13 @@ export const Icons = plugin.withOptions<Options>(options => {
       fs.readFileSync(
         iconSetName === 'custom'
           ? customLocation
-          : require.resolve(`@iconify-json/${iconSetName}/icons.json`),
+          : iconSourcePaths[iconSetName],
         'ascii'
       )
     )
 
     for (const iconName of iconNames ?? []) {
-      asMask[`.i-${iconSetName}-${iconName}`] = getIconAsMask(
+      asMask[`.i-${toKebabCase(iconSetName)}-${iconName}`] = getIconAsMask(
         iconSet.icons[iconName].body,
         iconSet.width,
         iconSet.height
@@ -119,17 +155,18 @@ export const Icons = plugin.withOptions<Options>(options => {
       fs.readFileSync(
         iconSetName === 'custom'
           ? customLocation
-          : require.resolve(`@iconify-json/${iconSetName}/icons.json`),
+          : iconSourcePaths[iconSetName],
         'ascii'
       )
     )
 
     for (const iconName of iconNames ?? []) {
-      asBackground[`bg-${iconSetName}-${iconName}`] = getIconAsBackground(
-        iconSet.icons[iconName].body,
-        iconSet.width,
-        iconSet.height
-      )
+      asBackground[`bg-${toKebabCase(iconSetName)}-${iconName}`] =
+        getIconAsBackground(
+          iconSet.icons[iconName].body,
+          iconSet.width,
+          iconSet.height
+        )
     }
   }
 

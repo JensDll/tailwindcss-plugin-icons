@@ -10,6 +10,7 @@
       ></div>
       <div class="bg-heroicons-solid-trash-green-500 w-8 h-8"></div>
       <div class="i-custom-loading w-8 h-8"></div>
+      <div class="i-openmoji-cat w-8 h-8"></div>
     </section>
   </section>
 </template>
