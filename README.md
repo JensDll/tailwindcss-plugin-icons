@@ -3,7 +3,7 @@
 [![npm](https://badgen.net/npm/v/tailwindcss-plugin-icons)](https://www.npmjs.com/package/tailwindcss-plugin-icons)
 [![LICENSE](https://badgen.net/github/license/micromatch/micromatch?color=green)](https://github.com/JensDll/tailwindcss-plugin-icons/blob/main/LICENSE)
 
-Tailwind CSS port of [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages/preset-icons/).
+[Tailwind CSS](https://tailwindcss.com/docs/installation) port of [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages/preset-icons/).
 
 ```bash
 # Npm
@@ -45,8 +45,10 @@ module.exports = {
 }
 ```
 
-4. Write icons with Tailwind CSS classes directly in your markup:
+4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
 
 ```html
 <div class="i-heroicons-solid-trash w-5 h-5"></div>
 ```
+
+## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)
