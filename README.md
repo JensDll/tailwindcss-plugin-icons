@@ -45,8 +45,10 @@ module.exports = {
 }
 ```
 
-4. Write icons with Tailwind CSS classes directly in your markup:
+4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
 
 ```html
 <div class="i-heroicons-solid-trash w-5 h-5"></div>
 ```
+
+## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)
