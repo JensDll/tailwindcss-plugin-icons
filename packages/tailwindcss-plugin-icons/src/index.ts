@@ -41,8 +41,8 @@ function encodeSvg(svg: string) {
 }
 
 const getIconAsMask = (body: string, width: number, height: number) => {
+  const mode = body.includes('currentColor') ? 'mask' : 'background'
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 ${width} ${height}">${body}</svg>`
-  const mode = svg.includes('currentColor') ? 'mask' : 'background'
   const uri = `url("data:image/svg+xml;utf8,${encodeSvg(svg)}")`
 
   if (mode === 'mask') {
@@ -110,7 +110,14 @@ export const Icons = plugin.withOptions<Options>(options => {
   options.asMask ??= {}
   options.asBackground ??= {}
   options.custom ??= {}
-  options.custom.location ??= '.'
+  options.custom.location ??= './icons.json'
+
+  const customLocation = path.resolve(options.custom.location)
+
+  if (!fs.existsSync(customLocation)) {
+    console.warn(`Icon set JSON does not exist at path "${customLocation}".`)
+    return () => {}
+  }
 
   const iconSourcePaths = getIconSourcePaths(options)
 
@@ -124,12 +131,6 @@ export const Icons = plugin.withOptions<Options>(options => {
 
   const asMask: Record<string, unknown> = {}
   const asBackground: Record<string, unknown> = {}
-
-  const customLocation = path.resolve(options.custom.location)
-
-  if (!fs.existsSync(customLocation)) {
-    return () => {}
-  }
 
   for (const [iconSetName, iconNames] of Object.entries(options.asMask)) {
     const iconSet = JSON.parse(
