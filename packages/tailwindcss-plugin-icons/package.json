@@ -1,7 +1,7 @@
 {
   "name": "tailwindcss-plugin-icons",
-  "version": "0.0.2",
-  "description": "Tailwind CSS icons",
+  "version": "0.0.3",
+  "description": "Tailwind CSS icons with classes",
   "license": "MIT",
   "author": {
     "name": "Jens Döllmann",
@@ -11,9 +11,13 @@
   "repository": {
     "type": "git",
     "url": "https://github.com/JensDll/tailwindcss-plugin-icons",
-    "directory": "packages/example"
+    "directory": "packages/tailwindcss-plugin-icons"
   },
-  "keywords": [],
+  "keywords": [
+    "tailwindcss",
+    "plugin",
+    "icons"
+  ],
   "sideEffects": false,
   "exports": {
     ".": {

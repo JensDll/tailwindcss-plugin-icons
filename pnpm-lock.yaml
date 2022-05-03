@@ -53,23 +53,23 @@ importers:
     specifiers:
       '@iconify/json': 2.1.35
       '@vitejs/plugin-vue': 2.3.1
-      autoprefixer: 10.4.5
+      autoprefixer: 10.4.7
       postcss: 8.4.13
       tailwindcss: 3.0.24
       tailwindcss-plugin-icons: latest
       typescript: 4.6.4
-      vite: 2.9.6
+      vite: 2.9.7
       vue: 3.2.33
       vue-tsc: 0.34.11
     dependencies:
       '@iconify/json': 2.1.35
-      '@vitejs/plugin-vue': 2.3.1_vite@2.9.6+vue@3.2.33
-      autoprefixer: 10.4.5_postcss@8.4.13
+      '@vitejs/plugin-vue': 2.3.1_vite@2.9.7+vue@3.2.33
+      autoprefixer: 10.4.7_postcss@8.4.13
       postcss: 8.4.13
       tailwindcss: 3.0.24
       tailwindcss-plugin-icons: link:../../packages/tailwindcss-plugin-icons
       typescript: 4.6.4
-      vite: 2.9.6
+      vite: 2.9.7
       vue: 3.2.33
       vue-tsc: 0.34.11_typescript@4.6.4
 
@@ -837,14 +837,14 @@ packages:
       '@types/yargs-parser': 21.0.0
     dev: false
 
-  /@vitejs/plugin-vue/2.3.1_vite@2.9.6+vue@3.2.33:
+  /@vitejs/plugin-vue/2.3.1_vite@2.9.7+vue@3.2.33:
     resolution: {integrity: sha512-YNzBt8+jt6bSwpt7LP890U1UcTOIZZxfpE5WOJ638PNxSEKOqAi0+FSKS0nVeukfdZ0Ai/H7AFd6k3hayfGZqQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.9.6
+      vite: 2.9.7
       vue: 3.2.33
     dev: false
 
@@ -1029,15 +1029,15 @@ packages:
       sprintf-js: 1.0.3
     dev: false
 
-  /autoprefixer/10.4.5_postcss@8.4.13:
-    resolution: {integrity: sha512-Fvd8yCoA7lNX/OUllvS+aS1I7WRBclGXsepbvT8ZaPgrH24rgXpZzF0/6Hh3ZEkwg+0AES/Osd196VZmYoEFtw==}
+  /autoprefixer/10.4.7_postcss@8.4.13:
+    resolution: {integrity: sha512-ypHju4Y2Oav95SipEcCcI5J7CGPuvz8oat7sUtYj3ClK44bldfvtvcxK6IEK++7rqB7YchDGzweZIBG+SD0ZAA==}
     engines: {node: ^10 || ^12 || >=14}
     hasBin: true
     peerDependencies:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.20.3
-      caniuse-lite: 1.0.30001334
+      caniuse-lite: 1.0.30001335
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1191,6 +1191,10 @@ packages:
 
   /caniuse-lite/1.0.30001334:
     resolution: {integrity: sha512-kbaCEBRRVSoeNs74sCuq92MJyGrMtjWVfhltoHUCW4t4pXFvGjUBrfo47weBRViHkiV3eBYyIsfl956NtHGazw==}
+    dev: false
+
+  /caniuse-lite/1.0.30001335:
+    resolution: {integrity: sha512-ddP1Tgm7z2iIxu6QTtbZUv6HJxSaV/PZeSrWFZtbY4JZ69tOeNhBCl3HyRQgeNZKE5AOn1kpV7fhljigy0Ty3w==}
     dev: false
 
   /chalk/2.4.2:
@@ -3224,8 +3228,8 @@ packages:
       convert-source-map: 1.8.0
     dev: false
 
-  /vite/2.9.6:
-    resolution: {integrity: sha512-3IffdrByHW95Yjv0a13TQOQfJs7L5dVlSPuTt432XLbRMriWbThqJN2k/IS6kXn5WY4xBLhK9XoaWay1B8VzUw==}
+  /vite/2.9.7:
+    resolution: {integrity: sha512-5hH7aNQe8rJiTTqCtPNX/6mIKlGw+1wg8UXwAxDIIN8XaSR+Zx3GT2zSu7QKa1vIaBqfUODGh3vpwY8r0AW/jw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:
