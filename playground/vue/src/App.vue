@@ -9,10 +9,11 @@
       <div
         class="i-heroicons-outline-lock-closed w-8 h-8 hover:i-heroicons-outline-lock-open"
       ></div>
-      <div class="i-custom-loading w-8 h-8 animate-spin text-orange-600"></div>
-      <div>
-        <div class="i-brandico-facebook w-8 h-8 text-[#1178f2]"></div>
-      </div>
+      <div
+        class="i-custom-loading w-8 h-8 animate-spin text-orange-600 firefox-animation-border-bug-fix"
+      ></div>
+
+      <div class="i-brandico-facebook w-8 h-8 text-[#1178f2]"></div>
       <div
         class="i-vscode-icons-file-type-light-db w-8 h-8 text-pink-500"
       ></div>
@@ -25,4 +26,9 @@
   </section>
 </template>
 
-<style></style>
+<style>
+.firefox-animation-border-bug-fix {
+  border: 0.01px solid rgba(0, 0, 0, 0);
+  background-clip: padding-box;
+}
+</style>
