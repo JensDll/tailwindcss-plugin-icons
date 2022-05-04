@@ -4,7 +4,7 @@ import path from 'path'
 import plugin from 'tailwindcss/plugin'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 
-import { toKebabCase } from './utils'
+import { encodeSvg, loadIcon, toKebabCase, type IconMode } from './utils'
 
 export interface IconSet {}
 
@@ -25,53 +25,43 @@ export type Options = {
   }
 }
 
-function encodeSvg(svg: string) {
-  return svg
-    .replace(
-      '<svg',
-      ~svg.indexOf('xmlns') ? '<svg' : '<svg xmlns="http://www.w3.org/2000/svg"'
-    )
-    .replace(/"/g, "'")
-    .replace(/%/g, '%25')
-    .replace(/#/g, '%23')
-    .replace(/{/g, '%7B')
-    .replace(/}/g, '%7D')
-    .replace(/</g, '%3C')
-    .replace(/>/g, '%3E')
-}
-
-const getIconAsMask = (body: string, width: number, height: number) => {
-  const mode = body.includes('currentColor') ? 'mask' : 'background'
+const getIconAsMask = (
+  width: number,
+  height: number,
+  body: string,
+  mode: IconMode
+) => {
   const svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 ${width} ${height}">${body}</svg>`
-  const uri = `url("data:image/svg+xml;utf8,${encodeSvg(svg)}")`
+  const url = `url("data:image/svg+xml;utf8,${encodeSvg(svg)}")`
 
   if (mode === 'mask') {
     return {
-      mask: `${uri} no-repeat`,
+      mask: `${url} no-repeat`,
       maskSize: '100% 100%',
       backgroundColor: 'currentColor'
     }
   } else {
     return {
-      background: `${uri} no-repeat`,
+      background: `${url} no-repeat`,
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent'
     }
   }
 }
 
-const getIconAsBackground =
-  (body: string, width: number, height: number) => (color: string) => {
-    const coloredBody = body.replace(/currentColor/g, color)
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 ${width} ${height}">${coloredBody}</svg>`
-    const uri = `url("data:image/svg+xml,${encodeSvg(svg)}")`
+const getIconAsBackground = (width: number, height: number, body: string) => {
+  return (color: string) => {
+    body = body.replace(/currentColor/g, color)
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 ${width} ${height}">${body}</svg>`
+    const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
 
     return {
-      background: `${uri} no-repeat`,
+      background: `${url} no-repeat`,
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent'
     }
   }
+}
 
 const getIconSourcePaths = (options: Options) => {
   const { asMask, asBackground } = options
@@ -133,7 +123,7 @@ export const Icons = plugin.withOptions<Options>(options => {
   const asBackground: Record<string, unknown> = {}
 
   for (const [iconSetName, iconNames] of Object.entries(options.asMask)) {
-    const iconSet = JSON.parse(
+    const iconifyJson = JSON.parse(
       fs.readFileSync(
         iconSetName === 'custom'
           ? customLocation
@@ -143,16 +133,18 @@ export const Icons = plugin.withOptions<Options>(options => {
     )
 
     for (const iconName of iconNames ?? []) {
-      asMask[`.i-${toKebabCase(iconSetName)}-${iconName}`] = getIconAsMask(
-        iconSet.icons[iconName].body,
-        iconSet.width,
-        iconSet.height
+      const { width, height, body, mode, normalizedIconName } = loadIcon(
+        iconifyJson,
+        iconName
       )
+
+      asMask[`.i-${toKebabCase(iconSetName)}-${normalizedIconName}`] =
+        getIconAsMask(width, height, body, mode)
     }
   }
 
   for (const [iconSetName, iconNames] of Object.entries(options.asBackground)) {
-    const iconSet = JSON.parse(
+    const iconifyJson = JSON.parse(
       fs.readFileSync(
         iconSetName === 'custom'
           ? customLocation
@@ -162,12 +154,13 @@ export const Icons = plugin.withOptions<Options>(options => {
     )
 
     for (const iconName of iconNames ?? []) {
-      asBackground[`bg-${toKebabCase(iconSetName)}-${iconName}`] =
-        getIconAsBackground(
-          iconSet.icons[iconName].body,
-          iconSet.width,
-          iconSet.height
-        )
+      const { width, height, body, normalizedIconName } = loadIcon(
+        iconifyJson,
+        iconName
+      )
+
+      asBackground[`bg-${toKebabCase(iconSetName)}-${normalizedIconName}`] =
+        getIconAsBackground(width, height, body)
     }
   }
 

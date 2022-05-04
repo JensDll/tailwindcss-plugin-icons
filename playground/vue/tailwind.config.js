@@ -12,7 +12,9 @@ module.exports = {
       asMask: {
         heroiconsSolid: ['trash'],
         heroiconsOutline: ['trash', 'lock-open', 'lock-closed'],
-        openmoji: ['cat']
+        openmoji: ['snake', 'cat', 'dolphin'],
+        vscodeIcons: ['file-type-light-db?mask'],
+        brandico: ['facebook']
       },
       asBackground: {
         heroiconsSolid: ['trash']
