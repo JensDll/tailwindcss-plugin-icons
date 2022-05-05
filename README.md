@@ -28,7 +28,7 @@ module.exports = {
   plugins: [
     Icons({
       heroiconsSolid: {
-        // By default will search for common iconify module locations
+        // By default will search in common iconify module locations
         icons: ['trash', 'trash?bg']
       },
       heroiconsOutline: {
