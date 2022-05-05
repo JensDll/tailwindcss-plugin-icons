@@ -27,17 +27,24 @@ module.exports = {
   [...]
   plugins: [
     Icons({
-      // With existing icon sets
-      asMask: {
-        heroiconsSolid: ['trash', 'dots-vertical'],
-        heroiconsOutline: ['trash', 'dots-vertical'],
+      heroiconsSolid: {
+        // By default will search for common iconify module locations
+        icons: ['trash', 'trash?bg']
       },
-      asBackground: {
-        heroiconsSolid: ['trash']
+      heroiconsOutline: {
+        // Can be some other module too
+        icons: ['lock-open', 'lock-closed'],
+        location: 'my-icon-alias/icons.json'
       },
-      // Pass a custom icon set
       custom: {
-        asMask: ['loading'],
+        icons: ['loading'],
+        // Can be a URI
+        location:
+          'https://gist.githubusercontent.com/JensDll/4e59cf6005f585581975941a94bc1d88/raw/6cdeb3cb9dacd47fd132d49004a2e8f4cbc0774f/icons.json'
+      },
+      customAlt: {
+        icons: ['loading'],
+        // Can be a relative or absolute path
         location: './src/icons.json'
       }
     })
@@ -48,7 +55,7 @@ module.exports = {
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
 
 ```html
-<div class="i-heroicons-solid-trash w-5 h-5"></div>
+<div class="i-heroicons-solid-trash h-5 w-5"></div>
 ```
 
 ## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)
