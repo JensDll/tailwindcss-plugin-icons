@@ -1,26 +1,22 @@
 import fs from 'fs'
 import path from 'path'
+import { spawnSync } from 'child_process'
 
 import plugin from 'tailwindcss/plugin'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 
-import { encodeSvg, loadIcon, toKebabCase, type IconMode } from './utils'
+import {
+  encodeSvg,
+  isUri,
+  loadIconFromJson,
+  toKebabCase,
+  type IconifyJson,
+  type IconMode
+} from './utils'
 
-export interface IconSet {}
-
-export type IconSetSelector = {
-  [K in keyof IconSet extends never
-    ? string
-    : // @ts-expect-error
-      keyof IconSet]?: keyof IconSet extends never ? string[] : IconSet[K][]
-}
-
-export type Options = {
-  asMask?: IconSetSelector
-  asBackground?: IconSetSelector
-  custom?: {
-    asMask?: string[]
-    asBackground?: string[]
+export type IconSets = {
+  [iconSetName: string]: {
+    icons: string[]
     location?: string
   }
 }
@@ -40,7 +36,9 @@ const getIconAsMask = (
       maskSize: '100% 100%',
       backgroundColor: 'currentColor'
     }
-  } else {
+  }
+
+  if (mode === 'color') {
     return {
       background: `${url} no-repeat`,
       backgroundSize: '100% 100%',
@@ -63,104 +61,140 @@ const getIconAsBackground = (width: number, height: number, body: string) => {
   }
 }
 
-const getIconSourcePaths = (options: Options) => {
-  const { asMask, asBackground } = options
+type ResolvedIconsSets = {
+  iconNames: string[]
+  iconifyJson: IconifyJson
+}
 
-  const iconSourcePaths: Record<string, string> = {}
+const resolveIconSets = (iconsSets: IconSets) => {
+  const resolvedIconSets: Record<string, ResolvedIconsSets> = {}
 
-  for (const iconSetName of Object.keys({ ...asMask, ...asBackground })) {
+  const toFetch: {
+    iconSetName: string
+    icons: string[]
+    location: string
+  }[] = []
+
+  for (const [iconSetName, { icons, location }] of Object.entries(iconsSets)) {
     const kebabCaseIconSetName = toKebabCase(iconSetName)
 
+    if (location !== undefined) {
+      if (isUri(location)) {
+        // Prepare to fetch the icon set from the given location
+        toFetch.push({
+          iconSetName,
+          icons,
+          location
+        })
+
+        continue
+      }
+
+      let resolvedLocation
+
+      try {
+        // Try to resolve the location as a module
+        resolvedLocation = require.resolve(location)
+      } catch {
+        // Otherwise resolve from the file system
+        resolvedLocation = path.resolve(location)
+      }
+
+      if (!fs.existsSync(resolvedLocation)) {
+        throw new Error(
+          `Icon set with name "${iconSetName}" and location "${location}" does not exist`
+        )
+      }
+
+      resolvedIconSets[iconSetName] = {
+        iconNames: icons,
+        iconifyJson: JSON.parse(fs.readFileSync(resolvedLocation, 'ascii'))
+      }
+
+      continue
+    }
+
+    // If there is no location, try and resolve from common iconify modules
+
     try {
-      const path = require.resolve(
+      // When installed individually
+      const jsonPath = require.resolve(
         `@iconify-json/${kebabCaseIconSetName}/icons.json`
       )
-      iconSourcePaths[iconSetName] = path
+
+      resolvedIconSets[iconSetName] = {
+        iconNames: icons,
+        iconifyJson: JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
+      }
       continue
     } catch {}
 
     try {
-      const path = require.resolve(
+      // When installed as the entire icon sets
+      const jsonPath = require.resolve(
         `@iconify/json/json/${kebabCaseIconSetName}.json`
       )
-      iconSourcePaths[iconSetName] = path
+
+      resolvedIconSets[iconSetName] = {
+        iconNames: icons,
+        iconifyJson: JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
+      }
+
       continue
     } catch {}
 
-    console.warn(
+    throw new Error(
       `Icon set with name "${iconSetName}" not found. Try installing it with "npm install @iconify/${kebabCaseIconSetName}".`
     )
   }
 
-  return iconSourcePaths
+  if (toFetch.length) {
+    const child = spawnSync(
+      'node',
+      [
+        path.resolve(__dirname, './fetch.mjs'),
+        ...toFetch.map(({ location }) => location)
+      ],
+      {
+        maxBuffer: Infinity
+      }
+    )
+
+    const iconSets: IconifyJson[] = JSON.parse(child.stdout.toString())
+
+    iconSets.forEach((iconifyJson, i) => {
+      resolvedIconSets[toFetch[i].iconSetName] = {
+        iconNames: toFetch[i].icons,
+        iconifyJson
+      }
+    })
+  }
+
+  return resolvedIconSets
 }
 
-export const Icons = plugin.withOptions<Options>(options => {
-  options ??= {}
-  options.asMask ??= {}
-  options.asBackground ??= {}
-  options.custom ??= {}
-  options.custom.location ??= './icons.json'
+export const Icons = plugin.withOptions<IconSets>(iconSets => {
+  iconSets ??= {}
 
-  const customLocation = path.resolve(options.custom.location)
-
-  if (!fs.existsSync(customLocation)) {
-    console.warn(`Icon set JSON does not exist at path "${customLocation}".`)
-    return () => {}
-  }
-
-  const iconSourcePaths = getIconSourcePaths(options)
-
-  if (options.custom?.asMask) {
-    options.asMask.custom = options.custom.asMask
-  }
-
-  if (options.custom?.asBackground) {
-    options.asBackground.custom = options.custom.asBackground
-  }
+  const resolvedIconSets = resolveIconSets(iconSets)
 
   const asMask: Record<string, unknown> = {}
   const asBackground: Record<string, unknown> = {}
 
-  for (const [iconSetName, iconNames] of Object.entries(options.asMask)) {
-    const iconifyJson = JSON.parse(
-      fs.readFileSync(
-        iconSetName === 'custom'
-          ? customLocation
-          : iconSourcePaths[iconSetName],
-        'ascii'
-      )
-    )
+  for (const [iconSetName, { iconNames, iconifyJson }] of Object.entries(
+    resolvedIconSets
+  )) {
+    for (const iconName of iconNames) {
+      const { width, height, body, mode, normalizedIconName } =
+        loadIconFromJson(iconifyJson, iconName)
 
-    for (const iconName of iconNames ?? []) {
-      const { width, height, body, mode, normalizedIconName } = loadIcon(
-        iconifyJson,
-        iconName
-      )
-
-      asMask[`.i-${toKebabCase(iconSetName)}-${normalizedIconName}`] =
-        getIconAsMask(width, height, body, mode)
-    }
-  }
-
-  for (const [iconSetName, iconNames] of Object.entries(options.asBackground)) {
-    const iconifyJson = JSON.parse(
-      fs.readFileSync(
-        iconSetName === 'custom'
-          ? customLocation
-          : iconSourcePaths[iconSetName],
-        'ascii'
-      )
-    )
-
-    for (const iconName of iconNames ?? []) {
-      const { width, height, body, normalizedIconName } = loadIcon(
-        iconifyJson,
-        iconName
-      )
-
-      asBackground[`bg-${toKebabCase(iconSetName)}-${normalizedIconName}`] =
-        getIconAsBackground(width, height, body)
+      if (mode === 'bg') {
+        asBackground[`bg-${toKebabCase(iconSetName)}-${normalizedIconName}`] =
+          getIconAsBackground(width, height, body)
+      } else {
+        asMask[`.i-${toKebabCase(iconSetName)}-${normalizedIconName}`] =
+          getIconAsMask(width, height, body, mode)
+      }
     }
   }
 

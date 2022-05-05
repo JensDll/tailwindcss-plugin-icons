@@ -2,9 +2,10 @@
   "private": true,
   "scripts": {
     "build": "node --experimental-loader esbuild-node-loader scripts/build.ts",
-    "test": "jest",
+    "build:vue": "pnpm run --filter \"vue-playground\" build",
     "dev": "rollup --config --watch",
-    "dev:vue": "pnpm run --filter \"vue-playground\" dev"
+    "dev:vue": "pnpm run --filter \"vue-playground\" dev",
+    "test": "jest"
   },
   "dependencies": {
     "@iconify/utils": "^1.0.32",

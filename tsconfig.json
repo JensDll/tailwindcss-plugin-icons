@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
     "baseUrl": "./",
+    "outDir": "dist",
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "Node",
@@ -15,8 +16,12 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"]
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
+    "paths": {
+      "@internal/fetch": ["packages/fetch/src"],
+      "tailwindcss-plugin-icons": ["packages/tailwindcss-plugin-icons/src"]
+    }
   },
-  "include": ["*.ts", "scripts", "dts", "packages"],
-  "exclude": ["**/dist", "packages/*/index.cjs"]
+  "include": ["*.ts", "scripts", "dts", "packages", "test.cjs"],
+  "exclude": ["**/dist"]
 }

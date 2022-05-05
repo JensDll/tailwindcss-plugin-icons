@@ -1,4 +1,4 @@
-import { loadIcon, toKebabCase } from '../src/utils'
+import { loadIconFromJson, toKebabCase, isUri } from '../src/utils'
 
 describe('toKebabCase', () => {
   it.each([
@@ -20,20 +20,48 @@ describe('toKebabCase', () => {
   })
 })
 
-describe('loadIcon', () => {
+describe('isUri', () => {
+  it.each([
+    {
+      value: 'https://example.com',
+      expected: true
+    },
+    {
+      value: 'http://example.com',
+      expected: true
+    },
+    {
+      value: './src/icons.json',
+      expected: false
+    },
+    {
+      value: 'src/icons.json',
+      expected: false
+    }
+  ])('$value', ({ value, expected }) => {
+    const actual = isUri(value)
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('loadIconFromJson', () => {
   const iconifyJson = {
     icons: {
       'with-current-color': {
+        // Should be rendered as mask (mode = mask)
         body: 'currentColor'
       },
       'with-current-color?bg': {
+        // Force as background (mode = bg)
         body: 'currentColor'
       },
-      'without-current-color': {
-        body: ''
+      'with-color': {
+        // Should be rendered as background (mode = color)
+        body: '#fff'
       },
-      'without-current-color?mask': {
-        body: ''
+      'with-color?mask': {
+        // Force as mask (mode = mask)
+        body: '#fff'
       },
       'with-width': {
         body: '',
@@ -57,7 +85,7 @@ describe('loadIcon', () => {
 
   it.each<{
     iconName: keyof IconifyJson['icons']
-    expected: ReturnType<typeof loadIcon>
+    expected: ReturnType<typeof loadIconFromJson>
   }>([
     {
       iconName: 'with-current-color',
@@ -80,23 +108,23 @@ describe('loadIcon', () => {
       }
     },
     {
-      iconName: 'without-current-color',
+      iconName: 'with-color',
       expected: {
         width: 24,
         height: 24,
-        mode: 'bg',
-        body: '',
-        normalizedIconName: 'without-current-color'
+        mode: 'color',
+        body: '#fff',
+        normalizedIconName: 'with-color'
       }
     },
     {
-      iconName: 'without-current-color?mask',
+      iconName: 'with-color?mask',
       expected: {
         width: 24,
         height: 24,
         mode: 'mask',
-        body: '',
-        normalizedIconName: 'without-current-color'
+        body: '#fff',
+        normalizedIconName: 'with-color'
       }
     },
     {
@@ -104,7 +132,7 @@ describe('loadIcon', () => {
       expected: {
         width: 20,
         height: 24,
-        mode: 'bg',
+        mode: 'color',
         body: '',
         normalizedIconName: 'with-width'
       }
@@ -114,7 +142,7 @@ describe('loadIcon', () => {
       expected: {
         width: 24,
         height: 20,
-        mode: 'bg',
+        mode: 'color',
         body: '',
         normalizedIconName: 'with-height'
       }
@@ -124,13 +152,13 @@ describe('loadIcon', () => {
       expected: {
         width: 20,
         height: 20,
-        mode: 'bg',
+        mode: 'color',
         body: '',
         normalizedIconName: 'with-width-and-height'
       }
     }
   ])('$iconName', ({ iconName, expected }) => {
-    const actual = loadIcon(iconifyJson, iconName)
+    const actual = loadIconFromJson(iconifyJson, iconName)
     expect(actual).toStrictEqual(expected)
   })
 })

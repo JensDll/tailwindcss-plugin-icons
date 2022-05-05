@@ -3,12 +3,13 @@ import type { OutputOptions, RollupOptions, ExternalOption } from 'rollup'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 
-type PackageName = 'tailwindcss-plugin-icons'
-
 const plugin = {
   dts: dts(),
   esbuild: esbuild({
     target: 'ES2019'
+  }),
+  esbuildNext: esbuild({
+    target: 'ESNext'
   }),
   minify: minify({
     target: 'ES2019'
@@ -33,6 +34,8 @@ const plugin = {
     })
   }
 } as const
+
+type PackageName = 'tailwindcss-plugin-icons' | 'fetch'
 
 const input = (name: PackageName) => `packages/${name}/src/index.ts`
 
@@ -67,30 +70,53 @@ const output = (name: PackageName): OutputReturn => ({
   }
 })
 
-const baseExternals: ExternalOption = ['fs', 'path', /tailwindcss\/.+/]
+const baseExternals: ExternalOption = [
+  'fs',
+  'path',
+  'http',
+  'https',
+  'child_process',
+  /tailwindcss\/.+/
+]
 
-const packageInput = input('tailwindcss-plugin-icons')
-const packageOutput = output('tailwindcss-plugin-icons')
+const packages = {
+  main: {
+    input: input('tailwindcss-plugin-icons'),
+    output: output('tailwindcss-plugin-icons')
+  },
+  fetch: {
+    input: input('fetch'),
+    output: {
+      file: 'packages/tailwindcss-plugin-icons/dist/fetch.mjs',
+      format: 'esm'
+    } as OutputOptions
+  }
+} as const
 
 const configs: RollupOptions[] = [
   {
-    input: packageInput,
-    output: [packageOutput.esm],
+    input: packages.fetch.input,
+    output: packages.fetch.output,
+    plugins: [plugin.replace.esm, plugin.esbuildNext]
+  },
+  {
+    input: packages.main.input,
+    output: [packages.main.output.esm],
     plugins: [plugin.replace.esm, plugin.esbuild]
   },
   {
-    input: packageInput,
-    output: packageOutput.dev,
+    input: packages.main.input,
+    output: packages.main.output.dev,
     plugins: [plugin.replace.dev, plugin.esbuild]
   },
   {
-    input: packageInput,
-    output: packageOutput.prod,
+    input: packages.main.input,
+    output: packages.main.output.prod,
     plugins: [plugin.replace.prod, plugin.esbuild]
   },
   {
-    input: packageInput,
-    output: packageOutput.dts,
+    input: packages.main.input,
+    output: packages.main.output.dts,
     plugins: [plugin.dts]
   }
 ]

@@ -24,11 +24,3 @@
     </section>
   </section>
 </template>
-
-<style>
-/* There is a thin border around the icon when it's animated (Firefox 100.0) */
-.firefox-border-animation-fix {
-  border: 0.01px solid rgba(0, 0, 0, 0);
-  background-clip: padding-box;
-}
-</style>

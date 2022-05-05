@@ -50,6 +50,9 @@ importers:
       ts-jest: 28.0.1_pvdh6dx6u6tmjyuslvspwrh6em
       typescript: 4.6.4
 
+  packages/fetch:
+    specifiers: {}
+
   packages/tailwindcss-plugin-icons:
     specifiers: {}
 
@@ -58,6 +61,7 @@ importers:
       '@iconify/json': 2.1.35
       '@vitejs/plugin-vue': 2.3.1
       autoprefixer: 10.4.7
+      my-icon-alias: npm:@iconify-json/brandico@1.1.1
       postcss: 8.4.13
       tailwindcss: 3.0.24
       tailwindcss-plugin-icons: latest
@@ -69,6 +73,7 @@ importers:
       '@iconify/json': 2.1.35
       '@vitejs/plugin-vue': 2.3.1_vite@2.9.7+vue@3.2.33
       autoprefixer: 10.4.7_postcss@8.4.13
+      my-icon-alias: /@iconify-json/brandico/1.1.1
       postcss: 8.4.13
       tailwindcss: 3.0.24
       tailwindcss-plugin-icons: link:../../packages/tailwindcss-plugin-icons
@@ -411,6 +416,12 @@ packages:
 
   /@bcoe/v8-coverage/0.2.3:
     resolution: {integrity: sha512-0hYQ8SB4Db5zvZB4axdMHGwEaQjkZzFjQiN9LVYvIFB2nSUHW9tYpxWriPrWDASIxiaXax83REcLxuSdnGPZtw==}
+    dev: false
+
+  /@iconify-json/brandico/1.1.1:
+    resolution: {integrity: sha512-+ukWCkZdKinGuK+CXsGVm1ob4xKBsKymHzUjJYVu1hWexuPC+uChinzK1W7i4cdGMtzwbMRdG4hmMys/1MrTyw==}
+    dependencies:
+      '@iconify/types': 1.1.0
     dev: false
 
   /@iconify/json/2.1.35:
@@ -1065,7 +1076,7 @@ packages:
       postcss: ^8.1.0
     dependencies:
       browserslist: 4.20.3
-      caniuse-lite: 1.0.30001335
+      caniuse-lite: 1.0.30001336
       fraction.js: 4.2.0
       normalize-range: 0.1.2
       picocolors: 1.0.0
@@ -1173,8 +1184,8 @@ packages:
     engines: {node: ^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7}
     hasBin: true
     dependencies:
-      caniuse-lite: 1.0.30001335
-      electron-to-chromium: 1.4.132
+      caniuse-lite: 1.0.30001336
+      electron-to-chromium: 1.4.134
       escalade: 3.1.1
       node-releases: 2.0.4
       picocolors: 1.0.0
@@ -1217,8 +1228,8 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /caniuse-lite/1.0.30001335:
-    resolution: {integrity: sha512-ddP1Tgm7z2iIxu6QTtbZUv6HJxSaV/PZeSrWFZtbY4JZ69tOeNhBCl3HyRQgeNZKE5AOn1kpV7fhljigy0Ty3w==}
+  /caniuse-lite/1.0.30001336:
+    resolution: {integrity: sha512-/YxSlBmL7iKXTbIJ48IQTnAOBk7XmWsxhBF1PZLOko5Dt9qc4Pl+84lfqG3Tc4EuavurRn1QLoVJGxY2iSycfw==}
     dev: false
 
   /chalk/2.4.2:
@@ -1396,8 +1407,8 @@ packages:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
     dev: false
 
-  /electron-to-chromium/1.4.132:
-    resolution: {integrity: sha512-JYdZUw/1068NWN+SwXQ7w6Ue0bWYGihvSUNNQwurvcDV/SM7vSiGZ3NuFvFgoEiCs4kB8xs3cX2an3wB7d4TBw==}
+  /electron-to-chromium/1.4.134:
+    resolution: {integrity: sha512-OdD7M2no4Mi8PopfvoOuNcwYDJ2mNFxaBfurA6okG3fLBaMcFah9S+si84FhX+FIWLKkdaiHfl4A+5ep/gOVrg==}
     dev: false
 
   /emittery/0.10.2:
@@ -2997,14 +3008,6 @@ packages:
       - supports-color
     dev: false
 
-  /rollup/2.71.1:
-    resolution: {integrity: sha512-lMZk3XfUBGjrrZQpvPSoXcZSfKcJ2Bgn+Z0L1MoW2V8Wh7BVM+LOBJTPo16yul2MwL59cXedzW1ruq3rCjSRgw==}
-    engines: {node: '>=10.0.0'}
-    hasBin: true
-    optionalDependencies:
-      fsevents: 2.3.2
-    dev: false
-
   /rollup/2.72.0:
     resolution: {integrity: sha512-KqtR2YcO35/KKijg4nx4STO3569aqCUeGRkKWnJ6r+AvBBrVY9L4pmf4NHVrQr4mTOq6msbohflxr2kpihhaOA==}
     engines: {node: '>=10.0.0'}
@@ -3326,7 +3329,7 @@ packages:
       esbuild: 0.14.38
       postcss: 8.4.13
       resolve: 1.22.0
-      rollup: 2.71.1
+      rollup: 2.72.0
     optionalDependencies:
       fsevents: 2.3.2
     dev: false

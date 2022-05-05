@@ -8,6 +8,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "my-icon-alias": "npm:@iconify-json/brandico@1.1.1",
     "@iconify/json": "2.1.35",
     "@vitejs/plugin-vue": "2.3.1",
     "autoprefixer": "10.4.7",
