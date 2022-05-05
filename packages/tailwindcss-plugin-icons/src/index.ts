@@ -27,7 +27,7 @@ const getIconAsMask = (
   body: string,
   mode: IconMode
 ) => {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 ${width} ${height}">${body}</svg>`
+  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${body}</svg>`
   const url = `url("data:image/svg+xml;utf8,${encodeSvg(svg)}")`
 
   if (mode === 'mask') {
@@ -49,8 +49,8 @@ const getIconAsMask = (
 
 const getIconAsBackground = (width: number, height: number, body: string) => {
   return (color: string) => {
-    body = body.replace(/currentColor/g, color)
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 ${width} ${height}">${body}</svg>`
+    const coloredBody = body.replace(/currentColor/g, color)
+    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${coloredBody}</svg>`
     const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
 
     return {

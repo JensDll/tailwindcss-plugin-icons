@@ -1,7 +1,7 @@
 {
   "icons": {
     "loading": {
-      "body": "<path d=\"M9.219 3.44A9 9 0 0 1 21 12\" stroke=\"currentColor\" stroke-opacity=\".75\" stroke-width=\"4\"/><path d=\"M21 12A9 9 0 1 1 9.219 3.44\" stroke=\"currentColor\" stroke-opacity=\".25\" stroke-width=\"4\"/>"
+      "body": "<path d=\"M23 12A11 11 0 0 0 8.6 1.538L9.79 5.2a7.15 7.15 0 0 1 9.36 6.8H23Z\" fill=\"currentColor\" fill-opacity=\".75\"/><path d=\"M23 12A11 11 0 1 1 8.6 1.538L9.79 5.2a7.15 7.15 0 1 0 9.36 6.8H23Z\" fill=\"currentColor\" fill-opacity=\".25\"/>"
     }
   },
   "width": 24,

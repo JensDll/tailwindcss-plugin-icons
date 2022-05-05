@@ -4,8 +4,10 @@
   <section class="mx-auto max-w-6xl px-6 py-12">
     <h1 class="text-5xl font-bold">Icons</h1>
     <section class="mt-6 flex space-x-2">
-      <div class="i-heroicons-solid-trash h-8 w-8 hover:text-cyan-500"></div>
-      <div class="bg-heroicons-solid-trash-green-500 h-8 w-8"></div>
+      <div class="i-heroicons-solid-trash h-8 w-8 hover:text-purple-500"></div>
+      <div
+        class="bg-heroicons-outline-trash-emerald-500 hover:bg-heroicons-outline-trash-emerald-300 h-8 w-8"
+      ></div>
       <div
         class="i-heroicons-outline-lock-closed hover:i-heroicons-outline-lock-open h-8 w-8"
       ></div>
