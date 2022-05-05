@@ -27,7 +27,7 @@ module.exports = {
       },
       brandico: {
         icons: ['facebook'],
-        // Can be some other module
+        // Can be some other module too
         location: 'my-icon-alias/icons.json'
       },
       custom: {
