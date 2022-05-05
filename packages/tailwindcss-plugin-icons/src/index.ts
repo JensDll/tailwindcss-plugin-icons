@@ -47,8 +47,8 @@ const getIconAsMask = (
   }
 }
 
-const getIconAsBackground = (width: number, height: number, body: string) => {
-  return (color: string) => {
+const getIconAsBackground =
+  (width: number, height: number, body: string) => (color: string) => {
     const coloredBody = body.replace(/currentColor/g, color)
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${coloredBody}</svg>`
     const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
@@ -59,7 +59,6 @@ const getIconAsBackground = (width: number, height: number, body: string) => {
       backgroundColor: 'transparent'
     }
   }
-}
 
 type ResolvedIconsSets = {
   iconNames: string[]
@@ -117,7 +116,7 @@ const resolveIconSets = (iconsSets: IconSets) => {
     // If there is no location, try and resolve from common iconify modules
 
     try {
-      // When installed individually
+      // When the icon set is installed individually
       const jsonPath = require.resolve(
         `@iconify-json/${kebabCaseIconSetName}/icons.json`
       )
@@ -126,11 +125,12 @@ const resolveIconSets = (iconsSets: IconSets) => {
         iconNames: icons,
         iconifyJson: JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
       }
+
       continue
     } catch {}
 
     try {
-      // When installed as the entire icon sets
+      // When all icon sets are installed together
       const jsonPath = require.resolve(
         `@iconify/json/json/${kebabCaseIconSetName}.json`
       )
@@ -176,7 +176,14 @@ const resolveIconSets = (iconsSets: IconSets) => {
 export const Icons = plugin.withOptions<IconSets>(iconSets => {
   iconSets ??= {}
 
-  const resolvedIconSets = resolveIconSets(iconSets)
+  let resolvedIconSets
+
+  try {
+    resolvedIconSets = resolveIconSets(iconSets)
+  } catch (e) {
+    console.error(e)
+    return () => {}
+  }
 
   const asMask: Record<string, unknown> = {}
   const asBackground: Record<string, unknown> = {}
