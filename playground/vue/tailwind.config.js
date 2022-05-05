@@ -22,23 +22,23 @@ module.exports = {
         icons: ['snake', 'cat', 'dolphin']
       },
       vscodeIcons: {
-        // By default will search for common iconify module locations
+        // By default it will search for icons in common iconify module locations
         icons: ['file-type-light-db?mask']
       },
       brandico: {
         icons: ['facebook'],
-        // Can be some other module too
+        // You can pass other modules too
         location: 'my-icon-alias/icons.json'
       },
       custom: {
         icons: ['loading'],
-        // Can be a URI
+        // It can be a URI
         location:
           'https://gist.githubusercontent.com/JensDll/4e59cf6005f585581975941a94bc1d88/raw/0e70bdac81224add27d8f0576ab15406709e5938/icons.json'
       },
       customAlt: {
         icons: ['loading'],
-        // Can be a relative or absolute path
+        // It can be a relative or absolute path
         location: path.resolve(__dirname, './src/icons.json')
       }
     }),

@@ -28,23 +28,23 @@ module.exports = {
   plugins: [
     Icons({
       heroiconsSolid: {
-        // By default will search in common iconify module locations
+        // By default it will search for icons in common iconify module locations
         icons: ['trash', 'trash?bg']
       },
       heroiconsOutline: {
         icons: ['lock-open', 'lock-closed'],
-        // Can be some other module too
+        // You can pass other modules too
         location: 'my-icon-alias/icons.json'
       },
       custom: {
         icons: ['loading'],
-        // Can be a URI
+        // It can be a URI
         location:
           'https://gist.githubusercontent.com/JensDll/4e59cf6005f585581975941a94bc1d88/raw/6cdeb3cb9dacd47fd132d49004a2e8f4cbc0774f/icons.json'
       },
       customAlt: {
         icons: ['loading'],
-        // Can be a relative or absolute path
+        // It can be a relative or absolute path
         location: './src/icons.json'
       }
     })
