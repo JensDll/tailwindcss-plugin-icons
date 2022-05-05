@@ -18,7 +18,8 @@ importers:
       fs-extra: 10.1.0
       jest: 28.0.3
       prettier: 2.6.2
-      rollup: 2.71.1
+      prettier-plugin-tailwindcss: ^0.1.10
+      rollup: 2.72.0
       rollup-plugin-dts: 4.2.1
       rollup-plugin-esbuild: 4.9.1
       tailwindcss: ^3.0.24
@@ -27,8 +28,8 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@iconify/utils': 1.0.32
-      '@rollup/plugin-alias': 3.1.9_rollup@2.71.1
-      '@rollup/plugin-replace': 4.0.0_rollup@2.71.1
+      '@rollup/plugin-alias': 3.1.9_rollup@2.72.0
+      '@rollup/plugin-replace': 4.0.0_rollup@2.72.0
       '@types/fs-extra': 9.0.13
       '@types/jest': 27.5.0
       '@types/node': 17.0.31
@@ -40,9 +41,10 @@ importers:
       fs-extra: 10.1.0
       jest: 28.0.3_@types+node@17.0.31
       prettier: 2.6.2
-      rollup: 2.71.1
-      rollup-plugin-dts: 4.2.1_ucrswzumipog3rfswkcvuves4u
-      rollup-plugin-esbuild: 4.9.1_lq7i7lniz7dbjsssi7edpdfmuu
+      prettier-plugin-tailwindcss: 0.1.10_prettier@2.6.2
+      rollup: 2.72.0
+      rollup-plugin-dts: 4.2.1_s6zbpzdkhlvcqzhawas6jkergu
+      rollup-plugin-esbuild: 4.9.1_zdwxx76xd73ibjgz5r322rbegy
       tailwindcss: 3.0.24
       tailwindcss-plugin-icons: link:packages/tailwindcss-plugin-icons
       ts-jest: 28.0.1_pvdh6dx6u6tmjyuslvspwrh6em
@@ -713,27 +715,27 @@ packages:
       fastq: 1.13.0
     dev: false
 
-  /@rollup/plugin-alias/3.1.9_rollup@2.71.1:
+  /@rollup/plugin-alias/3.1.9_rollup@2.72.0:
     resolution: {integrity: sha512-QI5fsEvm9bDzt32k39wpOwZhVzRcL5ydcffUHMyLVaVaLeC70I8TJZ17F1z1eMoLu4E/UOcH9BWVkKpIKdrfiw==}
     engines: {node: '>=8.0.0'}
     peerDependencies:
       rollup: ^1.20.0||^2.0.0
     dependencies:
-      rollup: 2.71.1
+      rollup: 2.72.0
       slash: 3.0.0
     dev: false
 
-  /@rollup/plugin-replace/4.0.0_rollup@2.71.1:
+  /@rollup/plugin-replace/4.0.0_rollup@2.72.0:
     resolution: {integrity: sha512-+rumQFiaNac9y64OHtkHGmdjm7us9bo1PlbgQfdihQtuNxzjpaB064HbRnewUOggLQxVCCyINfStkgmBeQpv1g==}
     peerDependencies:
       rollup: ^1.20.0 || ^2.0.0
     dependencies:
-      '@rollup/pluginutils': 3.1.0_rollup@2.71.1
+      '@rollup/pluginutils': 3.1.0_rollup@2.72.0
       magic-string: 0.25.9
-      rollup: 2.71.1
+      rollup: 2.72.0
     dev: false
 
-  /@rollup/pluginutils/3.1.0_rollup@2.71.1:
+  /@rollup/pluginutils/3.1.0_rollup@2.72.0:
     resolution: {integrity: sha512-GksZ6pr6TpIjHm8h9lSQ8pi8BE9VeubNT0OMJ3B5uZJ8pz73NPiqOtCog/x2/QzM1ENChPKxMDhiQuRHsqc+lg==}
     engines: {node: '>= 8.0.0'}
     peerDependencies:
@@ -742,7 +744,7 @@ packages:
       '@types/estree': 0.0.39
       estree-walker: 1.0.1
       picomatch: 2.3.1
-      rollup: 2.71.1
+      rollup: 2.72.0
     dev: false
 
   /@rollup/pluginutils/4.2.1:
@@ -2854,6 +2856,15 @@ packages:
       source-map-js: 1.0.2
     dev: false
 
+  /prettier-plugin-tailwindcss/0.1.10_prettier@2.6.2:
+    resolution: {integrity: sha512-ooDGNuXUjgCXfShliVYQ6+0iXqUFXn+zdNInPe0WZN9qINt9srbLGFGY5jeVL4MXtY20/4S8JaBcd8l6N6NfCQ==}
+    engines: {node: '>=12.17.0'}
+    peerDependencies:
+      prettier: '>=2.2.0'
+    dependencies:
+      prettier: 2.6.2
+    dev: false
+
   /prettier/2.6.2:
     resolution: {integrity: sha512-PkUpF+qoXTqhOeWL9fu7As8LXsIUZ1WYaJiY/a7McAQzxjk82OF0tibkFXVCDImZtWxbvojFjerkiLb0/q8mew==}
     engines: {node: '>=10.13.0'}
@@ -2954,7 +2965,7 @@ packages:
       glob: 7.2.0
     dev: false
 
-  /rollup-plugin-dts/4.2.1_ucrswzumipog3rfswkcvuves4u:
+  /rollup-plugin-dts/4.2.1_s6zbpzdkhlvcqzhawas6jkergu:
     resolution: {integrity: sha512-eaxQZNUJ5iQcxNGlpJ1CUgG4OSVqWjDZ3nNSWBIoGrpcote2aNphSe1RJOaSYkb8dwn3o+rYm1vvld/5z3EGSQ==}
     engines: {node: '>=v12.22.11'}
     peerDependencies:
@@ -2962,13 +2973,13 @@ packages:
       typescript: ^4.6
     dependencies:
       magic-string: 0.26.1
-      rollup: 2.71.1
+      rollup: 2.72.0
       typescript: 4.6.4
     optionalDependencies:
       '@babel/code-frame': 7.16.7
     dev: false
 
-  /rollup-plugin-esbuild/4.9.1_lq7i7lniz7dbjsssi7edpdfmuu:
+  /rollup-plugin-esbuild/4.9.1_zdwxx76xd73ibjgz5r322rbegy:
     resolution: {integrity: sha512-qn/x7Wz9p3Xnva99qcb+nopH0d2VJwVnsxJTGEg+Sh2Z3tqQl33MhOwzekVo1YTKgv+yAmosjcBRJygMfGrtLw==}
     engines: {node: '>=12'}
     peerDependencies:
@@ -2981,13 +2992,21 @@ packages:
       esbuild: 0.14.38
       joycon: 3.1.1
       jsonc-parser: 3.0.0
-      rollup: 2.71.1
+      rollup: 2.72.0
     transitivePeerDependencies:
       - supports-color
     dev: false
 
   /rollup/2.71.1:
     resolution: {integrity: sha512-lMZk3XfUBGjrrZQpvPSoXcZSfKcJ2Bgn+Z0L1MoW2V8Wh7BVM+LOBJTPo16yul2MwL59cXedzW1ruq3rCjSRgw==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: false
+
+  /rollup/2.72.0:
+    resolution: {integrity: sha512-KqtR2YcO35/KKijg4nx4STO3569aqCUeGRkKWnJ6r+AvBBrVY9L4pmf4NHVrQr4mTOq6msbohflxr2kpihhaOA==}
     engines: {node: '>=10.0.0'}
     hasBin: true
     optionalDependencies:
