@@ -35,7 +35,7 @@ export function loadIcon(iconifyJson: IconifyJson, iconName: string) {
   let { width, height, icons } = iconifyJson
   let mode: IconMode | undefined
 
-  iconName = iconName.replace(/\?(bg|mask)$/, (...values) => {
+  const normalizedIconName = iconName.replace(/\?(bg|mask)$/, (...values) => {
     mode = values[1]
     return ''
   })
@@ -46,6 +46,7 @@ export function loadIcon(iconifyJson: IconifyJson, iconName: string) {
   if (icon.width) {
     width = icon.width
   }
+
   if (icon.height) {
     height = icon.height
   }
@@ -57,6 +58,6 @@ export function loadIcon(iconifyJson: IconifyJson, iconName: string) {
     height,
     mode,
     body,
-    normalizedIconName: iconName
+    normalizedIconName
   }
 }

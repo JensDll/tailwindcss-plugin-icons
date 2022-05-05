@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "node --experimental-loader esbuild-node-loader scripts/build.ts",
-    "test": "jest --runInBand",
+    "test": "jest",
     "dev": "rollup --config --watch",
     "dev:vue": "pnpm run --filter \"vue-playground\" dev"
   },
