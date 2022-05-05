@@ -8,9 +8,6 @@ const plugin = {
   esbuild: esbuild({
     target: 'ES2019'
   }),
-  esbuildNext: esbuild({
-    target: 'ESNext'
-  }),
   minify: minify({
     target: 'ES2019'
   }),
@@ -97,7 +94,7 @@ const configs: RollupOptions[] = [
   {
     input: packages.fetch.input,
     output: packages.fetch.output,
-    plugins: [plugin.replace.esm, plugin.esbuildNext]
+    plugins: [plugin.replace.esm, plugin.esbuild]
   },
   {
     input: packages.main.input,

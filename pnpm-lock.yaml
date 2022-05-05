@@ -58,27 +58,27 @@ importers:
 
   playground/vue:
     specifiers:
-      '@iconify/json': 2.1.35
-      '@vitejs/plugin-vue': 2.3.1
+      '@iconify/json': 2.1.36
+      '@vitejs/plugin-vue': 2.3.2
       autoprefixer: 10.4.7
       my-icon-alias: npm:@iconify-json/brandico@1.1.1
       postcss: 8.4.13
       tailwindcss: 3.0.24
       tailwindcss-plugin-icons: latest
       typescript: 4.6.4
-      vite: 2.9.7
+      vite: 2.9.8
       vue: 3.2.33
       vue-tsc: 0.34.11
     dependencies:
-      '@iconify/json': 2.1.35
-      '@vitejs/plugin-vue': 2.3.1_vite@2.9.7+vue@3.2.33
+      '@iconify/json': 2.1.36
+      '@vitejs/plugin-vue': 2.3.2_vite@2.9.8+vue@3.2.33
       autoprefixer: 10.4.7_postcss@8.4.13
       my-icon-alias: /@iconify-json/brandico/1.1.1
       postcss: 8.4.13
       tailwindcss: 3.0.24
       tailwindcss-plugin-icons: link:../../packages/tailwindcss-plugin-icons
       typescript: 4.6.4
-      vite: 2.9.7
+      vite: 2.9.8
       vue: 3.2.33
       vue-tsc: 0.34.11_typescript@4.6.4
 
@@ -424,8 +424,8 @@ packages:
       '@iconify/types': 1.1.0
     dev: false
 
-  /@iconify/json/2.1.35:
-    resolution: {integrity: sha512-VFPRA58gMmT3bAPBhPTyN3KCcrImeiMzHEAPzRRUaz6SGaXvpKlGDJa+qUVHaJKL3Ht1UYUv1cY0t0wNKM/3Bg==}
+  /@iconify/json/2.1.36:
+    resolution: {integrity: sha512-EmM+gljj2FwCnFKgkdpt9y0RZ5V7gpAxprOO3B/XGwwrPWxtR+KvwCF2fPg3cqsCncV6hxqs4geYhwdeELjjtw==}
     dependencies:
       '@iconify/types': 1.1.0
       pathe: 0.2.0
@@ -876,14 +876,14 @@ packages:
       '@types/yargs-parser': 21.0.0
     dev: false
 
-  /@vitejs/plugin-vue/2.3.1_vite@2.9.7+vue@3.2.33:
-    resolution: {integrity: sha512-YNzBt8+jt6bSwpt7LP890U1UcTOIZZxfpE5WOJ638PNxSEKOqAi0+FSKS0nVeukfdZ0Ai/H7AFd6k3hayfGZqQ==}
+  /@vitejs/plugin-vue/2.3.2_vite@2.9.8+vue@3.2.33:
+    resolution: {integrity: sha512-umyypfSHS4kQLdYAnJHhaASq7FRzNCdvcRoQ3uYGNk1/M4a+hXUd7ysN7BLhCrWH6uBokyCkFeUAaFDzSaaSrQ==}
     engines: {node: '>=12.0.0'}
     peerDependencies:
       vite: ^2.5.10
       vue: ^3.2.25
     dependencies:
-      vite: 2.9.7
+      vite: 2.9.8
       vue: 3.2.33
     dev: false
 
@@ -3310,8 +3310,8 @@ packages:
       convert-source-map: 1.8.0
     dev: false
 
-  /vite/2.9.7:
-    resolution: {integrity: sha512-5hH7aNQe8rJiTTqCtPNX/6mIKlGw+1wg8UXwAxDIIN8XaSR+Zx3GT2zSu7QKa1vIaBqfUODGh3vpwY8r0AW/jw==}
+  /vite/2.9.8:
+    resolution: {integrity: sha512-zsBGwn5UT3YS0NLSJ7hnR54+vUKfgzMUh/Z9CxF1YKEBVIe213+63jrFLmZphgGI5zXwQCSmqIdbPuE8NJywPw==}
     engines: {node: '>=12.2.0'}
     hasBin: true
     peerDependencies:

@@ -22,6 +22,6 @@
       "tailwindcss-plugin-icons": ["packages/tailwindcss-plugin-icons/src"]
     }
   },
-  "include": ["*.ts", "scripts", "dts", "packages", "test.cjs"],
-  "exclude": ["**/dist"]
+  "include": ["*.ts", "scripts", "dts", "packages"],
+  "exclude": ["**/dist/**/*"]
 }
