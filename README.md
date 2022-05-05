@@ -32,8 +32,8 @@ module.exports = {
         icons: ['trash', 'trash?bg']
       },
       heroiconsOutline: {
-        // Can be some other module too
         icons: ['lock-open', 'lock-closed'],
+        // Can be some other module too
         location: 'my-icon-alias/icons.json'
       },
       custom: {
