@@ -1,9 +1,5 @@
 export type Awaitable<T> = T | Promise<T>
 
-export const isNode =
-  typeof process < 'u' && typeof process.stdout < 'u' && !process.versions.deno
-export const isVSCode = isNode && !!process.env.VSCODE_CWD
-
 export function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
