@@ -27,7 +27,12 @@ await Promise.all([
   // Copy CommonJS entry point
   fs.copy(`${basePath}/index.cjs`, 'publish/index.cjs'),
   // Copy dist content
-  fs.copy(`${basePath}/dist`, 'publish/dist')
+  fs.copy(`${basePath}/dist`, 'publish/dist', {
+    filter(path) {
+      // Do not copy the cache folder
+      return !/cache$/.test(path)
+    }
+  })
 ])
 
 console.log()
