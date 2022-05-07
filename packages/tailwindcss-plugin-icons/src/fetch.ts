@@ -1,0 +1,44 @@
+import http from 'http'
+import https from 'https'
+import { createWriteStream } from 'fs'
+import fs from 'fs/promises'
+import path from 'path'
+
+import { uriToFilename } from '@internal/shared'
+
+const [cacheDir, ...uris] = process.argv.slice(2)
+
+;(async () => {
+  try {
+    await Promise.all(uris.map(makeRequest))
+  } catch {
+    process.exit(1)
+  }
+
+  process.exit(0)
+})()
+
+function makeRequest(uri: string) {
+  const filePath = path.resolve(cacheDir, uriToFilename(uri))
+
+  return new Promise<void>((resolve, reject) => {
+    const protocol = uri.startsWith('https') ? https : http
+
+    protocol.get(uri, async response => {
+      const writeStream = createWriteStream(filePath)
+        .on('finish', resolve)
+        .on('close', reject)
+
+      response
+        .on('data', writeStream.write.bind(writeStream))
+        .on('end', async () => {
+          if (response.complete && response.statusCode === 200) {
+            writeStream.end()
+          } else {
+            await fs.unlink(filePath)
+            writeStream.destroy()
+          }
+        })
+    })
+  })
+}

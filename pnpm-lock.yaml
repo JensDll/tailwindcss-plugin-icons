@@ -5,7 +5,9 @@ importers:
   .:
     specifiers:
       '@iconify/utils': 1.0.32
+      '@internal/shared': workspace:*
       '@rollup/plugin-alias': 3.1.9
+      '@rollup/plugin-node-resolve': ^13.3.0
       '@rollup/plugin-replace': 4.0.0
       '@types/fs-extra': 9.0.13
       '@types/jest': 27.5.0
@@ -28,7 +30,9 @@ importers:
       typescript: 4.6.4
     dependencies:
       '@iconify/utils': 1.0.32
+      '@internal/shared': link:packages/shared
       '@rollup/plugin-alias': 3.1.9_rollup@2.72.0
+      '@rollup/plugin-node-resolve': 13.3.0_rollup@2.72.0
       '@rollup/plugin-replace': 4.0.0_rollup@2.72.0
       '@types/fs-extra': 9.0.13
       '@types/jest': 27.5.0
@@ -50,7 +54,7 @@ importers:
       ts-jest: 28.0.1_k4xvjffwcpckmnpd5fcvxvnd24
       typescript: 4.6.4
 
-  packages/fetch:
+  packages/shared:
     specifiers: {}
 
   packages/tailwindcss-plugin-icons:
@@ -58,7 +62,7 @@ importers:
 
   playground/vue:
     specifiers:
-      '@iconify/json': 2.1.37
+      '@iconify/json': 2.1.38
       '@vitejs/plugin-vue': 2.3.2
       autoprefixer: 10.4.7
       my-icon-alias: npm:@iconify-json/brandico@1.1.1
@@ -70,7 +74,7 @@ importers:
       vue: 3.2.33
       vue-tsc: 0.34.11
     dependencies:
-      '@iconify/json': 2.1.37
+      '@iconify/json': 2.1.38
       '@vitejs/plugin-vue': 2.3.2_vite@2.9.8+vue@3.2.33
       autoprefixer: 10.4.7_postcss@8.4.13
       my-icon-alias: /@iconify-json/brandico/1.1.1
@@ -258,6 +262,8 @@ packages:
     resolution: {integrity: sha512-n2Q6i+fnJqzOaq2VkdXxy2TCPCWQZHiCo0XqmrCvDWcZQKRyZzYi4Z0yxlBuN0w+r2ZHmre+Q087DSrw3pbJDQ==}
     engines: {node: '>=6.0.0'}
     hasBin: true
+    dependencies:
+      '@babel/types': 7.17.10
     dev: false
 
   /@babel/plugin-syntax-async-generators/7.8.4_@babel+core@7.17.10:
@@ -424,8 +430,8 @@ packages:
       '@iconify/types': 1.1.0
     dev: false
 
-  /@iconify/json/2.1.37:
-    resolution: {integrity: sha512-/uSKjCTFd1T3Z5GRTU3WNe/+QNPiiBBeiObI40GYWSc/dPlI8dahh+QihMmDIkape2FdRVvStB4ZXaS8rzWq6g==}
+  /@iconify/json/2.1.38:
+    resolution: {integrity: sha512-/UhyntV8SIJUhxLnj3wT+UH7je5aGZro1L/VGtopsbCJYXV/gyTRNdKYTdI5vJGag7pL/knFrJsuUVsqXqMbKw==}
     dependencies:
       '@iconify/types': 1.1.0
       pathe: 0.2.0
@@ -737,6 +743,21 @@ packages:
       slash: 3.0.0
     dev: false
 
+  /@rollup/plugin-node-resolve/13.3.0_rollup@2.72.0:
+    resolution: {integrity: sha512-Lus8rbUo1eEcnS4yTFKLZrVumLPY+YayBdWXgFSHYhTT2iJbMhoaaBL3xl5NCdeRytErGr8tZ0L71BMRmnlwSw==}
+    engines: {node: '>= 10.0.0'}
+    peerDependencies:
+      rollup: ^2.42.0
+    dependencies:
+      '@rollup/pluginutils': 3.1.0_rollup@2.72.0
+      '@types/resolve': 1.17.1
+      deepmerge: 4.2.2
+      is-builtin-module: 3.1.0
+      is-module: 1.0.0
+      resolve: 1.22.0
+      rollup: 2.72.0
+    dev: false
+
   /@rollup/plugin-replace/4.0.0_rollup@2.72.0:
     resolution: {integrity: sha512-+rumQFiaNac9y64OHtkHGmdjm7us9bo1PlbgQfdihQtuNxzjpaB064HbRnewUOggLQxVCCyINfStkgmBeQpv1g==}
     peerDependencies:
@@ -857,6 +878,12 @@ packages:
 
   /@types/prettier/2.6.0:
     resolution: {integrity: sha512-G/AdOadiZhnJp0jXCaBQU449W2h716OW/EoXeYkCytxKL06X1WCXB4DZpp8TpZ8eyIJVS1cw4lrlkkSYU21cDw==}
+    dev: false
+
+  /@types/resolve/1.17.1:
+    resolution: {integrity: sha512-yy7HuzQhj0dhGpD8RLXSZWEkLsV9ibvxvi6EiJ3bkqLAO1RGo0WbkWQiwpRlSFymTJRz0d3k5LM3kkx8ArDbLw==}
+    dependencies:
+      '@types/node': 17.0.31
     dev: false
 
   /@types/stack-utils/2.0.1:
@@ -1186,7 +1213,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001338
-      electron-to-chromium: 1.4.136
+      electron-to-chromium: 1.4.137
       escalade: 3.1.1
       node-releases: 2.0.4
       picocolors: 1.0.0
@@ -1207,6 +1234,11 @@ packages:
 
   /buffer-from/1.1.2:
     resolution: {integrity: sha512-E+XQCRwSbaaiChtv6k6Dwgc+bx+Bs6vuKJHHl5kox/BaKbhiXzqQOwK4cO22yElGp2OCmjwVhT3HmxgyPGnJfQ==}
+    dev: false
+
+  /builtin-modules/3.2.0:
+    resolution: {integrity: sha512-lGzLKcioL90C7wMczpkY0n/oART3MbBa8R9OFGE1rJxoVI86u4WAGfEk8Wjv10eKSyTHVGkSo3bvBylCEtk7LA==}
+    engines: {node: '>=6'}
     dev: false
 
   /callsites/3.1.0:
@@ -1408,8 +1440,8 @@ packages:
     resolution: {integrity: sha512-+HlytyjlPKnIG8XuRG8WvmBP8xs8P71y+SKKS6ZXWoEgLuePxtDoUEiH7WkdePWrQ5JBpE6aoVqfZfJUQkjXwA==}
     dev: false
 
-  /electron-to-chromium/1.4.136:
-    resolution: {integrity: sha512-GnITX8rHnUrIVnTxU9UlsTnSemHUA2iF+6QrRqxFbp/mf0vfuSc/goEyyQhUX3TUUCE3mv/4BNuXOtaJ4ur0eA==}
+  /electron-to-chromium/1.4.137:
+    resolution: {integrity: sha512-0Rcpald12O11BUogJagX3HsCN3FE83DSqWjgXoHo5a72KUKMSfI39XBgJpgNNxS9fuGzytaFjE06kZkiVFy2qA==}
     dev: false
 
   /emittery/0.10.2:
@@ -1945,6 +1977,13 @@ packages:
       binary-extensions: 2.2.0
     dev: false
 
+  /is-builtin-module/3.1.0:
+    resolution: {integrity: sha512-OV7JjAgOTfAFJmHZLvpSTb4qi0nIILDV1gWPYDnDJUTNFM5aGlRAhk4QcT8i7TuAleeEV5Fdkqn3t4mS+Q11fg==}
+    engines: {node: '>=6'}
+    dependencies:
+      builtin-modules: 3.2.0
+    dev: false
+
   /is-core-module/2.9.0:
     resolution: {integrity: sha512-+5FPy5PnwmO3lvfMb0AsoPaBG+5KHUI0wYFXOtYPnVVVspTFUuMZNfNaNVRt3FZadstu2c8x23vykRW/NBoU6A==}
     dependencies:
@@ -1971,6 +2010,10 @@ packages:
     engines: {node: '>=0.10.0'}
     dependencies:
       is-extglob: 2.1.1
+    dev: false
+
+  /is-module/1.0.0:
+    resolution: {integrity: sha1-Mlj7afeMFNW4FdZkM2tM/7ZEFZE=}
     dev: false
 
   /is-number/7.0.0:

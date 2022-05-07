@@ -4,7 +4,6 @@ import { spawnSync } from 'child_process'
 
 import plugin from 'tailwindcss/plugin'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
-
 import {
   encodeSvg,
   isUri,
@@ -12,7 +11,9 @@ import {
   toKebabCase,
   type IconifyJson,
   type IconMode
-} from './utils'
+} from '@internal/shared'
+
+import { IconifyFileCache } from './cache'
 
 export type IconSets = {
   [iconSetName: string]: {
@@ -65,13 +66,15 @@ type ResolvedIconsSets = {
   iconifyJson: IconifyJson
 }
 
+const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
+
 const resolveIconSets = (iconsSets: IconSets) => {
   const resolvedIconSets: Record<string, ResolvedIconsSets> = {}
 
-  const toFetch: {
+  const toFetch = new Set<string>()
+  const toFetchMeta: {
     iconSetName: string
     icons: string[]
-    location: string
   }[] = []
 
   for (const [iconSetName, { icons, location }] of Object.entries(iconsSets)) {
@@ -79,11 +82,20 @@ const resolveIconSets = (iconsSets: IconSets) => {
 
     if (location !== undefined) {
       if (isUri(location)) {
+        if (cache.has(location)) {
+          resolvedIconSets[iconSetName] = {
+            iconNames: icons,
+            iconifyJson: cache.get(location)!
+          }
+
+          continue
+        }
+
         // Prepare to fetch the icon set from the given location
-        toFetch.push({
+        toFetch.add(location)
+        toFetchMeta.push({
           iconSetName,
-          icons,
-          location
+          icons
         })
 
         continue
@@ -113,7 +125,7 @@ const resolveIconSets = (iconsSets: IconSets) => {
       continue
     }
 
-    // If there is no location, try and resolve from common iconify modules
+    // If there is no location, try and resolve from common iconify module locations
 
     try {
       // When the icon set is installed individually
@@ -148,26 +160,21 @@ const resolveIconSets = (iconsSets: IconSets) => {
     )
   }
 
-  if (toFetch.length) {
-    const child = spawnSync(
-      'node',
-      [
-        path.resolve(__dirname, './fetch.mjs'),
-        ...toFetch.map(({ location }) => location)
-      ],
-      {
-        maxBuffer: Infinity
-      }
-    )
+  if (toFetch.size) {
+    spawnSync('node', [
+      path.resolve(__dirname, 'fetch.mjs'),
+      cache.cacheDir,
+      ...toFetch
+    ])
 
-    const iconSets: IconifyJson[] = JSON.parse(child.stdout.toString())
-
-    iconSets.forEach((iconifyJson, i) => {
-      resolvedIconSets[toFetch[i].iconSetName] = {
-        iconNames: toFetch[i].icons,
-        iconifyJson
+    let i = 0
+    for (const location of toFetch) {
+      resolvedIconSets[toFetchMeta[i].iconSetName] = {
+        iconNames: toFetchMeta[i].icons,
+        iconifyJson: cache.get(location)!
       }
-    })
+      ++i
+    }
   }
 
   return resolvedIconSets

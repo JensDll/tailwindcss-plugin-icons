@@ -19,20 +19,22 @@ module.exports = {
         icons: ['lock-open', 'lock-closed', 'trash?bg']
       },
       openmoji: {
-        icons: ['snake', 'cat', 'dolphin']
-      },
-      vscodeIcons: {
         // By default it will search for icons in common iconify module locations
-        icons: ['file-type-light-db?mask']
+        icons: ['snake', 'cat', 'dolphin']
       },
       brandico: {
         icons: ['facebook'],
         // You can pass other modules too
         location: 'my-icon-alias/icons.json'
       },
+      vscodeIcons: {
+        icons: ['file-type-light-db?mask'],
+        // It can be a URI
+        location:
+          'https://cdn.jsdelivr.net/npm/@iconify-json/vscode-icons@1.1.4/icons.json'
+      },
       custom: {
         icons: ['loading'],
-        // It can be a URI
         location:
           'https://gist.githubusercontent.com/JensDll/4e59cf6005f585581975941a94bc1d88/raw/0e70bdac81224add27d8f0576ab15406709e5938/icons.json'
       },

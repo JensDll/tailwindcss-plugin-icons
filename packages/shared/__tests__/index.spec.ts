@@ -1,4 +1,9 @@
-import { loadIconFromJson, toKebabCase, isUri } from '../src/utils'
+import {
+  loadIconFromJson,
+  toKebabCase,
+  isUri,
+  uriToFilename
+} from '../src/index'
 
 describe('toKebabCase', () => {
   it.each([
@@ -40,6 +45,26 @@ describe('isUri', () => {
     }
   ])('$value', ({ value, expected }) => {
     const actual = isUri(value)
+    expect(actual).toBe(expected)
+  })
+})
+
+describe('uriToFilename', () => {
+  it.each([
+    {
+      value: 'https://example.com',
+      expected: 'example.com'
+    },
+    {
+      value: 'http://example.com/foo/icons.json',
+      expected: 'example.com.foo.icons.json'
+    },
+    {
+      value: 'example.com/foo/icons.json',
+      expected: 'example.com.foo.icons.json'
+    }
+  ])('$value', ({ value, expected }) => {
+    const actual = uriToFilename(value)
     expect(actual).toBe(expected)
   })
 })
