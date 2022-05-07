@@ -25,7 +25,7 @@ beforeEach(() => {
 })
 
 afterEach(async () => {
-  await fs.rmdir(cache.cacheDir, { recursive: true })
+  await fs.rm(cache.cacheDir, { recursive: true })
 })
 
 it('keys', () => {
