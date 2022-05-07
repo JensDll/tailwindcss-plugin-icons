@@ -40,7 +40,7 @@ module.exports = {
         icons: ['loading'],
         // It can be a URI. Fetched resources will be cached to the file system
         location:
-          'https://gist.githubusercontent.com/JensDll/4e59cf6005f585581975941a94bc1d88/raw/6cdeb3cb9dacd47fd132d49004a2e8f4cbc0774f/icons.json'
+          'https://gist.githubusercontent.com/JensDll/4e59cf6005f585581975941a94bc1d88/raw/0e70bdac81224add27d8f0576ab15406709e5938/icons.json'
       },
       customAlt: {
         icons: ['loading'],

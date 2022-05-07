@@ -33,15 +33,19 @@ const getIconAsMask = (
 
   if (mode === 'mask') {
     return {
-      mask: `${url} no-repeat`,
+      '--tw-plugin-icons-url': url,
+      mask: 'var(--tw-plugin-icons-url) no-repeat',
+      '-webkit-mask': 'var(--tw-plugin-icons-url) no-repeat',
       maskSize: '100% 100%',
+      '-webkit-mask-size': '100% 100%',
       backgroundColor: 'currentColor'
     }
   }
 
   if (mode === 'color') {
     return {
-      background: `${url} no-repeat`,
+      '--tw-plugin-icons-url': url,
+      background: 'var(--tw-plugin-icons-url) no-repeat',
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent'
     }
@@ -55,7 +59,8 @@ const getIconAsBackground =
     const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
 
     return {
-      background: `${url} no-repeat`,
+      '--tw-plugin-icons-url': url,
+      background: 'var(--tw-plugin-icons-url) no-repeat',
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent'
     }
