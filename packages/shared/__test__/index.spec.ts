@@ -1,4 +1,4 @@
-import { loadIconFromJson, toKebabCase, isUri } from '../src/utils'
+import { loadIconFromJson, toKebabCase, isUri } from '../src/index'
 
 describe('toKebabCase', () => {
   it.each([

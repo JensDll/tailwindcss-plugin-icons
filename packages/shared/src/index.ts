@@ -1,5 +1,9 @@
 export type Awaitable<T> = T | Promise<T>
 
+export const isNode =
+  typeof process < 'u' && typeof process.stdout < 'u' && !process.versions.deno
+export const isVSCode = isNode && !!process.env.VSCODE_CWD
+
 export function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
@@ -11,6 +15,10 @@ export function isPromise<T>(value: Awaitable<T>): value is Promise<T> {
 
 export function isUri(str: string) {
   return /^https?:/i.test(str)
+}
+
+export function uriToFilename(key: string) {
+  return key.replace(/^https?:\/\//, '').replace(/[/]/g, '.')
 }
 
 export function encodeSvg(svg: string) {

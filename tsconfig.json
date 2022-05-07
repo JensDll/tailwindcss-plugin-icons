@@ -18,10 +18,10 @@
     "skipLibCheck": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
     "paths": {
-      "@internal/fetch": ["packages/fetch/src"],
+      "@internal/shared": ["packages/shared/src"],
       "tailwindcss-plugin-icons": ["packages/tailwindcss-plugin-icons/src"]
     }
   },
-  "include": ["*.ts", "scripts", "dts", "packages"],
+  "include": ["*.ts", "scripts", "dts", "packages/*/src"],
   "exclude": ["**/dist/**/*"]
 }

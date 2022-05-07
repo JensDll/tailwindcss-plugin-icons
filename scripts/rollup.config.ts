@@ -1,7 +1,12 @@
+import path from 'path'
+
+import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
-import type { OutputOptions, RollupOptions, ExternalOption } from 'rollup'
+import type { RollupOptions, ExternalOption, Plugin } from 'rollup'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
+
+const rootDir = path.resolve(__dirname, '..')
 
 const plugin = {
   dts: dts(),
@@ -10,6 +15,10 @@ const plugin = {
   }),
   minify: minify({
     target: 'ES2019'
+  }),
+  nodeResolve: nodeResolve({
+    rootDir,
+    resolveOnly: ['@internal/shared']
   }),
   replace: {
     esm: replace({
@@ -32,43 +41,14 @@ const plugin = {
   }
 } as const
 
-type PackageName = 'tailwindcss-plugin-icons' | 'fetch'
+type PackageName = 'tailwindcss-plugin-icons' | 'shared'
 
-const input = (name: PackageName) => `packages/${name}/src/index.ts`
-
-type OutputReturn = {
-  readonly esm: OutputOptions
-  readonly dev: OutputOptions[]
-  readonly prod: OutputOptions[]
-  readonly dts: OutputOptions
-}
-
-const output = (name: PackageName): OutputReturn => ({
-  esm: {
-    file: `packages/${name}/dist/index.mjs`,
-    format: 'esm'
-  },
-  dev: [
-    {
-      file: `packages/${name}/dist/index.cjs`,
-      format: 'cjs'
-    }
-  ],
-  prod: [
-    {
-      file: `packages/${name}/dist/index.min.cjs`,
-      format: 'cjs',
-      plugins: [plugin.minify]
-    }
-  ],
-  dts: {
-    file: `packages/${name}/dist/index.d.ts`,
-    format: 'esm'
-  }
-})
+const input = (name: PackageName, file = 'index') =>
+  `packages/${name}/src/${file}.ts`
 
 const baseExternals: ExternalOption = [
   'fs',
+  'fs/promises',
   'path',
   'http',
   'https',
@@ -76,44 +56,84 @@ const baseExternals: ExternalOption = [
   /tailwindcss\/.+/
 ]
 
-const packages = {
-  main: {
-    input: input('tailwindcss-plugin-icons'),
-    output: output('tailwindcss-plugin-icons')
-  },
-  fetch: {
-    input: input('fetch'),
-    output: {
-      file: 'packages/tailwindcss-plugin-icons/dist/fetch.mjs',
-      format: 'esm'
-    } as OutputOptions
-  }
-} as const
-
 const configs: RollupOptions[] = [
+  // Shared
   {
-    input: packages.fetch.input,
-    output: packages.fetch.output,
+    input: input('shared'),
+    output: {
+      file: 'packages/shared/dist/index.mjs',
+      format: 'esm'
+    },
     plugins: [plugin.replace.esm, plugin.esbuild]
   },
   {
-    input: packages.main.input,
-    output: [packages.main.output.esm],
-    plugins: [plugin.replace.esm, plugin.esbuild]
+    input: input('shared'),
+    output: {
+      file: 'packages/shared/dist/index.d.ts',
+      format: 'esm'
+    },
+    plugins: [plugin.dts]
+  },
+  // Main
+  {
+    input: input('tailwindcss-plugin-icons', 'fetch'),
+    output: {
+      dir: 'packages/tailwindcss-plugin-icons/dist',
+      format: 'esm',
+      manualChunks: {
+        'internal/shared': ['@internal/shared']
+      },
+      entryFileNames: '[name].mjs',
+      chunkFileNames: '[name].mjs'
+    },
+    plugins: [plugin.replace.esm, plugin.nodeResolve, plugin.esbuild]
   },
   {
-    input: packages.main.input,
-    output: packages.main.output.dev,
-    plugins: [plugin.replace.dev, plugin.esbuild]
+    input: input('tailwindcss-plugin-icons'),
+    output: {
+      dir: 'packages/tailwindcss-plugin-icons/dist',
+      format: 'esm',
+      manualChunks: {
+        'internal/shared': ['@internal/shared']
+      },
+      entryFileNames: '[name].mjs',
+      chunkFileNames: '[name].mjs'
+    },
+    plugins: [plugin.replace.esm, plugin.nodeResolve, plugin.esbuild]
   },
   {
-    input: packages.main.input,
-    output: packages.main.output.prod,
-    plugins: [plugin.replace.prod, plugin.esbuild]
+    input: input('tailwindcss-plugin-icons'),
+    output: {
+      dir: 'packages/tailwindcss-plugin-icons/dist',
+      format: 'cjs',
+      manualChunks: {
+        'internal/shared': ['@internal/shared']
+      },
+      entryFileNames: '[name].cjs',
+      chunkFileNames: '[name].cjs'
+    },
+    plugins: [plugin.replace.dev, plugin.nodeResolve, plugin.esbuild]
   },
   {
-    input: packages.main.input,
-    output: packages.main.output.dts,
+    input: input('tailwindcss-plugin-icons'),
+    output: {
+      dir: 'packages/tailwindcss-plugin-icons/dist',
+      format: 'cjs',
+      manualChunks: {
+        'internal/shared': ['@internal/shared']
+      },
+      entryFileNames: '[name].min.cjs',
+      chunkFileNames: '[name].min.cjs',
+      plugins: [plugin.minify]
+    },
+    plugins: [plugin.replace.prod, plugin.nodeResolve, plugin.esbuild]
+  },
+  {
+    input: input('tailwindcss-plugin-icons'),
+    output: {
+      file: 'packages/tailwindcss-plugin-icons/dist/index.d.ts',
+      format: 'esm'
+    },
     plugins: [plugin.dts]
   }
 ]
