@@ -52,7 +52,7 @@ module.exports = {
 }
 ```
 
-After the icon's name, you can pass `?mask` or `?bg` to force a specific render method. Only use `?mask` on colored (using fixed values) and `?bg` on colorless icons (using `currentColor`). Otherwise, there is no difference from the default.
+After the icon's name, you can pass `?mask` or `?bg` to force a specific render method. Only use `?mask` on colored and `?bg` on colorless icons. Otherwise, there is no difference from the default.
 
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
 
