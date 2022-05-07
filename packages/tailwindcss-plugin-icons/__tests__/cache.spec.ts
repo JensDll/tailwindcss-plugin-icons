@@ -47,10 +47,11 @@ it('iterator', () => {
 it('forEach', () => {
   const entries: [string, IconifyJson][] = []
 
-  cache.forEach((value, key, map) => {
+  cache.forEach(function (this: 42, value, key, map) {
     entries.push([key, value])
     expect(map).toBe(cache)
-  }, cache)
+    expect(this).toBe(42)
+  }, 42)
 
   expect(entries).toEqual(readFixtures())
 })
