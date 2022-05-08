@@ -1,5 +1,6 @@
 import path from 'node:path'
 import crypto from 'node:crypto'
+import os from 'node:os'
 
 import { beforeEach, test, expect, describe, afterEach } from 'vitest'
 import fs from 'fs-extra'
@@ -21,9 +22,7 @@ const readFixtures = (fixtures?: string[]) =>
   (fixtures === undefined ? allFixtures : fixtures).map(readFixture)
 
 beforeEach(() => {
-  cache = new IconifyFileCache(
-    path.resolve(process.env.TEMP, crypto.randomUUID())
-  )
+  cache = new IconifyFileCache(path.resolve(os.tmpdir(), crypto.randomUUID()))
   cache.set(...readFixture('entry1.json')).set(...readFixture('entry2.json'))
   expect(cache.size).toBe(2)
 })
