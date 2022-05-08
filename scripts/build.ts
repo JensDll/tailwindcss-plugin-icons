@@ -6,6 +6,8 @@ const basePath = 'packages/tailwindcss-plugin-icons'
 
 await run('rollup', ['--config'])
 
+console.log(process)
+
 console.log()
 console.log('Formatting declaration files ...')
 await run('pnpm', [
