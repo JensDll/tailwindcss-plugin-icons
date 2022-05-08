@@ -1,3 +1,5 @@
+import { expect, test, describe } from 'vitest'
+
 import {
   loadIconFromJson,
   toKebabCase,
@@ -6,7 +8,7 @@ import {
 } from '../src/index'
 
 describe('toKebabCase', () => {
-  it.each([
+  test.each([
     {
       value: 'heroiconsSolid',
       expected: 'heroicons-solid'
@@ -26,7 +28,7 @@ describe('toKebabCase', () => {
 })
 
 describe('isUri', () => {
-  it.each([
+  test.each([
     {
       value: 'https://example.com',
       expected: true
@@ -50,7 +52,7 @@ describe('isUri', () => {
 })
 
 describe('uriToFilename', () => {
-  it.each([
+  test.each([
     {
       value: 'https://example.com',
       expected: 'example.com'
@@ -73,19 +75,19 @@ describe('loadIconFromJson', () => {
   const iconifyJson = {
     icons: {
       'with-current-color': {
-        // Should be rendered as mask (mode = mask)
+        // Should be rendered as mask (mask)
         body: 'currentColor'
       },
       'with-current-color?bg': {
-        // Force as background (mode = bg)
+        // Force as background (bg)
         body: 'currentColor'
       },
       'with-color': {
-        // Should be rendered as background (mode = color)
+        // Should be rendered as background (color)
         body: '#fff'
       },
       'with-color?mask': {
-        // Force as mask (mode = mask)
+        // Force as mask (mask)
         body: '#fff'
       },
       'with-width': {
@@ -108,7 +110,7 @@ describe('loadIconFromJson', () => {
 
   type IconifyJson = typeof iconifyJson
 
-  it.each<{
+  test.each<{
     iconName: keyof IconifyJson['icons']
     expected: ReturnType<typeof loadIconFromJson>
   }>([

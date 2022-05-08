@@ -1,8 +1,10 @@
 import path from 'node:path'
 import crypto from 'node:crypto'
+import os from 'node:os'
 
+import { beforeEach, test, expect, describe, afterEach } from 'vitest'
 import fs from 'fs-extra'
-import type { IconifyJson } from '@internal/shared'
+import { IconifyJson } from '@internal/shared'
 
 import { IconifyFileCache } from '../src/cache'
 
@@ -20,7 +22,7 @@ const readFixtures = (fixtures?: string[]) =>
   (fixtures === undefined ? allFixtures : fixtures).map(readFixture)
 
 beforeEach(() => {
-  cache = new IconifyFileCache(path.resolve(__dirname, crypto.randomUUID()))
+  cache = new IconifyFileCache(path.resolve(os.tmpdir(), crypto.randomUUID()))
   cache.set(...readFixture('entry1.json')).set(...readFixture('entry2.json'))
   expect(cache.size).toBe(2)
 })
@@ -29,23 +31,23 @@ afterEach(async () => {
   await fs.rm(cache.cacheDir, { recursive: true })
 })
 
-it('keys', () => {
+test('keys', () => {
   expect([...cache.keys()]).toEqual(readFixtures().map(([k]) => k))
 })
 
-it('values', () => {
+test('values', () => {
   expect([...cache.values()]).toEqual(readFixtures().map(([, v]) => v))
 })
 
-it('entries', () => {
+test('entries', () => {
   expect([...cache.entries()]).toEqual(readFixtures())
 })
 
-it('iterator', () => {
+test('iterator', () => {
   expect([...cache]).toEqual(readFixtures())
 })
 
-it('forEach', () => {
+test('forEach', () => {
   const entries: [string, IconifyJson][] = []
 
   cache.forEach(function (this: 42, value, key, map) {
@@ -57,12 +59,12 @@ it('forEach', () => {
   expect(entries).toEqual(readFixtures())
 })
 
-it('toString', () => {
+test('toString', () => {
   expect(cache.toString()).toBe(`[object IconifyFileCache(size=2)]`)
 })
 
 describe('get', () => {
-  it.each([
+  test.each([
     {
       key: 'entry1.json',
       expected: () => readFixture('entry1.json')[1]
@@ -82,7 +84,7 @@ describe('get', () => {
 })
 
 describe('has', () => {
-  it.each([
+  test.each([
     {
       key: 'entry1.json',
       expected: true
@@ -102,14 +104,14 @@ describe('has', () => {
 })
 
 describe('delete', () => {
-  it('entry1.json', () => {
+  test('entry1.json', () => {
     expect(cache.delete('entry1.json')).toBe(true)
     expect(cache.size).toBe(1)
     expect(cache.has('entry1.json')).toBe(false)
     expect([...cache]).toEqual(readFixtures(['entry2.json']))
   })
 
-  it('entry1.json & entry2.json', () => {
+  test('entry1.json & entry2.json', () => {
     expect(cache.delete('entry1.json')).toBe(true)
     expect(cache.delete('entry2.json')).toBe(true)
     expect(cache.size).toBe(0)
@@ -118,7 +120,7 @@ describe('delete', () => {
     expect([...cache]).toStrictEqual([])
   })
 
-  it('undefined', () => {
+  test('undefined', () => {
     expect(cache.delete('undefined')).toBe(false)
     expect(cache.size).toBe(2)
     expect(cache.has('entry1.json')).toBe(true)
@@ -127,7 +129,7 @@ describe('delete', () => {
   })
 })
 
-it('clear', () => {
+test('clear', () => {
   cache.clear()
   expect(cache.size).toBe(0)
   expect([...cache]).toStrictEqual([])
