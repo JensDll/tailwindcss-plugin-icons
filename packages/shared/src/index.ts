@@ -14,14 +14,14 @@ export function isUri(str: string) {
 }
 
 export function uriToFilename(key: string) {
-  return key.replace(/^https?:\/\//, '').replace(/[/]/g, '.')
+  return key.replace(/^https?:\/\//i, '').replace(/[/]/g, '.')
 }
 
 export function encodeSvg(svg: string) {
   return svg
     .replace(
       '<svg',
-      ~svg.indexOf('xmlns') ? '<svg' : '<svg xmlns="http://www.w3.org/2000/svg"'
+      svg.includes('xmlns') ? '<svg' : '<svg xmlns="http://www.w3.org/2000/svg"'
     )
     .replace(/"/g, "'")
     .replace(/%/g, '%25')

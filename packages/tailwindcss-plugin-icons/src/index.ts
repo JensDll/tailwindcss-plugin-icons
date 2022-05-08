@@ -1,6 +1,6 @@
 import fs from 'fs'
 import path from 'path'
-import { spawnSync } from 'child_process'
+import { execFileSync } from 'child_process'
 
 import plugin from 'tailwindcss/plugin'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
@@ -166,7 +166,7 @@ const resolveIconSets = (iconsSets: IconSets) => {
   }
 
   if (toFetch.size) {
-    spawnSync('node', [
+    execFileSync('node', [
       path.resolve(__dirname, 'fetch.mjs'),
       cache.cacheDir,
       ...toFetch

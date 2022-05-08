@@ -1,6 +1,7 @@
-import path from 'path'
-import fs from 'fs-extra'
+import path from 'node:path'
+import crypto from 'node:crypto'
 
+import fs from 'fs-extra'
 import type { IconifyJson } from '@internal/shared'
 
 import { IconifyFileCache } from '../src/cache'
@@ -19,7 +20,7 @@ const readFixtures = (fixtures?: string[]) =>
   (fixtures === undefined ? allFixtures : fixtures).map(readFixture)
 
 beforeEach(() => {
-  cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
+  cache = new IconifyFileCache(path.resolve(__dirname, crypto.randomUUID()))
   cache.set(...readFixture('entry1.json')).set(...readFixture('entry2.json'))
   expect(cache.size).toBe(2)
 })
