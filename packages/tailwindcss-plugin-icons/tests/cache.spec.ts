@@ -32,19 +32,19 @@ afterEach(async () => {
 })
 
 test('keys', () => {
-  expect([...cache.keys()]).toEqual(readFixtures().map(([k]) => k))
+  expect([...cache.keys()]).toStrictEqual(readFixtures().map(([k]) => k))
 })
 
 test('values', () => {
-  expect([...cache.values()]).toEqual(readFixtures().map(([, v]) => v))
+  expect([...cache.values()]).toStrictEqual(readFixtures().map(([, v]) => v))
 })
 
 test('entries', () => {
-  expect([...cache.entries()]).toEqual(readFixtures())
+  expect([...cache.entries()]).toStrictEqual(readFixtures())
 })
 
 test('iterator', () => {
-  expect([...cache]).toEqual(readFixtures())
+  expect([...cache]).toStrictEqual(readFixtures())
 })
 
 test('forEach', () => {
@@ -56,7 +56,7 @@ test('forEach', () => {
     expect(this).toBe(42)
   }, 42)
 
-  expect(entries).toEqual(readFixtures())
+  expect(entries).toStrictEqual(readFixtures())
 })
 
 test('toString', () => {
@@ -108,7 +108,7 @@ describe('delete', () => {
     expect(cache.delete('entry1.json')).toBe(true)
     expect(cache.size).toBe(1)
     expect(cache.has('entry1.json')).toBe(false)
-    expect([...cache]).toEqual(readFixtures(['entry2.json']))
+    expect([...cache]).toStrictEqual(readFixtures(['entry2.json']))
   })
 
   test('entry1.json & entry2.json', () => {
@@ -125,7 +125,7 @@ describe('delete', () => {
     expect(cache.size).toBe(2)
     expect(cache.has('entry1.json')).toBe(true)
     expect(cache.has('entry2.json')).toBe(true)
-    expect([...cache]).toEqual(readFixtures())
+    expect([...cache]).toStrictEqual(readFixtures())
   })
 })
 
