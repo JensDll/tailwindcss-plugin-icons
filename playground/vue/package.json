@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "my-icon-alias": "npm:@iconify-json/brandico@1.1.1",
-    "@iconify/json": "2.1.38",
+    "@iconify/json": "2.1.39",
     "@vitejs/plugin-vue": "2.3.2",
     "autoprefixer": "10.4.7",
     "postcss": "8.4.13",
