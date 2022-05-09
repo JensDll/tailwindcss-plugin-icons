@@ -17,11 +17,12 @@
     "esModuleInterop": true,
     "skipLibCheck": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
+    "types": ["vitest/globals"],
     "paths": {
       "@internal/shared": ["packages/shared/src"],
       "tailwindcss-plugin-icons": ["packages/tailwindcss-plugin-icons/src"]
     }
   },
-  "include": ["*.ts", "scripts", "dts", "packages/*/src"],
+  "include": ["*.ts", "scripts", "dts", "packages/*/src", "packages/*/tests"],
   "exclude": ["**/dist/**/*"]
 }

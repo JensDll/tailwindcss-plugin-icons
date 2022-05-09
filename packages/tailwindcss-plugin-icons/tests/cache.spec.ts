@@ -2,9 +2,8 @@ import path from 'node:path'
 import crypto from 'node:crypto'
 import os from 'node:os'
 
-import { beforeEach, test, expect, describe, afterEach } from 'vitest'
 import fs from 'fs-extra'
-import { IconifyJson } from '@internal/shared'
+import type { IconifyJson } from '@internal/shared'
 
 import { IconifyFileCache } from '../src/cache'
 
