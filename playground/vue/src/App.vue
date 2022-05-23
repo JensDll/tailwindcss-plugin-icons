@@ -20,9 +20,9 @@
       ></div>
     </section>
     <section class="flex space-x-2">
-      <div class="i-openmoji-dolphin h-[72px w-[72px]"></div>
+      <div class="i-openmoji-dolphin h-[72px] w-[72px]"></div>
       <div class="i-openmoji-snake h-[72px] w-[72px]"></div>
-      <div class="i-openmoji-cat h-[72px w-[72px]"></div>
+      <div class="i-openmoji-cat h-[72px] w-[72px]"></div>
     </section>
   </section>
 </template>

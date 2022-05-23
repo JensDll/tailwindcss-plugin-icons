@@ -53,6 +53,7 @@ const baseExternals: ExternalOption = [
   'http',
   'https',
   'child_process',
+  'crypto',
   /tailwindcss\/.+/
 ]
 

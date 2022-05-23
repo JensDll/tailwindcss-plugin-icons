@@ -2,18 +2,16 @@ name: Running tests
 
 on:
   pull_request:
-    branches:
-      - '**'
   push:
     branches:
-      - 'main'
+      - main
 
 jobs:
   main:
     runs-on: ubuntu-latest
     steps:
       - name: Checking out the repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Using pnpm version 7.x.x
         uses: pnpm/action-setup@v2
@@ -21,7 +19,7 @@ jobs:
           version: 7.x.x
 
       - name: Using node version 16
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: pnpm

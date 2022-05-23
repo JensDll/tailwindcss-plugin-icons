@@ -1,5 +1,3 @@
-import http from 'http'
-import https from 'https'
 import { createWriteStream } from 'fs'
 import fs from 'fs/promises'
 import path from 'path'
@@ -21,8 +19,10 @@ const [cacheDir, ...uris] = process.argv.slice(2)
 function makeRequest(uri: string) {
   const filePath = path.resolve(cacheDir, uriToFilename(uri))
 
-  return new Promise<void>((resolve, reject) => {
-    const protocol = uri.startsWith('https') ? https : http
+  return new Promise<void>(async (resolve, reject) => {
+    const protocol = await (uri.startsWith('https')
+      ? import('https')
+      : import('http'))
 
     protocol.get(uri, async response => {
       const writeStream = createWriteStream(filePath)

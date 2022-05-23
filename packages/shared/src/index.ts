@@ -13,8 +13,8 @@ export function isUri(str: string) {
   return /^https?:/i.test(str)
 }
 
-export function uriToFilename(key: string) {
-  return key.replace(/^https?:\/\//i, '').replace(/[/]/g, '.')
+export function uriToFilename(uri: string) {
+  return uri.replace(/^https?:\/\//i, '').replace(/[/]/g, '')
 }
 
 export function encodeSvg(svg: string) {

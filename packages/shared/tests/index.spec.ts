@@ -57,11 +57,11 @@ describe('uriToFilename', () => {
     },
     {
       value: 'http://example.com/foo/icons.json',
-      expected: 'example.com.foo.icons.json'
+      expected: 'example.comfooicons.json'
     },
     {
       value: 'example.com/foo/icons.json',
-      expected: 'example.com.foo.icons.json'
+      expected: 'example.comfooicons.json'
     }
   ])('$value', ({ value, expected }) => {
     const actual = uriToFilename(value)
