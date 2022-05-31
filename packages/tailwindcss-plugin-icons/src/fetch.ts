@@ -24,7 +24,7 @@ function makeRequest(uri: string) {
       ? import('https')
       : import('http'))
 
-    protocol.get(uri, async response => {
+    protocol.get(uri, response => {
       const writeStream = createWriteStream(filePath)
         .on('finish', resolve)
         .on('close', reject)

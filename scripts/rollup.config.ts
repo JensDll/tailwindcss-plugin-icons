@@ -2,7 +2,7 @@ import path from 'path'
 
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
-import type { RollupOptions, ExternalOption, Plugin } from 'rollup'
+import type { RollupOptions, ExternalOption } from 'rollup'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 
