@@ -4,7 +4,7 @@ import path from 'path'
 import { uriToFilename, type IconifyJson } from '@internal/shared'
 
 export class IconifyFileCache implements Map<string, IconifyJson> {
-  cacheDir: string
+  readonly cacheDir: string
   size: number
 
   constructor(cacheDir: string) {
