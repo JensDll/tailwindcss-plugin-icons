@@ -31,7 +31,7 @@ module.exports = {
         icons: ['file-type-light-db?mask'],
         // It can be a URI (for example a CDN)
         location:
-          'https://cdn.jsdelivr.net/npm/@iconify-json/vscode-icons@1.1.5/icons.json'
+          'https://cdn.jsdelivr.net/npm/@iconify-json/vscode-icons@1.1.6/icons.json'
       },
       custom: {
         icons: ['loading'],

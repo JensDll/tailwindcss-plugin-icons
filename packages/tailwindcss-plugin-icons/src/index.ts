@@ -76,10 +76,10 @@ const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
 const resolveIconSets = (iconsSets: IconSets) => {
   const resolvedIconSets: Record<string, ResolvedIconsSets> = {}
 
-  const toFetch = new Set<string>()
-  const toFetchMeta: {
-    iconSetName: string
+  const toFetch: {
     icons: string[]
+    location: string
+    iconSetName: string
   }[] = []
 
   for (const [iconSetName, { icons, location }] of Object.entries(iconsSets)) {
@@ -96,11 +96,11 @@ const resolveIconSets = (iconsSets: IconSets) => {
           continue
         }
 
-        // Prepare to fetch the icon set from the given location
-        toFetch.add(location)
-        toFetchMeta.push({
-          iconSetName,
-          icons
+        // Prepare to fetch the icon set
+        toFetch.push({
+          icons,
+          location,
+          iconSetName
         })
 
         continue
@@ -165,20 +165,24 @@ const resolveIconSets = (iconsSets: IconSets) => {
     )
   }
 
-  if (toFetch.size) {
-    execFileSync('node', [
-      path.resolve(__dirname, 'fetch.mjs'),
-      cache.cacheDir,
-      ...toFetch
-    ])
+  if (toFetch.length) {
+    execFileSync(
+      'node',
+      [
+        path.resolve(__dirname, 'fetch.mjs'),
+        cache.cacheDir,
+        ...toFetch.map(toFetch => toFetch.location)
+      ],
+      {
+        stdio: 'pipe'
+      }
+    )
 
-    let i = 0
-    for (const location of toFetch) {
-      resolvedIconSets[toFetchMeta[i].iconSetName] = {
-        iconNames: toFetchMeta[i].icons,
+    for (const { iconSetName, icons, location } of toFetch) {
+      resolvedIconSets[iconSetName] = {
+        iconNames: icons,
         iconifyJson: cache.get(location)!
       }
-      ++i
     }
   }
 
@@ -193,7 +197,10 @@ export const Icons = plugin.withOptions<IconSets>(iconSets => {
   try {
     resolvedIconSets = resolveIconSets(iconSets)
   } catch (e) {
-    console.error(e)
+    if (e instanceof Error) {
+      console.error(e.message)
+    }
+
     return () => {}
   }
 
