@@ -22,7 +22,7 @@ export type IconSets = {
   }
 }
 
-const urlVarName = '--tw-plugin-icons-url'
+const iconVarName = '--tw-plugin-icons-url'
 
 const getIconAsMask = (
   width: number,
@@ -35,9 +35,9 @@ const getIconAsMask = (
 
   if (mode === 'mask') {
     return {
-      [urlVarName]: url,
-      mask: `var(${urlVarName}) no-repeat`,
-      '-webkit-mask': `var(${urlVarName}) no-repeat`,
+      [iconVarName]: url,
+      mask: `var(${iconVarName}) no-repeat`,
+      '-webkit-mask': `var(${iconVarName}) no-repeat`,
       maskSize: '100% 100%',
       '-webkit-mask-size': '100% 100%',
       backgroundColor: 'currentColor'
@@ -46,8 +46,8 @@ const getIconAsMask = (
 
   if (mode === 'color') {
     return {
-      [urlVarName]: url,
-      background: `var(${urlVarName}) no-repeat`,
+      [iconVarName]: url,
+      background: `var(${iconVarName}) no-repeat`,
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent'
     }
@@ -61,8 +61,8 @@ const getIconAsBackground =
     const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
 
     return {
-      [urlVarName]: url,
-      background: `var(${urlVarName}) no-repeat`,
+      [iconVarName]: url,
+      background: `var(${iconVarName}) no-repeat`,
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent'
     }
