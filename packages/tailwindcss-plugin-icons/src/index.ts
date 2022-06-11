@@ -22,6 +22,8 @@ export type IconSets = {
   }
 }
 
+const urlVarName = '--tw-plugin-icons-url'
+
 const getIconAsMask = (
   width: number,
   height: number,
@@ -33,9 +35,9 @@ const getIconAsMask = (
 
   if (mode === 'mask') {
     return {
-      '--tw-plugin-icons-url': url,
-      mask: 'var(--tw-plugin-icons-url) no-repeat',
-      '-webkit-mask': 'var(--tw-plugin-icons-url) no-repeat',
+      [urlVarName]: url,
+      mask: `var(${urlVarName}) no-repeat`,
+      '-webkit-mask': `var(${urlVarName}) no-repeat`,
       maskSize: '100% 100%',
       '-webkit-mask-size': '100% 100%',
       backgroundColor: 'currentColor'
@@ -44,8 +46,8 @@ const getIconAsMask = (
 
   if (mode === 'color') {
     return {
-      '--tw-plugin-icons-url': url,
-      background: 'var(--tw-plugin-icons-url) no-repeat',
+      [urlVarName]: url,
+      background: `var(${urlVarName}) no-repeat`,
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent'
     }
@@ -59,8 +61,8 @@ const getIconAsBackground =
     const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
 
     return {
-      '--tw-plugin-icons-url': url,
-      background: 'var(--tw-plugin-icons-url) no-repeat',
+      [urlVarName]: url,
+      background: `var(${urlVarName}) no-repeat`,
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent'
     }
@@ -204,8 +206,8 @@ export const Icons = plugin.withOptions<IconSets>(iconSets => {
     return () => {}
   }
 
-  const asMask: Record<string, unknown> = {}
-  const asBackground: Record<string, unknown> = {}
+  const asMask: Record<string, any> = {}
+  const asBackground: Record<string, any> = {}
 
   for (const [iconSetName, { iconNames, iconifyJson }] of Object.entries(
     resolvedIconSets
