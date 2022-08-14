@@ -57,8 +57,7 @@ const baseExternals: ExternalOption = [
   /tailwindcss\/.+/
 ]
 
-const configs: RollupOptions[] = [
-  // Shared
+const shared: RollupOptions[] = [
   {
     input: input('shared'),
     output: {
@@ -74,8 +73,10 @@ const configs: RollupOptions[] = [
       format: 'esm'
     },
     plugins: [plugin.dts]
-  },
-  // Main
+  }
+]
+
+const main: RollupOptions[] = [
   {
     input: input('tailwindcss-plugin-icons', 'fetch'),
     output: {
@@ -138,6 +139,8 @@ const configs: RollupOptions[] = [
     plugins: [plugin.dts]
   }
 ]
+
+const configs: RollupOptions[] = [...shared, ...main]
 
 configs.forEach(config => {
   if (config.external) {
