@@ -14,21 +14,28 @@
     "@rollup/plugin-node-resolve": "13.3.0",
     "@rollup/plugin-replace": "4.0.0",
     "@types/fs-extra": "9.0.13",
-    "@types/node": "18.7.3",
+    "@types/node": "18.7.13",
     "c8": "7.12.0",
-    "esbuild": "0.15.2",
+    "esbuild": "0.15.5",
     "esbuild-node-loader": "0.8.0",
     "esbuild-register": "3.3.3",
     "execa": "6.1.0",
     "fs-extra": "10.1.0",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "0.1.13",
-    "rollup": "2.78.0",
+    "rollup": "2.78.1",
     "rollup-plugin-dts": "4.2.2",
-    "rollup-plugin-esbuild": "4.9.2",
+    "rollup-plugin-esbuild": "4.10.1",
     "tailwindcss": "3.1.8",
     "tailwindcss-plugin-icons": "workspace:*",
-    "typescript": "4.7.4",
-    "vitest": "0.21.1"
+    "typescript": "4.8.2",
+    "vitest": "0.22.1"
+  },
+  "pnpm": {
+    "peerDependencyRules": {
+      "ignoreMissing": [
+        "postcss"
+      ]
+    }
   }
 }
