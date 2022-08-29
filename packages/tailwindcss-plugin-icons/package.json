@@ -29,6 +29,9 @@
   "main": "./index.cjs",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "devDependencies": {
+    "@iconify/types": "latest"
+  },
   "peerDependencies": {
     "tailwindcss": "3.x"
   }

@@ -1,3 +1,5 @@
+import type { IconifyJSON } from '@iconify/types'
+
 import {
   loadIconFromJson,
   toKebabCase,
@@ -72,38 +74,58 @@ describe('uriToFilename', () => {
 describe('loadIconFromJson', () => {
   const iconifyJson = {
     icons: {
-      'with-current-color': {
-        // Should be rendered as mask (mask)
+      'current-color': {
         body: 'currentColor'
       },
-      'with-current-color?bg': {
-        // Force as background (bg)
+      'current-color?bg': {
         body: 'currentColor'
       },
-      'with-color': {
-        // Should be rendered as background (color)
+      color: {
         body: '#fff'
       },
-      'with-color?mask': {
-        // Force as mask (mask)
+      'color?mask': {
         body: '#fff'
       },
-      'with-width': {
+      left: {
         body: '',
-        width: 20
+        left: 10
       },
-      'with-height': {
+      top: {
         body: '',
-        height: 20
+        top: 20
       },
-      'with-width-and-height': {
+      width: {
         body: '',
-        width: 20,
-        height: 20
+        width: 30
+      },
+      height: {
+        body: '',
+        height: 40
+      },
+      'left+top': {
+        body: '',
+        left: 10,
+        top: 20
+      },
+      'left+top+width': {
+        body: '',
+        left: 10,
+        top: 20,
+        width: 30
+      },
+      'left+top+width+height': {
+        body: '',
+        left: 10,
+        top: 20,
+        width: 30,
+        height: 40
       }
     },
-    width: 24,
-    height: 24
+    prefix: 'test',
+    left: 1,
+    top: 2,
+    width: 3,
+    height: 4
   } as const
 
   type IconifyJson = typeof iconifyJson
@@ -113,73 +135,135 @@ describe('loadIconFromJson', () => {
     expected: ReturnType<typeof loadIconFromJson>
   }>([
     {
-      iconName: 'with-current-color',
+      iconName: 'current-color',
       expected: {
-        width: 24,
-        height: 24,
-        mode: 'mask',
+        name: 'current-color',
         body: 'currentColor',
-        normalizedIconName: 'with-current-color'
+        mode: 'mask',
+        left: 1,
+        top: 2,
+        width: 3,
+        height: 4
       }
     },
     {
-      iconName: 'with-current-color?bg',
+      iconName: 'current-color?bg',
       expected: {
-        width: 24,
-        height: 24,
+        name: 'current-color',
+        body: 'currentColor',
         mode: 'bg',
-        body: 'currentColor',
-        normalizedIconName: 'with-current-color'
+        left: 1,
+        top: 2,
+        width: 3,
+        height: 4
       }
     },
     {
-      iconName: 'with-color',
+      iconName: 'color',
       expected: {
-        width: 24,
-        height: 24,
-        mode: 'color',
+        name: 'color',
         body: '#fff',
-        normalizedIconName: 'with-color'
+        mode: 'color',
+        left: 1,
+        top: 2,
+        width: 3,
+        height: 4
       }
     },
     {
-      iconName: 'with-color?mask',
+      iconName: 'color?mask',
       expected: {
-        width: 24,
-        height: 24,
+        name: 'color',
+        body: '#fff',
         mode: 'mask',
-        body: '#fff',
-        normalizedIconName: 'with-color'
+        left: 1,
+        top: 2,
+        width: 3,
+        height: 4
       }
     },
     {
-      iconName: 'with-width',
+      iconName: 'left',
       expected: {
-        width: 20,
-        height: 24,
-        mode: 'color',
+        name: 'left',
         body: '',
-        normalizedIconName: 'with-width'
+        mode: 'color',
+        left: 10,
+        top: 2,
+        width: 3,
+        height: 4
       }
     },
     {
-      iconName: 'with-height',
+      iconName: 'top',
       expected: {
-        width: 24,
-        height: 20,
-        mode: 'color',
+        name: 'top',
         body: '',
-        normalizedIconName: 'with-height'
+        mode: 'color',
+        left: 1,
+        top: 20,
+        width: 3,
+        height: 4
       }
     },
     {
-      iconName: 'with-width-and-height',
+      iconName: 'width',
       expected: {
-        width: 20,
-        height: 20,
-        mode: 'color',
+        name: 'width',
         body: '',
-        normalizedIconName: 'with-width-and-height'
+        mode: 'color',
+        left: 1,
+        top: 2,
+        width: 30,
+        height: 4
+      }
+    },
+    {
+      iconName: 'height',
+      expected: {
+        name: 'height',
+        body: '',
+        mode: 'color',
+        left: 1,
+        top: 2,
+        width: 3,
+        height: 40
+      }
+    },
+    {
+      iconName: 'left+top',
+      expected: {
+        name: 'left+top',
+        body: '',
+        mode: 'color',
+        left: 10,
+        top: 20,
+        width: 3,
+        height: 4
+      }
+    },
+    {
+      iconName: 'left+top+width',
+      expected: {
+        name: 'left+top+width',
+        body: '',
+        mode: 'color',
+        left: 10,
+        top: 20,
+        width: 30,
+        height: 4
+      }
+    },
+    {
+      iconName: 'left+top+width+height',
+      expected: {
+        name: 'left+top+width+height',
+        body: '',
+        mode: 'color',
+        left: 10,
+        top: 20,
+        width: 30,
+        height: 40
       }
     }
   ])('$iconName', ({ iconName, expected }) => {

@@ -9,31 +9,19 @@ import {
   isUri,
   loadIconFromJson,
   toKebabCase,
-  type IconifyJson,
-  type IconMode
+  type LoadedIcon
 } from '@internal/shared'
+import type { IconifyJSON } from '@iconify/types'
 
 import { IconifyFileCache } from './cache'
 
-export type IconSets = {
-  [iconSetName: string]: {
-    icons: string[]
-    location?: string
-  }
-}
-
 const iconVarName = '--tw-plugin-icons-url'
 
-const getIconAsMask = (
-  width: number,
-  height: number,
-  body: string,
-  mode: IconMode
-) => {
-  const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${body}</svg>`
+const getIconCssAsMask = (icon: LoadedIcon) => {
+  const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${icon.body}</svg>`
   const url = `url("data:image/svg+xml;utf8,${encodeSvg(svg)}")`
 
-  if (mode === 'mask') {
+  if (icon.mode === 'mask') {
     return {
       [iconVarName]: url,
       mask: `var(${iconVarName}) no-repeat`,
@@ -44,7 +32,7 @@ const getIconAsMask = (
     }
   }
 
-  if (mode === 'color') {
+  if (icon.mode === 'color') {
     return {
       [iconVarName]: url,
       background: `var(${iconVarName}) no-repeat`,
@@ -54,23 +42,22 @@ const getIconAsMask = (
   }
 }
 
-const getIconAsBackground =
-  (width: number, height: number, body: string) => (color: string) => {
-    const coloredBody = body.replace(/currentColor/g, color)
-    const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${height}">${coloredBody}</svg>`
-    const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
+const getIconCssAsBackground = (icon: LoadedIcon) => (color: string) => {
+  const coloredBody = icon.body.replace(/currentColor/g, color)
+  const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${coloredBody}</svg>`
+  const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
 
-    return {
-      [iconVarName]: url,
-      background: `var(${iconVarName}) no-repeat`,
-      backgroundSize: '100% 100%',
-      backgroundColor: 'transparent'
-    }
+  return {
+    [iconVarName]: url,
+    background: `var(${iconVarName}) no-repeat`,
+    backgroundSize: '100% 100%',
+    backgroundColor: 'transparent'
   }
+}
 
 type ResolvedIconsSets = {
   iconNames: string[]
-  iconifyJson: IconifyJson
+  iconifyJson: IconifyJSON
 }
 
 const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
@@ -90,7 +77,7 @@ const resolveIconSets = (iconsSets: IconSets) => {
     if (location !== undefined) {
       if (isUri(location)) {
         if (cache.has(location)) {
-          resolvedIconSets[iconSetName] = {
+          resolvedIconSets[kebabCaseIconSetName] = {
             iconNames: icons,
             iconifyJson: cache.get(location)!
           }
@@ -120,11 +107,11 @@ const resolveIconSets = (iconsSets: IconSets) => {
 
       if (!fs.existsSync(resolvedLocation)) {
         throw new Error(
-          `Icon set with name "${iconSetName}" and location "${location}" does not exist`
+          `Icon set "${iconSetName}" does not exist at location "${location}"`
         )
       }
 
-      resolvedIconSets[iconSetName] = {
+      resolvedIconSets[kebabCaseIconSetName] = {
         iconNames: icons,
         iconifyJson: JSON.parse(fs.readFileSync(resolvedLocation, 'ascii'))
       }
@@ -140,7 +127,7 @@ const resolveIconSets = (iconsSets: IconSets) => {
         `@iconify-json/${kebabCaseIconSetName}/icons.json`
       )
 
-      resolvedIconSets[iconSetName] = {
+      resolvedIconSets[kebabCaseIconSetName] = {
         iconNames: icons,
         iconifyJson: JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
       }
@@ -154,7 +141,7 @@ const resolveIconSets = (iconsSets: IconSets) => {
         `@iconify/json/json/${kebabCaseIconSetName}.json`
       )
 
-      resolvedIconSets[iconSetName] = {
+      resolvedIconSets[kebabCaseIconSetName] = {
         iconNames: icons,
         iconifyJson: JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
       }
@@ -163,7 +150,7 @@ const resolveIconSets = (iconsSets: IconSets) => {
     } catch {}
 
     throw new Error(
-      `Icon set with name "${iconSetName}" not found. Try installing it with "npm install @iconify/${kebabCaseIconSetName}".`
+      `Icon set "${iconSetName}" not found. Try installing it with "npm install @iconify/${kebabCaseIconSetName}".`
     )
   }
 
@@ -213,15 +200,14 @@ export const Icons = plugin.withOptions<IconSets>(iconSets => {
     resolvedIconSets
   )) {
     for (const iconName of iconNames) {
-      const { width, height, body, mode, normalizedIconName } =
-        loadIconFromJson(iconifyJson, iconName)
+      const loadedIcon = loadIconFromJson(iconifyJson, iconName)
 
-      if (mode === 'bg') {
-        asBackground[`bg-${toKebabCase(iconSetName)}-${normalizedIconName}`] =
-          getIconAsBackground(width, height, body)
+      if (loadedIcon.mode === 'bg') {
+        asBackground[`bg-${iconSetName}-${loadedIcon.name}`] =
+          getIconCssAsBackground(loadedIcon)
       } else {
-        asMask[`.i-${toKebabCase(iconSetName)}-${normalizedIconName}`] =
-          getIconAsMask(width, height, body, mode)
+        asMask[`.i-${iconSetName}-${loadedIcon.name}`] =
+          getIconCssAsMask(loadedIcon)
       }
     }
   }
@@ -234,3 +220,10 @@ export const Icons = plugin.withOptions<IconSets>(iconSets => {
     })
   }
 })
+
+export type IconSets = {
+  [iconSetName: string]: {
+    icons: string[]
+    location?: string
+  }
+}

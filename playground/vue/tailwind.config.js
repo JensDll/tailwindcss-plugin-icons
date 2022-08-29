@@ -18,6 +18,20 @@ module.exports = {
       heroiconsOutline: {
         icons: ['lock-open', 'lock-closed', 'trash?bg']
       },
+      lineMd: {
+        icons: [
+          'align-left',
+          'align-right',
+          'arrow-align-bottom',
+          'downloading-loop'
+        ]
+      },
+      flatUi: {
+        icons: ['mic']
+      },
+      logos: {
+        icons: ['ember-tomster', 'emmet']
+      },
       openmoji: {
         // By default, it will search for icons in common iconify module locations
         icons: ['snake', 'cat', 'dolphin']
@@ -30,7 +44,7 @@ module.exports = {
       vscodeIcons: {
         icons: ['file-type-light-db?mask'],
         // It can be a URI (for example a CDN)
-        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.10/icons.json'
+        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.11/icons.json'
       },
       custom: {
         icons: ['loading'],
