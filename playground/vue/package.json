@@ -8,8 +8,8 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "my-icon-alias": "npm:@iconify-json/brandico@1.1.2",
-    "@iconify/json": "2.1.100",
+    "my-icons": "npm:@iconify-json/logos@1.1.14",
+    "@iconify/json": "2.1.101",
     "@vitejs/plugin-vue": "3.0.3",
     "autoprefixer": "10.4.8",
     "postcss": "8.4.16",
@@ -17,7 +17,7 @@
     "tailwindcss-plugin-icons": "latest",
     "typescript": "4.8.2",
     "vite": "3.0.9",
-    "vue": "3.2.37",
-    "vue-tsc": "0.40.4"
+    "vue": "3.2.38",
+    "vue-tsc": "0.40.5"
   }
 }

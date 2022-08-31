@@ -26,8 +26,8 @@ export function uriToFilename(uri: string) {
 
 export function encodeSvg(svg: string) {
   if (!svg.includes(' xmlns:xlink=') && svg.includes(' xlink:')) {
-    // Add the "http://www.w3.org/1999/xlink" namespace for any icon using the xlink: prefix
-    // Reference: https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course
+    // Add the "http://www.w3.org/1999/xlink" namespace for any icon using the xlink: prefix.
+    // https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course
     svg = svg.replace(
       '<svg ',
       '<svg xmlns:xlink="http://www.w3.org/1999/xlink" '
@@ -35,7 +35,7 @@ export function encodeSvg(svg: string) {
   }
 
   if (!svg.includes(' xmlns=')) {
-    // Always add the "http://www.w3.org/2000/svg" default namespace, if it does not exist
+    // Always add the "http://www.w3.org/2000/svg" default namespace, if it does not exist.
     svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ')
   }
 
@@ -64,11 +64,11 @@ export function loadIconFromJson(
   iconifyJson: IconifyJSON,
   iconName: string
 ): LoadedIcon {
-  let { left, top, width, height, rotate, hFlip, vFlip, icons, aliases, info } =
-    iconifyJson
+  let { left, top, width, height, rotate, hFlip, vFlip } = iconifyJson
+  const { icons, aliases } = iconifyJson
   let mode: IconMode | undefined
 
-  // Transform icon name to kebab case and remove query parameters
+  // Transform the icon name to kebab case and remove the query parameters.
   const normalizedIconName = toKebabCase(iconName).replace(
     /\?(bg|mask)$/,
     (...values) => {
@@ -80,10 +80,10 @@ export function loadIconFromJson(
   let icon: ExtendedIconifyIcon
 
   if (normalizedIconName in icons) {
-    // Retrieve the icon from icons
+    // Retrieve the icon from icons.
     icon = icons[normalizedIconName]
   } else if (aliases && normalizedIconName in aliases) {
-    // Retrieve the icon from aliases
+    // Retrieve the icon from aliases.
     const { parent, ...aliasedIcon } = aliases[normalizedIconName]
 
     icon = {
@@ -91,12 +91,10 @@ export function loadIconFromJson(
       ...aliasedIcon
     }
   } else {
-    throw new Error(
-      `Icon "${normalizedIconName}" not found in icon set "${info?.name}"`
-    )
+    throw new Error(`Icon "${normalizedIconName}" not found`)
   }
 
-  // Overwrite general values with icon specific ones, if they exist
+  // Overwrite general values with icon specific ones, if they exist.
   icon.left && (left = icon.left)
   icon.top && (top = icon.top)
   icon.width && (width = icon.width)
@@ -105,7 +103,7 @@ export function loadIconFromJson(
   icon.hFlip && (hFlip = icon.hFlip)
   icon.vFlip && (vFlip = icon.vFlip)
 
-  // Apply default values if none were found in the Iconify-JSON
+  // Apply default values if none were found in the iconify JSON.
   left ??= 0
   top ??= 0
   width ??= 16
@@ -139,22 +137,21 @@ function applyTransformations(
   body: string,
   { left, top, width, height, rotate, hFlip, vFlip }: IconifyPartialOptional
 ): string {
-  let transform: string[] = []
+  const transform: string[] = []
 
   if (rotate) {
-    transform.push(
-      `rotate(${rotate * 90} ${(2 * left + width) / 2} ${
-        (2 * top + height) / 2
-      })`
-    )
-  }
+    const centerX = (2 * left + width) / 2
+    const centerY = (2 * top + height) / 2
 
-  if (vFlip) {
-    transform.push(`translate(0 ${height + 2 * top}) scale(1 -1)`)
+    transform.push(`rotate(${rotate * 90} ${centerX} ${centerY})`)
   }
 
   if (hFlip) {
-    transform.push(`translate(${width + 2 * left} 0) scale(-1 1)`)
+    transform.push(`translate(${2 * left + width} 0) scale(-1 1)`)
+  }
+
+  if (vFlip) {
+    transform.push(`translate(0 ${2 * top + height}) scale(1 -1)`)
   }
 
   if (transform.length) {

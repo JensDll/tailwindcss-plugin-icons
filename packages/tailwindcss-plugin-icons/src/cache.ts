@@ -1,9 +1,10 @@
 import fs from 'fs'
 import path from 'path'
 
-import { uriToFilename, type IconifyJson } from '@internal/shared'
+import { uriToFilename } from '@internal/shared'
+import type { IconifyJSON } from '@iconify/types'
 
-export class IconifyFileCache implements Map<string, IconifyJson> {
+export class IconifyFileCache implements Map<string, IconifyJSON> {
   readonly cacheDir: string
   size: number
 
@@ -42,9 +43,9 @@ export class IconifyFileCache implements Map<string, IconifyJson> {
 
   forEach(
     callbackfn: (
-      value: IconifyJson,
+      value: IconifyJSON,
       key: string,
-      map: Map<string, IconifyJson>
+      map: Map<string, IconifyJSON>
     ) => void,
     thisArg: any = this
   ): void {
@@ -53,7 +54,7 @@ export class IconifyFileCache implements Map<string, IconifyJson> {
     }
   }
 
-  get(key: string): IconifyJson | undefined {
+  get(key: string): IconifyJSON | undefined {
     const filePath = path.resolve(this.cacheDir, uriToFilename(key))
 
     if (!fs.existsSync(filePath)) {
@@ -63,7 +64,7 @@ export class IconifyFileCache implements Map<string, IconifyJson> {
     return JSON.parse(fs.readFileSync(filePath, 'ascii'))
   }
 
-  set(key: string, iconifyJson: IconifyJson) {
+  set(key: string, iconifyJson: IconifyJSON) {
     const filePath = path.resolve(this.cacheDir, uriToFilename(key))
 
     if (fs.existsSync(filePath)) {
@@ -81,7 +82,7 @@ export class IconifyFileCache implements Map<string, IconifyJson> {
     return fs.existsSync(filePath)
   }
 
-  entries(): IterableIterator<[string, IconifyJson]> {
+  entries(): IterableIterator<[string, IconifyJSON]> {
     return this[Symbol.iterator]()
   }
 
@@ -89,7 +90,7 @@ export class IconifyFileCache implements Map<string, IconifyJson> {
     yield* fs.readdirSync(this.cacheDir)
   }
 
-  *values(): IterableIterator<IconifyJson> {
+  *values(): IterableIterator<IconifyJSON> {
     const files = fs.readdirSync(this.cacheDir)
     for (const file of files) {
       const filePath = path.resolve(this.cacheDir, file)
@@ -97,7 +98,7 @@ export class IconifyFileCache implements Map<string, IconifyJson> {
     }
   }
 
-  *[Symbol.iterator](): IterableIterator<[string, IconifyJson]> {
+  *[Symbol.iterator](): IterableIterator<[string, IconifyJSON]> {
     const files = fs.readdirSync(this.cacheDir)
     for (const file of files) {
       const filePath = path.resolve(this.cacheDir, file)

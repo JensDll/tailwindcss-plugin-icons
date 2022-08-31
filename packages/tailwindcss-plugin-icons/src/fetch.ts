@@ -20,14 +20,14 @@ const [cacheDir, ...uris] = process.argv.slice(2)
   process.exit(0)
 })()
 
-function makeRequest(uri: string) {
+async function makeRequest(uri: string) {
   const filePath = path.resolve(cacheDir, uriToFilename(uri))
 
-  return new Promise<void>(async (resolve, reject) => {
-    const protocol = await (uri.startsWith('https')
-      ? import('https')
-      : import('http'))
+  const protocol = await (uri.startsWith('https')
+    ? import('https')
+    : import('http'))
 
+  return await new Promise<void>((resolve, reject) => {
     protocol.get(uri, response => {
       const writeStream = createWriteStream(filePath).on('finish', resolve)
 
