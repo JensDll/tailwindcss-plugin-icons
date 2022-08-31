@@ -18,13 +18,13 @@ yarn add tailwindcss-plugin-icons
 
 1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs
 2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`. For example [heroicons](https://heroicons.com/) `npm install @iconify-json/heroicons-outline @iconify-json/heroicons-solid`
-3. Configure the plugin in your `tailwind.config.js`:
+3. Configure the plugin in your `tailwind.config.js` (see [the example app](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js) for a full example with comments):
 
-```ts
+```js
 const { Icons } = require('tailwindcss-plugin-icons')
 
 module.exports = {
-  // Other config ...
+  [...]
   plugins: [
     Icons(({ theme }) => ({
       heroiconsOutline: {
@@ -32,8 +32,6 @@ module.exports = {
           lockOpen: {},
           lockClosed: {},
           plusCircle: {
-            // You can use CSS-in-JS syntax for default icon styles.
-            // https://tailwindcss.com/docs/plugins#css-in-js-syntax
             cursor: 'pointer',
             color: theme('colors.emerald.600'),
             '&:hover': {
@@ -46,27 +44,19 @@ module.exports = {
             '&:hover': {
               color: theme('colors.red.700')
             },
-            // Default styles in dark mode.
             '.dark &': {
               color: theme('colors.red.400')
             }
           },
           'trash?bg': {}
         },
-        // You use scale to apply a default icon size.
-        // Outline heroicons are designed to be rendered at 24x24.
-        scale: 1.5 // 1.5em (24px)
-        // You can pass a location where it will try and find the icon source.
-        // It can be a URI or module name. If no location is given,
-        // it will search in common iconify module locations.
-        location: 'https:// or my-icons/icons.json'
+        scale: 1.5
+        location: 'https://example.com/icons.json'
       }
     }))
   ]
 }
 ```
-
-After the icon's name, you can pass `?mask` or `?bg` to force a specific render method. Only use `?mask` on colored and `?bg` on colorless icons. Otherwise, there is no difference from the default.
 
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
 
@@ -74,4 +64,4 @@ After the icon's name, you can pass `?mask` or `?bg` to force a specific render 
 <div class="i-heroicons-outline-plus-circle"></div>
 ```
 
-## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)
+### 👉 [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)
