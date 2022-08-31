@@ -7,7 +7,7 @@
         class="bg-heroicons-outline-trash-purple-500 hover:bg-heroicons-outline-trash-purple-600"
       ></li>
       <li class="i-heroicons-solid-trash text-slate-400"></li>
-      <li class="i-heroicons-outline-plus-circle dark:text-blue-400"></li>
+      <li class="i-heroicons-outline-plus-circle"></li>
       <li class="i-heroicons-outline-minus-circle"></li>
       <li
         class="i-heroicons-outline-lock-closed hover:i-heroicons-outline-lock-open"
