@@ -1,14 +1,16 @@
 {
   "private": true,
   "scripts": {
-    "build": "node --experimental-loader esbuild-node-loader scripts/build.ts",
+    "build": "node --loader @esbuild-kit/esm-loader scripts/build.ts",
     "build:vue": "pnpm run --filter \"vue-playground\" build",
     "dev": "rollup --config --watch",
     "dev:vue": "pnpm run --filter \"vue-playground\" dev",
     "test": "vitest",
     "test:run": "vitest run"
   },
+  "type": "module",
   "dependencies": {
+    "@esbuild-kit/esm-loader": "2.4.2",
     "@internal/shared": "workspace:*",
     "@rollup/plugin-alias": "3.1.9",
     "@rollup/plugin-node-resolve": "13.3.0",
@@ -17,7 +19,6 @@
     "@types/node": "18.7.14",
     "c8": "7.12.0",
     "esbuild": "0.15.6",
-    "esbuild-node-loader": "0.8.0",
     "esbuild-register": "3.3.3",
     "execa": "6.1.0",
     "fs-extra": "10.1.0",
