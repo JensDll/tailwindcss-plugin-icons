@@ -3,6 +3,7 @@ import path from 'path'
 import { execFileSync } from 'child_process'
 
 import plugin from 'tailwindcss/plugin'
+import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import {
   encodeSvg,
@@ -17,9 +18,22 @@ import { IconifyFileCache } from './cache'
 
 const iconVarName = '--tw-plugin-icons-url'
 
-const getIconCssAsMask = (icon: LoadedIcon) => {
+function getIconDimensions(icon: LoadedIcon, scale: number) {
+  return {
+    width: `${(icon.width / icon.height) * scale}em`,
+    height: `${scale}em`
+  }
+}
+
+function getIconCss(
+  icon: LoadedIcon,
+  scale: number,
+  cssDefaults: CSSRuleObject
+) {
   const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${icon.body}</svg>`
   const url = `url("data:image/svg+xml;utf8,${encodeSvg(svg)}")`
+
+  const iconDimensions = getIconDimensions(icon, scale)
 
   if (icon.mode === 'mask') {
     return {
@@ -28,202 +42,216 @@ const getIconCssAsMask = (icon: LoadedIcon) => {
       '-webkit-mask': `var(${iconVarName}) no-repeat`,
       maskSize: '100% 100%',
       '-webkit-mask-size': '100% 100%',
-      backgroundColor: 'currentColor'
+      backgroundColor: 'currentColor',
+      ...iconDimensions,
+      ...cssDefaults
     }
   }
-
-  if (icon.mode === 'color') {
-    return {
-      [iconVarName]: url,
-      background: `var(${iconVarName}) no-repeat`,
-      backgroundSize: '100% 100%',
-      backgroundColor: 'transparent'
-    }
-  }
-}
-
-const getIconCssAsBackground = (icon: LoadedIcon) => (color: string) => {
-  const coloredBody = icon.body.replace(/currentColor/g, color)
-  const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${coloredBody}</svg>`
-  const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
 
   return {
     [iconVarName]: url,
     background: `var(${iconVarName}) no-repeat`,
     backgroundSize: '100% 100%',
-    backgroundColor: 'transparent'
+    backgroundColor: 'transparent',
+    ...iconDimensions,
+    ...cssDefaults
   }
 }
 
-type ResolvedIconsSets = {
-  iconNames: string[]
-  iconifyJson: IconifyJSON
+function getIconCssAsColorFunction(
+  icon: LoadedIcon,
+  scale: number,
+  cssDefaults: CSSRuleObject
+) {
+  return (color: string): CSSRuleObject => {
+    const coloredBody = icon.body.replace(/currentColor/g, color)
+    const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${coloredBody}</svg>`
+    const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
+
+    return {
+      [iconVarName]: url,
+      background: `var(${iconVarName}) no-repeat`,
+      backgroundSize: '100% 100%',
+      backgroundColor: 'transparent',
+      ...getIconDimensions(icon, scale),
+      ...cssDefaults
+    }
+  }
 }
 
 const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
 
-const resolveIconSets = (iconsSets: IconSets) => {
-  const resolvedIconSets: Record<string, ResolvedIconsSets> = {}
+type ResolveIconSetsCallback = (
+  iconSetName: string,
+  iconSetOptions: IconSetOptions,
+  iconifyJson: IconifyJSON
+) => void
 
-  const toFetch: {
-    icons: string[]
-    location: string
-    iconSetName: string
-  }[] = []
+function resolveIconSets(
+  iconSetOptionsRecord: IconSetOptionsRecord,
+  callback: ResolveIconSetsCallback
+) {
+  const iconSetNamesToFetch: string[] = []
 
-  for (const [iconSetName, { icons, location }] of Object.entries(iconsSets)) {
+  for (const [iconSetName, iconSetOptions] of Object.entries(
+    iconSetOptionsRecord
+  )) {
+    iconSetOptions.icons ??= {}
+
     const kebabCaseIconSetName = toKebabCase(iconSetName)
 
-    if (location !== undefined) {
-      if (isUri(location)) {
-        if (cache.has(location)) {
-          resolvedIconSets[kebabCaseIconSetName] = {
-            iconNames: icons,
-            iconifyJson: cache.get(location)!
-          }
+    // If there is no location, try and resolve from common iconify module locations.
+    if (!iconSetOptions.location) {
+      try {
+        // When the icon sets are installed individually.
+        const jsonPath = require.resolve(
+          `@iconify-json/${kebabCaseIconSetName}/icons.json`
+        )
 
-          continue
-        }
-
-        // Prepare to fetch the icon set
-        toFetch.push({
-          icons,
-          location,
-          iconSetName
-        })
-
+        callback(
+          kebabCaseIconSetName,
+          iconSetOptions,
+          JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
+        )
         continue
-      }
-
-      let resolvedLocation
+      } catch {}
 
       try {
-        // Try to resolve the location as a module
-        resolvedLocation = require.resolve(location)
-      } catch {
-        // Otherwise resolve from the file system
-        resolvedLocation = path.resolve(location)
-      }
-
-      if (!fs.existsSync(resolvedLocation)) {
-        throw new Error(
-          `Icon set "${iconSetName}" does not exist at location "${location}"`
+        // When the global iconify JSON is installed.
+        const jsonPath = require.resolve(
+          `@iconify/json/json/${kebabCaseIconSetName}.json`
         )
-      }
 
-      resolvedIconSets[kebabCaseIconSetName] = {
-        iconNames: icons,
-        iconifyJson: JSON.parse(fs.readFileSync(resolvedLocation, 'ascii'))
-      }
+        callback(
+          kebabCaseIconSetName,
+          iconSetOptions,
+          JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
+        )
+        continue
+      } catch {}
 
+      throw new Error(
+        `Icon set "${iconSetName}" not found. Try installing it with "npm install @iconify/${kebabCaseIconSetName}"`
+      )
+    }
+
+    // If the location is a URI, try and resolve the icon set from the cache;
+    // otherwise, prepare to fetch it.
+    if (isUri(iconSetOptions.location)) {
+      if (cache.has(iconSetOptions.location)) {
+        callback(
+          kebabCaseIconSetName,
+          iconSetOptions,
+          cache.get(iconSetOptions.location)!
+        )
+      } else {
+        iconSetNamesToFetch.push(iconSetName)
+      }
       continue
     }
 
-    // If there is no location, try and resolve from common iconify module locations
+    let resolvedLocation
 
     try {
-      // When the icon set is installed individually
-      const jsonPath = require.resolve(
-        `@iconify-json/${kebabCaseIconSetName}/icons.json`
-      )
-
-      resolvedIconSets[kebabCaseIconSetName] = {
-        iconNames: icons,
-        iconifyJson: JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
-      }
-
-      continue
-    } catch {}
-
-    try {
-      // When all icon sets are installed together
-      const jsonPath = require.resolve(
-        `@iconify/json/json/${kebabCaseIconSetName}.json`
-      )
-
-      resolvedIconSets[kebabCaseIconSetName] = {
-        iconNames: icons,
-        iconifyJson: JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
-      }
-
-      continue
-    } catch {}
-
-    throw new Error(
-      `Icon set "${iconSetName}" not found. Try installing it with "npm install @iconify/${kebabCaseIconSetName}".`
-    )
-  }
-
-  if (toFetch.length) {
-    execFileSync(
-      'node',
-      [
-        path.resolve(__dirname, 'fetch.mjs'),
-        cache.cacheDir,
-        ...toFetch.map(toFetch => toFetch.location)
-      ],
-      {
-        stdio: 'pipe'
-      }
-    )
-
-    for (const { iconSetName, icons, location } of toFetch) {
-      resolvedIconSets[iconSetName] = {
-        iconNames: icons,
-        iconifyJson: cache.get(location)!
-      }
+      // Try to resolve the location as a module.
+      resolvedLocation = require.resolve(iconSetOptions.location)
+    } catch {
+      // Otherwise resolve from the file system.
+      resolvedLocation = path.resolve(iconSetOptions.location)
     }
+
+    if (!fs.existsSync(resolvedLocation)) {
+      throw new Error(
+        `No icon set "${iconSetName}" found at location "${location}"`
+      )
+    }
+
+    callback(
+      kebabCaseIconSetName,
+      iconSetOptions,
+      JSON.parse(fs.readFileSync(resolvedLocation, 'ascii'))
+    )
+
+    continue
   }
 
-  return resolvedIconSets
+  if (!iconSetNamesToFetch.length) {
+    return
+  }
+
+  execFileSync(
+    'node',
+    [
+      path.resolve(__dirname, 'fetch.mjs'),
+      cache.cacheDir,
+      ...iconSetNamesToFetch.map(
+        iconSetName => iconSetOptionsRecord[iconSetName].location!
+      )
+    ],
+    {
+      stdio: 'pipe'
+    }
+  )
+
+  for (const iconSetName of iconSetNamesToFetch) {
+    const iconSetOptions = iconSetOptionsRecord[iconSetName]
+
+    callback(
+      toKebabCase(iconSetName),
+      iconSetOptions,
+      cache.get(iconSetOptions.location!)!
+    )
+  }
 }
 
-export const Icons = plugin.withOptions<IconSets>(iconSets => {
-  iconSets ??= {}
+export const Icons = plugin.withOptions<TailwindcssPluginIconsOptions>(
+  callback => pluginApi => {
+    const iconSetOptionsRecord = callback(pluginApi)
 
-  let resolvedIconSets
+    const components: Record<string, CSSRuleObject> = {}
+    const backgroundComponents: Record<
+      string,
+      (color: string) => CSSRuleObject
+    > = {}
 
-  try {
-    resolvedIconSets = resolveIconSets(iconSets)
-  } catch (e) {
-    if (e instanceof Error) {
-      console.error(e.message)
-    }
+    resolveIconSets(
+      iconSetOptionsRecord,
+      (iconSetName, { icons, scale }, iconifyJson) => {
+        for (const [iconName, cssDefaults] of Object.entries(icons)) {
+          const loadedIcon = loadIconFromJson(iconifyJson, iconName)
 
-    return () => {}
-  }
-
-  const asMask: Record<string, any> = {}
-  const asBackground: Record<string, any> = {}
-
-  for (const [iconSetName, { iconNames, iconifyJson }] of Object.entries(
-    resolvedIconSets
-  )) {
-    for (const iconName of iconNames) {
-      const loadedIcon = loadIconFromJson(iconifyJson, iconName)
-
-      if (loadedIcon.mode === 'bg') {
-        asBackground[`bg-${iconSetName}-${loadedIcon.name}`] =
-          getIconCssAsBackground(loadedIcon)
-      } else {
-        asMask[`.i-${iconSetName}-${loadedIcon.name}`] =
-          getIconCssAsMask(loadedIcon)
+          if (loadedIcon.mode === 'bg') {
+            backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
+              getIconCssAsColorFunction(loadedIcon, scale ?? 1, cssDefaults)
+          } else {
+            components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
+              loadedIcon,
+              scale ?? 1,
+              cssDefaults
+            )
+          }
+        }
       }
-    }
-  }
+    )
 
-  return function ({ addUtilities, matchUtilities, theme }) {
-    addUtilities(asMask)
-    matchUtilities(asBackground, {
-      values: flattenColorPalette(theme('colors')),
+    pluginApi.addComponents(components)
+    pluginApi.matchComponents(backgroundComponents, {
+      values: flattenColorPalette(pluginApi.theme('colors')),
       type: ['color', 'any']
     })
   }
-})
+)
 
-export type IconSets = {
-  [iconSetName: string]: {
-    icons: string[]
-    location?: string
-  }
+export type IconSetOptions = {
+  icons: Record<string, CSSRuleObject>
+  scale?: number
+  location?: string
 }
+
+export type IconSetOptionsRecord = {
+  [key: string]: IconSetOptions
+}
+
+export type TailwindcssPluginIconsOptions = (
+  pluginApi: PluginAPI
+) => IconSetOptionsRecord

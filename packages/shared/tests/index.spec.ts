@@ -1,5 +1,3 @@
-import type { IconifyJSON } from '@iconify/types'
-
 import {
   loadIconFromJson,
   toKebabCase,

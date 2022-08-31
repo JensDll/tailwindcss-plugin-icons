@@ -15,7 +15,10 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"]
+    "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
+    "paths": {
+      "~/*": ["src/*"]
+    }
   },
   "include": ["*.ts", "dts/*.d.ts", "src/**/*", "src/**/*.vue"]
 }
