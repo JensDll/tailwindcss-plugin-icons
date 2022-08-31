@@ -18,7 +18,7 @@ yarn add tailwindcss-plugin-icons
 
 1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs
 2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`. For example [heroicons](https://heroicons.com/) `npm install @iconify-json/heroicons-outline @iconify-json/heroicons-solid`
-3. Configure the plugin in your `tailwind.config.js` (see [the example app](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js) for a full example with comments):
+3. Configure the plugin in your `tailwind.config.js` (see [the example app](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js) for a complete example with comments):
 
 ```js
 const { Icons } = require('tailwindcss-plugin-icons')
