@@ -20,9 +20,24 @@
       ></div>
     </section>
     <section class="flex space-x-2">
+      <div class="i-line-md-align-left h-8 w-8"></div>
+      <div class="i-line-md-align-right h-8 w-8"></div>
+      <div class="i-line-md-arrow-align-bottom h-8 w-8"></div>
+      <div class="i-line-md-downloading-loop h-8 w-8"></div>
+      <div class="i-logos-ember-tomster foo h-16 w-16"></div>
+      <div class="i-logos-emmet h-12 w-12"></div>
+      <div class="i-flat-ui-mic h-8 w-8"></div>
+    </section>
+    <section class="flex space-x-2">
       <div class="i-openmoji-dolphin h-[72px] w-[72px]"></div>
       <div class="i-openmoji-snake h-[72px] w-[72px]"></div>
       <div class="i-openmoji-cat h-[72px] w-[72px]"></div>
     </section>
   </section>
 </template>
+
+<style scoped>
+.foo {
+  transform: rotate(270deg);
+}
+</style>
