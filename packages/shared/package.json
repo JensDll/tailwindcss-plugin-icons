@@ -10,8 +10,5 @@
     }
   },
   "module": "./dist/index.mjs",
-  "types": "./dist/index.d.ts",
-  "devDependencies": {
-    "@iconify/types": "latest"
-  }
+  "types": "./dist/index.d.ts"
 }

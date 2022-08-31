@@ -20,34 +20,48 @@ yarn add tailwindcss-plugin-icons
 2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`. For example [heroicons](https://heroicons.com/) `npm install @iconify-json/heroicons-outline @iconify-json/heroicons-solid`
 3. Configure the plugin in your `tailwind.config.js`:
 
-```js
+```ts
 const { Icons } = require('tailwindcss-plugin-icons')
 
 module.exports = {
-  [...]
+  // Other config ...
   plugins: [
-    Icons({
-      heroiconsSolid: {
-        // By default it will search for icons in common iconify module locations
-        icons: ['trash', 'trash?bg']
-      },
+    Icons(({ theme }) => ({
       heroiconsOutline: {
-        icons: ['lock-open', 'lock-closed'],
-        // You can pass other modules too
-        location: 'my-icon-alias/icons.json'
-      },
-      custom: {
-        icons: ['loading'],
-        // It can be a URI. Fetched resources will be cached to the file system
-        location:
-          'https://gist.githubusercontent.com/JensDll/4e59cf6005f585581975941a94bc1d88/raw/0e70bdac81224add27d8f0576ab15406709e5938/icons.json'
-      },
-      customAlt: {
-        icons: ['loading'],
-        // It can be a relative or absolute path
-        location: './src/icons.json'
+        icons: {
+          lockOpen: {},
+          lockClosed: {},
+          plusCircle: {
+            // You can use CSS-in-JS syntax for default icon styles.
+            // https://tailwindcss.com/docs/plugins#css-in-js-syntax
+            cursor: 'pointer',
+            color: theme('colors.emerald.600'),
+            '&:hover': {
+              color: theme('colors.emerald.700')
+            }
+          },
+          minusCircle: {
+            cursor: 'pointer',
+            color: theme('colors.red.600'),
+            '&:hover': {
+              color: theme('colors.red.700')
+            },
+            // Default styles in dark mode.
+            '.dark &': {
+              color: theme('colors.red.400')
+            }
+          },
+          'trash?bg': {}
+        },
+        // You use scale to apply a default icon size.
+        // Outline heroicons are designed to be rendered at 24x24.
+        scale: 1.5 // 1.5em (24px)
+        // You can pass a location where it will try and find the icon source.
+        // It can be a URI or module name. If no location is given,
+        // it will search in common iconify module locations.
+        location: 'https:// or my-icons/icons.json'
       }
-    })
+    }))
   ]
 }
 ```
@@ -57,7 +71,7 @@ After the icon's name, you can pass `?mask` or `?bg` to force a specific render 
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
 
 ```html
-<div class="i-heroicons-solid-trash h-5 w-5"></div>
+<div class="i-heroicons-outline-plus-circle"></div>
 ```
 
 ## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)

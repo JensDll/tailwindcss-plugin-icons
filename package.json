@@ -12,6 +12,7 @@
   "type": "module",
   "dependencies": {
     "@esbuild-kit/esm-loader": "2.4.2",
+    "@iconify/types": "1.1.0",
     "@internal/shared": "workspace:*",
     "@rollup/plugin-alias": "3.1.9",
     "@rollup/plugin-node-resolve": "13.3.0",

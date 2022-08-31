@@ -16,7 +16,8 @@ module.exports = {
         icons: {
           trash: {}
         },
-        // Apply a default size; solid heroicons are designed to be rendered at 20x20.
+        // Use scale to apply a default size.
+        // Solid heroicons are designed to be rendered at 20x20.
         scale: 1.25 // 1.25em (20px)
       },
       heroiconsOutline: {
@@ -45,7 +46,7 @@ module.exports = {
           },
           'trash?bg': {}
         },
-        // Outline heroicons are designed to be rendered at 20x20.
+        // Outline heroicons are designed to be rendered at 24x24.
         scale: 1.5 // 1.5em (24px)
       },
       lineMd: {

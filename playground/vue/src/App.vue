@@ -40,6 +40,6 @@
 }
 
 .icons > li {
-  @apply mx-2 mb-2 shrink-0;
+  @apply m-2 shrink-0;
 }
 </style>
