@@ -64,4 +64,4 @@ module.exports = {
 <div class="i-heroicons-outline-plus-circle"></div>
 ```
 
-### 👉 [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)
+## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)
