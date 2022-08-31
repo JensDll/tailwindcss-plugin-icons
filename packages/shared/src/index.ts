@@ -64,8 +64,8 @@ export function loadIconFromJson(
   iconifyJson: IconifyJSON,
   iconName: string
 ): LoadedIcon {
-  let { left, top, width, height, rotate, hFlip, vFlip, icons, aliases } =
-    iconifyJson
+  let { left, top, width, height, rotate, hFlip, vFlip } = iconifyJson
+  const { icons, aliases } = iconifyJson
   let mode: IconMode | undefined
 
   // Transform the icon name to kebab case and remove the query parameters.
@@ -137,7 +137,7 @@ function applyTransformations(
   body: string,
   { left, top, width, height, rotate, hFlip, vFlip }: IconifyPartialOptional
 ): string {
-  let transform: string[] = []
+  const transform: string[] = []
 
   if (rotate) {
     const centerX = (2 * left + width) / 2

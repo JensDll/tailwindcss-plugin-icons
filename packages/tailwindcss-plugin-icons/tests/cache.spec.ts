@@ -3,7 +3,7 @@ import crypto from 'node:crypto'
 import os from 'node:os'
 
 import fs from 'fs-extra'
-import type { IconifyJson } from '@internal/shared'
+import type { IconifyJSON } from '@iconify/types'
 
 import { IconifyFileCache } from '../src/cache'
 
@@ -47,7 +47,7 @@ test('iterator', () => {
 })
 
 test('forEach', () => {
-  const entries: [string, IconifyJson][] = []
+  const entries: [string, IconifyJSON][] = []
 
   cache.forEach(function (this: 42, value, key, map) {
     entries.push([key, value])
