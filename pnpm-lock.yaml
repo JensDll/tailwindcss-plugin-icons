@@ -64,10 +64,10 @@ importers:
 
   playground/vue:
     specifiers:
-      '@iconify/json': 2.1.101
+      '@iconify/json': 2.1.102
       '@vitejs/plugin-vue': 3.0.3
       autoprefixer: 10.4.8
-      my-icons: npm:@iconify-json/logos@1.1.14
+      my-icons: npm:@iconify-json/logos@1.1.15
       postcss: 8.4.16
       tailwindcss: 3.1.8
       tailwindcss-plugin-icons: latest
@@ -76,10 +76,10 @@ importers:
       vue: 3.2.38
       vue-tsc: 0.40.5
     dependencies:
-      '@iconify/json': 2.1.101
+      '@iconify/json': 2.1.102
       '@vitejs/plugin-vue': 3.0.3_vite@3.0.9+vue@3.2.38
       autoprefixer: 10.4.8_postcss@8.4.16
-      my-icons: /@iconify-json/logos/1.1.14
+      my-icons: /@iconify-json/logos/1.1.15
       postcss: 8.4.16
       tailwindcss: 3.1.8_postcss@8.4.16
       tailwindcss-plugin-icons: link:../../packages/tailwindcss-plugin-icons
@@ -213,14 +213,14 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: false
 
-  /@iconify-json/logos/1.1.14:
-    resolution: {integrity: sha512-SvSxKubQbP/7Wdb3loShUeRGv82ejkNo5gjzvJzQeauntuU4aZjDrx0mnkhFZgNYd3li/mxvzPn79Xc5SGVliw==}
+  /@iconify-json/logos/1.1.15:
+    resolution: {integrity: sha512-J5NtHiM78fSgeHyFhipDdpnOQsKsHYXlqI1w+jsCqFA8R7HkacsKWxQ739AvTBdmK67lW8O3/TyacATaAp/lUA==}
     dependencies:
       '@iconify/types': 1.1.0
     dev: false
 
-  /@iconify/json/2.1.101:
-    resolution: {integrity: sha512-IZ7+DDY9OdVcV0TEI/Dd6KZirX+8JlUUtty75OgqbN+Hnj9T2fkD1MiLQT6HEqCcU8PzZUq0DSvwcIKaN/H/Xw==}
+  /@iconify/json/2.1.102:
+    resolution: {integrity: sha512-h1dIP2ul4VYjPATrANqsecQ5GkRKcN0K++smA3K0lJd80xuBnVUqLIf53Ii1dPSPadDcSeL6k1IkdT/TH9eCkQ==}
     dependencies:
       '@iconify/types': 1.1.0
       pathe: 0.3.5

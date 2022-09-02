@@ -100,10 +100,10 @@ function resolveIconSets(
 
     const kebabCaseIconSetName = toKebabCase(iconSetName)
 
-    // If there is no location, try and resolve from common iconify module locations.
+    // If there is no location, try and resolve from common iconify module locations
     if (!iconSetOptions.location) {
       try {
-        // When the icon sets are installed individually.
+        // When the icon sets are installed individually
         const jsonPath = require.resolve(
           `@iconify-json/${kebabCaseIconSetName}/icons.json`
         )
@@ -117,7 +117,7 @@ function resolveIconSets(
       } catch {}
 
       try {
-        // When the global iconify JSON is installed.
+        // When the global JSON is installed
         const jsonPath = require.resolve(
           `@iconify/json/json/${kebabCaseIconSetName}.json`
         )
@@ -135,8 +135,8 @@ function resolveIconSets(
       )
     }
 
-    // If the location is a URI, try and resolve the icon set from the cache;
-    // otherwise, prepare to fetch it.
+    // If the location is a URI, try and resolve the icons JSON from the cache;
+    // otherwise, prepare to fetch them
     if (isUri(iconSetOptions.location)) {
       if (cache.has(iconSetOptions.location)) {
         callback(
@@ -153,10 +153,10 @@ function resolveIconSets(
     let resolvedLocation
 
     try {
-      // Try to resolve the location as a module.
+      // Try to resolve the location as a module
       resolvedLocation = require.resolve(iconSetOptions.location)
     } catch {
-      // Otherwise resolve from the file system.
+      // Otherwise resolve from the file system
       resolvedLocation = path.resolve(iconSetOptions.location)
     }
 

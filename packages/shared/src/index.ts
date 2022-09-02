@@ -26,7 +26,7 @@ export function uriToFilename(uri: string) {
 
 export function encodeSvg(svg: string) {
   if (!svg.includes(' xmlns:xlink=') && svg.includes(' xlink:')) {
-    // Add the "http://www.w3.org/1999/xlink" namespace for any icon using the xlink: prefix.
+    // Add the "http://www.w3.org/1999/xlink" namespace for any icon using the xlink: prefix
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course
     svg = svg.replace(
       '<svg ',
@@ -35,7 +35,7 @@ export function encodeSvg(svg: string) {
   }
 
   if (!svg.includes(' xmlns=')) {
-    // Always add the "http://www.w3.org/2000/svg" default namespace, if it does not exist.
+    // Always add the "http://www.w3.org/2000/svg" default namespace, if it does not exist
     svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ')
   }
 
@@ -68,7 +68,7 @@ export function loadIconFromJson(
   const { icons, aliases } = iconifyJson
   let mode: IconMode | undefined
 
-  // Transform the icon name to kebab case and remove the query parameters.
+  // Transform the icon name to kebab case and remove query parameters
   const normalizedIconName = toKebabCase(iconName).replace(
     /\?(bg|mask)$/,
     (...values) => {
@@ -80,10 +80,10 @@ export function loadIconFromJson(
   let icon: ExtendedIconifyIcon
 
   if (normalizedIconName in icons) {
-    // Retrieve the icon from icons.
+    // Retrieve the icon from icons
     icon = icons[normalizedIconName]
   } else if (aliases && normalizedIconName in aliases) {
-    // Retrieve the icon from aliases.
+    // Retrieve the icon from aliases
     const { parent, ...aliasedIcon } = aliases[normalizedIconName]
 
     icon = {
@@ -94,7 +94,7 @@ export function loadIconFromJson(
     throw new Error(`Icon "${normalizedIconName}" not found`)
   }
 
-  // Overwrite general values with icon specific ones, if they exist.
+  // Overwrite general values with icon specific ones, if they exist
   icon.left && (left = icon.left)
   icon.top && (top = icon.top)
   icon.width && (width = icon.width)
@@ -103,7 +103,7 @@ export function loadIconFromJson(
   icon.hFlip && (hFlip = icon.hFlip)
   icon.vFlip && (vFlip = icon.vFlip)
 
-  // Apply default values if none were found in the iconify JSON.
+  // Apply default values if none were found in the icons JSON
   left ??= 0
   top ??= 0
   width ??= 16
