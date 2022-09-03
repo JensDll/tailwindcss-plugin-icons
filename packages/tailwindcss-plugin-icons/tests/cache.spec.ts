@@ -5,24 +5,24 @@ import os from 'node:os'
 import fs from 'fs-extra'
 import type { IconifyJSON } from '@iconify/types'
 
-import { IconifyFileCache } from '../src/cache'
-
-let cache: IconifyFileCache
-
-const allFixtures = fs.readdirSync(path.resolve(__dirname, 'fixtures'))
+import { IconifyFileCache } from '~tailwindcss-plugin-icons/cache'
 
 const readFixture = (fixture: string) =>
   [
     fixture,
-    fs.readJSONSync(path.resolve(__dirname, 'fixtures', fixture), 'ascii')
+    fs.readJSONSync(path.resolve(__dirname, '__fixtures__', fixture), 'ascii')
   ] as const
 
 const readFixtures = (fixtures?: string[]) =>
-  (fixtures === undefined ? allFixtures : fixtures).map(readFixture)
+  (fixtures === undefined ? ['cache1.json', 'cache2.json'] : fixtures).map(
+    readFixture
+  )
+
+let cache: IconifyFileCache
 
 beforeEach(() => {
   cache = new IconifyFileCache(path.resolve(os.tmpdir(), crypto.randomUUID()))
-  cache.set(...readFixture('entry1.json')).set(...readFixture('entry2.json'))
+  cache.set(...readFixture('cache1.json')).set(...readFixture('cache2.json'))
   expect(cache.size).toBe(2)
 })
 
@@ -65,12 +65,12 @@ test('toString', () => {
 describe('get', () => {
   test.each([
     {
-      key: 'entry1.json',
-      expected: () => readFixture('entry1.json')[1]
+      key: 'cache1.json',
+      expected: () => readFixture('cache1.json')[1]
     },
     {
-      key: 'entry2.json',
-      expected: () => readFixture('entry2.json')[1]
+      key: 'cache2.json',
+      expected: () => readFixture('cache2.json')[1]
     },
     {
       key: 'undefined',
@@ -85,11 +85,11 @@ describe('get', () => {
 describe('has', () => {
   test.each([
     {
-      key: 'entry1.json',
+      key: 'cache1.json',
       expected: true
     },
     {
-      key: 'entry2.json',
+      key: 'cache2.json',
       expected: true
     },
     {
@@ -103,27 +103,27 @@ describe('has', () => {
 })
 
 describe('delete', () => {
-  test('entry1.json', () => {
-    expect(cache.delete('entry1.json')).toBe(true)
+  test('cache1.json', () => {
+    expect(cache.delete('cache1.json')).toBe(true)
     expect(cache.size).toBe(1)
-    expect(cache.has('entry1.json')).toBe(false)
-    expect([...cache]).toStrictEqual(readFixtures(['entry2.json']))
+    expect(cache.has('cache1.json')).toBe(false)
+    expect([...cache]).toStrictEqual(readFixtures(['cache2.json']))
   })
 
-  test('entry1.json & entry2.json', () => {
-    expect(cache.delete('entry1.json')).toBe(true)
-    expect(cache.delete('entry2.json')).toBe(true)
+  test('cache1.json & cache2.json', () => {
+    expect(cache.delete('cache1.json')).toBe(true)
+    expect(cache.delete('cache2.json')).toBe(true)
     expect(cache.size).toBe(0)
-    expect(cache.has('entry1.json')).toBe(false)
-    expect(cache.has('entry2.json')).toBe(false)
+    expect(cache.has('cache1.json')).toBe(false)
+    expect(cache.has('cache2.json')).toBe(false)
     expect([...cache]).toStrictEqual([])
   })
 
   test('undefined', () => {
     expect(cache.delete('undefined')).toBe(false)
     expect(cache.size).toBe(2)
-    expect(cache.has('entry1.json')).toBe(true)
-    expect(cache.has('entry2.json')).toBe(true)
+    expect(cache.has('cache1.json')).toBe(true)
+    expect(cache.has('cache2.json')).toBe(true)
     expect([...cache]).toStrictEqual(readFixtures())
   })
 })

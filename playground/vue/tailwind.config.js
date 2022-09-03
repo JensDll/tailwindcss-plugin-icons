@@ -1,7 +1,7 @@
 const path = require('path')
 
 const plugin = require('tailwindcss/plugin')
-const { Icons } = require('tailwindcss-plugin-icons')
+const { Icons, SCALE } = require('tailwindcss-plugin-icons')
 
 /**
  * @type {import('tailwindcss/tailwind-config').TailwindTheme}
@@ -64,8 +64,13 @@ module.exports = {
       },
       logos: {
         icons: {
-          emberTomster: {},
-          vue: {},
+          emberTomster: {
+            // You can use the special "SCALE" symbol to apply icon specific scaling
+            [SCALE]: 2
+          },
+          vue: {
+            [SCALE]: 1.2
+          },
           cardano: {},
           stackblitz: {},
           stackoverflow: {}

@@ -7,7 +7,7 @@
     "dev:vue": "pnpm run --filter \"vue-playground\" dev",
     "test": "vitest",
     "test:run": "vitest run",
-    "lint": "pnpm exec eslint --ignore-pattern \"/scripts/*\" --rule \"no-console: [\"error\", { allow: [\"warn\", \"error\"] }]\" --max-warnings 0 --fix-dry-run . & pnpm exec eslint --max-warnings 0 --fix-dry-run \"./scripts/**\""
+    "lint": "pnpm exec eslint --ignore-pattern \"/scripts/*\" --rule \"no-console: [\"error\", { allow: [\"warn\", \"error\"] }]\" --max-warnings 0 . & pnpm exec eslint --max-warnings 0 \"./scripts/**\""
   },
   "type": "module",
   "dependencies": {
