@@ -1,7 +1,7 @@
 import { type LoadedIcon, encodeSvg } from '@internal/shared'
 import type { CSSRuleObject } from 'tailwindcss/types/config'
 
-export const SCALE = Symbol('Used to apply icon specific scaling')
+export const SCALE = Symbol('Used to apply icon-specific scaling')
 
 export interface CSSRuleObjectWithMaybeScale extends CSSRuleObject {
   [SCALE]?: number
@@ -56,7 +56,7 @@ export function getIconCssAsColorFunction(
   icon: LoadedIcon,
   cssDefaults: CSSRuleObjectWithScale
 ): ColorFunction {
-  return (color: string): CSSRuleObject => {
+  return color => {
     const coloredBody = icon.body.replace(/currentColor/g, color)
     const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${coloredBody}</svg>`
     const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`

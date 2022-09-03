@@ -5,7 +5,7 @@ import type { CSSRuleObject } from 'tailwindcss/types/config'
 import type { ColorFunction } from '~tailwindcss-plugin-icons/css'
 import { Icons, SCALE } from '~tailwindcss-plugin-icons/index'
 
-vi.mock('~tailwindcss-plugin-icons/cache', async () => {
+vi.mock('~tailwindcss-plugin-icons/cache', () => {
   return {
     IconifyFileCache: class {}
   }
@@ -93,7 +93,7 @@ test('use `matchComponents` with the `?bg` query parameter', () => {
 })
 
 describe('scale width and height', () => {
-  test('passed per icon set', () => {
+  test('when passed per icon set', () => {
     Icons(() => {
       return {
         testIcons: {
@@ -111,7 +111,7 @@ describe('scale width and height', () => {
     expect(mockPLuginAPI.matchComponents).toBeCalledWith({}, expect.any(Object))
   })
 
-  test('passed per icon', () => {
+  test('when passed per icon', () => {
     Icons(() => {
       return {
         testIcons: {

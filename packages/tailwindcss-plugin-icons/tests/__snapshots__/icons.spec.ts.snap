@@ -1,6 +1,6 @@
 // Vitest Snapshot v1
 
-exports[`scale width and height > passed per icon 1`] = `
+exports[`scale width and height > when passed per icon 1`] = `
 {
   ".i-test-icons-colored": {
     "--tw-plugin-icons-url": "url(\\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
@@ -23,7 +23,7 @@ exports[`scale width and height > passed per icon 1`] = `
 }
 `;
 
-exports[`scale width and height > passed per icon set 1`] = `
+exports[`scale width and height > when passed per icon set 1`] = `
 {
   ".i-test-icons-colored": {
     "--tw-plugin-icons-url": "url(\\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
