@@ -65,7 +65,7 @@ module.exports = {
       logos: {
         icons: {
           emberTomster: {
-            // You can use the special "SCALE" symbol to apply icon specific scaling
+            // You can use the special "SCALE" symbol to apply icon-specific scaling
             [SCALE]: 2
           },
           vue: {
