@@ -1,4 +1,4 @@
-name: Running tests
+name: Code quality
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  test:
+  testing:
     runs-on: ubuntu-latest
     steps:
       - name: Checking out the repository
@@ -34,7 +34,7 @@ jobs:
       - name: Running tests
         run: pnpm run test
 
-  lint:
+  linting:
     runs-on: ubuntu-latest
     steps:
       - name: Checking out the repository

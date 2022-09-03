@@ -5,7 +5,7 @@ import path from 'node:path'
 
 import { defineConfig } from 'vitest/config'
 
-const baseDir = fileURLToPath(new URL('.', import.meta.url))
+const rootDir = fileURLToPath(new URL('.', import.meta.url))
 
 export default defineConfig({
   test: {
@@ -16,7 +16,7 @@ export default defineConfig({
     alias: [
       {
         find: /^~(.+)\/(.+)/,
-        replacement: path.resolve(baseDir, 'packages/$1/src/$2')
+        replacement: path.resolve(rootDir, 'packages/$1/src/$2')
       }
     ]
   }
