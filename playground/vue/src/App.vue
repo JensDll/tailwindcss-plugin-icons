@@ -1,7 +1,7 @@
 <script setup lang="ts"></script>
 
 <template>
-  <section class="mx-auto max-w-6xl">
+  <section class="mx-auto max-w-6xl px-6 py-12">
     <ul class="icons">
       <li
         class="bg-heroicons-outline-trash-purple-500 hover:bg-heroicons-outline-trash-purple-600"
@@ -25,8 +25,8 @@
       <li class="i-line-md-arrow-align-bottom"></li>
       <li class="i-line-md-arrow-align-left"></li>
       <li class="i-vscode-icons-file-type-light-db text-pink-500"></li>
-      <li class="i-logos-ember-tomster text-6xl"></li>
-      <li class="i-logos-vue text-4xl"></li>
+      <li class="i-logos-ember-tomster"></li>
+      <li class="i-logos-vue"></li>
       <li class="i-logos-stackblitz"></li>
       <li class="i-logos-cardano"></li>
       <li class="i-logos-stackoverflow"></li>
@@ -36,7 +36,7 @@
 
 <style scoped>
 .icons {
-  @apply flex flex-wrap items-center px-6 py-12 text-3xl;
+  @apply flex flex-wrap items-center text-3xl;
 }
 
 .icons > li {

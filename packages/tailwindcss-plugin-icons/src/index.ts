@@ -1,83 +1,24 @@
+import { execFileSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
-import { execFileSync } from 'child_process'
 
-import plugin from 'tailwindcss/plugin'
+import { isUri, loadIconFromIconifyJson, toKebabCase } from '@internal/shared'
+import type { IconifyJSON } from '@iconify/types'
 import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
+import plugin from 'tailwindcss/plugin'
+
+import { IconifyFileCache } from '~tailwindcss-plugin-icons/cache'
 import {
-  encodeSvg,
-  isUri,
-  loadIconFromJson,
-  toKebabCase,
-  type LoadedIcon
-} from '@internal/shared'
-import type { IconifyJSON } from '@iconify/types'
+  type CSSRuleObjectWithMaybeScale,
+  type CSSRuleObjectWithScale,
+  type ColorFunction,
+  SCALE,
+  getIconCss,
+  getIconCssAsColorFunction
+} from '~tailwindcss-plugin-icons/css'
 
-import { IconifyFileCache } from './cache'
-
-const iconVarName = '--tw-plugin-icons-url'
-
-function getIconDimensions(icon: LoadedIcon, scale: number) {
-  return {
-    width: `${(icon.width / icon.height) * scale}em`,
-    height: `${scale}em`
-  }
-}
-
-function getIconCss(
-  icon: LoadedIcon,
-  scale: number,
-  cssDefaults: CSSRuleObject
-) {
-  const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${icon.body}</svg>`
-  const url = `url("data:image/svg+xml;utf8,${encodeSvg(svg)}")`
-
-  const iconDimensions = getIconDimensions(icon, scale)
-
-  if (icon.mode === 'mask') {
-    return {
-      [iconVarName]: url,
-      mask: `var(${iconVarName}) no-repeat`,
-      '-webkit-mask': `var(${iconVarName}) no-repeat`,
-      maskSize: '100% 100%',
-      '-webkit-mask-size': '100% 100%',
-      backgroundColor: 'currentColor',
-      ...iconDimensions,
-      ...cssDefaults
-    }
-  }
-
-  return {
-    [iconVarName]: url,
-    background: `var(${iconVarName}) no-repeat`,
-    backgroundSize: '100% 100%',
-    backgroundColor: 'transparent',
-    ...iconDimensions,
-    ...cssDefaults
-  }
-}
-
-function getIconCssAsColorFunction(
-  icon: LoadedIcon,
-  scale: number,
-  cssDefaults: CSSRuleObject
-) {
-  return (color: string): CSSRuleObject => {
-    const coloredBody = icon.body.replace(/currentColor/g, color)
-    const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${coloredBody}</svg>`
-    const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
-
-    return {
-      [iconVarName]: url,
-      background: `var(${iconVarName}) no-repeat`,
-      backgroundSize: '100% 100%',
-      backgroundColor: 'transparent',
-      ...getIconDimensions(icon, scale),
-      ...cssDefaults
-    }
-  }
-}
+export { SCALE } from '~tailwindcss-plugin-icons/css'
 
 const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
 
@@ -209,25 +150,31 @@ export const Icons = plugin.withOptions<TailwindcssPluginIconsOptions>(
     const iconSetOptionsRecord = callback(pluginApi)
 
     const components: Record<string, CSSRuleObject> = {}
-    const backgroundComponents: Record<
-      string,
-      (color: string) => CSSRuleObject
-    > = {}
+    const backgroundComponents: Record<string, ColorFunction> = {}
 
     resolveIconSets(
       iconSetOptionsRecord,
       (iconSetName, { icons, scale }, iconifyJson) => {
         for (const [iconName, cssDefaults] of Object.entries(icons)) {
-          const loadedIcon = loadIconFromJson(iconifyJson, iconName)
+          const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
+
+          Object.defineProperty(cssDefaults, SCALE, {
+            value: cssDefaults[SCALE] || scale || 1,
+            enumerable: false,
+            writable: false,
+            configurable: false
+          })
 
           if (loadedIcon.mode === 'bg') {
             backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
-              getIconCssAsColorFunction(loadedIcon, scale ?? 1, cssDefaults)
+              getIconCssAsColorFunction(
+                loadedIcon,
+                cssDefaults as CSSRuleObjectWithScale
+              )
           } else {
             components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
               loadedIcon,
-              scale ?? 1,
-              cssDefaults
+              cssDefaults as CSSRuleObjectWithScale
             )
           }
         }
@@ -243,7 +190,7 @@ export const Icons = plugin.withOptions<TailwindcssPluginIconsOptions>(
 )
 
 export type IconSetOptions = {
-  icons: Record<string, CSSRuleObject>
+  icons: Record<string, CSSRuleObjectWithMaybeScale>
   scale?: number
   location?: string
 }

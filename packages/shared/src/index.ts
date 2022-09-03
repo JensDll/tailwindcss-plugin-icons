@@ -60,7 +60,7 @@ export interface LoadedIcon {
   height: number
 }
 
-export function loadIconFromJson(
+export function loadIconFromIconifyJson(
   iconifyJson: IconifyJSON,
   iconName: string
 ): LoadedIcon {

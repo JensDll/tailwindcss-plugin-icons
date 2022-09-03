@@ -1,8 +1,9 @@
-import path from 'path'
+import path from 'node:path'
 
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
-import type { RollupOptions, ExternalOption } from 'rollup'
+import alias from '@rollup/plugin-alias'
+import type { ExternalOption, RollupOptions } from 'rollup'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
 
@@ -38,7 +39,18 @@ const plugin = {
       __DEV__: false,
       'process.env.NODE_ENV': "'production'"
     })
-  }
+  },
+  alias: alias({
+    customResolver(source) {
+      return source + '.ts'
+    },
+    entries: [
+      {
+        find: /^~(.+)\/(.+)/,
+        replacement: path.resolve(rootDir, 'packages/$1/src/$2')
+      }
+    ]
+  })
 } as const
 
 type PackageName = 'tailwindcss-plugin-icons' | 'shared'
@@ -76,7 +88,7 @@ const shared: RollupOptions[] = [
   }
 ]
 
-const main: RollupOptions[] = [
+const tailwindcssPluginIcons: RollupOptions[] = [
   {
     input: input('tailwindcss-plugin-icons', 'fetch'),
     output: {
@@ -140,9 +152,11 @@ const main: RollupOptions[] = [
   }
 ]
 
-const configs: RollupOptions[] = [...shared, ...main]
+const configs: RollupOptions[] = [...shared, ...tailwindcssPluginIcons]
 
 configs.forEach(config => {
+  config.plugins?.unshift(plugin.alias)
+
   if (config.external) {
     if (!Array.isArray(config.external)) {
       throw new Error('External option must be an array')
