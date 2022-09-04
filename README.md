@@ -24,6 +24,7 @@ yarn add tailwindcss-plugin-icons
 const { Icons } = require('tailwindcss-plugin-icons')
 
 module.exports = {
+  [...]
   plugins: [
     Icons(({ theme }) => ({
       heroiconsOutline: {
