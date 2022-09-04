@@ -24,7 +24,6 @@ yarn add tailwindcss-plugin-icons
 const { Icons } = require('tailwindcss-plugin-icons')
 
 module.exports = {
-  [...]
   plugins: [
     Icons(({ theme }) => ({
       heroiconsOutline: {
@@ -50,8 +49,9 @@ module.exports = {
           },
           'trash?bg': {}
         },
-        scale: 1.5
-        location: 'https://example.com/icons.json'
+        scale: 1.5,
+        // Location can be any URI. For example, here, from a CDN or a module name
+        location: 'https://esm.sh/@iconify-json/heroicons-outline@1.1.4/icons.json'
       }
     }))
   ]
