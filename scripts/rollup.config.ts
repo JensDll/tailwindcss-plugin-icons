@@ -6,6 +6,7 @@ import alias from '@rollup/plugin-alias'
 import type { ExternalOption, RollupOptions } from 'rollup'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
+import { resolveExtensions } from './rollup'
 
 const rootDir = path.resolve(__dirname, '..')
 
@@ -41,9 +42,7 @@ const plugin = {
     })
   },
   alias: alias({
-    customResolver(source) {
-      return source + '.ts'
-    },
+    customResolver: resolveExtensions(['.ts', '.js']),
     entries: [
       {
         find: /^~(.+)\/(.+)/,

@@ -15,14 +15,14 @@
     "@iconify/types": "1.1.0",
     "@internal/shared": "workspace:*",
     "@rollup/plugin-alias": "3.1.9",
-    "@rollup/plugin-node-resolve": "13.3.0",
+    "@rollup/plugin-node-resolve": "14.0.0",
     "@rollup/plugin-replace": "4.0.0",
     "@types/fs-extra": "9.0.13",
-    "@types/node": "18.7.14",
-    "@typescript-eslint/eslint-plugin": "5.36.1",
-    "@typescript-eslint/parser": "5.36.1",
+    "@types/node": "18.7.15",
+    "@typescript-eslint/eslint-plugin": "5.36.2",
+    "@typescript-eslint/parser": "5.36.2",
     "c8": "7.12.0",
-    "esbuild": "0.15.6",
+    "esbuild": "0.15.7",
     "esbuild-register": "3.3.3",
     "eslint": "8.23.0",
     "execa": "6.1.0",
@@ -35,7 +35,7 @@
     "tailwindcss": "3.1.8",
     "tailwindcss-plugin-icons": "workspace:*",
     "typescript": "4.8.2",
-    "vitest": "0.22.1"
+    "vitest": "0.23.1"
   },
   "pnpm": {
     "peerDependencyRules": {
