@@ -42,7 +42,7 @@ const plugin = {
     })
   },
   alias: alias({
-    customResolver: resolveExtensions(['.ts', '.js']),
+    customResolver: resolveExtensions(['.ts']),
     entries: [
       {
         find: /^~(.+)\/(.+)/,
