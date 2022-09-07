@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "my-icons": "npm:@iconify-json/logos@1.1.15",
-    "@iconify/json": "2.1.103",
+    "@iconify/json": "2.1.104",
     "@vitejs/plugin-vue": "3.1.0",
     "autoprefixer": "10.4.8",
     "postcss": "8.4.16",
@@ -18,6 +18,6 @@
     "typescript": "4.8.2",
     "vite": "3.1.0",
     "vue": "3.2.38",
-    "vue-tsc": "0.40.9"
+    "vue-tsc": "0.40.11"
   }
 }
