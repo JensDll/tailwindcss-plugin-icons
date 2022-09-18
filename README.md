@@ -59,12 +59,11 @@ const options = ({ theme }) => ({
  * @type {import('tailwindcss').Config}
  */
 module.exports = {
-  // ...
   plugins: [Icons(options)]
 }
 ```
 
-`Options` gets forwarded all of the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method.
+`Options` gets forwarded all of the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method (see also [example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)).
 
 <!-- markdownlint-disable-next-line ol-prefix -->
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
