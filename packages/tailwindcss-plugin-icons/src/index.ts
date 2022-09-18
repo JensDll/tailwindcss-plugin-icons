@@ -55,7 +55,11 @@ function resolveIconSets(
           JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
         )
         continue
-      } catch {}
+      } catch (e) {
+        if ((e as NodeJS.ErrnoException).code !== 'MODULE_NOT_FOUND') {
+          throw e
+        }
+      }
 
       try {
         // When the global JSON is installed
@@ -69,10 +73,14 @@ function resolveIconSets(
           JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
         )
         continue
-      } catch {}
+      } catch (e) {
+        if ((e as NodeJS.ErrnoException).code !== 'MODULE_NOT_FOUND') {
+          throw e
+        }
+      }
 
       throw new Error(
-        `Icon set "${iconSetName}" not found. Try installing it with "npm install @iconify/${kebabCaseIconSetName}"`
+        `Icon set "${iconSetName}" not found. Try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
       )
     }
 
@@ -103,7 +111,7 @@ function resolveIconSets(
 
     if (!fs.existsSync(resolvedLocation)) {
       throw new Error(
-        `No icon set "${iconSetName}" found at location "${location}"`
+        `No icon set "${iconSetName}" found at location "${iconSetOptions.location}"`
       )
     }
 
@@ -152,34 +160,39 @@ export const Icons = plugin.withOptions<TailwindcssPluginIconsOptions>(
     const components: Record<string, CSSRuleObject> = {}
     const backgroundComponents: Record<string, ColorFunction> = {}
 
-    resolveIconSets(
-      iconSetOptionsRecord,
-      (iconSetName, { icons, scale }, iconifyJson) => {
-        for (const [iconName, cssDefaults] of Object.entries(icons)) {
-          const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
+    try {
+      resolveIconSets(
+        iconSetOptionsRecord,
+        (iconSetName, { icons, scale }, iconifyJson) => {
+          for (const [iconName, cssDefaults] of Object.entries(icons)) {
+            const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
 
-          Object.defineProperty(cssDefaults, SCALE, {
-            value: cssDefaults[SCALE] || scale || 1,
-            enumerable: false,
-            writable: false,
-            configurable: false
-          })
+            Object.defineProperty(cssDefaults, SCALE, {
+              value: cssDefaults[SCALE] || scale || 1,
+              enumerable: false,
+              writable: false,
+              configurable: false
+            })
 
-          if (loadedIcon.mode === 'bg') {
-            backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
-              getIconCssAsColorFunction(
+            if (loadedIcon.mode === 'bg') {
+              backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
+                getIconCssAsColorFunction(
+                  loadedIcon,
+                  cssDefaults as CSSRuleObjectWithScale
+                )
+            } else {
+              components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
                 loadedIcon,
                 cssDefaults as CSSRuleObjectWithScale
               )
-          } else {
-            components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
-              loadedIcon,
-              cssDefaults as CSSRuleObjectWithScale
-            )
+            }
           }
         }
-      }
-    )
+      )
+    } catch (e) {
+      console.error(e)
+      return
+    }
 
     pluginApi.addComponents(components)
     pluginApi.matchComponents(backgroundComponents, {

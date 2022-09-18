@@ -4,9 +4,11 @@
   <section class="mx-auto max-w-6xl px-6 py-12">
     <ul class="icons">
       <li
-        class="bg-heroicons-outline-trash-purple-500 hover:bg-heroicons-outline-trash-purple-600"
+        class="bg-heroicons-outline-trash-purple-500 hover:bg-heroicons-outline-trash-purple-700"
       ></li>
-      <li class="i-heroicons-solid-trash text-slate-400"></li>
+      <li
+        class="i-heroicons-solid-trash text-slate-400 hover:text-slate-600"
+      ></li>
       <li class="i-heroicons-outline-plus-circle"></li>
       <li class="i-heroicons-outline-minus-circle"></li>
       <li

@@ -46,7 +46,7 @@ exports[`scale width and height > when passed per icon set 1`] = `
 }
 `;
 
-exports[`use \`addComponent\` when not forced otherwise 1`] = `
+exports[`use addComponent when not forced otherwise 1`] = `
 {
   ".i-test-icons-colored": {
     "--tw-plugin-icons-url": "url(\\"data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
@@ -69,7 +69,7 @@ exports[`use \`addComponent\` when not forced otherwise 1`] = `
 }
 `;
 
-exports[`use \`matchComponents\` with the \`?bg\` query parameter 1`] = `
+exports[`use matchComponents with the ?bg query parameter 1`] = `
 {
   "bg-test-icons-colored": {
     "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",

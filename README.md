@@ -17,48 +17,54 @@ yarn add tailwindcss-plugin-icons
 ## How to use
 
 1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs
-2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`. For example [heroicons](https://heroicons.com/) `npm install @iconify-json/heroicons-outline @iconify-json/heroicons-solid`
-3. Configure the plugin in your `tailwind.config.js` (see the [example app](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js) for a complete example with comments):
+2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`
+3. Configure the plugin in your `tailwind.config.js`.
+The snippet below shows example `options` passed to the plugin (see also [example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)):
 
 ```js
 const { Icons } = require('tailwindcss-plugin-icons')
 
-module.exports = {
-  [...]
-  plugins: [
-    Icons(({ theme }) => ({
-      heroiconsOutline: {
-        icons: {
-          lockOpen: {},
-          lockClosed: {},
-          plusCircle: {
-            cursor: 'pointer',
-            color: theme('colors.emerald.600'),
-            '&:hover': {
-              color: theme('colors.emerald.700')
-            }
-          },
-          minusCircle: {
-            cursor: 'pointer',
-            color: theme('colors.red.600'),
-            '&:hover': {
-              color: theme('colors.red.700')
-            },
-            '.dark &': {
-              color: theme('colors.red.400')
-            }
-          },
-          'trash?bg': {}
+/**
+ * @type {import('tailwindcss-plugin-icons').TailwindcssPluginIconsOptions}
+ */
+const options = ({ theme }) => ({
+  heroiconsOutline: {
+    icons: {
+      lockOpen: {},
+      lockClosed: {},
+      plusCircle: {
+        cursor: 'pointer',
+        color: theme('colors.emerald.600'),
+        '&:hover': {
+          color: theme('colors.emerald.700')
+        }
+      },
+      minusCircle: {
+        cursor: 'pointer',
+        color: theme('colors.red.600'),
+        '&:hover': {
+          color: theme('colors.red.700')
         },
-        scale: 1.5,
-        // Location can be any URI. For example, here, from a CDN or a module name
-        location: 'https://esm.sh/@iconify-json/heroicons-outline@1.1.4/icons.json'
-      }
-    }))
-  ]
+        '.dark &': {
+          color: theme('colors.red.400')
+        }
+      },
+      'trash?bg': {}
+    },
+    scale: 1.5,
+    location: 'https://esm.sh/@iconify-json/heroicons-outline@1.1.4/icons.json'
+  }
+})
+
+/**
+ * @type {import('tailwindcss').Config}
+ */
+module.exports = {
+  plugins: [Icons(options)]
 }
 ```
 
+<!-- markdownlint-disable-next-line ol-prefix -->
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
 
 ```html
