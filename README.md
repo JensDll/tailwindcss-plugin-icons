@@ -29,26 +29,15 @@ const { Icons } = require('tailwindcss-plugin-icons')
 const options = ({ theme }) => ({
   heroiconsOutline: {
     icons: {
-      lockOpen: {},
-      lockClosed: {},
+      trash: {},
+      'trash?bg': {},
       plusCircle: {
         cursor: 'pointer',
         color: theme('colors.emerald.600'),
         '&:hover': {
-          color: theme('colors.emerald.700')
+          color: theme('colors.emerald.800')
         }
-      },
-      minusCircle: {
-        cursor: 'pointer',
-        color: theme('colors.red.600'),
-        '&:hover': {
-          color: theme('colors.red.700')
-        },
-        '.dark &': {
-          color: theme('colors.red.400')
-        }
-      },
-      'trash?bg': {}
+      }
     },
     scale: 1.5,
     location: 'https://esm.sh/@iconify-json/heroicons-outline@1.1.4/icons.json'
@@ -63,7 +52,7 @@ module.exports = {
 }
 ```
 
-`Options` gets forwarded all of the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method (see also [example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)).
+The `options` function gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method (see also [example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)).
 
 <!-- markdownlint-disable-next-line ol-prefix -->
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
