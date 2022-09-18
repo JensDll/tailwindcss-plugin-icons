@@ -16,16 +16,15 @@ yarn add tailwindcss-plugin-icons
 
 ## How to use
 
-1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs
-2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`
-3. Configure the plugin in your `tailwind.config.js`.
-The snippet below shows example `options` passed to the plugin (see also [example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)):
+1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs.
+2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`.
+3. Configure the plugin in your `tailwind.config.js`:
 
 ```js
 const { Icons } = require('tailwindcss-plugin-icons')
 
 /**
- * @type {import('tailwindcss-plugin-icons').TailwindcssPluginIconsOptions}
+ * @type {import('tailwindcss-plugin-icons').Options}
  */
 const options = ({ theme }) => ({
   heroiconsOutline: {
@@ -60,9 +59,12 @@ const options = ({ theme }) => ({
  * @type {import('tailwindcss').Config}
  */
 module.exports = {
+  // ...
   plugins: [Icons(options)]
 }
 ```
+
+`Options` gets forwarded all of the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method.
 
 <!-- markdownlint-disable-next-line ol-prefix -->
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:

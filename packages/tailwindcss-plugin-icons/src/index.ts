@@ -153,54 +153,52 @@ function resolveIconSets(
   }
 }
 
-export const Icons = plugin.withOptions<TailwindcssPluginIconsOptions>(
-  callback => pluginApi => {
-    const iconSetOptionsRecord = callback(pluginApi)
+export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
+  const iconSetOptionsRecord = callback(pluginApi)
 
-    const components: Record<string, CSSRuleObject> = {}
-    const backgroundComponents: Record<string, ColorFunction> = {}
+  const components: Record<string, CSSRuleObject> = {}
+  const backgroundComponents: Record<string, ColorFunction> = {}
 
-    try {
-      resolveIconSets(
-        iconSetOptionsRecord,
-        (iconSetName, { icons, scale }, iconifyJson) => {
-          for (const [iconName, cssDefaults] of Object.entries(icons)) {
-            const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
+  try {
+    resolveIconSets(
+      iconSetOptionsRecord,
+      (iconSetName, { icons, scale }, iconifyJson) => {
+        for (const [iconName, cssDefaults] of Object.entries(icons)) {
+          const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
 
-            Object.defineProperty(cssDefaults, SCALE, {
-              value: cssDefaults[SCALE] || scale || 1,
-              enumerable: false,
-              writable: false,
-              configurable: false
-            })
+          Object.defineProperty(cssDefaults, SCALE, {
+            value: cssDefaults[SCALE] || scale || 1,
+            enumerable: false,
+            writable: false,
+            configurable: false
+          })
 
-            if (loadedIcon.mode === 'bg') {
-              backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
-                getIconCssAsColorFunction(
-                  loadedIcon,
-                  cssDefaults as CSSRuleObjectWithScale
-                )
-            } else {
-              components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
+          if (loadedIcon.mode === 'bg') {
+            backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
+              getIconCssAsColorFunction(
                 loadedIcon,
                 cssDefaults as CSSRuleObjectWithScale
               )
-            }
+          } else {
+            components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
+              loadedIcon,
+              cssDefaults as CSSRuleObjectWithScale
+            )
           }
         }
-      )
-    } catch (e) {
-      console.error(e)
-      return
-    }
-
-    pluginApi.addComponents(components)
-    pluginApi.matchComponents(backgroundComponents, {
-      values: flattenColorPalette(pluginApi.theme('colors')),
-      type: ['color', 'any']
-    })
+      }
+    )
+  } catch (e) {
+    console.error(e)
+    return
   }
-)
+
+  pluginApi.addComponents(components)
+  pluginApi.matchComponents(backgroundComponents, {
+    values: flattenColorPalette(pluginApi.theme('colors')),
+    type: ['color', 'any']
+  })
+})
 
 export type IconSetOptions = {
   icons: Record<string, CSSRuleObjectWithMaybeScale>
@@ -212,6 +210,4 @@ export type IconSetOptionsRecord = {
   [key: string]: IconSetOptions
 }
 
-export type TailwindcssPluginIconsOptions = (
-  pluginApi: PluginAPI
-) => IconSetOptionsRecord
+export type Options = (pluginApi: PluginAPI) => IconSetOptionsRecord
