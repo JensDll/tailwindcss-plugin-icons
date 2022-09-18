@@ -4,7 +4,7 @@ const plugin = require('tailwindcss/plugin')
 const { Icons, SCALE } = require('tailwindcss-plugin-icons')
 
 /**
- * @type {import('tailwindcss/tailwind-config').TailwindTheme}
+ * @type {import('tailwindcss').Config}
  */
 module.exports = {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],

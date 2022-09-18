@@ -1,9 +1,12 @@
 import path from 'node:path'
 
-import type { CSSRuleObject } from 'tailwindcss/types/config'
+import type { Mocked } from 'vitest'
+import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 
 import type { ColorFunction } from '~tailwindcss-plugin-icons/css'
 import { Icons, SCALE } from '~tailwindcss-plugin-icons/index'
+
+const consoleErrorMock = vi.spyOn(console, 'error')
 
 vi.mock('~tailwindcss-plugin-icons/cache', () => {
   return {
@@ -11,15 +14,15 @@ vi.mock('~tailwindcss-plugin-icons/cache', () => {
   }
 })
 
-const mockPLuginAPI = {
+const mockPLuginAPI: Mocked<PluginAPI> = {
   addUtilities: vi.fn(),
   matchUtilities: vi.fn(),
   addComponents: vi.fn(),
   matchComponents: vi.fn(),
   addBase: vi.fn(),
   addVariant: vi.fn(),
-  theme: vi.fn(),
-  config: vi.fn(),
+  theme: vi.fn<[path?: string | undefined, defaultValue?: unknown], any>(),
+  config: vi.fn<[path?: string | undefined, defaultValue?: unknown], any>(),
   corePlugins: vi.fn(),
   e: vi.fn()
 }
@@ -27,21 +30,21 @@ const mockPLuginAPI = {
 const location = path.resolve(__dirname, '__fixtures__/iconify.json')
 
 test("fail if icon doesn't exist", () => {
-  expect(() =>
-    Icons(() => {
-      return {
-        test: {
-          icons: {
-            doesNotExist: {}
-          },
-          location
-        }
+  Icons(() => {
+    return {
+      test: {
+        icons: {
+          doesNotExist: {}
+        },
+        location
       }
-    }).handler(mockPLuginAPI)
-  ).toThrowError()
+    }
+  }).handler(mockPLuginAPI)
+
+  expect(consoleErrorMock).toBeCalledTimes(1)
 })
 
-test('use `addComponent` when not forced otherwise', () => {
+test('use addComponent when not forced otherwise', () => {
   Icons(() => {
     return {
       testIcons: {
@@ -60,7 +63,7 @@ test('use `addComponent` when not forced otherwise', () => {
   expect(mockPLuginAPI.matchComponents).toBeCalledWith({}, expect.any(Object))
 })
 
-test('use `matchComponents` with the `?bg` query parameter', () => {
+test('use matchComponents with the ?bg query parameter', () => {
   Icons(() => {
     return {
       testIcons: {
@@ -83,10 +86,10 @@ test('use `matchComponents` with the `?bg` query parameter', () => {
 
   const snapshot: Record<string, CSSRuleObject> = {}
 
-  for (const [key, f] of Object.entries<ColorFunction>(
+  for (const [key, colorFunction] of Object.entries<ColorFunction>(
     mockPLuginAPI.matchComponents.mock.calls[0][0]
   )) {
-    snapshot[key] = f('red')
+    snapshot[key] = colorFunction('red')
   }
 
   expect(snapshot).toMatchSnapshot()

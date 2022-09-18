@@ -16,8 +16,8 @@ export function isPromise<T>(value: Awaitable<T>): value is Promise<T> {
   return typeof value?.then === 'function'
 }
 
-export function isUri(str: string) {
-  return /^https?:/i.test(str)
+export function isUri(str: string | undefined): str is string {
+  return !str ? false : /^https?:/i.test(str)
 }
 
 export function uriToFilename(uri: string) {
@@ -64,7 +64,7 @@ export function loadIconFromIconifyJson(
   iconifyJson: IconifyJSON,
   iconName: string
 ): LoadedIcon {
-  let { left, top, width, height, rotate, hFlip, vFlip } = iconifyJson
+  let { left, top, width, height } = iconifyJson
   const { icons, aliases } = iconifyJson
   let mode: IconMode | undefined
 
@@ -99,11 +99,8 @@ export function loadIconFromIconifyJson(
   icon.top && (top = icon.top)
   icon.width && (width = icon.width)
   icon.height && (height = icon.height)
-  icon.rotate && (rotate = icon.rotate)
-  icon.hFlip && (hFlip = icon.hFlip)
-  icon.vFlip && (vFlip = icon.vFlip)
 
-  // Apply default values if none were found in the icons JSON
+  // Apply default values if none were found in the Iconify JSON
   left ??= 0
   top ??= 0
   width ??= 16
@@ -117,9 +114,9 @@ export function loadIconFromIconifyJson(
       top,
       width,
       height,
-      rotate,
-      hFlip,
-      vFlip
+      rotate: icon.rotate,
+      hFlip: icon.hFlip,
+      vFlip: icon.vFlip
     }),
     mode,
     left,

@@ -55,7 +55,11 @@ function resolveIconSets(
           JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
         )
         continue
-      } catch {}
+      } catch (e) {
+        if ((e as NodeJS.ErrnoException).code !== 'MODULE_NOT_FOUND') {
+          throw e
+        }
+      }
 
       try {
         // When the global JSON is installed
@@ -69,10 +73,14 @@ function resolveIconSets(
           JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
         )
         continue
-      } catch {}
+      } catch (e) {
+        if ((e as NodeJS.ErrnoException).code !== 'MODULE_NOT_FOUND') {
+          throw e
+        }
+      }
 
       throw new Error(
-        `Icon set "${iconSetName}" not found. Try installing it with "npm install @iconify/${kebabCaseIconSetName}"`
+        `Icon set "${iconSetName}" not found. Try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
       )
     }
 
@@ -103,7 +111,7 @@ function resolveIconSets(
 
     if (!fs.existsSync(resolvedLocation)) {
       throw new Error(
-        `No icon set "${iconSetName}" found at location "${location}"`
+        `No icon set "${iconSetName}" found at location "${iconSetOptions.location}"`
       )
     }
 
@@ -145,13 +153,13 @@ function resolveIconSets(
   }
 }
 
-export const Icons = plugin.withOptions<TailwindcssPluginIconsOptions>(
-  callback => pluginApi => {
-    const iconSetOptionsRecord = callback(pluginApi)
+export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
+  const iconSetOptionsRecord = callback(pluginApi)
 
-    const components: Record<string, CSSRuleObject> = {}
-    const backgroundComponents: Record<string, ColorFunction> = {}
+  const components: Record<string, CSSRuleObject> = {}
+  const backgroundComponents: Record<string, ColorFunction> = {}
 
+  try {
     resolveIconSets(
       iconSetOptionsRecord,
       (iconSetName, { icons, scale }, iconifyJson) => {
@@ -180,14 +188,17 @@ export const Icons = plugin.withOptions<TailwindcssPluginIconsOptions>(
         }
       }
     )
-
-    pluginApi.addComponents(components)
-    pluginApi.matchComponents(backgroundComponents, {
-      values: flattenColorPalette(pluginApi.theme('colors')),
-      type: ['color', 'any']
-    })
+  } catch (e) {
+    console.error(e)
+    return
   }
-)
+
+  pluginApi.addComponents(components)
+  pluginApi.matchComponents(backgroundComponents, {
+    values: flattenColorPalette(pluginApi.theme('colors')),
+    type: ['color', 'any']
+  })
+})
 
 export type IconSetOptions = {
   icons: Record<string, CSSRuleObjectWithMaybeScale>
@@ -199,6 +210,4 @@ export type IconSetOptionsRecord = {
   [key: string]: IconSetOptions
 }
 
-export type TailwindcssPluginIconsOptions = (
-  pluginApi: PluginAPI
-) => IconSetOptionsRecord
+export type Options = (pluginApi: PluginAPI) => IconSetOptionsRecord
