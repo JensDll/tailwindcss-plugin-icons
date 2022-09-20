@@ -38,7 +38,7 @@
 
 <style scoped>
 .icons {
-  @apply flex flex-wrap items-center text-3xl;
+  @apply flex flex-wrap items-center text-2xl;
 }
 
 .icons > li {
