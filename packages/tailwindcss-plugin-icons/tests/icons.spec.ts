@@ -1,7 +1,7 @@
 import path from 'node:path'
 
-import type { Mocked } from 'vitest'
 import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
+import type { Mocked } from 'vitest'
 
 import type { ColorFunction } from '~tailwindcss-plugin-icons/css'
 import { Icons, SCALE } from '~tailwindcss-plugin-icons/index'

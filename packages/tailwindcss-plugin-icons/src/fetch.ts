@@ -1,6 +1,6 @@
-import path from 'path'
-import fs from 'fs/promises'
 import { createWriteStream } from 'fs'
+import fs from 'fs/promises'
+import path from 'path'
 
 import { uriToFilename } from '@internal/shared'
 

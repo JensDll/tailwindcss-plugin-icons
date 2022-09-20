@@ -1,7 +1,7 @@
 const path = require('path')
 
-const plugin = require('tailwindcss/plugin')
 const { Icons, SCALE } = require('tailwindcss-plugin-icons')
+const plugin = require('tailwindcss/plugin')
 
 /**
  * @type {import('tailwindcss').Config}

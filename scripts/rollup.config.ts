@@ -1,11 +1,12 @@
 import path from 'node:path'
 
+import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
-import alias from '@rollup/plugin-alias'
 import type { ExternalOption, RollupOptions } from 'rollup'
-import esbuild, { minify } from 'rollup-plugin-esbuild'
 import dts from 'rollup-plugin-dts'
+import esbuild, { minify } from 'rollup-plugin-esbuild'
+
 import { resolveExtensions } from './rollup'
 
 const rootDir = path.resolve(__dirname, '..')
@@ -20,7 +21,7 @@ const plugin = {
   }),
   nodeResolve: nodeResolve({
     rootDir,
-    resolveOnly: ['@internal/shared']
+    resolveOnly: [/^@internal\//]
   }),
   replace: {
     esm: replace({

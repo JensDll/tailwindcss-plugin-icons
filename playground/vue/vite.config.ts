@@ -1,8 +1,8 @@
-import { fileURLToPath } from 'url'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
-import { type AliasOptions, defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
+import { type AliasOptions, defineConfig } from 'vite'
 
 const baseDir = fileURLToPath(new URL('.', import.meta.url))
 

@@ -2,11 +2,11 @@ import { execFileSync } from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
-import { isUri, loadIconFromIconifyJson, toKebabCase } from '@internal/shared'
 import type { IconifyJSON } from '@iconify/types'
-import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
+import { isUri, loadIconFromIconifyJson, toKebabCase } from '@internal/shared'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
+import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 
 import { IconifyFileCache } from '~tailwindcss-plugin-icons/cache'
 import {
@@ -201,13 +201,22 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
 })
 
 export type IconSetOptions = {
+  /**
+   * An object describing the selected icons from this icon set.
+   */
   icons: Record<string, CSSRuleObjectWithMaybeScale>
+  /**
+   * A default scale used for all icons in this icon set.
+   * @default 1
+   */
   scale?: number
+  /**
+   * The location of the icon set's JSON file. Can be any URI, path, or module.
+   * @default "Common iconify module locations"
+   */
   location?: string
 }
 
-export type IconSetOptionsRecord = {
-  [key: string]: IconSetOptions
-}
+export type IconSetOptionsRecord = Record<string, IconSetOptions>
 
 export type Options = (pluginApi: PluginAPI) => IconSetOptionsRecord
