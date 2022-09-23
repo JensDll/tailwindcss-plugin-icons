@@ -3,7 +3,12 @@ import fs from 'fs'
 import path from 'path'
 
 import type { IconifyJSON } from '@iconify/types'
-import { isUri, loadIconFromIconifyJson, toKebabCase } from '@internal/shared'
+import {
+  IconLoadError,
+  isUri,
+  loadIconFromIconifyJson,
+  toKebabCase
+} from '@internal/shared'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
 import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
@@ -56,7 +61,7 @@ function resolveIconSets(
         )
         continue
       } catch (e) {
-        if ((e as NodeJS.ErrnoException).code !== 'MODULE_NOT_FOUND') {
+        if (e instanceof IconLoadError) {
           throw e
         }
       }
@@ -74,7 +79,7 @@ function resolveIconSets(
         )
         continue
       } catch (e) {
-        if ((e as NodeJS.ErrnoException).code !== 'MODULE_NOT_FOUND') {
+        if (e instanceof IconLoadError) {
           throw e
         }
       }
@@ -111,7 +116,7 @@ function resolveIconSets(
 
     if (!fs.existsSync(resolvedLocation)) {
       throw new Error(
-        `No icon set "${iconSetName}" found at location "${iconSetOptions.location}"`
+        `No icon set "${iconSetName}" found at "${iconSetOptions.location}"`
       )
     }
 

@@ -60,12 +60,19 @@ export interface LoadedIcon {
   height: number
 }
 
+export class IconLoadError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'IconLoadError'
+  }
+}
+
 export function loadIconFromIconifyJson(
   iconifyJson: IconifyJSON,
   iconName: string
 ): LoadedIcon {
   let { left, top, width, height } = iconifyJson
-  const { icons, aliases } = iconifyJson
+  const { icons, aliases, info } = iconifyJson
   let mode: IconMode | undefined
 
   // Transform the icon name to kebab case and remove query parameters
@@ -91,7 +98,11 @@ export function loadIconFromIconifyJson(
       ...aliasedIcon
     }
   } else {
-    throw new Error(`Icon "${normalizedIconName}" not found`)
+    throw new IconLoadError(
+      `Icon "${normalizedIconName}" not found${
+        info ? ` in "${info.name}"` : ''
+      }`
+    )
   }
 
   // Overwrite general values with icon specific ones, if they exist
