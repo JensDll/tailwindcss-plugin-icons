@@ -27,7 +27,7 @@ async function makeRequest(uri: string) {
     ? import('https')
     : import('http'))
 
-  return await new Promise<void>((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     protocol.get(uri, response => {
       const writeStream = createWriteStream(filePath).on('finish', resolve)
 
