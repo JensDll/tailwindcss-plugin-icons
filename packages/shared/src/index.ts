@@ -7,6 +7,15 @@ import type {
 
 export type Awaitable<T> = T | Promise<T>
 
+export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+
+export class TailwindcssPluginIconsError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'TailwindcssPluginIconsError'
+  }
+}
+
 export function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
@@ -60,21 +69,8 @@ export interface LoadedIcon {
   height: number
 }
 
-export class IconLoadError extends Error {
-  constructor(message: string) {
-    super(message)
-    this.name = 'IconLoadError'
-  }
-}
-
-export function loadIconFromIconifyJson(
-  iconifyJson: IconifyJSON,
-  iconName: string
-): LoadedIcon {
-  let { left, top, width, height } = iconifyJson
-  const { icons, aliases, info } = iconifyJson
+export function parseIconName(iconName: string) {
   let mode: IconMode | undefined
-
   // Transform the icon name to kebab case and remove query parameters
   const normalizedIconName = toKebabCase(iconName).replace(
     /\?(bg|mask)$/,
@@ -83,6 +79,20 @@ export function loadIconFromIconifyJson(
       return ''
     }
   )
+
+  return { normalizedIconName, mode }
+}
+
+export function loadIconFromIconifyJson(
+  iconifyJson: IconifyJSON,
+  iconName: string
+): LoadedIcon {
+  const { icons, aliases, info } = iconifyJson
+  let { left, top, width, height } = iconifyJson
+
+  const parsedIconName = parseIconName(iconName)
+  const { normalizedIconName } = parsedIconName
+  let { mode } = parsedIconName
 
   let icon: ExtendedIconifyIcon
 
@@ -98,7 +108,7 @@ export function loadIconFromIconifyJson(
       ...aliasedIcon
     }
   } else {
-    throw new IconLoadError(
+    throw new TailwindcssPluginIconsError(
       `Icon "${normalizedIconName}" not found${
         info ? ` in "${info.name}"` : ''
       }`

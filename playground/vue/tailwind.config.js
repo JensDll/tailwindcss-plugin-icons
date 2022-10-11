@@ -51,14 +51,13 @@ module.exports = {
       },
       lineMd: {
         icons: {
-          alignLeft: {},
-          alignRight: {},
-          arrowAlignLeft: {},
-          arrowAlignTop: {},
-          arrowAlignRight: {},
-          arrowAlignBottom: {}
+          'check-list-3': {
+            color: theme('colors.sky.700')
+          }
         },
-        scale: 1.5
+        scale: 1.5,
+        // You can choose to include every icon in the icon set
+        includeAll: true
         // By default, it will search for icons in common iconify module locations.
         // Namely "@iconify/json" and "@iconify-json/[the-icon-set-name]"
       },
@@ -84,7 +83,8 @@ module.exports = {
         },
         scale: 1.5,
         // It can be a URI, for example, from a CDN ...
-        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.11/icons.json'
+        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.11/icons.json',
+        includeAll: true
       },
       custom: {
         icons: {

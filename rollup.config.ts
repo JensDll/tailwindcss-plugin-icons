@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
@@ -7,9 +8,9 @@ import type { ExternalOption, RollupOptions } from 'rollup'
 import dts from 'rollup-plugin-dts'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 
-import { resolveExtensions } from './rollup'
+import { resolveExtensions } from './scripts/rollup'
 
-const rootDir = path.resolve(__dirname, '..')
+const rootDir = fileURLToPath(new URL('.', import.meta.url))
 
 const plugin = {
   dts: dts(),
@@ -77,15 +78,15 @@ const shared: RollupOptions[] = [
       format: 'esm'
     },
     plugins: [plugin.replace.esm, plugin.esbuild]
-  },
-  {
-    input: input('shared'),
-    output: {
-      file: 'packages/shared/dist/index.d.ts',
-      format: 'esm'
-    },
-    plugins: [plugin.dts]
   }
+  // {
+  //   input: input('shared'),
+  //   output: {
+  //     file: 'packages/shared/dist/index.d.ts',
+  //     format: 'esm'
+  //   },
+  //   plugins: [plugin.dts]
+  // }
 ]
 
 const tailwindcssPluginIcons: RollupOptions[] = [
@@ -123,6 +124,7 @@ const tailwindcssPluginIcons: RollupOptions[] = [
       manualChunks: {
         'internal/shared': ['@internal/shared']
       },
+      interop: 'compat',
       entryFileNames: '[name].cjs',
       chunkFileNames: '[name].cjs'
     },
@@ -136,20 +138,21 @@ const tailwindcssPluginIcons: RollupOptions[] = [
       manualChunks: {
         'internal/shared': ['@internal/shared']
       },
+      interop: 'compat',
       entryFileNames: '[name].min.cjs',
       chunkFileNames: '[name].min.cjs',
       plugins: [plugin.minify]
     },
     plugins: [plugin.replace.prod, plugin.nodeResolve, plugin.esbuild]
-  },
-  {
-    input: input('tailwindcss-plugin-icons'),
-    output: {
-      file: 'packages/tailwindcss-plugin-icons/dist/index.d.ts',
-      format: 'esm'
-    },
-    plugins: [plugin.dts]
   }
+  // {
+  //   input: input('tailwindcss-plugin-icons'),
+  //   output: {
+  //     file: 'packages/tailwindcss-plugin-icons/dist/index.d.ts',
+  //     format: 'esm'
+  //   },
+  //   plugins: [plugin.dts]
+  // }
 ]
 
 const configs: RollupOptions[] = [...shared, ...tailwindcssPluginIcons]

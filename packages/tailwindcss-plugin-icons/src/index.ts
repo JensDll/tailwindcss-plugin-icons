@@ -4,10 +4,12 @@ import path from 'path'
 
 import type { IconifyJSON } from '@iconify/types'
 import {
-  IconLoadError,
+  TailwindcssPluginIconsError,
   isUri,
   loadIconFromIconifyJson,
-  toKebabCase
+  toKebabCase,
+  type WithRequired,
+  parseIconName
 } from '@internal/shared'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
@@ -29,7 +31,7 @@ const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
 
 type ResolveIconSetsCallback = (
   iconSetName: string,
-  iconSetOptions: IconSetOptions,
+  iconSetOptions: WithRequired<IconSetOptions, 'icons'>,
   iconifyJson: IconifyJSON
 ) => void
 
@@ -56,12 +58,12 @@ function resolveIconSets(
 
         callback(
           kebabCaseIconSetName,
-          iconSetOptions,
+          iconSetOptions as never,
           JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
         )
         continue
       } catch (e) {
-        if (e instanceof IconLoadError) {
+        if (e instanceof TailwindcssPluginIconsError) {
           throw e
         }
       }
@@ -74,12 +76,12 @@ function resolveIconSets(
 
         callback(
           kebabCaseIconSetName,
-          iconSetOptions,
+          iconSetOptions as never,
           JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
         )
         continue
       } catch (e) {
-        if (e instanceof IconLoadError) {
+        if (e instanceof TailwindcssPluginIconsError) {
           throw e
         }
       }
@@ -95,7 +97,7 @@ function resolveIconSets(
       if (cache.has(iconSetOptions.location)) {
         callback(
           kebabCaseIconSetName,
-          iconSetOptions,
+          iconSetOptions as never,
           cache.get(iconSetOptions.location)!
         )
       } else {
@@ -122,7 +124,7 @@ function resolveIconSets(
 
     callback(
       kebabCaseIconSetName,
-      iconSetOptions,
+      iconSetOptions as never,
       JSON.parse(fs.readFileSync(resolvedLocation, 'ascii'))
     )
 
@@ -152,44 +154,79 @@ function resolveIconSets(
 
     callback(
       toKebabCase(iconSetName),
-      iconSetOptions,
+      iconSetOptions as never,
       cache.get(iconSetOptions.location!)!
     )
   }
 }
 
+type Components = Record<string, CSSRuleObject>
+type BackgroundComponents = Record<string, ColorFunction>
+
+const addIconToComponents =
+  (components: Components, backgroundComponents: BackgroundComponents) =>
+  (
+    iconifyJson: IconifyJSON,
+    iconName: string,
+    iconSetName: string,
+    cssDefaults: CSSRuleObjectWithMaybeScale,
+    scale?: number
+  ) => {
+    const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
+
+    Object.defineProperty(cssDefaults, SCALE, {
+      value: cssDefaults[SCALE] ?? scale ?? 1,
+      enumerable: false,
+      writable: false,
+      configurable: false
+    })
+
+    if (loadedIcon.mode === 'bg') {
+      backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
+        getIconCssAsColorFunction(
+          loadedIcon,
+          cssDefaults as CSSRuleObjectWithScale
+        )
+    } else {
+      components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
+        loadedIcon,
+        cssDefaults as CSSRuleObjectWithScale
+      )
+    }
+  }
+
 export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
   const iconSetOptionsRecord = callback(pluginApi)
 
-  const components: Record<string, CSSRuleObject> = {}
-  const backgroundComponents: Record<string, ColorFunction> = {}
+  const components: Components = {}
+  const backgroundComponents: BackgroundComponents = {}
+  const addIcon = addIconToComponents(components, backgroundComponents)
 
   try {
     resolveIconSets(
       iconSetOptionsRecord,
-      (iconSetName, { icons, scale }, iconifyJson) => {
-        for (const [iconName, cssDefaults] of Object.entries(icons)) {
-          const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
-
-          Object.defineProperty(cssDefaults, SCALE, {
-            value: cssDefaults[SCALE] || scale || 1,
-            enumerable: false,
-            writable: false,
-            configurable: false
+      (iconSetName, { icons, scale, includeAll }, iconifyJson) => {
+        if (includeAll) {
+          const toSkip = new Set<string>()
+          Object.keys(icons).forEach(iconName => {
+            toSkip.add(parseIconName(iconName).normalizedIconName)
           })
 
-          if (loadedIcon.mode === 'bg') {
-            backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
-              getIconCssAsColorFunction(
-                loadedIcon,
-                cssDefaults as CSSRuleObjectWithScale
-              )
-          } else {
-            components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
-              loadedIcon,
-              cssDefaults as CSSRuleObjectWithScale
-            )
-          }
+          Object.keys(iconifyJson.icons).forEach(iconName => {
+            if (!toSkip.has(iconName)) {
+              addIcon(iconifyJson, iconName, iconSetName, {}, scale)
+            }
+          })
+
+          Object.keys(iconifyJson.aliases ?? []).forEach(iconName => {
+            if (!toSkip.has(iconName)) {
+              addIcon(iconifyJson, iconName, iconSetName, {}, scale)
+            }
+          })
+        }
+
+        for (const [iconName, cssDefaults] of Object.entries(icons)) {
+          addIcon(iconifyJson, iconName, iconSetName, cssDefaults, scale)
         }
       }
     )
@@ -207,19 +244,23 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
 
 export type IconSetOptions = {
   /**
-   * An object describing the selected icons from this icon set.
+   * An object describing the selected icons from the icon set.
    */
-  icons: Record<string, CSSRuleObjectWithMaybeScale>
+  icons?: Record<string, CSSRuleObjectWithMaybeScale>
   /**
-   * A default scale used for all icons in this icon set.
+   * A default scale used for all icons in the icon set.
    * @default 1
    */
   scale?: number
   /**
-   * The location of the icon set's JSON file. Can be any URI, path, or module.
+   * The location of the iconify JSON file. Can be any URI, path, or module.
    * @default "Common iconify module locations"
    */
   location?: string
+  /**
+   * Include every icon from the icon set.
+   */
+  includeAll?: false
 }
 
 export type IconSetOptionsRecord = Record<string, IconSetOptions>

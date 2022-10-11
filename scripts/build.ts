@@ -4,16 +4,16 @@ import { run } from './utils'
 
 const basePath = 'packages/tailwindcss-plugin-icons'
 
-await run('rollup', ['--config'])
+await run('rollup', ['--config', '--configPlugin', 'esbuild'])
 
-console.log()
-console.log('Formatting declaration files ...')
-await run('pnpm', [
-  'exec',
-  'prettier',
-  '--write',
-  'packages/**/dist/index.d.ts'
-])
+// console.log()
+// console.log('Formatting declaration files ...')
+// await run('pnpm', [
+//   'exec',
+//   'prettier',
+//   '--write',
+//   'packages/**/dist/index.d.ts'
+// ])
 
 console.log()
 console.log('Copying relevant files to publish folder ...')
