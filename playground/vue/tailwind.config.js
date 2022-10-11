@@ -82,9 +82,9 @@ module.exports = {
           'file-type-light-db?mask': {}
         },
         scale: 1.5,
+        includeAll: true,
         // It can be a URI, for example, from a CDN ...
-        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.11/icons.json',
-        includeAll: true
+        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.15/icons.json'
       },
       custom: {
         icons: {

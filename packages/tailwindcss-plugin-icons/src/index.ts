@@ -8,8 +8,7 @@ import {
   isUri,
   loadIconFromIconifyJson,
   toKebabCase,
-  type WithRequired,
-  parseIconName
+  type WithRequired
 } from '@internal/shared'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
@@ -29,9 +28,11 @@ export { SCALE } from '~tailwindcss-plugin-icons/css'
 
 const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
 
+type IconSetOptionsWithIcons = WithRequired<IconSetOptions, 'icons'>
+
 type ResolveIconSetsCallback = (
   iconSetName: string,
-  iconSetOptions: WithRequired<IconSetOptions, 'icons'>,
+  iconSetOptions: IconSetOptionsWithIcons,
   iconifyJson: IconifyJSON
 ) => void
 
@@ -58,7 +59,7 @@ function resolveIconSets(
 
         callback(
           kebabCaseIconSetName,
-          iconSetOptions as never,
+          iconSetOptions as IconSetOptionsWithIcons,
           JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
         )
         continue
@@ -76,7 +77,7 @@ function resolveIconSets(
 
         callback(
           kebabCaseIconSetName,
-          iconSetOptions as never,
+          iconSetOptions as IconSetOptionsWithIcons,
           JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
         )
         continue
@@ -86,8 +87,8 @@ function resolveIconSets(
         }
       }
 
-      throw new Error(
-        `Icon set "${iconSetName}" not found. Try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
+      throw new TailwindcssPluginIconsError(
+        `Icon set "${iconSetName}" not found. Check if the name is correct or try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
       )
     }
 
@@ -97,7 +98,7 @@ function resolveIconSets(
       if (cache.has(iconSetOptions.location)) {
         callback(
           kebabCaseIconSetName,
-          iconSetOptions as never,
+          iconSetOptions as IconSetOptionsWithIcons,
           cache.get(iconSetOptions.location)!
         )
       } else {
@@ -117,14 +118,14 @@ function resolveIconSets(
     }
 
     if (!fs.existsSync(resolvedLocation)) {
-      throw new Error(
-        `No icon set "${iconSetName}" found at "${iconSetOptions.location}"`
+      throw new TailwindcssPluginIconsError(
+        `No icon set found at "${iconSetOptions.location}"`
       )
     }
 
     callback(
       kebabCaseIconSetName,
-      iconSetOptions as never,
+      iconSetOptions as IconSetOptionsWithIcons,
       JSON.parse(fs.readFileSync(resolvedLocation, 'ascii'))
     )
 
@@ -193,6 +194,8 @@ const addIconToComponents =
         cssDefaults as CSSRuleObjectWithScale
       )
     }
+
+    return loadedIcon
   }
 
 export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
@@ -206,32 +209,40 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
     resolveIconSets(
       iconSetOptionsRecord,
       (iconSetName, { icons, scale, includeAll }, iconifyJson) => {
-        if (includeAll) {
-          const toSkip = new Set<string>()
-          Object.keys(icons).forEach(iconName => {
-            toSkip.add(parseIconName(iconName).normalizedIconName)
-          })
+        if (!includeAll) {
+          for (const [iconName, cssDefaults] of Object.entries(icons)) {
+            addIcon(iconifyJson, iconName, iconSetName, cssDefaults, scale)
+          }
 
-          Object.keys(iconifyJson.icons).forEach(iconName => {
-            if (!toSkip.has(iconName)) {
-              addIcon(iconifyJson, iconName, iconSetName, {}, scale)
-            }
-          })
-
-          Object.keys(iconifyJson.aliases ?? []).forEach(iconName => {
-            if (!toSkip.has(iconName)) {
-              addIcon(iconifyJson, iconName, iconSetName, {}, scale)
-            }
-          })
+          return
         }
+
+        const toSkip = new Set<string>()
 
         for (const [iconName, cssDefaults] of Object.entries(icons)) {
-          addIcon(iconifyJson, iconName, iconSetName, cssDefaults, scale)
+          toSkip.add(
+            addIcon(iconifyJson, iconName, iconSetName, cssDefaults, scale).name
+          )
         }
+
+        Object.keys(iconifyJson.icons).forEach(iconName => {
+          if (!toSkip.has(iconName)) {
+            addIcon(iconifyJson, iconName, iconSetName, {}, scale)
+          }
+        })
+
+        Object.keys(iconifyJson.aliases ?? []).forEach(iconName => {
+          if (!toSkip.has(iconName)) {
+            addIcon(iconifyJson, iconName, iconSetName, {}, scale)
+          }
+        })
       }
     )
   } catch (e) {
-    console.error(e)
+    if (e instanceof Error) {
+      console.error('[TailwindcssPluginIcons]', e.message)
+    }
+
     return
   }
 
