@@ -22,9 +22,9 @@ module.exports = {
       },
       heroiconsOutline: {
         icons: {
-          lockOpen: {},
-          lockClosed: {},
-          plusCircle: {
+          'lock-open': {},
+          'lock-closed': {},
+          'plus-circle': {
             // You can use CSS-in-JS syntax for default icon styles
             // https://tailwindcss.com/docs/plugins#css-in-js-syntax
             color: theme('colors.emerald.600'),
@@ -33,7 +33,7 @@ module.exports = {
               color: theme('colors.emerald.700')
             }
           },
-          minusCircle: {
+          'minus-circle': {
             color: theme('colors.red.600'),
             cursor: 'pointer',
             '&:hover': {
@@ -49,22 +49,28 @@ module.exports = {
         // Outline heroicons are designed to be rendered at 24x24
         scale: 1.5 // 1.5em (24px)
       },
+      bi: {
+        icons: {
+          'people-circle?bg': {}
+        },
+        scale: 1.25,
+        // You can choose to include every icon in the icon set
+        includeAll: true
+      },
       lineMd: {
         icons: {
-          alignLeft: {},
-          alignRight: {},
-          arrowAlignLeft: {},
-          arrowAlignTop: {},
-          arrowAlignRight: {},
-          arrowAlignBottom: {}
+          'check-list-3': {
+            color: theme('colors.sky.700')
+          }
         },
-        scale: 1.5
+        scale: 1.5,
+        includeAll: true
         // By default, it will search for icons in common iconify module locations.
         // Namely "@iconify/json" and "@iconify-json/[the-icon-set-name]"
       },
       logos: {
         icons: {
-          emberTomster: {
+          'ember-tomster': {
             // You can use the special "SCALE" symbol to apply icon-specific scaling
             [SCALE]: 2
           },
@@ -84,7 +90,7 @@ module.exports = {
         },
         scale: 1.5,
         // It can be a URI, for example, from a CDN ...
-        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.11/icons.json'
+        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.15/icons.json'
       },
       custom: {
         icons: {

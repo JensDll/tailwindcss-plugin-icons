@@ -159,7 +159,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'current-color',
       expected: {
-        name: 'current-color',
+        normalizedName: 'current-color',
         body: 'currentColor',
         mode: 'mask',
         left: 1,
@@ -171,7 +171,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'current-color?bg',
       expected: {
-        name: 'current-color',
+        normalizedName: 'current-color',
         body: 'currentColor',
         mode: 'bg',
         left: 1,
@@ -183,7 +183,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'color',
       expected: {
-        name: 'color',
+        normalizedName: 'color',
         body: '#fff',
         mode: 'color',
         left: 1,
@@ -195,7 +195,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'color?mask',
       expected: {
-        name: 'color',
+        normalizedName: 'color',
         body: '#fff',
         mode: 'mask',
         left: 1,
@@ -207,7 +207,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'left',
       expected: {
-        name: 'left',
+        normalizedName: 'left',
         body: '',
         mode: 'color',
         left: 10,
@@ -219,7 +219,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'top',
       expected: {
-        name: 'top',
+        normalizedName: 'top',
         body: '',
         mode: 'color',
         left: 1,
@@ -231,7 +231,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'width',
       expected: {
-        name: 'width',
+        normalizedName: 'width',
         body: '',
         mode: 'color',
         left: 1,
@@ -243,7 +243,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'height',
       expected: {
-        name: 'height',
+        normalizedName: 'height',
         body: '',
         mode: 'color',
         left: 1,
@@ -255,7 +255,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'left+top',
       expected: {
-        name: 'left+top',
+        normalizedName: 'left+top',
         body: '',
         mode: 'color',
         left: 10,
@@ -267,7 +267,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'left+top+width',
       expected: {
-        name: 'left+top+width',
+        normalizedName: 'left+top+width',
         body: '',
         mode: 'color',
         left: 10,
@@ -279,7 +279,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'left+top+width+height',
       expected: {
-        name: 'left+top+width+height',
+        normalizedName: 'left+top+width+height',
         body: '',
         mode: 'color',
         left: 10,
@@ -291,7 +291,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'rotate90',
       expected: {
-        name: 'rotate90',
+        normalizedName: 'rotate90',
         body: '<g transform="rotate(90 30 60)">body</g>',
         mode: 'color',
         left: 5,
@@ -303,7 +303,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'rotate180',
       expected: {
-        name: 'rotate180',
+        normalizedName: 'rotate180',
         body: '<g transform="rotate(180 30 60)">body</g>',
         mode: 'color',
         left: 5,
@@ -315,7 +315,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'h-flip',
       expected: {
-        name: 'h-flip',
+        normalizedName: 'h-flip',
         body: '<g transform="translate(5 0) scale(-1 1)">body</g>',
         mode: 'color',
         left: 1,
@@ -327,7 +327,7 @@ describe('loadIconFromJson', () => {
     {
       iconName: 'v-flip',
       expected: {
-        name: 'v-flip',
+        normalizedName: 'v-flip',
         body: '<g transform="translate(0 8) scale(1 -1)">body</g>',
         mode: 'color',
         left: 1,

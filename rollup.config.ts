@@ -1,4 +1,5 @@
 import path from 'node:path'
+import { fileURLToPath } from 'node:url'
 
 import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
@@ -7,9 +8,9 @@ import type { ExternalOption, RollupOptions } from 'rollup'
 import dts from 'rollup-plugin-dts'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 
-import { resolveExtensions } from './rollup'
+import { resolveExtensions } from './scripts/rollup'
 
-const rootDir = path.resolve(__dirname, '..')
+const rootDir = fileURLToPath(new URL('.', import.meta.url))
 
 const plugin = {
   dts: dts(),

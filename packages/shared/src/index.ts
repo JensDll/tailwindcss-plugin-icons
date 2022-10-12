@@ -7,6 +7,15 @@ import type {
 
 export type Awaitable<T> = T | Promise<T>
 
+export type WithRequired<T, K extends keyof T> = T & { [P in K]-?: T[P] }
+
+export class TailwindcssPluginIconsError extends Error {
+  constructor(message: string) {
+    super(message)
+    this.name = 'TailwindcssPluginIconsError'
+  }
+}
+
 export function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
@@ -51,7 +60,7 @@ export function encodeSvg(svg: string) {
 export type IconMode = 'bg' | 'mask' | 'color'
 
 export interface LoadedIcon {
-  name: string
+  normalizedName: string
   body: string
   mode: IconMode
   left: number
@@ -60,29 +69,30 @@ export interface LoadedIcon {
   height: number
 }
 
-export class IconLoadError extends Error {
-  constructor(message: string) {
-    super(message)
-    this.name = 'IconLoadError'
-  }
+export function parseIconName(iconName: string) {
+  let iconMode: IconMode | undefined
+  // Transform the icon name to kebab case and remove query parameters
+  const normalizedIconName = toKebabCase(iconName).replace(
+    /\?(bg|mask)$/,
+    (...values) => {
+      iconMode = values[1]
+      return ''
+    }
+  )
+
+  return { normalizedIconName, iconMode }
 }
 
 export function loadIconFromIconifyJson(
   iconifyJson: IconifyJSON,
   iconName: string
 ): LoadedIcon {
-  let { left, top, width, height } = iconifyJson
   const { icons, aliases, info } = iconifyJson
-  let mode: IconMode | undefined
+  let { left, top, width, height } = iconifyJson
 
-  // Transform the icon name to kebab case and remove query parameters
-  const normalizedIconName = toKebabCase(iconName).replace(
-    /\?(bg|mask)$/,
-    (...values) => {
-      mode = values[1]
-      return ''
-    }
-  )
+  const parsedIconName = parseIconName(iconName)
+  const { normalizedIconName } = parsedIconName
+  let { iconMode } = parsedIconName
 
   let icon: ExtendedIconifyIcon
 
@@ -98,7 +108,7 @@ export function loadIconFromIconifyJson(
       ...aliasedIcon
     }
   } else {
-    throw new IconLoadError(
+    throw new TailwindcssPluginIconsError(
       `Icon "${normalizedIconName}" not found${
         info ? ` in "${info.name}"` : ''
       }`
@@ -116,10 +126,10 @@ export function loadIconFromIconifyJson(
   top ??= 0
   width ??= 16
   height ??= 16
-  mode ??= icon.body.includes('currentColor') ? 'mask' : 'color'
+  iconMode ??= icon.body.includes('currentColor') ? 'mask' : 'color'
 
   return {
-    name: normalizedIconName,
+    normalizedName: normalizedIconName,
     body: applyTransformations(icon.body, {
       left,
       top,
@@ -129,7 +139,7 @@ export function loadIconFromIconifyJson(
       hFlip: icon.hFlip,
       vFlip: icon.vFlip
     }),
-    mode,
+    mode: iconMode,
     left,
     top,
     width,

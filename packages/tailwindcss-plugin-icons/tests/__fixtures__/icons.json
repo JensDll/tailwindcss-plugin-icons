@@ -7,6 +7,16 @@
       "body": "<path d=\"1\" fill=\"currentColor\"/>"
     }
   },
+  "aliases": {
+    "colored-h-flip": {
+      "parent": "colored",
+      "hFlip": true
+    },
+    "colorless-rotate": {
+      "parent": "colorless",
+      "rotate": 3
+    }
+  },
   "width": 24,
   "height": 24
 }

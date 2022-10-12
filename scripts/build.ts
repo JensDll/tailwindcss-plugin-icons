@@ -4,7 +4,7 @@ import { run } from './utils'
 
 const basePath = 'packages/tailwindcss-plugin-icons'
 
-await run('rollup', ['--config'])
+await run('rollup', ['--config', '--configPlugin', 'esbuild'])
 
 console.log()
 console.log('Formatting declaration files ...')

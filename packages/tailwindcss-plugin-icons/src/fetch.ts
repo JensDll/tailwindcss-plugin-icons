@@ -2,21 +2,12 @@ import { createWriteStream } from 'fs'
 import fs from 'fs/promises'
 import path from 'path'
 
-import { uriToFilename } from '@internal/shared'
+import { TailwindcssPluginIconsError, uriToFilename } from '@internal/shared'
 
 const [cacheDir, ...uris] = process.argv.slice(2)
 
 ;(async () => {
-  try {
-    await Promise.all(uris.map(makeRequest))
-  } catch (e) {
-    if (typeof e === 'string') {
-      process.stderr.write(e)
-    }
-
-    process.exit(1)
-  }
-
+  await Promise.all(uris.map(makeRequest))
   process.exit(0)
 })()
 
@@ -37,10 +28,13 @@ async function makeRequest(uri: string) {
           if (response.complete && response.statusCode === 200) {
             writeStream.end()
           } else {
-            const data = await fs.readFile(filePath)
             await fs.unlink(filePath)
             writeStream.destroy()
-            reject(data.toString())
+            reject(
+              new TailwindcssPluginIconsError(
+                `Failed to fetch remote icon set at "${uri}"`
+              )
+            )
           }
         })
     })
