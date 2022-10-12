@@ -49,6 +49,13 @@ module.exports = {
         // Outline heroicons are designed to be rendered at 24x24
         scale: 1.5 // 1.5em (24px)
       },
+      bi: {
+        icons: {
+          'people-circle?bg': {}
+        },
+        // You can choose to include every icon in the icon set
+        includeAll: true
+      },
       lineMd: {
         icons: {
           'check-list-3': {
@@ -56,7 +63,6 @@ module.exports = {
           }
         },
         scale: 1.5,
-        // You can choose to include every icon in the icon set
         includeAll: true
         // By default, it will search for icons in common iconify module locations.
         // Namely "@iconify/json" and "@iconify-json/[the-icon-set-name]"
@@ -101,15 +107,6 @@ module.exports = {
         scale: 1.5,
         // It can be a relative or absolute path
         location: path.resolve(__dirname, './src/icons.json')
-      },
-      bi: {
-        icons: {
-          'people-circle?mask': {
-            color: theme('colors.green.600')
-          },
-          'people-circle?bg': {}
-        },
-        includeAll: true
       }
     })),
     plugin(({ addUtilities }) => {

@@ -31,8 +31,8 @@
       <li class="i-bi-1-circle"></li>
       <li class="i-bi-backspace"></li>
       <li class="i-bi-backspace-reverse"></li>
-      <li class="i-bi-people-circle"></li>
-      <li class="bg-bi-people-circle-amber-600"></li>
+      <li class="i-bi-people-circle text-green-700"></li>
+      <li class="bg-bi-people-circle-amber-700"></li>
       <li class="i-logos-ember-tomster"></li>
       <li class="i-logos-vue"></li>
       <li class="i-logos-stackblitz"></li>

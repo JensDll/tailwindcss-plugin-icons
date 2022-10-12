@@ -8,8 +8,7 @@ import {
   isUri,
   loadIconFromIconifyJson,
   toKebabCase,
-  type WithRequired,
-  parseIconName
+  type WithRequired
 } from '@internal/shared'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
@@ -221,7 +220,6 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
         const toSkip = new Set<string>()
 
         for (const [iconName, cssDefaults] of Object.entries(icons)) {
-          const { iconMode } = parseIconName(iconName)
           const loadedIcon = addIcon(
             iconifyJson,
             iconName,
@@ -230,7 +228,7 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
             scale
           )
 
-          if (iconMode === undefined || iconMode === loadedIcon.mode) {
+          if (loadedIcon.mode !== 'bg') {
             toSkip.add(loadedIcon.normalizedName)
           }
         }
@@ -274,7 +272,7 @@ export type IconSetOptions = {
    */
   scale?: number
   /**
-   * The location of the iconify JSON file. Can be any URI, local path, or module name.
+   * The location of the icon source in iconify JSON format. Can be any URI, local path, or module name.
    * @default "Common iconify module locations"
    */
   location?: string

@@ -14,7 +14,7 @@ vi.mock('~tailwindcss-plugin-icons/cache', () => {
   }
 })
 
-const mockPluginAPI: Mocked<PluginAPI> = {
+const mockPluginApi: Mocked<PluginAPI> = {
   addUtilities: vi.fn(),
   matchUtilities: vi.fn(),
   addComponents: vi.fn(),
@@ -27,20 +27,39 @@ const mockPluginAPI: Mocked<PluginAPI> = {
   e: vi.fn()
 }
 
-const location = path.resolve(__dirname, '__fixtures__/iconify.json')
+const location = path.resolve(__dirname, '__fixtures__/icons.json')
+
+afterEach(() => {
+  expect(mockPluginApi.addComponents.mock.lastCall).toMatchSnapshot()
+  expect(mockPluginApi.matchComponents.mock.lastCall).toMatchSnapshot()
+
+  if (mockPluginApi.matchComponents.mock.lastCall !== undefined) {
+    const snapshot: Record<string, CSSRuleObject> = {}
+
+    for (const [key, colorFunction] of Object.entries<ColorFunction>(
+      mockPluginApi.matchComponents.mock.lastCall![0]
+    )) {
+      snapshot[key] = colorFunction('red')
+    }
+
+    expect(snapshot).toMatchSnapshot()
+  }
+})
 
 test("fail if icon doesn't exist", () => {
   Icons(() => {
     return {
-      test: {
+      testIcons: {
         icons: {
           doesNotExist: {}
         },
         location
       }
     }
-  }).handler(mockPluginAPI)
+  }).handler(mockPluginApi)
 
+  expect(mockPluginApi.addComponents).toBeCalledTimes(0)
+  expect(mockPluginApi.matchComponents).toBeCalledTimes(0)
   expect(consoleErrorMock).toBeCalledTimes(1)
 })
 
@@ -55,15 +74,13 @@ test('use addComponent when not forced otherwise', () => {
         location
       }
     }
-  }).handler(mockPluginAPI)
+  }).handler(mockPluginApi)
 
-  expect(mockPluginAPI.addComponents).toBeCalledTimes(1)
-  expect(mockPluginAPI.matchComponents).toBeCalledTimes(1)
-  expect(mockPluginAPI.addComponents.mock.calls[0][0]).toMatchSnapshot()
-  expect(mockPluginAPI.matchComponents).toBeCalledWith({}, expect.any(Object))
+  expect(mockPluginApi.addComponents).toBeCalledTimes(1)
+  expect(mockPluginApi.matchComponents).toBeCalledTimes(1)
 })
 
-test('use matchComponents with the ?bg query parameter', () => {
+test('use matchComponents when forced as bg', () => {
   Icons(() => {
     return {
       testIcons: {
@@ -74,25 +91,10 @@ test('use matchComponents with the ?bg query parameter', () => {
         location
       }
     }
-  }).handler(mockPluginAPI)
+  }).handler(mockPluginApi)
 
-  expect(mockPluginAPI.addComponents).toBeCalledTimes(1)
-  expect(mockPluginAPI.matchComponents).toBeCalledTimes(1)
-  expect(mockPluginAPI.addComponents).toBeCalledWith({})
-  expect(mockPluginAPI.matchComponents.mock.calls[0][0]).toStrictEqual({
-    'bg-test-icons-colored': expect.any(Function),
-    'bg-test-icons-colorless': expect.any(Function)
-  })
-
-  const snapshot: Record<string, CSSRuleObject> = {}
-
-  for (const [key, colorFunction] of Object.entries<ColorFunction>(
-    mockPluginAPI.matchComponents.mock.calls[0][0]
-  )) {
-    snapshot[key] = colorFunction('red')
-  }
-
-  expect(snapshot).toMatchSnapshot()
+  expect(mockPluginApi.addComponents).toBeCalledTimes(1)
+  expect(mockPluginApi.matchComponents).toBeCalledTimes(1)
 })
 
 describe('scale width and height', () => {
@@ -108,10 +110,10 @@ describe('scale width and height', () => {
           location
         }
       }
-    }).handler(mockPluginAPI)
+    }).handler(mockPluginApi)
 
-    expect(mockPluginAPI.addComponents.mock.calls[0][0]).toMatchSnapshot()
-    expect(mockPluginAPI.matchComponents).toBeCalledWith({}, expect.any(Object))
+    expect(mockPluginApi.addComponents).toBeCalledTimes(1)
+    expect(mockPluginApi.matchComponents).toBeCalledTimes(1)
   })
 
   test('when passed per icon', () => {
@@ -130,9 +132,75 @@ describe('scale width and height', () => {
           location
         }
       }
-    }).handler(mockPluginAPI)
+    }).handler(mockPluginApi)
 
-    expect(mockPluginAPI.addComponents.mock.calls[0][0]).toMatchSnapshot()
-    expect(mockPluginAPI.matchComponents).toBeCalledWith({}, expect.any(Object))
+    expect(mockPluginApi.addComponents).toBeCalledTimes(1)
+    expect(mockPluginApi.matchComponents).toBeCalledTimes(1)
+  })
+})
+
+describe('include all', () => {
+  afterEach(() => {
+    expect(mockPluginApi.addComponents).toBeCalledTimes(1)
+    expect(mockPluginApi.matchComponents).toBeCalledTimes(1)
+  })
+
+  test('without icons', () => {
+    Icons(() => {
+      return {
+        testIcons: {
+          includeAll: true,
+          location
+        }
+      }
+    }).handler(mockPluginApi)
+  })
+
+  test('with default CSS', () => {
+    Icons(() => {
+      return {
+        testIcons: {
+          icons: {
+            colorless: {
+              color: 'red'
+            }
+          },
+          includeAll: true,
+          location
+        }
+      }
+    }).handler(mockPluginApi)
+  })
+
+  test('when forced as mask', () => {
+    Icons(() => {
+      return {
+        testIcons: {
+          icons: {
+            'colored?mask': {
+              color: 'red'
+            }
+          },
+          includeAll: true,
+          location
+        }
+      }
+    }).handler(mockPluginApi)
+  })
+
+  test('when forced as bg', () => {
+    Icons(() => {
+      return {
+        testIcons: {
+          icons: {
+            'colored?bg': {
+              color: 'red'
+            }
+          },
+          includeAll: true,
+          location
+        }
+      }
+    }).handler(mockPluginApi)
   })
 })

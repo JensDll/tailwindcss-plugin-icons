@@ -124,7 +124,6 @@ const tailwindcssPluginIcons: RollupOptions[] = [
       manualChunks: {
         'internal/shared': ['@internal/shared']
       },
-      interop: 'compat',
       entryFileNames: '[name].cjs',
       chunkFileNames: '[name].cjs'
     },
@@ -138,7 +137,6 @@ const tailwindcssPluginIcons: RollupOptions[] = [
       manualChunks: {
         'internal/shared': ['@internal/shared']
       },
-      interop: 'compat',
       entryFileNames: '[name].min.cjs',
       chunkFileNames: '[name].min.cjs',
       plugins: [plugin.minify]
