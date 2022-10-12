@@ -28,7 +28,6 @@
       <li class="i-line-md-arrow-align-bottom"></li>
       <li class="i-line-md-check-list-3"></li>
       <li class="i-vscode-icons-file-type-light-db text-pink-500"></li>
-      <li class="i-bi-1-circle"></li>
       <li class="i-bi-backspace"></li>
       <li class="i-bi-backspace-reverse"></li>
       <li class="i-bi-people-circle text-green-700"></li>
@@ -45,6 +44,12 @@
 <style scoped>
 .icons {
   @apply flex flex-wrap items-center text-2xl;
+}
+
+@screen lg {
+  .icons {
+    @apply text-3xl;
+  }
 }
 
 .icons > li {

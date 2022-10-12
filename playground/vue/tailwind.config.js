@@ -22,9 +22,9 @@ module.exports = {
       },
       heroiconsOutline: {
         icons: {
-          lockOpen: {},
-          lockClosed: {},
-          plusCircle: {
+          'lock-open': {},
+          'lock-closed': {},
+          'plus-circle': {
             // You can use CSS-in-JS syntax for default icon styles
             // https://tailwindcss.com/docs/plugins#css-in-js-syntax
             color: theme('colors.emerald.600'),
@@ -33,7 +33,7 @@ module.exports = {
               color: theme('colors.emerald.700')
             }
           },
-          minusCircle: {
+          'minus-circle': {
             color: theme('colors.red.600'),
             cursor: 'pointer',
             '&:hover': {
@@ -53,6 +53,7 @@ module.exports = {
         icons: {
           'people-circle?bg': {}
         },
+        scale: 1.25,
         // You can choose to include every icon in the icon set
         includeAll: true
       },
@@ -69,7 +70,7 @@ module.exports = {
       },
       logos: {
         icons: {
-          emberTomster: {
+          'ember-tomster': {
             // You can use the special "SCALE" symbol to apply icon-specific scaling
             [SCALE]: 2
           },
