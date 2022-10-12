@@ -78,15 +78,15 @@ const shared: RollupOptions[] = [
       format: 'esm'
     },
     plugins: [plugin.replace.esm, plugin.esbuild]
+  },
+  {
+    input: input('shared'),
+    output: {
+      file: 'packages/shared/dist/index.d.ts',
+      format: 'esm'
+    },
+    plugins: [plugin.dts]
   }
-  // {
-  //   input: input('shared'),
-  //   output: {
-  //     file: 'packages/shared/dist/index.d.ts',
-  //     format: 'esm'
-  //   },
-  //   plugins: [plugin.dts]
-  // }
 ]
 
 const tailwindcssPluginIcons: RollupOptions[] = [
@@ -144,15 +144,15 @@ const tailwindcssPluginIcons: RollupOptions[] = [
       plugins: [plugin.minify]
     },
     plugins: [plugin.replace.prod, plugin.nodeResolve, plugin.esbuild]
+  },
+  {
+    input: input('tailwindcss-plugin-icons'),
+    output: {
+      file: 'packages/tailwindcss-plugin-icons/dist/index.d.ts',
+      format: 'esm'
+    },
+    plugins: [plugin.dts]
   }
-  // {
-  //   input: input('tailwindcss-plugin-icons'),
-  //   output: {
-  //     file: 'packages/tailwindcss-plugin-icons/dist/index.d.ts',
-  //     format: 'esm'
-  //   },
-  //   plugins: [plugin.dts]
-  // }
 ]
 
 const configs: RollupOptions[] = [...shared, ...tailwindcssPluginIcons]

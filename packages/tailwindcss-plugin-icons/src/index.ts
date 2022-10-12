@@ -8,7 +8,8 @@ import {
   isUri,
   loadIconFromIconifyJson,
   toKebabCase,
-  type WithRequired
+  type WithRequired,
+  parseIconName
 } from '@internal/shared'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
@@ -183,13 +184,13 @@ const addIconToComponents =
     })
 
     if (loadedIcon.mode === 'bg') {
-      backgroundComponents[`bg-${iconSetName}-${loadedIcon.name}`] =
+      backgroundComponents[`bg-${iconSetName}-${loadedIcon.normalizedName}`] =
         getIconCssAsColorFunction(
           loadedIcon,
           cssDefaults as CSSRuleObjectWithScale
         )
     } else {
-      components[`.i-${iconSetName}-${loadedIcon.name}`] = getIconCss(
+      components[`.i-${iconSetName}-${loadedIcon.normalizedName}`] = getIconCss(
         loadedIcon,
         cssDefaults as CSSRuleObjectWithScale
       )
@@ -220,9 +221,18 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
         const toSkip = new Set<string>()
 
         for (const [iconName, cssDefaults] of Object.entries(icons)) {
-          toSkip.add(
-            addIcon(iconifyJson, iconName, iconSetName, cssDefaults, scale).name
+          const { iconMode } = parseIconName(iconName)
+          const loadedIcon = addIcon(
+            iconifyJson,
+            iconName,
+            iconSetName,
+            cssDefaults,
+            scale
           )
+
+          if (iconMode === undefined || iconMode === loadedIcon.mode) {
+            toSkip.add(loadedIcon.normalizedName)
+          }
         }
 
         Object.keys(iconifyJson.icons).forEach(iconName => {
@@ -255,23 +265,23 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
 
 export type IconSetOptions = {
   /**
-   * An object describing the selected icons from the icon set.
+   * An object describing the selected icons with optional default CSS.
    */
   icons?: Record<string, CSSRuleObjectWithMaybeScale>
   /**
-   * A default scale used for all icons in the icon set.
+   * A default scale used for all selected icons.
    * @default 1
    */
   scale?: number
   /**
-   * The location of the iconify JSON file. Can be any URI, path, or module.
+   * The location of the iconify JSON file. Can be any URI, local path, or module name.
    * @default "Common iconify module locations"
    */
   location?: string
   /**
-   * Include every icon from the icon set.
+   * Choose to include every icon in the icon set.
    */
-  includeAll?: false
+  includeAll?: boolean
 }
 
 export type IconSetOptionsRecord = Record<string, IconSetOptions>

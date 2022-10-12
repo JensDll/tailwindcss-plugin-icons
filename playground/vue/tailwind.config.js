@@ -82,7 +82,6 @@ module.exports = {
           'file-type-light-db?mask': {}
         },
         scale: 1.5,
-        includeAll: true,
         // It can be a URI, for example, from a CDN ...
         location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.15/icons.json'
       },
@@ -102,6 +101,15 @@ module.exports = {
         scale: 1.5,
         // It can be a relative or absolute path
         location: path.resolve(__dirname, './src/icons.json')
+      },
+      bi: {
+        icons: {
+          'people-circle?mask': {
+            color: theme('colors.green.600')
+          },
+          'people-circle?bg': {}
+        },
+        includeAll: true
       }
     })),
     plugin(({ addUtilities }) => {

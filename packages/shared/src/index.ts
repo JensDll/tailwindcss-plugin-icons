@@ -60,7 +60,7 @@ export function encodeSvg(svg: string) {
 export type IconMode = 'bg' | 'mask' | 'color'
 
 export interface LoadedIcon {
-  name: string
+  normalizedName: string
   body: string
   mode: IconMode
   left: number
@@ -70,17 +70,17 @@ export interface LoadedIcon {
 }
 
 export function parseIconName(iconName: string) {
-  let mode: IconMode | undefined
+  let iconMode: IconMode | undefined
   // Transform the icon name to kebab case and remove query parameters
   const normalizedIconName = toKebabCase(iconName).replace(
     /\?(bg|mask)$/,
     (...values) => {
-      mode = values[1]
+      iconMode = values[1]
       return ''
     }
   )
 
-  return { normalizedIconName, mode }
+  return { normalizedIconName, iconMode }
 }
 
 export function loadIconFromIconifyJson(
@@ -92,7 +92,7 @@ export function loadIconFromIconifyJson(
 
   const parsedIconName = parseIconName(iconName)
   const { normalizedIconName } = parsedIconName
-  let { mode } = parsedIconName
+  let { iconMode } = parsedIconName
 
   let icon: ExtendedIconifyIcon
 
@@ -126,10 +126,10 @@ export function loadIconFromIconifyJson(
   top ??= 0
   width ??= 16
   height ??= 16
-  mode ??= icon.body.includes('currentColor') ? 'mask' : 'color'
+  iconMode ??= icon.body.includes('currentColor') ? 'mask' : 'color'
 
   return {
-    name: normalizedIconName,
+    normalizedName: normalizedIconName,
     body: applyTransformations(icon.body, {
       left,
       top,
@@ -139,7 +139,7 @@ export function loadIconFromIconifyJson(
       hFlip: icon.hFlip,
       vFlip: icon.vFlip
     }),
-    mode,
+    mode: iconMode,
     left,
     top,
     width,
