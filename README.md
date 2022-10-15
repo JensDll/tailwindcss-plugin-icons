@@ -30,7 +30,7 @@ const options = ({ theme }) => ({
   heroicons: {
     icons: {
       'trash?bg': {},
-      plusCircle: {
+      'plus-circle': {
         cursor: 'pointer',
         color: theme('colors.emerald.600'),
         '&:hover': {
