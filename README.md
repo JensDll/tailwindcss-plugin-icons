@@ -18,7 +18,7 @@ yarn add tailwindcss-plugin-icons
 
 1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs.
 2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`.
-3. Configure the plugin in your `tailwind.config.js`, for example, [heroicons v1](https://v1.heroicons.com/):
+3. Configure the plugin in your `tailwind.config.js`, for example, [heroicons](https://heroicons.com/):
 
 ```js
 const { Icons } = require('tailwindcss-plugin-icons')
@@ -27,9 +27,8 @@ const { Icons } = require('tailwindcss-plugin-icons')
  * @type {import('tailwindcss-plugin-icons').Options}
  */
 const options = ({ theme }) => ({
-  heroiconsOutline: {
+  heroicons: {
     icons: {
-      trash: {},
       'trash?bg': {},
       plusCircle: {
         cursor: 'pointer',
@@ -40,7 +39,8 @@ const options = ({ theme }) => ({
       }
     },
     scale: 1.5,
-    location: 'https://esm.sh/@iconify-json/heroicons-outline@1.1.4/icons.json'
+    includeAll: true,
+    location: 'https://esm.sh/@iconify-json/heroicons@1.1.5/icons.json'
   }
 })
 
