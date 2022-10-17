@@ -47,7 +47,7 @@ const plugin = {
     customResolver: resolveExtensions(['.ts']),
     entries: [
       {
-        find: /^~(.+)\/(.+)/,
+        find: /^~(.+?)\/(.+)/,
         replacement: path.resolve(rootDir, 'packages/$1/src/$2')
       }
     ]

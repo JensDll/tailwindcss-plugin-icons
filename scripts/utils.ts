@@ -7,5 +7,3 @@ export function run(
 ) {
   return execa(file, args, { ...options, stdio: 'inherit' })
 }
-
-import {} from '@esbuild-kit/esm-loader'
