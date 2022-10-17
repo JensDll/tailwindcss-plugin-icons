@@ -29,14 +29,14 @@ const { Icons } = require('tailwindcss-plugin-icons')
 const options = ({ theme }) => ({
   heroicons: {
     icons: {
-      'trash?bg': {},
       'plus-circle': {
         cursor: 'pointer',
         color: theme('colors.emerald.600'),
         '&:hover': {
           color: theme('colors.emerald.800')
         }
-      }
+      },
+      'trash?bg': {}
     },
     scale: 1.5,
     includeAll: true,
