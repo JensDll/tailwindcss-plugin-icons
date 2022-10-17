@@ -5,8 +5,6 @@ import fs from 'fs-extra'
 
 export function resolveExtensions(extensions: string[]): ResolverFunction {
   return async function (source) {
-    source = path.normalize(source)
-
     const isDirectory = await fs.pathExists(source)
 
     if (isDirectory) {

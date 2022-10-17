@@ -58,7 +58,8 @@ The plugin's `options` is a function. It gets forwarded the [Tailwind CSS plugin
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
 
 ```html
-<div class="i-heroicons-outline-plus-circle"></div>
+<div class="i-heroicons-plus-circle"></div>
+<div class="bg-heroicons-trash-black"></div>
 ```
 
 ## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)

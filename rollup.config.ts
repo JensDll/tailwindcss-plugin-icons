@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url'
 import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
-import type { ExternalOption, RollupOptions } from 'rollup'
+import type { ExternalOption, InputPluginOption, RollupOptions } from 'rollup'
 import dts from 'rollup-plugin-dts'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 
@@ -70,7 +70,7 @@ const baseExternals: ExternalOption = [
   /tailwindcss\/.+/
 ]
 
-const shared: RollupOptions[] = [
+const shared: RollupOptionsWithPlugins[] = [
   {
     input: input('shared'),
     output: {
@@ -89,7 +89,7 @@ const shared: RollupOptions[] = [
   }
 ]
 
-const tailwindcssPluginIcons: RollupOptions[] = [
+const tailwindcssPluginIcons: RollupOptionsWithPlugins[] = [
   {
     input: input('tailwindcss-plugin-icons', 'fetch'),
     output: {
@@ -155,11 +155,13 @@ const tailwindcssPluginIcons: RollupOptions[] = [
   }
 ]
 
-const configs: RollupOptions[] = [...shared, ...tailwindcssPluginIcons]
+const configs: RollupOptionsWithPlugins[] = [
+  ...shared,
+  ...tailwindcssPluginIcons
+]
 
 configs.forEach(config => {
-  // @ts-expect-error
-  config.plugins?.unshift(plugin.alias)
+  config.plugins.unshift(plugin.alias)
 
   if (config.external) {
     if (!Array.isArray(config.external)) {
@@ -172,3 +174,7 @@ configs.forEach(config => {
 })
 
 export default configs
+
+interface RollupOptionsWithPlugins extends RollupOptions {
+  plugins: InputPluginOption[]
+}
