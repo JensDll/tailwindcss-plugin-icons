@@ -18,7 +18,7 @@
         class="i-custom-loading firefox-border-animation-fix animate-spin text-orange-500"
       ></li>
       <li
-        class="i-custom-local-loading firefox-border-animation-fix animate-spin text-fuchsia-500"
+        class="i-local-loading firefox-border-animation-fix animate-spin text-fuchsia-500"
       ></li>
       <li class="i-line-md-align-left"></li>
       <li class="i-line-md-align-right"></li>
