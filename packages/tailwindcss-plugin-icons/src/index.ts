@@ -210,16 +210,16 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
       iconSetOptionsRecord,
       (iconSetName, { icons, scale, includeAll }, iconifyJson) => {
         if (!includeAll) {
-          for (const [iconName, cssDefaults] of Object.entries(icons)) {
+          Object.entries(icons).forEach(([iconName, cssDefaults]) => {
             addIcon(iconifyJson, iconName, iconSetName, cssDefaults, scale)
-          }
+          })
 
           return
         }
 
         const toSkip = new Set<string>()
 
-        for (const [iconName, cssDefaults] of Object.entries(icons)) {
+        Object.entries(icons).forEach(([iconName, cssDefaults]) => {
           const loadedIcon = addIcon(
             iconifyJson,
             iconName,
@@ -231,7 +231,7 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
           if (loadedIcon.mode !== 'bg') {
             toSkip.add(loadedIcon.normalizedName)
           }
-        }
+        })
 
         Object.keys(iconifyJson.icons).forEach(iconName => {
           if (!toSkip.has(iconName)) {
