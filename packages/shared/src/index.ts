@@ -83,6 +83,11 @@ export function parseIconName(iconName: string) {
   return { normalizedIconName, iconMode }
 }
 
+export function iconToDataUrl(icon: LoadedIcon) {
+  const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${icon.body}</svg>`
+  return `url("data:image/svg+xml,${encodeSvg(svg)}")`
+}
+
 export function loadIconFromIconifyJson(
   iconifyJson: IconifyJSON,
   iconName: string

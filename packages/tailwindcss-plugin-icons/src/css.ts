@@ -1,7 +1,7 @@
-import { type LoadedIcon, encodeSvg } from '@internal/shared'
+import { type LoadedIcon, iconToDataUrl } from '@internal/shared'
 import type { CSSRuleObject } from 'tailwindcss/types/config'
 
-export const SCALE = Symbol('Used to apply icon-specific scaling')
+export const SCALE = Symbol('Icon-specific scaling')
 
 export interface CSSRuleObjectWithMaybeScale extends CSSRuleObject {
   [SCALE]?: number
@@ -22,14 +22,12 @@ export function getIconCss(
   icon: LoadedIcon,
   cssDefaults: CSSRuleObjectWithScale
 ) {
-  const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${icon.body}</svg>`
-  const url = `url("data:image/svg+xml;utf8,${encodeSvg(svg)}")`
-
+  const iconUrl = iconToDataUrl(icon)
   const iconDimensions = getIconDimensions(icon, cssDefaults[SCALE])
 
   if (icon.mode === 'mask') {
     return {
-      [URL_VAR_NAME]: url,
+      [URL_VAR_NAME]: iconUrl,
       mask: `var(${URL_VAR_NAME}) no-repeat`,
       '-webkit-mask': `var(${URL_VAR_NAME}) no-repeat`,
       maskSize: '100% 100%',
@@ -41,7 +39,7 @@ export function getIconCss(
   }
 
   return {
-    [URL_VAR_NAME]: url,
+    [URL_VAR_NAME]: iconUrl,
     background: `var(${URL_VAR_NAME}) no-repeat`,
     backgroundSize: '100% 100%',
     backgroundColor: 'transparent',
@@ -57,12 +55,10 @@ export function getIconCssAsColorFunction(
   cssDefaults: CSSRuleObjectWithScale
 ): ColorFunction {
   return color => {
-    const coloredBody = icon.body.replace(/currentColor/g, color)
-    const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${coloredBody}</svg>`
-    const url = `url("data:image/svg+xml,${encodeSvg(svg)}")`
+    icon.body = icon.body.replace(/currentColor/g, color)
 
     return {
-      [URL_VAR_NAME]: url,
+      [URL_VAR_NAME]: iconToDataUrl(icon),
       background: `var(${URL_VAR_NAME}) no-repeat`,
       backgroundSize: '100% 100%',
       backgroundColor: 'transparent',

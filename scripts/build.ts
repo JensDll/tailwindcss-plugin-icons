@@ -1,8 +1,10 @@
+import path from 'node:path'
+
 import fs from 'fs-extra'
 
-import { run } from './utils'
+import { rootDir, run } from './utils'
 
-const basePath = 'packages/tailwindcss-plugin-icons'
+const mainPath = path.join(rootDir, 'packages', 'tailwindcss-plugin-icons')
 
 await run('rollup', ['--config', '--configPlugin', 'esbuild'])
 
@@ -20,9 +22,9 @@ console.log('Copying relevant files to publish folder ...')
 await Promise.all([
   fs.copy('LICENSE', 'publish/LICENSE'),
   fs.copy('README.md', 'publish/README.md'),
-  fs.copy(`${basePath}/package.json`, 'publish/package.json'),
-  fs.copy(`${basePath}/index.cjs`, 'publish/index.cjs'),
-  fs.copy(`${basePath}/dist`, 'publish/dist', {
+  fs.copy(`${mainPath}/package.json`, 'publish/package.json'),
+  fs.copy(`${mainPath}/index.cjs`, 'publish/index.cjs'),
+  fs.copy(`${mainPath}/dist`, 'publish/dist', {
     filter(path) {
       // Do not copy the cache folder
       return !/cache$/.test(path)

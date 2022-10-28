@@ -1,16 +1,11 @@
-import path from 'node:path'
-import { fileURLToPath } from 'node:url'
-
-import alias from '@rollup/plugin-alias'
 import { nodeResolve } from '@rollup/plugin-node-resolve'
 import replace from '@rollup/plugin-replace'
 import type { ExternalOption, InputPluginOption, RollupOptions } from 'rollup'
 import dts from 'rollup-plugin-dts'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 
-import { resolveExtensions } from './scripts/rollup'
-
-const rootDir = fileURLToPath(new URL('.', import.meta.url))
+import { resolveAliases } from './scripts/rollup'
+import { rootDir } from './scripts/utils'
 
 const plugin = {
   dts: dts(),
@@ -42,16 +37,7 @@ const plugin = {
       __DEV__: false,
       'process.env.NODE_ENV': "'production'"
     })
-  },
-  alias: alias({
-    customResolver: resolveExtensions(['.ts']),
-    entries: [
-      {
-        find: /^~(.+?)\/(.+)/,
-        replacement: path.resolve(rootDir, 'packages/$1/src/$2')
-      }
-    ]
-  })
+  }
 } as const
 
 type PackageName = 'tailwindcss-plugin-icons' | 'shared'
@@ -161,7 +147,7 @@ const configs: RollupOptionsWithPlugins[] = [
 ]
 
 configs.forEach(config => {
-  config.plugins.unshift(plugin.alias)
+  config.plugins.unshift(resolveAliases)
 
   if (config.external) {
     if (!Array.isArray(config.external)) {
