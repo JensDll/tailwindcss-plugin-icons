@@ -164,19 +164,27 @@ function resolveIconSets(
 type Components = Record<string, CSSRuleObject>
 type BackgroundComponents = Record<string, ColorFunction>
 
+type AddIconOptions = {
+  iconifyJson: IconifyJSON
+  iconSetName: string
+  iconName: string
+  scale?: number
+  cssDefaults?: CSSRuleObjectWithMaybeScale
+}
+
 const addIconToComponents =
   (components: Components, backgroundComponents: BackgroundComponents) =>
-  (
-    iconifyJson: IconifyJSON,
-    iconName: string,
-    iconSetName: string,
-    cssDefaults: CSSRuleObjectWithMaybeScale,
-    scale?: number
-  ) => {
+  ({
+    iconifyJson,
+    iconName,
+    iconSetName,
+    scale = 1,
+    cssDefaults = {}
+  }: AddIconOptions) => {
     const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
 
     Object.defineProperty(cssDefaults, SCALE, {
-      value: cssDefaults[SCALE] ?? scale ?? 1,
+      value: cssDefaults[SCALE] ?? scale,
       enumerable: false,
       writable: false,
       configurable: false
@@ -211,7 +219,7 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
       (iconSetName, { icons, scale, includeAll }, iconifyJson) => {
         if (!includeAll) {
           Object.entries(icons).forEach(([iconName, cssDefaults]) => {
-            addIcon(iconifyJson, iconName, iconSetName, cssDefaults, scale)
+            addIcon({ iconifyJson, iconName, iconSetName, cssDefaults, scale })
           })
 
           return
@@ -220,13 +228,13 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
         const toSkip = new Set<string>()
 
         Object.entries(icons).forEach(([iconName, cssDefaults]) => {
-          const loadedIcon = addIcon(
+          const loadedIcon = addIcon({
             iconifyJson,
             iconName,
             iconSetName,
             cssDefaults,
             scale
-          )
+          })
 
           if (loadedIcon.mode !== 'bg') {
             toSkip.add(loadedIcon.normalizedName)
@@ -235,13 +243,13 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
 
         Object.keys(iconifyJson.icons).forEach(iconName => {
           if (!toSkip.has(iconName)) {
-            addIcon(iconifyJson, iconName, iconSetName, {}, scale)
+            addIcon({ iconifyJson, iconName, iconSetName, scale })
           }
         })
 
         Object.keys(iconifyJson.aliases ?? []).forEach(iconName => {
           if (!toSkip.has(iconName)) {
-            addIcon(iconifyJson, iconName, iconSetName, {}, scale)
+            addIcon({ iconifyJson, iconName, iconSetName, scale })
           }
         })
       }
@@ -273,11 +281,12 @@ export type IconSetOptions = {
   scale?: number
   /**
    * The location of the icon source in iconify JSON format. Can be any URI, local path, or module name.
-   * @default "Common iconify module locations"
+   * @default "@iconify/json" or "@iconify-json/[name]"
    */
   location?: string
   /**
    * Choose to include every icon in the icon set.
+   * @default false
    */
   includeAll?: boolean
 }
