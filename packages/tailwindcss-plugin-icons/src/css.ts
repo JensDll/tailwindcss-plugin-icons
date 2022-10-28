@@ -48,7 +48,12 @@ export function getIconCss(
   }
 }
 
-export type ColorFunction = (color: string) => CSSRuleObject
+export type ColorFunction = (
+  color: string,
+  extra: {
+    modifier: unknown
+  }
+) => CSSRuleObject | null
 
 export function getIconCssAsColorFunction(
   icon: LoadedIcon,

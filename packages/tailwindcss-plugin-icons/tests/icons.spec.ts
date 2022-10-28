@@ -21,9 +21,10 @@ const mockPluginApi: Mocked<PluginAPI> = {
   matchComponents: vi.fn(),
   addBase: vi.fn(),
   addVariant: vi.fn(),
-  theme: vi.fn<[path?: string | undefined, defaultValue?: unknown], never>(),
-  config: vi.fn<[path?: string | undefined, defaultValue?: unknown], never>(),
+  theme: vi.fn() as never,
+  config: vi.fn() as never,
   corePlugins: vi.fn(),
+  matchVariant: vi.fn() as never,
   e: vi.fn()
 }
 
@@ -34,12 +35,12 @@ afterEach(() => {
   expect(mockPluginApi.matchComponents.mock.lastCall).toMatchSnapshot()
 
   if (mockPluginApi.matchComponents.mock.lastCall !== undefined) {
-    const snapshot: Record<string, CSSRuleObject> = {}
+    const snapshot: Record<string, CSSRuleObject | null> = {}
 
     for (const [key, colorFunction] of Object.entries<ColorFunction>(
-      mockPluginApi.matchComponents.mock.lastCall![0]
+      mockPluginApi.matchComponents.mock.lastCall[0]
     )) {
-      snapshot[key] = colorFunction('red')
+      snapshot[key] = colorFunction('red', { modifier: null })
     }
 
     expect(snapshot).toMatchSnapshot()
