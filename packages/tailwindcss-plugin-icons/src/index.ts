@@ -178,8 +178,8 @@ const addIconToComponents =
     iconifyJson,
     iconName,
     iconSetName,
-    scale = 1,
-    cssDefaults = {}
+    cssDefaults = {},
+    scale = 1
   }: AddIconOptions) => {
     const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
 
@@ -280,7 +280,8 @@ export type IconSetOptions = {
    */
   scale?: number
   /**
-   * The location of the icon source in iconify JSON format. Can be any URI, local path, or module name.
+   * The location of the icon source in Iconify JSON format. Can be any URI, local path, or module name.
+   * @link https://docs.iconify.design/types/iconify-json.html
    * @default "@iconify/json" or "@iconify-json/[name]"
    */
   location?: string
