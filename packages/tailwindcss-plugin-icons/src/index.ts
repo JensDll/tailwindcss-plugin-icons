@@ -40,7 +40,8 @@ function resolveIconSets(
   iconSetOptionsRecord: IconSetOptionsRecord,
   callback: ResolveIconSetsCallback
 ) {
-  const iconSetNamesToFetch: string[] = []
+  const locationsToFetch: string[] = []
+  const afterFetchCallbacks: (() => void)[] = []
 
   for (const [iconSetName, iconSetOptions] of Object.entries(
     iconSetOptionsRecord
@@ -92,8 +93,7 @@ function resolveIconSets(
       )
     }
 
-    // If the location is a URI, try and resolve the icons JSON from the cache;
-    // otherwise, prepare to fetch them
+    // If the location is a URI, try and resolve the Iconify JSON from the cache; otherwise, prepare to fetch
     if (isUri(iconSetOptions.location)) {
       if (cache.has(iconSetOptions.location)) {
         callback(
@@ -102,8 +102,16 @@ function resolveIconSets(
           cache.get(iconSetOptions.location)!
         )
       } else {
-        iconSetNamesToFetch.push(iconSetName)
+        locationsToFetch.push(iconSetOptions.location)
+        afterFetchCallbacks.push(() => {
+          callback(
+            kebabCaseIconSetName,
+            iconSetOptions as IconSetOptionsWithIcons,
+            cache.get(iconSetOptions.location!)!
+          )
+        })
       }
+
       continue
     }
 
@@ -132,33 +140,19 @@ function resolveIconSets(
     continue
   }
 
-  if (!iconSetNamesToFetch.length) {
+  if (!locationsToFetch.length) {
     return
   }
 
   execFileSync(
     'node',
-    [
-      path.resolve(__dirname, 'fetch.mjs'),
-      cache.cacheDir,
-      ...iconSetNamesToFetch.map(
-        iconSetName => iconSetOptionsRecord[iconSetName].location!
-      )
-    ],
+    [path.resolve(__dirname, 'fetch.mjs'), cache.cacheDir, ...locationsToFetch],
     {
       stdio: 'pipe'
     }
   )
 
-  for (const iconSetName of iconSetNamesToFetch) {
-    const iconSetOptions = iconSetOptionsRecord[iconSetName]
-
-    callback(
-      toKebabCase(iconSetName),
-      iconSetOptions as never,
-      cache.get(iconSetOptions.location!)!
-    )
-  }
+  afterFetchCallbacks.forEach(callback => callback())
 }
 
 type Components = Record<string, CSSRuleObject>
@@ -247,7 +241,11 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
           }
         })
 
-        Object.keys(iconifyJson.aliases ?? []).forEach(iconName => {
+        if (!iconifyJson.aliases) {
+          return
+        }
+
+        Object.keys(iconifyJson.aliases).forEach(iconName => {
           if (!toSkip.has(iconName)) {
             addIcon({ iconifyJson, iconName, iconSetName, scale })
           }
