@@ -18,9 +18,9 @@
     "@rollup/plugin-node-resolve": "15.0.1",
     "@rollup/plugin-replace": "5.0.1",
     "@types/fs-extra": "9.0.13",
-    "@types/node": "18.11.7",
-    "@typescript-eslint/eslint-plugin": "5.41.0",
-    "@typescript-eslint/parser": "5.41.0",
+    "@types/node": "18.11.9",
+    "@typescript-eslint/eslint-plugin": "5.42.0",
+    "@typescript-eslint/parser": "5.42.0",
     "c8": "7.12.0",
     "esbuild": "0.15.12",
     "eslint": "8.26.0",
@@ -30,13 +30,13 @@
     "postcss": "8.4.18",
     "prettier": "2.7.1",
     "prettier-plugin-tailwindcss": "0.1.13",
-    "rollup": "3.2.3",
+    "rollup": "3.2.5",
     "rollup-plugin-dts": "5.0.0",
     "rollup-plugin-esbuild": "4.10.1",
     "tailwindcss": "3.2.1",
     "tailwindcss-plugin-icons": "workspace:*",
     "typescript": "4.8.4",
-    "vitest": "0.24.3"
+    "vitest": "0.24.4"
   },
   "pnpm": {
     "peerDependencyRules": {
