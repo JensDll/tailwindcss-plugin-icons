@@ -18,7 +18,7 @@ yarn add tailwindcss-plugin-icons
 
 1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs.
 2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`.
-3. Configure the plugin in your `tailwind.config.js`, for example, [heroicons](https://heroicons.com/):
+3. Configure the plugin in your `tailwind.config` file, for example, [heroicons](https://heroicons.com/):
 
 ```js
 const { Icons } = require('tailwindcss-plugin-icons')
