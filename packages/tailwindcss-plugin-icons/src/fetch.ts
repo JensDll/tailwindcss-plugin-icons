@@ -25,7 +25,7 @@ async function makeRequest(uri: string) {
       response
         .on('data', writeStream.write.bind(writeStream))
         .on('end', async () => {
-          if (response.statusCode === 200) {
+          if (response.complete && response.statusCode == 200) {
             writeStream.end()
           } else {
             await fs.unlink(filePath)
