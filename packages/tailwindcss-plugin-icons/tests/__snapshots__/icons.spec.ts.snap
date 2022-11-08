@@ -25,8 +25,6 @@ exports[`include all > when forced as bg 1`] = `
     },
     ".i-test-icons-colorless": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -35,8 +33,6 @@ exports[`include all > when forced as bg 1`] = `
     },
     ".i-test-icons-colorless-rotate": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -81,8 +77,6 @@ exports[`include all > when forced as mask 1`] = `
   {
     ".i-test-icons-colored": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "color": "red",
       "height": "1em",
@@ -100,8 +94,6 @@ exports[`include all > when forced as mask 1`] = `
     },
     ".i-test-icons-colorless": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -110,8 +102,6 @@ exports[`include all > when forced as mask 1`] = `
     },
     ".i-test-icons-colorless-rotate": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -158,8 +148,6 @@ exports[`include all > with default CSS 1`] = `
     },
     ".i-test-icons-colorless": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "color": "red",
       "height": "1em",
@@ -169,8 +157,6 @@ exports[`include all > with default CSS 1`] = `
     },
     ".i-test-icons-colorless-rotate": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -217,8 +203,6 @@ exports[`include all > without icons 1`] = `
     },
     ".i-test-icons-colorless": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -227,8 +211,6 @@ exports[`include all > without icons 1`] = `
     },
     ".i-test-icons-colorless-rotate": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -267,8 +249,6 @@ exports[`scale width and height > when passed per icon 1`] = `
     },
     ".i-test-icons-colorless": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "3em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -307,8 +287,6 @@ exports[`scale width and height > when passed per icon set 1`] = `
     },
     ".i-test-icons-colorless": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1.5em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -347,8 +325,6 @@ exports[`use addComponent when not forced otherwise 1`] = `
     },
     ".i-test-icons-colorless": {
       "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
-      "-webkit-mask": "var(--tw-plugin-icons-url) no-repeat",
-      "-webkit-mask-size": "100% 100%",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",

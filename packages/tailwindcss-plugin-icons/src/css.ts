@@ -29,9 +29,7 @@ export function getIconCss(
     return {
       [URL_VAR_NAME]: iconUrl,
       mask: `var(${URL_VAR_NAME}) no-repeat`,
-      '-webkit-mask': `var(${URL_VAR_NAME}) no-repeat`,
       maskSize: '100% 100%',
-      '-webkit-mask-size': '100% 100%',
       backgroundColor: 'currentColor',
       ...iconDimensions,
       ...cssDefaults
