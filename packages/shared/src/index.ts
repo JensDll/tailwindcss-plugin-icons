@@ -61,7 +61,6 @@ export type IconMode = 'bg' | 'mask' | 'color'
 
 export interface LoadedIcon {
   readonly normalizedName: string
-  readonly isAlias: boolean
   body: string
   readonly mode: IconMode
   readonly left: number
@@ -100,7 +99,6 @@ export function loadIconFromIconifyJson(
   const { normalizedIconName } = parsedIconName
   let { iconMode } = parsedIconName
 
-  let isAlias = false
   let icon: ExtendedIconifyIcon
 
   if (normalizedIconName in icons) {
@@ -110,7 +108,6 @@ export function loadIconFromIconifyJson(
     // Retrieve the icon from aliases
     const { parent, ...aliasedIcon } = aliases[normalizedIconName]
 
-    isAlias = true
     icon = {
       ...icons[parent],
       ...aliasedIcon
@@ -148,7 +145,6 @@ export function loadIconFromIconifyJson(
       vFlip: icon.vFlip
     }),
     mode: iconMode,
-    isAlias,
     left,
     top,
     width,

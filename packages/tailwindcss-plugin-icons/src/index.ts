@@ -219,43 +219,24 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
           return
         }
 
+        Object.keys(iconifyJson.icons).forEach(iconName => {
+          addIcon({ iconifyJson, iconName, iconSetName, scale })
+        })
+
+        if (iconifyJson.aliases) {
+          Object.keys(iconifyJson.aliases).forEach(iconName => {
+            addIcon({ iconifyJson, iconName, iconSetName, scale })
+          })
+        }
+
         Object.entries(icons).forEach(([iconName, cssDefaults]) => {
-          const { normalizedName, mode, isAlias } = addIcon({
+          addIcon({
             iconifyJson,
             iconName,
             iconSetName,
             cssDefaults,
             scale
           })
-
-          if (mode === 'bg') {
-            return
-          }
-
-          // Mark any icon explicitly added here as non-enumerable
-          // so that it doesn't get overwritten below when adding the rest of the icons
-          Object.defineProperty(
-            isAlias ? iconifyJson.aliases : iconifyJson.icons,
-            normalizedName,
-            {
-              value: isAlias
-                ? iconifyJson.aliases![normalizedName]
-                : iconifyJson.icons[normalizedName],
-              enumerable: false
-            }
-          )
-        })
-
-        Object.keys(iconifyJson.icons).forEach(iconName => {
-          addIcon({ iconifyJson, iconName, iconSetName, scale })
-        })
-
-        if (!iconifyJson.aliases) {
-          return
-        }
-
-        Object.keys(iconifyJson.aliases).forEach(iconName => {
-          addIcon({ iconifyJson, iconName, iconSetName, scale })
         })
       }
     )
