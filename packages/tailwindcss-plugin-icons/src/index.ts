@@ -53,7 +53,7 @@ function resolveIconSets(
     // If there is no location, try and resolve from common iconify module locations
     if (!iconSetOptions.location) {
       try {
-        // When the icon sets are installed individually
+        // When "@iconify-json/[icon-set-name]" is installed
         const jsonPath = require.resolve(
           `@iconify-json/${kebabCaseIconSetName}/icons.json`
         )
@@ -71,7 +71,7 @@ function resolveIconSets(
       }
 
       try {
-        // When the global JSON is installed
+        // When "@iconify/json" is installed
         const jsonPath = require.resolve(
           `@iconify/json/json/${kebabCaseIconSetName}.json`
         )
@@ -93,7 +93,7 @@ function resolveIconSets(
       )
     }
 
-    // If the location is a URI, try and resolve the Iconify JSON from the cache; otherwise, prepare to fetch
+    // If the location is a URI, try and resolve from the cache; otherwise, prepare to fetch
     if (isUri(iconSetOptions.location)) {
       if (cache.has(iconSetOptions.location)) {
         callback(
@@ -219,10 +219,8 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
           return
         }
 
-        const toSkip = new Set<string>()
-
         Object.entries(icons).forEach(([iconName, cssDefaults]) => {
-          const loadedIcon = addIcon({
+          const { normalizedName, mode, isAlias } = addIcon({
             iconifyJson,
             iconName,
             iconSetName,
@@ -230,15 +228,26 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
             scale
           })
 
-          if (loadedIcon.mode !== 'bg') {
-            toSkip.add(loadedIcon.normalizedName)
+          if (mode === 'bg') {
+            return
           }
+
+          // Mark any icon explicitly added here as non-enumerable
+          // so that it doesn't get overwritten below when adding the rest of the icons
+          Object.defineProperty(
+            isAlias ? iconifyJson.aliases : iconifyJson.icons,
+            normalizedName,
+            {
+              value: isAlias
+                ? iconifyJson.aliases![normalizedName]
+                : iconifyJson.icons[normalizedName],
+              enumerable: false
+            }
+          )
         })
 
         Object.keys(iconifyJson.icons).forEach(iconName => {
-          if (!toSkip.has(iconName)) {
-            addIcon({ iconifyJson, iconName, iconSetName, scale })
-          }
+          addIcon({ iconifyJson, iconName, iconSetName, scale })
         })
 
         if (!iconifyJson.aliases) {
@@ -246,9 +255,7 @@ export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
         }
 
         Object.keys(iconifyJson.aliases).forEach(iconName => {
-          if (!toSkip.has(iconName)) {
-            addIcon({ iconifyJson, iconName, iconSetName, scale })
-          }
+          addIcon({ iconifyJson, iconName, iconSetName, scale })
         })
       }
     )

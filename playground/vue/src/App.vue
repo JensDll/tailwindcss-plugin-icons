@@ -2,7 +2,9 @@
 
 <template>
   <section class="mx-auto max-w-6xl px-6 py-12">
-    <ul class="icons">
+    <ul
+      class="flex flex-wrap items-center text-2xl lg:text-3xl [&>li]:m-2 [&>li]:shrink-0"
+    >
       <li
         class="bg-heroicons-outline-trash-purple-500 hover:bg-heroicons-outline-trash-purple-700"
       ></li>
@@ -40,19 +42,3 @@
     </ul>
   </section>
 </template>
-
-<style scoped>
-.icons {
-  @apply flex flex-wrap items-center text-2xl;
-}
-
-@screen lg {
-  .icons {
-    @apply text-3xl;
-  }
-}
-
-.icons > li {
-  @apply m-2 shrink-0;
-}
-</style>

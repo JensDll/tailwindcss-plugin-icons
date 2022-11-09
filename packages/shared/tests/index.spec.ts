@@ -143,6 +143,12 @@ describe('loadIconFromJson', () => {
         vFlip: true
       }
     },
+    aliases: {
+      'current-color-rotate90': {
+        parent: 'current-color',
+        rotate: 1
+      }
+    },
     prefix: 'test',
     left: 1,
     top: 2,
@@ -153,7 +159,7 @@ describe('loadIconFromJson', () => {
   type IconifyJson = typeof iconifyJson
 
   test.each<{
-    iconName: keyof IconifyJson['icons']
+    iconName: keyof IconifyJson['icons'] | keyof IconifyJson['aliases']
     expected: ReturnType<typeof loadIconFromIconifyJson>
   }>([
     {
@@ -162,6 +168,20 @@ describe('loadIconFromJson', () => {
         normalizedName: 'current-color',
         body: 'currentColor',
         mode: 'mask',
+        isAlias: false,
+        left: 1,
+        top: 2,
+        width: 3,
+        height: 4
+      }
+    },
+    {
+      iconName: 'current-color-rotate90',
+      expected: {
+        normalizedName: 'current-color-rotate90',
+        body: '<g transform="rotate(90 2.5 4)">currentColor</g>',
+        mode: 'mask',
+        isAlias: true,
         left: 1,
         top: 2,
         width: 3,
@@ -174,6 +194,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'current-color',
         body: 'currentColor',
         mode: 'bg',
+        isAlias: false,
         left: 1,
         top: 2,
         width: 3,
@@ -186,6 +207,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'color',
         body: '#fff',
         mode: 'color',
+        isAlias: false,
         left: 1,
         top: 2,
         width: 3,
@@ -198,6 +220,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'color',
         body: '#fff',
         mode: 'mask',
+        isAlias: false,
         left: 1,
         top: 2,
         width: 3,
@@ -210,6 +233,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'left',
         body: '',
         mode: 'color',
+        isAlias: false,
         left: 10,
         top: 2,
         width: 3,
@@ -222,6 +246,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'top',
         body: '',
         mode: 'color',
+        isAlias: false,
         left: 1,
         top: 20,
         width: 3,
@@ -234,6 +259,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'width',
         body: '',
         mode: 'color',
+        isAlias: false,
         left: 1,
         top: 2,
         width: 30,
@@ -246,6 +272,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'height',
         body: '',
         mode: 'color',
+        isAlias: false,
         left: 1,
         top: 2,
         width: 3,
@@ -258,6 +285,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'left+top',
         body: '',
         mode: 'color',
+        isAlias: false,
         left: 10,
         top: 20,
         width: 3,
@@ -270,6 +298,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'left+top+width',
         body: '',
         mode: 'color',
+        isAlias: false,
         left: 10,
         top: 20,
         width: 30,
@@ -282,6 +311,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'left+top+width+height',
         body: '',
         mode: 'color',
+        isAlias: false,
         left: 10,
         top: 20,
         width: 30,
@@ -294,6 +324,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'rotate90',
         body: '<g transform="rotate(90 30 60)">body</g>',
         mode: 'color',
+        isAlias: false,
         left: 5,
         top: 10,
         width: 50,
@@ -306,6 +337,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'rotate180',
         body: '<g transform="rotate(180 30 60)">body</g>',
         mode: 'color',
+        isAlias: false,
         left: 5,
         top: 10,
         width: 50,
@@ -318,6 +350,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'h-flip',
         body: '<g transform="translate(5 0) scale(-1 1)">body</g>',
         mode: 'color',
+        isAlias: false,
         left: 1,
         top: 2,
         width: 3,
@@ -330,6 +363,7 @@ describe('loadIconFromJson', () => {
         normalizedName: 'v-flip',
         body: '<g transform="translate(0 8) scale(1 -1)">body</g>',
         mode: 'color',
+        isAlias: false,
         left: 1,
         top: 2,
         width: 3,

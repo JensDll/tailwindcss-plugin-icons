@@ -60,13 +60,14 @@ export function encodeSvg(svg: string) {
 export type IconMode = 'bg' | 'mask' | 'color'
 
 export interface LoadedIcon {
-  normalizedName: string
+  readonly normalizedName: string
+  readonly isAlias: boolean
   body: string
-  mode: IconMode
-  left: number
-  top: number
-  width: number
-  height: number
+  readonly mode: IconMode
+  readonly left: number
+  readonly top: number
+  readonly width: number
+  readonly height: number
 }
 
 export function parseIconName(iconName: string) {
@@ -99,6 +100,7 @@ export function loadIconFromIconifyJson(
   const { normalizedIconName } = parsedIconName
   let { iconMode } = parsedIconName
 
+  let isAlias = false
   let icon: ExtendedIconifyIcon
 
   if (normalizedIconName in icons) {
@@ -108,6 +110,7 @@ export function loadIconFromIconifyJson(
     // Retrieve the icon from aliases
     const { parent, ...aliasedIcon } = aliases[normalizedIconName]
 
+    isAlias = true
     icon = {
       ...icons[parent],
       ...aliasedIcon
@@ -145,6 +148,7 @@ export function loadIconFromIconifyJson(
       vFlip: icon.vFlip
     }),
     mode: iconMode,
+    isAlias,
     left,
     top,
     width,
