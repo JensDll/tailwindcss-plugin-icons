@@ -40,7 +40,6 @@ export function getIconCss(
     [URL_VAR_NAME]: iconUrl,
     background: `var(${URL_VAR_NAME}) no-repeat`,
     backgroundSize: '100% 100%',
-    backgroundColor: 'transparent',
     ...iconDimensions,
     ...cssDefaults
   }
@@ -64,7 +63,6 @@ export function getIconCssAsColorFunction(
       [URL_VAR_NAME]: iconToDataUrl(icon),
       background: `var(${URL_VAR_NAME}) no-repeat`,
       backgroundSize: '100% 100%',
-      backgroundColor: 'transparent',
       ...getIconDimensions(icon, cssDefaults[SCALE]),
       ...cssDefaults
     }
