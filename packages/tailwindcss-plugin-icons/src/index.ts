@@ -205,27 +205,30 @@ export const Icons = plugin.withOptions<Options>(options => pluginApi => {
   const backgroundComponents: BackgroundComponents = {}
   const addIcon = addIconToComponents(components, backgroundComponents)
 
-  try {
-    resolveIconSets(
-      options(pluginApi),
-      (iconSetName, { icons, scale, includeAll }, iconifyJson) => {
-        if (includeAll) {
-          Object.keys(iconifyJson.icons).forEach(iconName => {
-            addIcon({ iconifyJson, iconName, iconSetName, scale })
-          })
+  const onResolve: ResolveIconSetsCallback = (
+    iconSetName,
+    { icons, scale, includeAll },
+    iconifyJson
+  ) => {
+    if (includeAll) {
+      Object.keys(iconifyJson.icons).forEach(iconName => {
+        addIcon({ iconifyJson, iconName, iconSetName, scale })
+      })
 
-          if (iconifyJson.aliases) {
-            Object.keys(iconifyJson.aliases).forEach(iconName => {
-              addIcon({ iconifyJson, iconName, iconSetName, scale })
-            })
-          }
-        }
-
-        Object.entries(icons).forEach(([iconName, cssDefaults]) => {
-          addIcon({ iconifyJson, iconName, iconSetName, cssDefaults, scale })
+      if (iconifyJson.aliases) {
+        Object.keys(iconifyJson.aliases).forEach(iconName => {
+          addIcon({ iconifyJson, iconName, iconSetName, scale })
         })
       }
-    )
+    }
+
+    Object.entries(icons).forEach(([iconName, cssDefaults]) => {
+      addIcon({ iconifyJson, iconName, iconSetName, cssDefaults, scale })
+    })
+  }
+
+  try {
+    resolveIconSets(options(pluginApi), onResolve)
   } catch (e) {
     if (e instanceof Error) {
       console.error('[TailwindcssPluginIcons]', e.message)
