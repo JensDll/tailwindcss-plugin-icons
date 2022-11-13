@@ -200,43 +200,29 @@ const addIconToComponents =
     return loadedIcon
   }
 
-export const Icons = plugin.withOptions<Options>(callback => pluginApi => {
-  const iconSetOptionsRecord = callback(pluginApi)
-
+export const Icons = plugin.withOptions<Options>(options => pluginApi => {
   const components: Components = {}
   const backgroundComponents: BackgroundComponents = {}
   const addIcon = addIconToComponents(components, backgroundComponents)
 
   try {
     resolveIconSets(
-      iconSetOptionsRecord,
+      options(pluginApi),
       (iconSetName, { icons, scale, includeAll }, iconifyJson) => {
-        if (!includeAll) {
-          Object.entries(icons).forEach(([iconName, cssDefaults]) => {
-            addIcon({ iconifyJson, iconName, iconSetName, cssDefaults, scale })
-          })
-
-          return
-        }
-
-        Object.keys(iconifyJson.icons).forEach(iconName => {
-          addIcon({ iconifyJson, iconName, iconSetName, scale })
-        })
-
-        if (iconifyJson.aliases) {
-          Object.keys(iconifyJson.aliases).forEach(iconName => {
+        if (includeAll) {
+          Object.keys(iconifyJson.icons).forEach(iconName => {
             addIcon({ iconifyJson, iconName, iconSetName, scale })
           })
+
+          if (iconifyJson.aliases) {
+            Object.keys(iconifyJson.aliases).forEach(iconName => {
+              addIcon({ iconifyJson, iconName, iconSetName, scale })
+            })
+          }
         }
 
         Object.entries(icons).forEach(([iconName, cssDefaults]) => {
-          addIcon({
-            iconifyJson,
-            iconName,
-            iconSetName,
-            cssDefaults,
-            scale
-          })
+          addIcon({ iconifyJson, iconName, iconSetName, cssDefaults, scale })
         })
       }
     )
