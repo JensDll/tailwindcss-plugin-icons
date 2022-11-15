@@ -61,7 +61,7 @@ export type IconMode = 'bg' | 'mask' | 'color'
 
 export interface LoadedIcon {
   readonly normalizedName: string
-  body: string
+  readonly body: string
   readonly mode: IconMode
   readonly left: number
   readonly top: number
