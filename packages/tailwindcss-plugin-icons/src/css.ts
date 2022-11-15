@@ -57,10 +57,11 @@ export function getIconCssAsColorFunction(
   cssDefaults: CSSRuleObjectWithScale
 ): ColorFunction {
   return color => {
-    icon.body = icon.body.replace(/currentColor/g, color)
-
     return {
-      [URL_VAR_NAME]: iconToDataUrl(icon),
+      [URL_VAR_NAME]: iconToDataUrl(
+        icon,
+        icon.body.replace(/currentColor/g, color)
+      ),
       background: `var(${URL_VAR_NAME}) no-repeat`,
       backgroundSize: '100% 100%',
       ...getIconDimensions(icon, cssDefaults[SCALE]),
