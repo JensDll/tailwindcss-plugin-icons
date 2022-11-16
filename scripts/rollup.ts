@@ -1,12 +1,12 @@
 import path from 'node:path'
 
-import type { ResolverFunction } from '@rollup/plugin-alias'
+import type { Alias, ResolverFunction } from '@rollup/plugin-alias'
 import alias from '@rollup/plugin-alias'
 import fs from 'fs-extra'
 
 import { rootDir } from './utils'
 
-export function resolveExtensions(extensions: string[]): ResolverFunction {
+function resolveExtensions(extensions: string[]): ResolverFunction {
   return async function (source) {
     const isDirectory = await fs.pathExists(source)
 
@@ -25,12 +25,14 @@ export function resolveExtensions(extensions: string[]): ResolverFunction {
   }
 }
 
-export const resolveAliases = alias({
+export type AliasWithoutResolver = Omit<Alias, 'customResolver'>
+
+export const tsPathAlias: AliasWithoutResolver = {
+  find: /^~(.+?)\/(.+)/,
+  replacement: path.resolve(rootDir, 'packages/$1/src/$2')
+}
+
+export const tsPathAliasPlugin = alias({
   customResolver: resolveExtensions(['.ts']),
-  entries: [
-    {
-      find: /^~(.+?)\/(.+)/,
-      replacement: path.resolve(rootDir, 'packages/$1/src/$2')
-    }
-  ]
+  entries: [tsPathAlias]
 })

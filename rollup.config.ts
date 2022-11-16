@@ -4,7 +4,7 @@ import type { ExternalOption, InputPluginOption, RollupOptions } from 'rollup'
 import dts from 'rollup-plugin-dts'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 
-import { resolveAliases } from './scripts/rollup'
+import { tsPathAliasPlugin } from './scripts/rollup'
 import { rootDir } from './scripts/utils'
 
 const plugin = {
@@ -147,7 +147,7 @@ const configs: RollupOptionsWithPlugins[] = [
 ]
 
 configs.forEach(config => {
-  config.plugins.unshift(resolveAliases)
+  config.plugins.unshift(tsPathAliasPlugin)
 
   if (config.external) {
     if (!Array.isArray(config.external)) {
