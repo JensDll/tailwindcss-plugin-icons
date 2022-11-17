@@ -58,7 +58,15 @@ exports[`include all > when forced as bg 2`] = `
 
 exports[`include all > when forced as bg 3`] = `
 {
-  "bg-test-icons-colored": {
+  "bg-test-icons-colored-green": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "color": "red",
+    "height": "1em",
+    "width": "1em",
+  },
+  "bg-test-icons-colored-red": {
     "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
@@ -363,14 +371,28 @@ exports[`use matchComponents when forced as bg 2`] = `
 
 exports[`use matchComponents when forced as bg 3`] = `
 {
-  "bg-test-icons-colored": {
+  "bg-test-icons-colored-green": {
     "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "height": "1em",
     "width": "1em",
   },
-  "bg-test-icons-colorless": {
+  "bg-test-icons-colored-red": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "height": "1em",
+    "width": "1em",
+  },
+  "bg-test-icons-colorless-green": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='green'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "height": "1em",
+    "width": "1em",
+  },
+  "bg-test-icons-colorless-red": {
     "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='red'/%3E%3C/svg%3E\\")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",

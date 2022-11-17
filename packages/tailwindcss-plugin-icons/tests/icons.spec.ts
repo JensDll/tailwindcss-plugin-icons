@@ -34,17 +34,22 @@ afterEach(() => {
   expect(mockPluginApi.addComponents.mock.lastCall).toMatchSnapshot()
   expect(mockPluginApi.matchComponents.mock.lastCall).toMatchSnapshot()
 
-  if (mockPluginApi.matchComponents.mock.lastCall !== undefined) {
-    const snapshot: Record<string, CSSRuleObject | null> = {}
-
-    for (const [key, colorFunction] of Object.entries<ColorFunction>(
-      mockPluginApi.matchComponents.mock.lastCall[0]
-    )) {
-      snapshot[key] = colorFunction('red', { modifier: null })
-    }
-
-    expect(snapshot).toMatchSnapshot()
+  if (mockPluginApi.matchComponents.mock.lastCall === undefined) {
+    return
   }
+
+  const snapshot: Record<string, CSSRuleObject | null> = {}
+
+  for (const [iconClassName, colorFunction] of Object.entries<ColorFunction>(
+    mockPluginApi.matchComponents.mock.lastCall[0]
+  )) {
+    snapshot[`${iconClassName}-red`] = colorFunction('red', { modifier: null })
+    snapshot[`${iconClassName}-green`] = colorFunction('green', {
+      modifier: null
+    })
+  }
+
+  expect(snapshot).toMatchSnapshot()
 })
 
 test("fail if icon doesn't exist", () => {

@@ -36,7 +36,7 @@
     "rollup-plugin-esbuild": "5.0.0",
     "tailwindcss": "3.2.4",
     "tailwindcss-plugin-icons": "workspace:*",
-    "typescript": "4.8.4",
+    "typescript": "4.9.3",
     "vitest": "0.25.2"
   }
 }
