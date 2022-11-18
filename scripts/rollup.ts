@@ -1,7 +1,6 @@
 import path from 'node:path'
 
-import type { Alias, ResolverFunction } from '@rollup/plugin-alias'
-import alias from '@rollup/plugin-alias'
+import alias, { type Alias, type ResolverFunction } from '@rollup/plugin-alias'
 import fs from 'fs-extra'
 
 import { rootDir } from './utils'

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 
 import type { IconifyJSON } from '@iconify/types'
-import { uriToFilename } from '@internal/shared'
+import { readJson, uriToFilename } from '@internal/shared'
 
 export class IconifyFileCache implements Map<string, IconifyJSON> {
   readonly cacheDir: string
@@ -61,7 +61,7 @@ export class IconifyFileCache implements Map<string, IconifyJSON> {
       return
     }
 
-    return JSON.parse(fs.readFileSync(filePath, 'ascii'))
+    return readJson(filePath)
   }
 
   set(key: string, iconifyJson: IconifyJSON) {
@@ -94,7 +94,7 @@ export class IconifyFileCache implements Map<string, IconifyJSON> {
     const files = fs.readdirSync(this.cacheDir)
     for (const file of files) {
       const filePath = path.resolve(this.cacheDir, file)
-      yield JSON.parse(fs.readFileSync(filePath, 'ascii'))
+      yield readJson(filePath)
     }
   }
 
@@ -102,7 +102,7 @@ export class IconifyFileCache implements Map<string, IconifyJSON> {
     const files = fs.readdirSync(this.cacheDir)
     for (const file of files) {
       const filePath = path.resolve(this.cacheDir, file)
-      yield [file, JSON.parse(fs.readFileSync(filePath, 'ascii'))]
+      yield [file, readJson(filePath)]
     }
   }
 
