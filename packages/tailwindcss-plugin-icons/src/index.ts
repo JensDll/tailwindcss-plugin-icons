@@ -8,6 +8,7 @@ import {
   isUri,
   loadIconFromIconifyJson,
   toKebabCase,
+  readJson,
   type WithRequired
 } from '@internal/shared'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
@@ -61,7 +62,7 @@ function resolveIconSets(
         callback(
           kebabCaseIconSetName,
           iconSetOptions as IconSetOptionsWithIcons,
-          JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
+          readJson(jsonPath)
         )
         continue
       } catch (e) {
@@ -79,7 +80,7 @@ function resolveIconSets(
         callback(
           kebabCaseIconSetName,
           iconSetOptions as IconSetOptionsWithIcons,
-          JSON.parse(fs.readFileSync(jsonPath, 'ascii'))
+          readJson(jsonPath)
         )
         continue
       } catch (e) {
@@ -134,7 +135,7 @@ function resolveIconSets(
     callback(
       kebabCaseIconSetName,
       iconSetOptions as IconSetOptionsWithIcons,
-      JSON.parse(fs.readFileSync(resolvedLocation, 'ascii'))
+      readJson(resolvedLocation)
     )
 
     continue

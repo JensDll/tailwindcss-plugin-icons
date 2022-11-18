@@ -3,15 +3,13 @@ import os from 'node:os'
 import path from 'node:path'
 
 import type { IconifyJSON } from '@iconify/types'
+import { readJson } from '@internal/shared'
 import fs from 'fs-extra'
 
 import { IconifyFileCache } from '~tailwindcss-plugin-icons/cache'
 
 const readFixture = (fixture: string) =>
-  [
-    fixture,
-    fs.readJSONSync(path.resolve(__dirname, '__fixtures__', fixture), 'ascii')
-  ] as const
+  [fixture, readJson(path.resolve(__dirname, '__fixtures__', fixture))] as const
 
 const readFixtures = (fixtures?: string[]) =>
   (fixtures === undefined ? ['cache1.json', 'cache2.json'] : fixtures).map(

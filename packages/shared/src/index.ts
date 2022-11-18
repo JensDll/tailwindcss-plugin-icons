@@ -1,3 +1,5 @@
+import fs from 'fs'
+
 import type {
   ExtendedIconifyIcon,
   IconifyDimenisons as IconifyDimensions,
@@ -20,9 +22,8 @@ export function toKebabCase(str: string): string {
   return str.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase()
 }
 
-export function isPromise<T>(value: Awaitable<T>): value is Promise<T> {
-  // @ts-expect-error
-  return typeof value?.then === 'function'
+export function readJson(path: string) {
+  return JSON.parse(fs.readFileSync(path, 'utf8'))
 }
 
 export function isUri(str: string | undefined): str is string {
