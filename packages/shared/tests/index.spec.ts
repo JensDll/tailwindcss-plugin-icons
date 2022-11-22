@@ -75,13 +75,7 @@ describe('loadIconFromJson', () => {
       'current-color': {
         body: 'currentColor'
       },
-      'current-color?bg': {
-        body: 'currentColor'
-      },
       color: {
-        body: '#fff'
-      },
-      'color?mask': {
         body: '#fff'
       },
       left: {
@@ -159,7 +153,10 @@ describe('loadIconFromJson', () => {
   type IconifyJson = typeof iconifyJson
 
   test.each<{
-    iconName: keyof IconifyJson['icons'] | keyof IconifyJson['aliases']
+    iconName: `${keyof IconifyJson['icons'] | keyof IconifyJson['aliases']}${
+      | '?bg'
+      | '?mask'
+      | ''}`
     expected: ReturnType<typeof loadIconFromIconifyJson>
   }>([
     {
