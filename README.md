@@ -40,7 +40,7 @@ const options = ({ theme }) => ({
     },
     scale: 1.5,
     includeAll: true,
-    location: 'https://esm.sh/@iconify-json/heroicons@1.1.5/icons.json'
+    location: 'https://esm.sh/@iconify-json/heroicons@1.1.6/icons.json'
   }
 })
 
@@ -52,7 +52,7 @@ module.exports = {
 }
 ```
 
-The plugin's `options` is a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method (see also the [comprehensive example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)).
+The plugin's `options` is a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method (see also the [comprehensive example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)).
 
 <!-- markdownlint-disable-next-line ol-prefix -->
 4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
@@ -62,4 +62,4 @@ The plugin's `options` is a function. It gets forwarded the [Tailwind CSS plugin
 <div class="bg-heroicons-trash-black"></div>
 ```
 
-## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.js)
+## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
