@@ -15,7 +15,6 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.44.0
       '@typescript-eslint/parser': 5.44.0
       '@vitest/coverage-c8': 0.25.2
-      c8: 7.12.0
       esbuild: 0.15.15
       eslint: 8.28.0
       eslint-plugin-import: 2.26.0
@@ -43,7 +42,6 @@ importers:
       '@typescript-eslint/eslint-plugin': 5.44.0_fnsv2sbzcckq65bwfk7a5xwslu
       '@typescript-eslint/parser': 5.44.0_hsf322ms6xhhd4b5ne6lb74y4a
       '@vitest/coverage-c8': 0.25.2
-      c8: 7.12.0
       esbuild: 0.15.15
       eslint: 8.28.0
       eslint-plugin-import: 2.26.0_vfrilbydaxalswvos6uuh4sxs4
