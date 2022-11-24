@@ -8,11 +8,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@iconify/json": "2.1.141",
+    "@iconify/json": "2.1.143",
     "@types/node": "18.11.9",
     "@vitejs/plugin-vue": "3.2.0",
     "autoprefixer": "10.4.13",
-    "my-icons": "npm:@iconify-json/logos@1.1.18",
+    "my-icons": "npm:@iconify-json/logos@1.1.19",
     "postcss": "8.4.19",
     "tailwindcss": "3.2.4",
     "tailwindcss-plugin-icons": "latest",
