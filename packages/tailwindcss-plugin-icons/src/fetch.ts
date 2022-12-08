@@ -27,15 +27,16 @@ async function makeRequest(uri: string) {
         .on('end', async () => {
           if (response.complete && response.statusCode == 200) {
             writeStream.end()
-          } else {
-            await fs.unlink(filePath)
-            writeStream.destroy()
-            reject(
-              new TailwindcssPluginIconsError(
-                `Failed to fetch remote icon set at "${uri}"`
-              )
-            )
+            return
           }
+
+          await fs.unlink(filePath)
+          writeStream.destroy()
+          reject(
+            new TailwindcssPluginIconsError(
+              `Failed to fetch remote icon set at "${uri}"`
+            )
+          )
         })
     })
   })
