@@ -6,11 +6,12 @@
 [Tailwind CSS](https://tailwindcss.com/docs/installation) port of [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages/preset-icons/).
 
 ```bash
-# Npm
 npm install tailwindcss-plugin-icons
-# Pnpm
+```
+```bash
 pnpm add tailwindcss-plugin-icons
-# Yarn
+```
+```bash
 yarn add tailwindcss-plugin-icons
 ```
 
