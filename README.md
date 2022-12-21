@@ -8,9 +8,11 @@
 ```bash
 npm install tailwindcss-plugin-icons
 ```
+
 ```bash
 pnpm add tailwindcss-plugin-icons
 ```
+
 ```bash
 yarn add tailwindcss-plugin-icons
 ```
