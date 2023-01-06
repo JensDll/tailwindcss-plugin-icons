@@ -1,24 +1,23 @@
+import fs from 'node:fs/promises'
 import path from 'node:path'
 
 import alias, { type Alias, type ResolverFunction } from '@rollup/plugin-alias'
-import fs from 'fs-extra'
 
 import { rootDir } from './utils'
 
 function resolveExtensions(extensions: string[]): ResolverFunction {
   return async function (source) {
-    const isDirectory = await fs.pathExists(source)
-
-    if (isDirectory) {
+    try {
+      await fs.access(source, fs.constants.O_DIRECTORY)
       source = path.join(source, 'index')
-    }
+    } catch {}
 
-    for (const extension of extensions) {
-      try {
+    try {
+      for (const extension of extensions) {
         const moduleInfo = await this.load({ id: source + extension })
         return moduleInfo.id
-      } catch (e) {}
-    }
+      }
+    } catch {}
 
     return null
   }

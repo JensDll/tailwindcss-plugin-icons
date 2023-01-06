@@ -36,8 +36,8 @@
       <li class="bg-bi-people-circle-amber-700"></li>
       <li class="i-logos-ember-tomster"></li>
       <li class="i-logos-vue"></li>
+      <li class="i-logos-deno"></li>
       <li class="i-logos-stackblitz"></li>
-      <li class="i-logos-cardano"></li>
       <li class="i-logos-stackoverflow"></li>
     </ul>
   </section>

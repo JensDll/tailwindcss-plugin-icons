@@ -75,9 +75,11 @@ module.exports = {
             [SCALE]: 2
           },
           vue: {
-            [SCALE]: 1.2
+            [SCALE]: 1.3
           },
-          cardano: {},
+          deno: {
+            [SCALE]: 1.5
+          },
           stackblitz: {},
           stackoverflow: {}
         },
