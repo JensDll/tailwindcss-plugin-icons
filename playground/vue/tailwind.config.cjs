@@ -72,10 +72,10 @@ module.exports = {
         icons: {
           'ember-tomster': {
             // You can use the special "SCALE" symbol to apply icon-specific scaling
-            [SCALE]: 2
+            [SCALE]: 1.8
           },
           vue: {
-            [SCALE]: 1.3
+            [SCALE]: 1.2
           },
           deno: {
             [SCALE]: 1.5
