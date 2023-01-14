@@ -21,7 +21,7 @@ yarn add tailwindcss-plugin-icons
 ## How to use
 
 1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs.
-2. Install the icon sets with `npm install @iconify-json/[the-collection-you-want]`.
+2. Install any required icon set with `npm install @iconify-json/[the-icon-set-name]`.
 3. Configure the plugin in your `tailwind.config` file, for example, [heroicons](https://heroicons.com/):
 
 ```js
@@ -56,7 +56,7 @@ module.exports = {
 }
 ```
 
-The plugin's `options` is a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method. You can use `includeAll: true` to have every icon in the set added as a Tailwind source.
+The plugin's `options` are a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method. Finally, you can use `includeAll: true` to have every icon in the icon set added as a Tailwind source.
 
 <!-- markdownlint-disable ol-prefix -->
 
