@@ -55,11 +55,11 @@ module.exports = {
 }
 ```
 
-The plugin's `options` is a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method (see also the [comprehensive example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)).
+The plugin's `options` is a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method. You can use `includeAll: true` to have every icon in the set added as a Tailwind source.
 
 <!-- markdownlint-disable ol-prefix -->
 
-4. Write icons with [Tailwind CSS](https://tailwindcss.com/docs/installation) classes directly in your markup:
+4. Write icons with Tailwind CSS classes directly in your markup:
 
 <!-- markdownlint-enable ol-prefix -->
 
@@ -68,4 +68,4 @@ The plugin's `options` is a function. It gets forwarded the [Tailwind CSS plugin
 <div class="bg-heroicons-trash-black"></div>
 ```
 
-## [Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
+## [Comprehensive Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
