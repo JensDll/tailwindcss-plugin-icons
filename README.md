@@ -4,7 +4,7 @@
 [![example](https://img.shields.io/badge/exmaple-StackBlitz-green)](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
 [![license](https://img.shields.io/npm/l/tailwindcss-plugin-icons?color=lightgrey)](https://github.com/JensDll/tailwindcss-plugin-icons/blob/main/LICENSE)
 
-[Tailwind CSS](https://tailwindcss.com/docs/installation) port of [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages/preset-icons/).
+[Tailwind CSS](https://tailwindcss.com/docs/installation) implementation of [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages/preset-icons/).
 
 ```bash
 npm install tailwindcss-plugin-icons
