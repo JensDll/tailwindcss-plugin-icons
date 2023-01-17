@@ -1,8 +1,8 @@
 # tailwindcss-plugin-icons
 
-[![npm](https://badgen.net/npm/v/tailwindcss-plugin-icons?color=blue)](https://www.npmjs.com/package/tailwindcss-plugin-icons)
-[![license](https://badgen.net/github/license/micromatch/micromatch?color=grey)](https://github.com/JensDll/tailwindcss-plugin-icons/blob/main/LICENSE)
-[![example](https://badgen.net/badge/example/StackBlitz/green)](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
+[![npm](https://img.shields.io/npm/v/tailwindcss-plugin-icons)](https://www.npmjs.com/package/tailwindcss-plugin-icons)
+[![example](https://img.shields.io/badge/exmaple-StackBlitz-green)](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
+[![license](https://img.shields.io/npm/l/tailwindcss-plugin-icons?color=lightgrey)](https://github.com/JensDll/tailwindcss-plugin-icons/blob/main/LICENSE)
 
 [Tailwind CSS](https://tailwindcss.com/docs/installation) port of [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages/preset-icons/).
 
