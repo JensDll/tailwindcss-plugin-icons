@@ -261,7 +261,6 @@ export type IconSetOptions = {
   scale?: number | ScaleFactory
   /**
    * The location of the icon source in Iconify JSON format. Can be any URI, local path, or module name.
-   * @link https://docs.iconify.design/types/iconify-json.html
    * @default "@iconify/json" or "@iconify-json/[name]"
    */
   location?: string
