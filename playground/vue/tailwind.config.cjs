@@ -1,7 +1,7 @@
 const path = require('path')
 
-const { Icons, SCALE } = require('tailwindcss-plugin-icons')
 const plugin = require('tailwindcss/plugin')
+const { Icons, SCALE } = require('tailwindcss-plugin-icons')
 
 /**
  * @type {import('tailwindcss').Config}
@@ -92,7 +92,7 @@ module.exports = {
         },
         scale: 1.5,
         // It can be a URI, for example, from a CDN ...
-        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.15/icons.json'
+        location: 'https://esm.sh/@iconify-json/vscode-icons@1.1.20/icons.json'
       },
       custom: {
         icons: {
@@ -110,6 +110,13 @@ module.exports = {
         scale: 1.5,
         // It can be a relative or absolute path
         location: path.resolve(__dirname, './src/icons.json')
+      },
+      heroicons: {
+        includeAll: true,
+        // Scale can be passed a function, which given the icon name, should return a number.
+        // It is most useful when the icon set contains icons of multiple sizes,
+        // and their names follow a predictable convention
+        scale: iconName => (iconName.endsWith('-20-solid') ? 1.25 : 1.5)
       }
     })),
     plugin(({ addUtilities }) => {
