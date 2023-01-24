@@ -90,7 +90,7 @@ function resolveIconSets(
       }
 
       throw new TailwindcssPluginIconsError(
-        `Icon set "${iconSetName}" not found. Check if the name is correct or try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
+        `Icon set "${iconSetName}" not found. Please see if the name is correct or try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
       )
     }
 
