@@ -90,7 +90,7 @@ function resolveIconSets(
       }
 
       throw new TailwindcssPluginIconsError(
-        `Icon set "${iconSetName}" not found. Check if the name is correct or try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
+        `Icon set "${iconSetName}" not found. Please see if the name is correct or try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
       )
     }
 
@@ -163,7 +163,7 @@ type AddIconOptions = {
   iconifyJson: IconifyJSON
   iconSetName: string
   iconName: string
-  scale?: number
+  scale?: number | ScaleFactory
   cssDefaults?: CSSRuleObjectWithMaybeScale
 }
 
@@ -179,7 +179,9 @@ const addIconToComponents =
     const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
 
     Object.defineProperty(cssDefaults, SCALE, {
-      value: cssDefaults[SCALE] ?? scale,
+      value:
+        cssDefaults[SCALE] ??
+        (typeof scale === 'function' ? scale(iconName) : scale),
       enumerable: false,
       writable: false,
       configurable: false
@@ -245,6 +247,8 @@ export const Icons = plugin.withOptions<Options>(options => pluginApi => {
   })
 })
 
+export type ScaleFactory = (iconName: string) => number
+
 export type IconSetOptions = {
   /**
    * An object describing the selected icons with optional default CSS.
@@ -254,10 +258,9 @@ export type IconSetOptions = {
    * A default scale used for all selected icons.
    * @default 1
    */
-  scale?: number
+  scale?: number | ScaleFactory
   /**
    * The location of the icon source in Iconify JSON format. Can be any URI, local path, or module name.
-   * @link https://docs.iconify.design/types/iconify-json.html
    * @default "@iconify/json" or "@iconify-json/[name]"
    */
   location?: string

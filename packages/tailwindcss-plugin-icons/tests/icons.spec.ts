@@ -4,7 +4,11 @@ import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 import type { Mocked } from 'vitest'
 
 import type { ColorFunction } from '~tailwindcss-plugin-icons/css'
-import { Icons, SCALE } from '~tailwindcss-plugin-icons/index'
+import {
+  Icons,
+  SCALE,
+  type ScaleFactory
+} from '~tailwindcss-plugin-icons/index'
 
 const consoleErrorMock = vi.spyOn(console, 'error')
 
@@ -118,6 +122,30 @@ describe('scale width and height', () => {
       }
     }).handler(mockPluginApi)
 
+    expect(mockPluginApi.addComponents).toBeCalledTimes(1)
+    expect(mockPluginApi.matchComponents).toBeCalledTimes(1)
+  })
+
+  test('when passed per icon set as function', () => {
+    const scale: ScaleFactory = vi.fn(() => 42)
+
+    Icons(() => {
+      return {
+        testIcons: {
+          icons: {
+            colored: {
+              [SCALE]: 2
+            },
+            colorless: {}
+          },
+          scale,
+          location
+        }
+      }
+    }).handler(mockPluginApi)
+
+    expect(scale).toBeCalledTimes(1)
+    expect(scale).toBeCalledWith('colorless')
     expect(mockPluginApi.addComponents).toBeCalledTimes(1)
     expect(mockPluginApi.matchComponents).toBeCalledTimes(1)
   })
