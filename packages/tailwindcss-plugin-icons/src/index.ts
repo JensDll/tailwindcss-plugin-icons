@@ -1,4 +1,4 @@
-import { execFileSync } from 'child_process'
+import child_process from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
@@ -145,7 +145,7 @@ function resolveIconSets(
     return
   }
 
-  execFileSync(
+  child_process.execFileSync(
     'node',
     [path.resolve(__dirname, 'fetch.mjs'), cache.cacheDir, ...locationsToFetch],
     {

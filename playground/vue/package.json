@@ -8,17 +8,17 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@iconify/json": "2.2.11",
-    "@types/node": "18.11.18",
+    "@iconify/json": "2.2.21",
+    "@types/node": "18.13.0",
     "@vitejs/plugin-vue": "4.0.0",
     "autoprefixer": "10.4.13",
-    "my-icons": "npm:@iconify-json/logos@1.1.22",
+    "my-icons": "npm:@iconify-json/logos@1.1.23",
     "postcss": "8.4.21",
-    "tailwindcss": "3.2.4",
+    "tailwindcss": "3.2.6",
     "tailwindcss-plugin-icons": "latest",
-    "typescript": "4.9.4",
-    "vite": "4.0.4",
-    "vue": "3.2.45",
+    "typescript": "4.9.5",
+    "vite": "4.1.1",
+    "vue": "3.2.47",
     "vue-tsc": "1.0.24"
   }
 }

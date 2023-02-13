@@ -23,7 +23,6 @@ await Promise.all([
   fs.copy('LICENSE', 'publish/LICENSE'),
   fs.copy('README.md', 'publish/README.md'),
   fs.copy(`${mainPath}/package.json`, 'publish/package.json'),
-  fs.copy(`${mainPath}/index.cjs`, 'publish/index.cjs'),
   fs.copy(`${mainPath}/dist`, 'publish/dist', {
     filter(path) {
       // Do not copy the cache folder

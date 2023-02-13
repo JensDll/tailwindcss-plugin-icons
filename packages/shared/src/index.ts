@@ -1,3 +1,4 @@
+import crypto from 'crypto'
 import fs from 'fs'
 
 import type {
@@ -31,7 +32,12 @@ export function isUri(str: string | undefined): str is string {
 }
 
 export function uriToFilename(uri: string) {
-  return uri.replace(/^https?:\/\//i, '').replace(/[/]/g, '')
+  return crypto
+    .createHash('shake256', {
+      outputLength: 16
+    })
+    .update(uri)
+    .digest('hex')
 }
 
 export function encodeSvg(svg: string) {
