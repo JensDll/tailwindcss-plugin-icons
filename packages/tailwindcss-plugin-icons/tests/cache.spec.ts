@@ -31,7 +31,7 @@ afterEach(async () => {
 })
 
 test('keys', () => {
-  expect([...cache.keys()].sort()).toStrictEqual(readFixtures().map(([k]) => k))
+  expect([...cache.keys()]).toStrictEqual(readFixtures().map(([k]) => k))
 })
 
 test('values', () => {
