@@ -32,7 +32,7 @@ export function isUri(str: string | undefined): str is string {
 }
 
 export function uriToFilename(uri: string) {
-  return crypto.createHash('sha256').update(uri).digest('hex')
+  return crypto.createHash('sha1').update(uri).digest('hex')
 }
 
 export function encodeSvg(svg: string) {
