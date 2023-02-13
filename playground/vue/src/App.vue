@@ -40,7 +40,7 @@
       <li class="i-logos-stackoverflow"></li>
       <li class="i-logos-deno"></li>
       <li class="i-heroicons-cog"></li>
-      <li class="i-heroicons-cog-solid text-gray-500"></li>
+      <li class="i-heroicons-cog-solid"></li>
       <li class="i-heroicons-cog-20-solid"></li>
       <li class="i-heroicons-adjustments-vertical"></li>
       <li class="i-heroicons-adjustments-vertical-solid"></li>

@@ -1,9 +1,4 @@
-import {
-  isUri,
-  loadIconFromIconifyJson,
-  toKebabCase,
-  uriToFilename
-} from '~shared/index'
+import { isUri, loadIconFromIconifyJson, toKebabCase } from '~shared/index'
 
 describe('toKebabCase', () => {
   test.each([
@@ -45,26 +40,6 @@ describe('isUri', () => {
     }
   ])('$value', ({ value, expected }) => {
     const actual = isUri(value)
-    expect(actual).toBe(expected)
-  })
-})
-
-describe('uriToFilename', () => {
-  test.each([
-    {
-      value: 'https://example.com',
-      expected: 'example.com'
-    },
-    {
-      value: 'http://example.com/foo/icons.json',
-      expected: 'example.comfooicons.json'
-    },
-    {
-      value: 'example.com/foo/icons.json',
-      expected: 'example.comfooicons.json'
-    }
-  ])('$value', ({ value, expected }) => {
-    const actual = uriToFilename(value)
     expect(actual).toBe(expected)
   })
 })

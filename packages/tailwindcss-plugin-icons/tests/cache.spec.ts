@@ -3,24 +3,26 @@ import os from 'node:os'
 import path from 'node:path'
 
 import type { IconifyJSON } from '@iconify/types'
-import { readJson } from '@internal/shared'
+import { readJson, uriToFilename } from '@internal/shared'
 import fs from 'fs-extra'
 
 import { IconifyFileCache } from '~tailwindcss-plugin-icons/cache'
 
 const readFixture = (fixture: string) =>
-  [fixture, readJson(path.resolve(__dirname, '__fixtures__', fixture))] as const
+  readJson(path.resolve(__dirname, '__fixtures__', fixture)) as IconifyJSON
 
 const readFixtures = (fixtures?: string[]) =>
-  (fixtures === undefined ? ['cache1.json', 'cache2.json'] : fixtures).map(
-    readFixture
-  )
+  (fixtures === undefined ? ['cache1.json', 'cache2.json'] : fixtures)
+    .map(fixture => [uriToFilename(fixture), readFixture(fixture)] as const)
+    .sort(([a], [b]) => a.localeCompare(b))
 
 let cache: IconifyFileCache
 
 beforeEach(() => {
   cache = new IconifyFileCache(path.resolve(os.tmpdir(), crypto.randomUUID()))
-  cache.set(...readFixture('cache1.json')).set(...readFixture('cache2.json'))
+    .set('cache1.json', readFixture('cache1.json'))
+    .set('cache2.json', readFixture('cache2.json'))
+
   expect(cache.size).toBe(2)
 })
 
@@ -29,7 +31,7 @@ afterEach(async () => {
 })
 
 test('keys', () => {
-  expect([...cache.keys()]).toStrictEqual(readFixtures().map(([k]) => k))
+  expect([...cache.keys()].sort()).toStrictEqual(readFixtures().map(([k]) => k))
 })
 
 test('values', () => {
@@ -64,11 +66,11 @@ describe('get', () => {
   test.each([
     {
       key: 'cache1.json',
-      expected: () => readFixture('cache1.json')[1]
+      expected: () => readFixture('cache1.json')
     },
     {
       key: 'cache2.json',
-      expected: () => readFixture('cache2.json')[1]
+      expected: () => readFixture('cache2.json')
     },
     {
       key: 'undefined',

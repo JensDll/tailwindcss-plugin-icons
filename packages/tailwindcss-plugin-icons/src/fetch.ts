@@ -1,6 +1,6 @@
-import { createWriteStream } from 'fs'
-import fs from 'fs/promises'
-import path from 'path'
+import { createWriteStream } from 'node:fs'
+import fs from 'node:fs/promises'
+import path from 'node:path'
 
 import { TailwindcssPluginIconsError, uriToFilename } from '@internal/shared'
 
