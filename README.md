@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/tailwindcss-plugin-icons)](https://www.npmjs.com/package/tailwindcss-plugin-icons)
 [![socket security](https://socket.dev/api/badge/npm/package/tailwindcss-plugin-icons)](https://socket.dev/npm/package/tailwindcss-plugin-icons)
-[![example](https://img.shields.io/badge/exmaple-StackBlitz-green)](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
+[![example](https://img.shields.io/badge/example-StackBlitz-green)](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
 [![license](https://img.shields.io/npm/l/tailwindcss-plugin-icons?color=lightgrey)](https://github.com/JensDll/tailwindcss-plugin-icons/blob/main/LICENSE)
 
 [Tailwind CSS](https://tailwindcss.com/docs/installation) implementation of [@unocss/preset-icons](https://github.com/unocss/unocss/tree/main/packages/preset-icons/).
