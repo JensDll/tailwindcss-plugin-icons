@@ -43,9 +43,9 @@ yarn add tailwindcss-plugin-icons
          },
          'trash?bg': {}
        },
-       scale: 1.5,
        includeAll: true,
-       location: 'https://esm.sh/@iconify-json/heroicons@1.1.6/icons.json'
+       scale: iconName => (iconName.endsWith('-20-solid') ? 1.25 : 1.5),
+       location: 'https://esm.sh/@iconify-json/heroicons@1.1.9/icons.json'
      }
    })
 
