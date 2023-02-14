@@ -25,49 +25,45 @@ yarn add tailwindcss-plugin-icons
 2. Install any required icon set with `npm install @iconify-json/[the-icon-set-name]`.
 3. Configure the plugin in your `tailwind.config` file, for example, [heroicons](https://heroicons.com/):
 
-```js
-const { Icons } = require('tailwindcss-plugin-icons')
+   ```js
+   const { Icons } = require('tailwindcss-plugin-icons')
 
-/**
- * @type {import('tailwindcss-plugin-icons').Options}
- */
-const options = ({ theme }) => ({
-  heroicons: {
-    icons: {
-      'plus-circle': {
-        cursor: 'pointer',
-        color: theme('colors.emerald.600'),
-        '&:hover': {
-          color: theme('colors.emerald.800')
-        }
-      },
-      'trash?bg': {}
-    },
-    scale: 1.5,
-    includeAll: true,
-    location: 'https://esm.sh/@iconify-json/heroicons@1.1.6/icons.json'
-  }
-})
+   /**
+    * @type {import('tailwindcss-plugin-icons').Options}
+    */
+   const options = ({ theme }) => ({
+     heroicons: {
+       icons: {
+         'plus-circle': {
+           cursor: 'pointer',
+           color: theme('colors.emerald.600'),
+           '&:hover': {
+             color: theme('colors.emerald.800')
+           }
+         },
+         'trash?bg': {}
+       },
+       scale: 1.5,
+       includeAll: true,
+       location: 'https://esm.sh/@iconify-json/heroicons@1.1.6/icons.json'
+     }
+   })
 
-/**
- * @type {import('tailwindcss').Config}
- */
-module.exports = {
-  plugins: [Icons(options)]
-}
-```
+   /**
+    * @type {import('tailwindcss').Config}
+    */
+   module.exports = {
+     plugins: [Icons(options)]
+   }
+   ```
 
-The plugin's `options` are a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method. Finally, you can use `includeAll: true` to have every icon in the icon set added as a Tailwind source.
-
-<!-- markdownlint-disable ol-prefix -->
+   The plugin's `options` are a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method. Finally, you can use `includeAll: true` to have every icon in the icon set added as a Tailwind source.
 
 4. Write icons with Tailwind CSS classes directly in your markup:
 
-<!-- markdownlint-enable ol-prefix -->
-
-```html
-<div class="i-heroicons-plus-circle"></div>
-<div class="bg-heroicons-trash-black"></div>
-```
+   ```html
+   <div class="i-heroicons-plus-circle"></div>
+   <div class="bg-heroicons-trash-black"></div>
+   ```
 
 ## [Comprehensive Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
