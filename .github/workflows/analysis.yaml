@@ -1,0 +1,34 @@
+name: Analysis
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  linting:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checking out the repository
+        uses: actions/checkout@v3.3.0
+
+      - name: Using pnpm version 7.27.0
+        uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7.27.0
+
+      - name: Using node version 18
+        uses: actions/setup-node@v3.6.0
+        with:
+          node-version: 18
+          cache: pnpm
+
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Building the project
+        run: pnpm run build
+
+      - name: Running lint
+        run: pnpm run lint
