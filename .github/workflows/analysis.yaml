@@ -13,10 +13,10 @@ jobs:
       - name: Checking out the repository
         uses: actions/checkout@v3.3.0
 
-      - name: Using pnpm version 7.27.0
+      - name: Using pnpm version 7.28.0
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 7.27.0
+          version: 7.28.0
 
       - name: Using node version 18
         uses: actions/setup-node@v3.6.0

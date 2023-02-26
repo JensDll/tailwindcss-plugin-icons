@@ -8,8 +8,11 @@ import { rootDir } from './utils'
 function resolveExtensions(extensions: string[]): ResolverFunction {
   return async function (source) {
     try {
-      await fs.access(source, fs.constants.O_DIRECTORY)
-      source = path.join(source, 'index')
+      const stats = await fs.lstat(source)
+
+      if (stats.isDirectory()) {
+        source = path.join(source, 'index')
+      }
     } catch {}
 
     try {

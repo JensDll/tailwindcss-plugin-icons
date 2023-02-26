@@ -16,10 +16,10 @@ jobs:
       - name: Checking out the repository
         uses: actions/checkout@v3.3.0
 
-      - name: Using pnpm version 7.27.0
+      - name: Using pnpm version 7.28.0
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 7.27.0
+          version: 7.28.0
 
       - name: Using node version ${{ matrix.node }}
         uses: actions/setup-node@v3.6.0
@@ -34,4 +34,4 @@ jobs:
         run: pnpm run build
 
       - name: Running tests
-        run: pnpm run test:run --reporter verbose
+        run: pnpm run test:run
