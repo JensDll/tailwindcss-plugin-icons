@@ -31,6 +31,10 @@ describe('isUri', () => {
       expected: true
     },
     {
+      value: 'http:/example.com',
+      expected: false
+    },
+    {
       value: './src/icons.json',
       expected: false
     },

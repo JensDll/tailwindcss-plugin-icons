@@ -29,7 +29,7 @@ export function readJson(path: string) {
 }
 
 export function isUri(str: Nullable<string>): str is string {
-  return !!str && /^https?:/i.test(str)
+  return !!str && /^https?:\/\//i.test(str)
 }
 
 export function uriToFilename(uri: string) {
