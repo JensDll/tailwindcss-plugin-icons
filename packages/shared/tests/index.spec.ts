@@ -37,6 +37,18 @@ describe('isUri', () => {
     {
       value: 'src/icons.json',
       expected: false
+    },
+    {
+      value: '',
+      expected: false
+    },
+    {
+      value: undefined,
+      expected: false
+    },
+    {
+      value: null,
+      expected: false
     }
   ])('$value', ({ value, expected }) => {
     const actual = isUri(value)

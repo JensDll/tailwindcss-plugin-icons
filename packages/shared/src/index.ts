@@ -7,6 +7,7 @@ import type {
   IconifyJSON,
   IconifyTransformations
 } from '@iconify/types'
+import type { Nullable } from 'vitest'
 
 export type Awaitable<T> = T | Promise<T>
 
@@ -27,8 +28,8 @@ export function readJson(path: string) {
   return JSON.parse(fs.readFileSync(path, 'utf8'))
 }
 
-export function isUri(str: string | undefined): str is string {
-  return !str ? false : /^https?:/i.test(str)
+export function isUri(str: Nullable<string>): str is string {
+  return !!str && /^https?:/i.test(str)
 }
 
 export function uriToFilename(uri: string) {
