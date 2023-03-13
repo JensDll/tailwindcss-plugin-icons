@@ -8,10 +8,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@iconify/json": "2.2.27",
-    "@types/node": "18.14.1",
+    "@iconify/json": "2.2.34",
+    "@types/node": "18.15.1",
     "@vitejs/plugin-vue": "4.0.0",
-    "autoprefixer": "10.4.13",
+    "autoprefixer": "10.4.14",
     "my-icons": "npm:@iconify-json/logos@1.1.23",
     "postcss": "8.4.21",
     "tailwindcss": "3.2.7",

@@ -11,20 +11,20 @@ jobs:
     runs-on: ubuntu-22.04
     strategy:
       matrix:
-        node: [16, 18]
+        node_version: [16, 18]
     steps:
       - name: Checking out the repository
         uses: actions/checkout@v3.3.0
 
-      - name: Using pnpm version 7.28.0
+      - name: Using pnpm version 7.29.1
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 7.28.0
+          version: 7.29.1
 
-      - name: Using node version ${{ matrix.node }}
+      - name: Using node version ${{ matrix.node_version }}
         uses: actions/setup-node@v3.6.0
         with:
-          node-version: ${{ matrix.node }}
+          node-version: ${{ matrix.node_version }}
           cache: pnpm
 
       - name: Installing dependencies
