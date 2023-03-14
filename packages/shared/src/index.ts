@@ -7,7 +7,8 @@ import type {
   IconifyJSON,
   IconifyTransformations
 } from '@iconify/types'
-import type { Nullable } from 'vitest'
+
+export type Nullable<T> = T | null | undefined
 
 export type Awaitable<T> = T | Promise<T>
 
