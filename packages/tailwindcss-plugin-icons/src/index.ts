@@ -149,7 +149,7 @@ function resolveIconSets(
     }
   )
 
-  afterFetchCallbacks.forEach(Function.call)
+  afterFetchCallbacks.forEach(cb => cb())
 }
 
 type Components = Record<string, CSSRuleObject>
