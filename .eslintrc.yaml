@@ -43,6 +43,8 @@ rules:
   '@typescript-eslint/no-empty-function': off
   # https://typescript-eslint.io/rules/no-var-requires
   '@typescript-eslint/no-var-requires': off
+  # https://typescript-eslint.io/rules/consistent-type-imports/
+  '@typescript-eslint/consistent-type-imports': 'error'
 ignorePatterns:
   - '**/dist'
   - '**/*.html'
