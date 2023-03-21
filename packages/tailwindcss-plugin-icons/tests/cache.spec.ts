@@ -12,9 +12,9 @@ const readFixture = (fixture: string) =>
   readJson(path.resolve(__dirname, '__fixtures__', fixture)) as IconifyJSON
 
 const readFixtures = (fixtures?: string[]) =>
-  (fixtures === undefined ? ['cache1.json', 'cache2.json'] : fixtures)
+  (fixtures ?? ['cache1.json', 'cache2.json'])
     .map(fixture => [uriToFilename(fixture), readFixture(fixture)] as const)
-    .sort(([a], [b]) => a.localeCompare(b))
+    .sort(([filenameA], [filenameB]) => filenameA.localeCompare(filenameB))
 
 let cache: IconifyFileCache
 

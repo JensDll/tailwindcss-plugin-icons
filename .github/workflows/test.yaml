@@ -14,12 +14,12 @@ jobs:
         node_version: [16, 18]
     steps:
       - name: Checking out the repository
-        uses: actions/checkout@v3.3.0
+        uses: actions/checkout@v3.4.0
 
-      - name: Using pnpm version 7.29.1
+      - name: Using pnpm version 7.30.0
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 7.29.1
+          version: 7.30.0
 
       - name: Using node version ${{ matrix.node_version }}
         uses: actions/setup-node@v3.6.0
