@@ -66,9 +66,7 @@ function resolveIconSets(
         )
         continue
       } catch (e) {
-        if (e instanceof TailwindcssPluginIconsError) {
-          throw e
-        }
+        TailwindcssPluginIconsError.rethrowIfInstanceof(e)
       }
 
       try {
@@ -84,9 +82,7 @@ function resolveIconSets(
         )
         continue
       } catch (e) {
-        if (e instanceof TailwindcssPluginIconsError) {
-          throw e
-        }
+        TailwindcssPluginIconsError.rethrowIfInstanceof(e)
       }
 
       throw new TailwindcssPluginIconsError(
@@ -128,7 +124,7 @@ function resolveIconSets(
 
     if (!fs.existsSync(resolvedLocation)) {
       throw new TailwindcssPluginIconsError(
-        `No icon set found at "${iconSetOptions.location}"`
+        `Failed to find icon set found at location "${iconSetOptions.location}"`
       )
     }
 
@@ -153,7 +149,7 @@ function resolveIconSets(
     }
   )
 
-  afterFetchCallbacks.forEach(cb => cb())
+  afterFetchCallbacks.forEach(Function.call)
 }
 
 type Components = Record<string, CSSRuleObject>

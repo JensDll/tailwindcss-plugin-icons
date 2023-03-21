@@ -19,6 +19,12 @@ export class TailwindcssPluginIconsError extends Error {
     super(message)
     this.name = 'TailwindcssPluginIconsError'
   }
+
+  static rethrowIfInstanceof(error: unknown) {
+    if (error instanceof TailwindcssPluginIconsError) {
+      throw error
+    }
+  }
 }
 
 export function toKebabCase(str: string): string {
