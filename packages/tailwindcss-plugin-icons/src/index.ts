@@ -124,7 +124,7 @@ function resolveIconSets(
 
     if (!fs.existsSync(resolvedLocation)) {
       throw new TailwindcssPluginIconsError(
-        `Failed to find icon set found at location "${iconSetOptions.location}"`
+        `Failed to find icon set at location "${iconSetOptions.location}"`
       )
     }
 
