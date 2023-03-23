@@ -7,8 +7,9 @@
     "build": "vue-tsc --noEmit && vite build",
     "preview": "vite preview"
   },
+  "type": "module",
   "dependencies": {
-    "@iconify/json": "2.2.37",
+    "@iconify/json": "2.2.38",
     "@types/node": "18.15.5",
     "@vitejs/plugin-vue": "4.1.0",
     "autoprefixer": "10.4.14",
