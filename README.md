@@ -19,7 +19,7 @@ pnpm add tailwindcss-plugin-icons
 yarn add tailwindcss-plugin-icons
 ```
 
-## How to use
+## How to Use
 
 1. Search the available icon sets at [Icônes](https://icones.js.org/collection/all?s=) or [Iconify](https://icon-sets.iconify.design/) and choose the icons your project needs.
 2. Install any required icon set with `npm install @iconify-json/[the-icon-set-name]`.
