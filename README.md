@@ -25,13 +25,11 @@ yarn add tailwindcss-plugin-icons
 2. Install any required icon set with `npm install @iconify-json/[the-icon-set-name]`.
 3. Configure the plugin in your `tailwind.config` file, for example, [heroicons](https://heroicons.com/):
 
-   ```js
-   const { Icons } = require('tailwindcss-plugin-icons')
+   ```ts
+   import type { Config } from 'tailwindcss'
+   import { Icons, type Options } from 'tailwindcss-plugin-icons'
 
-   /**
-    * @type {import('tailwindcss-plugin-icons').Options}
-    */
-   const options = ({ theme }) => ({
+   const options: Options = ({ theme }) => ({
      heroicons: {
        icons: {
          'plus-circle': {
@@ -49,12 +47,9 @@ yarn add tailwindcss-plugin-icons
      }
    })
 
-   /**
-    * @type {import('tailwindcss').Config}
-    */
-   module.exports = {
+   export default {
      plugins: [Icons(options)]
-   }
+   } as Config
    ```
 
    The plugin's `options` are a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method. Finally, you can use `includeAll: true` to have every icon in the icon set added as a Tailwind source.

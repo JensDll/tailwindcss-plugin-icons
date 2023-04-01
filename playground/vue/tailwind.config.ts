@@ -1,13 +1,14 @@
-const path = require('path')
+import path from 'path'
 
-const plugin = require('tailwindcss/plugin')
-const { Icons, SCALE } = require('tailwindcss-plugin-icons')
+import type { Config } from 'tailwindcss'
+import plugin from 'tailwindcss/plugin'
+import { Icons, SCALE } from 'tailwindcss-plugin-icons'
 
-/**
- * @type {import('tailwindcss').Config}
- */
-module.exports = {
-  content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+export default {
+  content: {
+    relative: true,
+    files: ['./index.html', './src/**/*.vue']
+  },
   darkMode: 'class',
   theme: {},
   plugins: [
@@ -131,4 +132,4 @@ module.exports = {
       })
     })
   ]
-}
+} as Config
