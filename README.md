@@ -61,4 +61,4 @@ yarn add tailwindcss-plugin-icons
    <div class="bg-heroicons-trash-black"></div>
    ```
 
-## [Comprehensive Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.cjs)
+## [Comprehensive Example](https://stackblitz.com/github/JensDll/tailwindcss-plugin-icons/tree/main/playground/vue?file=tailwind.config.ts)
