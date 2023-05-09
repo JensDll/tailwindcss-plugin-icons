@@ -9,17 +9,17 @@
   },
   "type": "module",
   "dependencies": {
-    "@iconify/json": "2.2.50",
-    "@types/node": "18.15.11",
-    "@vitejs/plugin-vue": "4.1.0",
+    "@iconify/json": "2.2.62",
+    "@types/node": "20.1.1",
+    "@vitejs/plugin-vue": "4.2.1",
     "autoprefixer": "10.4.14",
-    "my-icons": "npm:@iconify-json/logos@1.1.24",
-    "postcss": "8.4.21",
-    "tailwindcss": "3.3.1",
+    "my-icons": "npm:@iconify-json/logos@1.1.27",
+    "postcss": "8.4.23",
+    "tailwindcss": "3.3.2",
     "tailwindcss-plugin-icons": "latest",
     "typescript": "5.0.4",
-    "vite": "4.2.1",
+    "vite": "4.3.5",
     "vue": "3.2.47",
-    "vue-tsc": "1.2.0"
+    "vue-tsc": "1.6.4"
   }
 }
