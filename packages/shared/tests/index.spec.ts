@@ -1,4 +1,13 @@
-import { isUri, loadIconFromIconifyJson, toKebabCase } from '~shared/index'
+import {
+  isUri,
+  loadIconFromIconifyJson,
+  parseIconName,
+  toKebabCase,
+  type ParsedIconName,
+  encodeSvg
+} from '~shared/index'
+
+const html = String.raw
 
 describe('toKebabCase', () => {
   test.each([
@@ -57,6 +66,67 @@ describe('isUri', () => {
   ])('$value', ({ value, expected }) => {
     const actual = isUri(value)
     expect(actual).toBe(expected)
+  })
+})
+
+describe('encodeSvg', () => {
+  test('url encodes', () => {
+    const svg = html`<svg
+      viewBox="0 0 10 10"
+      xmlns="http://www.w3.org/2000/svg"
+    ></svg>`
+    const actual = encodeSvg(svg)
+    expect(actual).toMatchSnapshot()
+  })
+
+  test('without namespace', () => {
+    const svg = html`<svg viewBox="0 0 10 10"></svg>`
+    const actual = encodeSvg(svg)
+    expect(actual).toMatchSnapshot()
+  })
+
+  test('without namespace and empty', () => {
+    const svg = html`<svg></svg>`
+    const actual = encodeSvg(svg)
+    expect(actual).toMatchSnapshot()
+  })
+
+  test('needs xlink namespace', () => {
+    const svg = html`<svg><use xlink:href="test"></use></svg>`
+    const actual = encodeSvg(svg)
+    expect(actual).toMatchSnapshot()
+  })
+})
+
+describe('parseIconName', () => {
+  test.each<{
+    value: string
+    expected: ParsedIconName
+  }>([
+    {
+      value: 'plusCircle',
+      expected: {
+        normalizedIconName: 'plus-circle',
+        iconMode: undefined
+      }
+    },
+    {
+      value: 'plusCircle?bg',
+      expected: {
+        normalizedIconName: 'plus-circle',
+        iconMode: 'bg'
+      }
+    },
+    {
+      value: 'plusCircle?mask',
+      expected: {
+        normalizedIconName: 'plus-circle',
+        iconMode: 'mask'
+      }
+    }
+  ])('$value', ({ value, expected }) => {
+    const actual = parseIconName(value)
+    expect(actual).toStrictEqual(expected)
   })
 })
 

@@ -47,15 +47,12 @@ export function encodeSvg(svg: string) {
   if (!svg.includes(' xmlns:xlink=') && svg.includes(' xlink:')) {
     // Add the "http://www.w3.org/1999/xlink" namespace for any icon using the xlink: prefix
     // https://developer.mozilla.org/en-US/docs/Web/SVG/Namespaces_Crash_Course
-    svg = svg.replace(
-      '<svg ',
-      '<svg xmlns:xlink="http://www.w3.org/1999/xlink" '
-    )
+    svg = svg.replace('<svg', '<svg xmlns:xlink="http://www.w3.org/1999/xlink"')
   }
 
   if (!svg.includes(' xmlns=')) {
     // Always add the "http://www.w3.org/2000/svg" default namespace, if it does not exist
-    svg = svg.replace('<svg ', '<svg xmlns="http://www.w3.org/2000/svg" ')
+    svg = svg.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"')
   }
 
   return svg
@@ -79,7 +76,12 @@ export interface LoadedIcon {
   readonly height: number
 }
 
-export function parseIconName(iconName: string) {
+export type ParsedIconName = {
+  readonly normalizedIconName: string
+  readonly iconMode?: IconMode
+}
+
+export function parseIconName(iconName: string): ParsedIconName {
   let iconMode: IconMode | undefined
   // Transform the icon name to kebab case and remove query parameters
   const normalizedIconName = toKebabCase(iconName).replace(
