@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config'
 
-import { tsPathAlias } from './scripts/rollup'
+import { packagesAlias, scriptsAlias } from './scripts/rollup'
 
 export default defineConfig({
   test: {
@@ -8,6 +8,6 @@ export default defineConfig({
     clearMocks: true
   },
   resolve: {
-    alias: [tsPathAlias]
+    alias: [packagesAlias, scriptsAlias]
   }
 })

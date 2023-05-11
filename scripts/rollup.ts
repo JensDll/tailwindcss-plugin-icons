@@ -28,12 +28,22 @@ function resolveExtensions(extensions: string[]): ResolverFunction {
 
 export type AliasWithoutResolver = Omit<Alias, 'customResolver'>
 
-export const tsPathAlias: AliasWithoutResolver = {
-  find: /^~(.+?)\/(.+)/,
+export const packagesAlias: AliasWithoutResolver = {
+  find: /^~([a-z-]+?)\/(.+)/,
   replacement: path.resolve(rootDir, 'packages/$1/src/$2')
 }
 
-export const tsPathAliasPlugin = alias({
+export const scriptsAlias: AliasWithoutResolver = {
+  find: /^~\/scripts\/(.+)/,
+  replacement: path.resolve(rootDir, 'scripts/$1')
+}
+
+export const packagesAliasPlugin = alias({
   customResolver: resolveExtensions(['.ts']),
-  entries: [tsPathAlias]
+  entries: [packagesAlias]
+})
+
+export const scriptsAliasPlugin = alias({
+  customResolver: resolveExtensions(['.ts']),
+  entries: [scriptsAlias]
 })

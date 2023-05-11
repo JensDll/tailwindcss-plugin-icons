@@ -15,19 +15,19 @@ importers:
         version: link:packages/shared
       '@rollup/plugin-alias':
         specifier: 5.0.0
-        version: 5.0.0(rollup@3.21.5)
+        version: 5.0.0(rollup@3.21.6)
       '@rollup/plugin-node-resolve':
         specifier: 15.0.2
-        version: 15.0.2(rollup@3.21.5)
+        version: 15.0.2(rollup@3.21.6)
       '@rollup/plugin-replace':
         specifier: 5.0.2
-        version: 5.0.2(rollup@3.21.5)
+        version: 5.0.2(rollup@3.21.6)
       '@types/fs-extra':
         specifier: 11.0.1
         version: 11.0.1
       '@types/node':
-        specifier: 20.1.1
-        version: 20.1.1
+        specifier: 20.1.2
+        version: 20.1.2
       '@typescript-eslint/eslint-plugin':
         specifier: 5.59.5
         version: 5.59.5(@typescript-eslint/parser@5.59.5)(eslint@8.40.0)(typescript@5.0.4)
@@ -62,14 +62,14 @@ importers:
         specifier: 0.2.8
         version: 0.2.8(prettier@2.8.8)
       rollup:
-        specifier: 3.21.5
-        version: 3.21.5
+        specifier: 3.21.6
+        version: 3.21.6
       rollup-plugin-dts:
         specifier: 5.3.0
-        version: 5.3.0(rollup@3.21.5)(typescript@5.0.4)
+        version: 5.3.0(rollup@3.21.6)(typescript@5.0.4)
       rollup-plugin-esbuild:
         specifier: 5.0.0
-        version: 5.0.0(esbuild@0.17.18)(rollup@3.21.5)
+        version: 5.0.0(esbuild@0.17.18)(rollup@3.21.6)
       tailwindcss:
         specifier: 3.3.2
         version: 3.3.2
@@ -81,7 +81,7 @@ importers:
         version: 5.0.4
       vite:
         specifier: 4.3.5
-        version: 4.3.5(@types/node@20.1.1)
+        version: 4.3.5(@types/node@20.1.2)
       vitest:
         specifier: 0.31.0
         version: 0.31.0
@@ -97,11 +97,11 @@ importers:
   playground/vue:
     dependencies:
       '@iconify/json':
-        specifier: 2.2.62
-        version: 2.2.62
+        specifier: 2.2.63
+        version: 2.2.63
       '@types/node':
-        specifier: 20.1.1
-        version: 20.1.1
+        specifier: 20.1.2
+        version: 20.1.2
       '@vitejs/plugin-vue':
         specifier: 4.2.1
         version: 4.2.1(vite@4.3.5)(vue@3.2.47)
@@ -109,8 +109,8 @@ importers:
         specifier: 10.4.14
         version: 10.4.14(postcss@8.4.23)
       my-icons:
-        specifier: npm:@iconify-json/logos@1.1.27
-        version: /@iconify-json/logos@1.1.27
+        specifier: npm:@iconify-json/logos@1.1.28
+        version: /@iconify-json/logos@1.1.28
       postcss:
         specifier: 8.4.23
         version: 8.4.23
@@ -125,7 +125,7 @@ importers:
         version: 5.0.4
       vite:
         specifier: 4.3.5
-        version: 4.3.5(@types/node@20.1.1)
+        version: 4.3.5(@types/node@20.1.2)
       vue:
         specifier: 3.2.47
         version: 3.2.47
@@ -467,14 +467,14 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: false
 
-  /@iconify-json/logos@1.1.27:
-    resolution: {integrity: sha512-EwGBezJ79tYKsgykLoS8t6CS+7aaj+SWMZgLv4gN5s0QzX2GbYGxlV9bX52Ddro90edwEhYFPHOBl9CR7v6E/w==}
+  /@iconify-json/logos@1.1.28:
+    resolution: {integrity: sha512-E4dfQCDPaYwQaxCQbGdhnrOQ+AzcACav35nUQfInH8DBvPIbcwdxtSyQIgZoaz4RibMx2nPSB9XELq8XzhlXvQ==}
     dependencies:
       '@iconify/types': 2.0.0
     dev: false
 
-  /@iconify/json@2.2.62:
-    resolution: {integrity: sha512-61Ix9UTlnguZiAZtjM+91dNnu7G47W85PIB7d0QAfV1i+O0Fm1WH6ZyJfckGtnyHuKXxR8Xtn5oOexzVYCci5A==}
+  /@iconify/json@2.2.63:
+    resolution: {integrity: sha512-IWbwz8LLl2YMKIFKOWzBxzRHwf6PciaGwM4c5J8T2PKBSHUToThBBrfxwX0gHu0O3EZ5z+o9QQp77qCwbCzgYw==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.0
@@ -544,7 +544,7 @@ packages:
       fastq: 1.15.0
     dev: false
 
-  /@rollup/plugin-alias@5.0.0(rollup@3.21.5):
+  /@rollup/plugin-alias@5.0.0(rollup@3.21.6):
     resolution: {integrity: sha512-l9hY5chSCjuFRPsnRm16twWBiSApl2uYFLsepQYwtBuAxNMQ/1dJqADld40P0Jkqm65GRTLy/AC6hnpVebtLsA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -553,11 +553,11 @@ packages:
       rollup:
         optional: true
     dependencies:
-      rollup: 3.21.5
+      rollup: 3.21.6
       slash: 4.0.0
     dev: false
 
-  /@rollup/plugin-node-resolve@15.0.2(rollup@3.21.5):
+  /@rollup/plugin-node-resolve@15.0.2(rollup@3.21.6):
     resolution: {integrity: sha512-Y35fRGUjC3FaurG722uhUuG8YHOJRJQbI6/CkbRkdPotSpDj9NtIN85z1zrcyDcCQIW4qp5mgG72U+gJ0TAFEg==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -566,16 +566,16 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.21.5)
+      '@rollup/pluginutils': 5.0.2(rollup@3.21.6)
       '@types/resolve': 1.20.2
       deepmerge: 4.3.1
       is-builtin-module: 3.2.1
       is-module: 1.0.0
       resolve: 1.22.2
-      rollup: 3.21.5
+      rollup: 3.21.6
     dev: false
 
-  /@rollup/plugin-replace@5.0.2(rollup@3.21.5):
+  /@rollup/plugin-replace@5.0.2(rollup@3.21.6):
     resolution: {integrity: sha512-M9YXNekv/C/iHHK+cvORzfRYfPbq0RDD8r0G+bMiTXjNGKulPnCT9O3Ss46WfhI6ZOCgApOP7xAdmCQJ+U2LAA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -584,12 +584,12 @@ packages:
       rollup:
         optional: true
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.21.5)
+      '@rollup/pluginutils': 5.0.2(rollup@3.21.6)
       magic-string: 0.27.0
-      rollup: 3.21.5
+      rollup: 3.21.6
     dev: false
 
-  /@rollup/pluginutils@5.0.2(rollup@3.21.5):
+  /@rollup/pluginutils@5.0.2(rollup@3.21.6):
     resolution: {integrity: sha512-pTd9rIsP92h+B6wWwFbW8RkZv4hiR/xKsqre4SIuAOaOEQRxi0lqLke9k2/7WegC85GgUs9pjmOjCUi3In4vwA==}
     engines: {node: '>=14.0.0'}
     peerDependencies:
@@ -601,7 +601,7 @@ packages:
       '@types/estree': 1.0.1
       estree-walker: 2.0.2
       picomatch: 2.3.1
-      rollup: 3.21.5
+      rollup: 3.21.6
     dev: false
 
   /@types/chai-subset@1.3.3:
@@ -622,7 +622,7 @@ packages:
     resolution: {integrity: sha512-MxObHvNl4A69ofaTRU8DFqvgzzv8s9yRtaPPm5gud9HDNvpB3GPQFvNuTWAI59B9huVGV5jXYJwbCsmBsOGYWA==}
     dependencies:
       '@types/jsonfile': 6.1.1
-      '@types/node': 20.1.1
+      '@types/node': 20.1.2
     dev: false
 
   /@types/istanbul-lib-coverage@2.0.4:
@@ -640,11 +640,11 @@ packages:
   /@types/jsonfile@6.1.1:
     resolution: {integrity: sha512-GSgiRCVeapDN+3pqA35IkQwasaCh/0YFH5dEF6S88iDvEn901DjOeH3/QPY+XYP1DFzDZPvIvfeEgk+7br5png==}
     dependencies:
-      '@types/node': 20.1.1
+      '@types/node': 20.1.2
     dev: false
 
-  /@types/node@20.1.1:
-    resolution: {integrity: sha512-uKBEevTNb+l6/aCQaKVnUModfEMjAl98lw2Si9P5y4hLu9tm6AlX2ZIoXZX6Wh9lJueYPrGPKk5WMCNHg/u6/A==}
+  /@types/node@20.1.2:
+    resolution: {integrity: sha512-CTO/wa8x+rZU626cL2BlbCDzydgnFNgc19h4YvizpTO88MFQxab8wqisxaofQJ/9bLGugRdWIuX/TbIs6VVF6g==}
     dev: false
 
   /@types/resolve@1.20.2:
@@ -792,7 +792,7 @@ packages:
       vite: ^4.0.0
       vue: ^3.2.25
     dependencies:
-      vite: 4.3.5(@types/node@20.1.1)
+      vite: 4.3.5(@types/node@20.1.2)
       vue: 3.2.47
     dev: false
 
@@ -2920,7 +2920,7 @@ packages:
       glob: 7.2.3
     dev: false
 
-  /rollup-plugin-dts@5.3.0(rollup@3.21.5)(typescript@5.0.4):
+  /rollup-plugin-dts@5.3.0(rollup@3.21.6)(typescript@5.0.4):
     resolution: {integrity: sha512-8FXp0ZkyZj1iU5klkIJYLjIq/YZSwBoERu33QBDxm/1yw5UU4txrEtcmMkrq+ZiKu3Q4qvPCNqc3ovX6rjqzbQ==}
     engines: {node: '>=v14'}
     peerDependencies:
@@ -2928,32 +2928,40 @@ packages:
       typescript: ^4.1 || ^5.0
     dependencies:
       magic-string: 0.30.0
-      rollup: 3.21.5
+      rollup: 3.21.6
       typescript: 5.0.4
     optionalDependencies:
       '@babel/code-frame': 7.21.4
     dev: false
 
-  /rollup-plugin-esbuild@5.0.0(esbuild@0.17.18)(rollup@3.21.5):
+  /rollup-plugin-esbuild@5.0.0(esbuild@0.17.18)(rollup@3.21.6):
     resolution: {integrity: sha512-1cRIOHAPh8WQgdQQyyvFdeOdxuiyk+zB5zJ5+YOwrZP4cJ0MT3Fs48pQxrZeyZHcn+klFherytILVfE4aYrneg==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     peerDependencies:
       esbuild: '>=0.10.1'
       rollup: ^1.20.0 || ^2.0.0 || ^3.0.0
     dependencies:
-      '@rollup/pluginutils': 5.0.2(rollup@3.21.5)
+      '@rollup/pluginutils': 5.0.2(rollup@3.21.6)
       debug: 4.3.4
       es-module-lexer: 1.2.1
       esbuild: 0.17.18
       joycon: 3.1.1
       jsonc-parser: 3.2.0
-      rollup: 3.21.5
+      rollup: 3.21.6
     transitivePeerDependencies:
       - supports-color
     dev: false
 
   /rollup@3.21.5:
     resolution: {integrity: sha512-a4NTKS4u9PusbUJcfF4IMxuqjFzjm6ifj76P54a7cKnvVzJaG12BLVR+hgU2YDGHzyMMQNxLAZWuALsn8q2oQg==}
+    engines: {node: '>=14.18.0', npm: '>=8.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: false
+
+  /rollup@3.21.6:
+    resolution: {integrity: sha512-SXIICxvxQxR3D4dp/3LDHZIJPC8a4anKMHd4E3Jiz2/JnY+2bEjqrOokAauc5ShGVNFHlEFjBXAXlaxkJqIqSg==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
     hasBin: true
     optionalDependencies:
@@ -3346,7 +3354,7 @@ packages:
       convert-source-map: 1.9.0
     dev: false
 
-  /vite-node@0.31.0(@types/node@20.1.1):
+  /vite-node@0.31.0(@types/node@20.1.2):
     resolution: {integrity: sha512-8x1x1LNuPvE2vIvkSB7c1mApX5oqlgsxzHQesYF7l5n1gKrEmrClIiZuOFbFDQcjLsmcWSwwmrWrcGWm9Fxc/g==}
     engines: {node: '>=v14.18.0'}
     hasBin: true
@@ -3356,7 +3364,7 @@ packages:
       mlly: 1.2.0
       pathe: 1.1.0
       picocolors: 1.0.0
-      vite: 4.3.5(@types/node@20.1.1)
+      vite: 4.3.5(@types/node@20.1.2)
     transitivePeerDependencies:
       - '@types/node'
       - less
@@ -3367,7 +3375,7 @@ packages:
       - terser
     dev: false
 
-  /vite@4.3.5(@types/node@20.1.1):
+  /vite@4.3.5(@types/node@20.1.2):
     resolution: {integrity: sha512-0gEnL9wiRFxgz40o/i/eTBwm+NEbpUeTWhzKrZDSdKm6nplj+z4lKz8ANDgildxHm47Vg8EUia0aicKbawUVVA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
@@ -3392,7 +3400,7 @@ packages:
       terser:
         optional: true
     dependencies:
-      '@types/node': 20.1.1
+      '@types/node': 20.1.2
       esbuild: 0.17.18
       postcss: 8.4.23
       rollup: 3.21.5
@@ -3433,7 +3441,7 @@ packages:
     dependencies:
       '@types/chai': 4.3.5
       '@types/chai-subset': 1.3.3
-      '@types/node': 20.1.1
+      '@types/node': 20.1.2
       '@vitest/expect': 0.31.0
       '@vitest/runner': 0.31.0
       '@vitest/snapshot': 0.31.0
@@ -3453,8 +3461,8 @@ packages:
       strip-literal: 1.0.1
       tinybench: 2.5.0
       tinypool: 0.5.0
-      vite: 4.3.5(@types/node@20.1.1)
-      vite-node: 0.31.0(@types/node@20.1.1)
+      vite: 4.3.5(@types/node@20.1.2)
+      vite-node: 0.31.0(@types/node@20.1.2)
       why-is-node-running: 2.2.2
     transitivePeerDependencies:
       - less

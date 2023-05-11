@@ -1,13 +1,12 @@
+import { html } from '~/scripts/utils'
 import {
   isUri,
   loadIconFromIconifyJson,
   parseIconName,
   toKebabCase,
-  type ParsedIconName,
-  encodeSvg
+  encodeSvg,
+  type ParsedIconName
 } from '~shared/index'
-
-const html = String.raw
 
 describe('toKebabCase', () => {
   test.each([
@@ -70,7 +69,7 @@ describe('isUri', () => {
 })
 
 describe('encodeSvg', () => {
-  test('url encodes', () => {
+  test('matches url encoded', () => {
     const svg = html`<svg
       viewBox="0 0 10 10"
       xmlns="http://www.w3.org/2000/svg"

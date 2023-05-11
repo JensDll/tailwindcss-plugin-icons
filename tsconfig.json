@@ -20,7 +20,10 @@
     "paths": {
       "@internal/shared": ["packages/shared/src"],
       "~shared/*": ["packages/shared/src/*"],
-      "~tailwindcss-plugin-icons/*": ["packages/tailwindcss-plugin-icons/src/*"]
+      "~tailwindcss-plugin-icons/*": [
+        "packages/tailwindcss-plugin-icons/src/*"
+      ],
+      "~/scripts/*": ["scripts/*"]
     }
   },
   "include": ["*.ts", "scripts", "dts", "packages/*/src", "packages/*/tests"],
