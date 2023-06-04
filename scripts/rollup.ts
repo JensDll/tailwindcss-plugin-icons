@@ -38,12 +38,14 @@ export const scriptsAlias: AliasWithoutResolver = {
   replacement: path.resolve(rootDir, 'scripts/$1')
 }
 
+const resolveTs = resolveExtensions(['.ts'])
+
 export const packagesAliasPlugin = alias({
-  customResolver: resolveExtensions(['.ts']),
+  customResolver: resolveTs,
   entries: [packagesAlias]
 })
 
 export const scriptsAliasPlugin = alias({
-  customResolver: resolveExtensions(['.ts']),
+  customResolver: resolveTs,
   entries: [scriptsAlias]
 })

@@ -24,10 +24,8 @@ await Promise.all([
   fs.copy('README.md', 'publish/README.md'),
   fs.copy(`${mainPath}/package.json`, 'publish/package.json'),
   fs.copy(`${mainPath}/dist`, 'publish/dist', {
-    filter(path) {
-      // Do not copy the cache folder
-      return !/cache$/.test(path)
-    }
+    // Do not copy the cache folder
+    filter: path => !path.endsWith('cache')
   })
 ])
 
