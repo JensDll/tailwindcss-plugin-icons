@@ -19,11 +19,11 @@
     "@rollup/plugin-node-resolve": "15.1.0",
     "@rollup/plugin-replace": "5.0.2",
     "@types/fs-extra": "11.0.1",
-    "@types/node": "20.2.5",
-    "@typescript-eslint/eslint-plugin": "5.59.8",
-    "@typescript-eslint/parser": "5.59.8",
-    "@vitest/coverage-c8": "0.31.4",
-    "esbuild": "0.17.19",
+    "@types/node": "20.3.1",
+    "@typescript-eslint/eslint-plugin": "5.59.11",
+    "@typescript-eslint/parser": "5.59.11",
+    "@vitest/coverage-c8": "0.32.0",
+    "esbuild": "0.18.2",
     "eslint": "8.42.0",
     "eslint-plugin-import": "2.27.5",
     "execa": "7.1.1",
@@ -31,13 +31,13 @@
     "postcss": "8.4.24",
     "prettier": "2.8.8",
     "prettier-plugin-tailwindcss": "0.3.0",
-    "rollup": "3.23.0",
+    "rollup": "3.25.1",
     "rollup-plugin-dts": "5.3.0",
     "rollup-plugin-esbuild": "5.0.0",
     "tailwindcss": "3.3.2",
     "tailwindcss-plugin-icons": "workspace:*",
     "typescript": "5.1.3",
     "vite": "4.3.9",
-    "vitest": "0.31.4"
+    "vitest": "0.32.0"
   }
 }

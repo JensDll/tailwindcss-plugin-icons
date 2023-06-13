@@ -16,10 +16,10 @@ jobs:
       - name: Checking out the repository
         uses: actions/checkout@v3.5.3
 
-      - name: Using pnpm version 8.6.0
+      - name: Using pnpm version 8.6.2
         uses: pnpm/action-setup@v2.2.4
         with:
-          version: 8.6.0
+          version: 8.6.2
 
       - name: Using node version ${{ matrix.node_version }}
         uses: actions/setup-node@v3.6.0
