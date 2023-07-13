@@ -1,7 +1,7 @@
-module.exports = {
+export default {
   singleQuote: true,
   arrowParens: 'avoid',
   trailingComma: 'none',
   semi: false,
-  plugins: [require('prettier-plugin-tailwindcss')]
+  plugins: [await import('prettier-plugin-tailwindcss')]
 }
