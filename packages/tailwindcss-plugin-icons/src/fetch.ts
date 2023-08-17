@@ -34,8 +34,8 @@ async function makeRequest(uri: string) {
           writeStream.destroy()
           reject(
             new TailwindcssPluginIconsError(
-              `Failed to fetch remote icon set at "${uri}"`
-            )
+              `Failed to fetch remote icon set at "${uri}"`,
+            ),
           )
         })
     })

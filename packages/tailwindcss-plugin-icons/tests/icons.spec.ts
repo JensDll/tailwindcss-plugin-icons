@@ -7,14 +7,14 @@ import type { ColorFunction } from '~tailwindcss-plugin-icons/css'
 import {
   Icons,
   SCALE,
-  type ScaleFactory
+  type ScaleFactory,
 } from '~tailwindcss-plugin-icons/index'
 
 const consoleErrorMock = vi.spyOn(console, 'error')
 
 vi.mock('~tailwindcss-plugin-icons/cache', () => {
   return {
-    IconifyFileCache: class {}
+    IconifyFileCache: class {},
   }
 })
 
@@ -29,7 +29,7 @@ const mockPluginApi: Mocked<PluginAPI> = {
   config: vi.fn() as never,
   corePlugins: vi.fn(),
   matchVariant: vi.fn() as never,
-  e: vi.fn()
+  e: vi.fn(),
 }
 
 const location = path.resolve(__dirname, '__fixtures__/icons.json')
@@ -45,11 +45,11 @@ afterEach(() => {
   const snapshot: Record<string, CSSRuleObject | null> = {}
 
   for (const [iconClassName, colorFunction] of Object.entries<ColorFunction>(
-    mockPluginApi.matchComponents.mock.lastCall[0]
+    mockPluginApi.matchComponents.mock.lastCall[0],
   )) {
     snapshot[`${iconClassName}-red`] = colorFunction('red', { modifier: null })
     snapshot[`${iconClassName}-green`] = colorFunction('green', {
-      modifier: null
+      modifier: null,
     })
   }
 
@@ -61,10 +61,10 @@ test("fail if icon doesn't exist", () => {
     return {
       testIcons: {
         icons: {
-          doesNotExist: {}
+          doesNotExist: {},
         },
-        location
-      }
+        location,
+      },
     }
   }).handler(mockPluginApi)
 
@@ -79,10 +79,10 @@ test('use addComponent when not forced otherwise', () => {
       testIcons: {
         icons: {
           colored: {},
-          colorless: {}
+          colorless: {},
         },
-        location
-      }
+        location,
+      },
     }
   }).handler(mockPluginApi)
 
@@ -96,10 +96,10 @@ test('use matchComponents when forced as bg', () => {
       testIcons: {
         icons: {
           'colored?bg': {},
-          'colorless?bg': {}
+          'colorless?bg': {},
         },
-        location
-      }
+        location,
+      },
     }
   }).handler(mockPluginApi)
 
@@ -114,11 +114,11 @@ describe('scale width and height', () => {
         testIcons: {
           icons: {
             colored: {},
-            colorless: {}
+            colorless: {},
           },
           scale: 1.5,
-          location
-        }
+          location,
+        },
       }
     }).handler(mockPluginApi)
 
@@ -134,13 +134,13 @@ describe('scale width and height', () => {
         testIcons: {
           icons: {
             colored: {
-              [SCALE]: 2
+              [SCALE]: 2,
             },
-            colorless: {}
+            colorless: {},
           },
           scale,
-          location
-        }
+          location,
+        },
       }
     }).handler(mockPluginApi)
 
@@ -156,15 +156,15 @@ describe('scale width and height', () => {
         testIcons: {
           icons: {
             colored: {
-              [SCALE]: 2
+              [SCALE]: 2,
             },
             colorless: {
-              [SCALE]: 3
-            }
+              [SCALE]: 3,
+            },
           },
           scale: 1,
-          location
-        }
+          location,
+        },
       }
     }).handler(mockPluginApi)
 
@@ -184,8 +184,8 @@ describe('include all', () => {
       return {
         testIcons: {
           includeAll: true,
-          location
-        }
+          location,
+        },
       }
     }).handler(mockPluginApi)
   })
@@ -196,12 +196,12 @@ describe('include all', () => {
         testIcons: {
           icons: {
             colorless: {
-              color: 'red'
-            }
+              color: 'red',
+            },
           },
           includeAll: true,
-          location
-        }
+          location,
+        },
       }
     }).handler(mockPluginApi)
   })
@@ -212,12 +212,12 @@ describe('include all', () => {
         testIcons: {
           icons: {
             'colored?mask': {
-              color: 'red'
-            }
+              color: 'red',
+            },
           },
           includeAll: true,
-          location
-        }
+          location,
+        },
       }
     }).handler(mockPluginApi)
   })
@@ -228,12 +228,12 @@ describe('include all', () => {
         testIcons: {
           icons: {
             'colored?bg': {
-              color: 'red'
-            }
+              color: 'red',
+            },
           },
           includeAll: true,
-          location
-        }
+          location,
+        },
       }
     }).handler(mockPluginApi)
   })

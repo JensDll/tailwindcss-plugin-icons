@@ -9,7 +9,7 @@ import {
   loadIconFromIconifyJson,
   toKebabCase,
   readJson,
-  type WithRequired
+  type WithRequired,
 } from '@internal/shared'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
@@ -22,7 +22,7 @@ import {
   type ColorFunction,
   SCALE,
   getIconCss,
-  getIconCssAsColorFunction
+  getIconCssAsColorFunction,
 } from '~tailwindcss-plugin-icons/css'
 
 export { SCALE } from '~tailwindcss-plugin-icons/css'
@@ -34,18 +34,18 @@ type IconSetOptionsWithIcons = WithRequired<IconSetOptions, 'icons'>
 type ResolveIconSetsCallback = (
   iconSetName: string,
   iconSetOptions: IconSetOptionsWithIcons,
-  iconifyJson: IconifyJSON
+  iconifyJson: IconifyJSON,
 ) => void
 
 function resolveIconSets(
   iconSetOptionsRecord: IconSetOptionsRecord,
-  callback: ResolveIconSetsCallback
+  callback: ResolveIconSetsCallback,
 ) {
   const locationsToFetch: string[] = []
   const afterFetchCallbacks: (() => void)[] = []
 
   for (const [iconSetName, iconSetOptions] of Object.entries(
-    iconSetOptionsRecord
+    iconSetOptionsRecord,
   )) {
     iconSetOptions.icons ??= {}
 
@@ -56,13 +56,13 @@ function resolveIconSets(
       try {
         // When "@iconify-json/[icon-set-name]" is installed
         const jsonPath = require.resolve(
-          `@iconify-json/${kebabCaseIconSetName}/icons.json`
+          `@iconify-json/${kebabCaseIconSetName}/icons.json`,
         )
 
         callback(
           kebabCaseIconSetName,
           iconSetOptions as IconSetOptionsWithIcons,
-          readJson(jsonPath)
+          readJson(jsonPath),
         )
         continue
       } catch (e) {
@@ -72,13 +72,13 @@ function resolveIconSets(
       try {
         // When "@iconify/json" is installed
         const jsonPath = require.resolve(
-          `@iconify/json/json/${kebabCaseIconSetName}.json`
+          `@iconify/json/json/${kebabCaseIconSetName}.json`,
         )
 
         callback(
           kebabCaseIconSetName,
           iconSetOptions as IconSetOptionsWithIcons,
-          readJson(jsonPath)
+          readJson(jsonPath),
         )
         continue
       } catch (e) {
@@ -86,7 +86,7 @@ function resolveIconSets(
       }
 
       throw new TailwindcssPluginIconsError(
-        `Icon set "${iconSetName}" not found. Please see if the name is correct or try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`
+        `Icon set "${iconSetName}" not found. Please see if the name is correct or try installing it with "npm install @iconify-json/${kebabCaseIconSetName}"`,
       )
     }
 
@@ -96,7 +96,7 @@ function resolveIconSets(
         callback(
           kebabCaseIconSetName,
           iconSetOptions as IconSetOptionsWithIcons,
-          cache.get(iconSetOptions.location)!
+          cache.get(iconSetOptions.location)!,
         )
       } else {
         locationsToFetch.push(iconSetOptions.location)
@@ -104,7 +104,7 @@ function resolveIconSets(
           callback(
             kebabCaseIconSetName,
             iconSetOptions as IconSetOptionsWithIcons,
-            cache.get(iconSetOptions.location!)!
+            cache.get(iconSetOptions.location!)!,
           )
         })
       }
@@ -124,14 +124,14 @@ function resolveIconSets(
 
     if (!fs.existsSync(resolvedLocation)) {
       throw new TailwindcssPluginIconsError(
-        `Failed to find icon set at location "${iconSetOptions.location}"`
+        `Failed to find icon set at location "${iconSetOptions.location}"`,
       )
     }
 
     callback(
       kebabCaseIconSetName,
       iconSetOptions as IconSetOptionsWithIcons,
-      readJson(resolvedLocation)
+      readJson(resolvedLocation),
     )
 
     continue
@@ -145,8 +145,8 @@ function resolveIconSets(
     'node',
     [path.resolve(__dirname, 'fetch.mjs'), cache.cacheDir, ...locationsToFetch],
     {
-      stdio: 'pipe'
-    }
+      stdio: 'pipe',
+    },
   )
 
   afterFetchCallbacks.forEach(cb => cb())
@@ -170,7 +170,7 @@ const addIconToComponents =
     iconName,
     iconSetName,
     cssDefaults = {},
-    scale = 1
+    scale = 1,
   }: AddIconOptions) => {
     const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
 
@@ -180,19 +180,19 @@ const addIconToComponents =
         (typeof scale === 'function' ? scale(iconName) : scale),
       enumerable: false,
       writable: false,
-      configurable: false
+      configurable: false,
     })
 
     if (loadedIcon.mode === 'bg') {
       backgroundComponents[`bg-${iconSetName}-${loadedIcon.normalizedName}`] =
         getIconCssAsColorFunction(
           loadedIcon,
-          cssDefaults as CSSRuleObjectWithScale
+          cssDefaults as CSSRuleObjectWithScale,
         )
     } else {
       components[`.i-${iconSetName}-${loadedIcon.normalizedName}`] = getIconCss(
         loadedIcon,
-        cssDefaults as CSSRuleObjectWithScale
+        cssDefaults as CSSRuleObjectWithScale,
       )
     }
 
@@ -207,7 +207,7 @@ export const Icons = plugin.withOptions<Options>(options => pluginApi => {
   const onResolve: ResolveIconSetsCallback = (
     iconSetName,
     { icons, scale, includeAll },
-    iconifyJson
+    iconifyJson,
   ) => {
     if (includeAll) {
       Object.keys(iconifyJson.icons).forEach(iconName => {
@@ -239,7 +239,7 @@ export const Icons = plugin.withOptions<Options>(options => pluginApi => {
   pluginApi.addComponents(components)
   pluginApi.matchComponents(backgroundComponents, {
     values: flattenColorPalette(pluginApi.theme('colors')),
-    type: ['color', 'any']
+    type: ['color', 'any'],
   })
 })
 

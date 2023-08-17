@@ -5,23 +5,23 @@ import {
   parseIconName,
   toKebabCase,
   encodeSvg,
-  type ParsedIconName
+  type ParsedIconName,
 } from '~shared/index'
 
 describe('toKebabCase', () => {
   test.each([
     {
       value: 'heroiconsSolid',
-      expected: 'heroicons-solid'
+      expected: 'heroicons-solid',
     },
     {
       value: 'HeroiconsSolid',
-      expected: 'heroicons-solid'
+      expected: 'heroicons-solid',
     },
     {
       value: 'heroicons-Solid',
-      expected: 'heroicons-solid'
-    }
+      expected: 'heroicons-solid',
+    },
   ])('$value', ({ value, expected }) => {
     const actual = toKebabCase(value)
     expect(actual).toBe(expected)
@@ -32,36 +32,36 @@ describe('isUri', () => {
   test.each([
     {
       value: 'https://example.com',
-      expected: true
+      expected: true,
     },
     {
       value: 'http://example.com',
-      expected: true
+      expected: true,
     },
     {
       value: 'http:/example.com',
-      expected: false
+      expected: false,
     },
     {
       value: './src/icons.json',
-      expected: false
+      expected: false,
     },
     {
       value: 'src/icons.json',
-      expected: false
+      expected: false,
     },
     {
       value: '',
-      expected: false
+      expected: false,
     },
     {
       value: undefined,
-      expected: false
+      expected: false,
     },
     {
       value: null,
-      expected: false
-    }
+      expected: false,
+    },
   ])('$value', ({ value, expected }) => {
     const actual = isUri(value)
     expect(actual).toBe(expected)
@@ -106,23 +106,23 @@ describe('parseIconName', () => {
       value: 'plusCircle',
       expected: {
         normalizedIconName: 'plus-circle',
-        iconMode: undefined
-      }
+        iconMode: undefined,
+      },
     },
     {
       value: 'plusCircle?bg',
       expected: {
         normalizedIconName: 'plus-circle',
-        iconMode: 'bg'
-      }
+        iconMode: 'bg',
+      },
     },
     {
       value: 'plusCircle?mask',
       expected: {
         normalizedIconName: 'plus-circle',
-        iconMode: 'mask'
-      }
-    }
+        iconMode: 'mask',
+      },
+    },
   ])('$value', ({ value, expected }) => {
     const actual = parseIconName(value)
     expect(actual).toStrictEqual(expected)
@@ -133,44 +133,44 @@ describe('loadIconFromJson', () => {
   const iconifyJson = {
     icons: {
       'current-color': {
-        body: 'currentColor'
+        body: 'currentColor',
       },
       color: {
-        body: '#fff'
+        body: '#fff',
       },
       left: {
         body: '',
-        left: 10
+        left: 10,
       },
       top: {
         body: '',
-        top: 20
+        top: 20,
       },
       width: {
         body: '',
-        width: 30
+        width: 30,
       },
       height: {
         body: '',
-        height: 40
+        height: 40,
       },
       'left+top': {
         body: '',
         left: 10,
-        top: 20
+        top: 20,
       },
       'left+top+width': {
         body: '',
         left: 10,
         top: 20,
-        width: 30
+        width: 30,
       },
       'left+top+width+height': {
         body: '',
         left: 10,
         top: 20,
         width: 30,
-        height: 40
+        height: 40,
       },
       rotate90: {
         body: 'body',
@@ -178,7 +178,7 @@ describe('loadIconFromJson', () => {
         left: 5,
         top: 10,
         width: 50,
-        height: 100
+        height: 100,
       },
       rotate180: {
         body: 'body',
@@ -186,28 +186,28 @@ describe('loadIconFromJson', () => {
         left: 5,
         top: 10,
         width: 50,
-        height: 100
+        height: 100,
       },
       'h-flip': {
         body: 'body',
-        hFlip: true
+        hFlip: true,
       },
       'v-flip': {
         body: 'body',
-        vFlip: true
-      }
+        vFlip: true,
+      },
     },
     aliases: {
       'current-color-rotate90': {
         parent: 'current-color',
-        rotate: 1
-      }
+        rotate: 1,
+      },
     },
     prefix: 'test',
     left: 1,
     top: 2,
     width: 3,
-    height: 4
+    height: 4,
   } as const
 
   type IconifyJson = typeof iconifyJson
@@ -228,8 +228,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'current-color-rotate90',
@@ -240,8 +240,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'current-color?bg',
@@ -252,8 +252,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'color',
@@ -264,8 +264,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'color?mask',
@@ -276,8 +276,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'left',
@@ -288,8 +288,8 @@ describe('loadIconFromJson', () => {
         left: 10,
         top: 2,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'top',
@@ -300,8 +300,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 20,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'width',
@@ -312,8 +312,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 30,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'height',
@@ -324,8 +324,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 3,
-        height: 40
-      }
+        height: 40,
+      },
     },
     {
       iconName: 'left+top',
@@ -336,8 +336,8 @@ describe('loadIconFromJson', () => {
         left: 10,
         top: 20,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'left+top+width',
@@ -348,8 +348,8 @@ describe('loadIconFromJson', () => {
         left: 10,
         top: 20,
         width: 30,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'left+top+width+height',
@@ -360,8 +360,8 @@ describe('loadIconFromJson', () => {
         left: 10,
         top: 20,
         width: 30,
-        height: 40
-      }
+        height: 40,
+      },
     },
     {
       iconName: 'rotate90',
@@ -372,8 +372,8 @@ describe('loadIconFromJson', () => {
         left: 5,
         top: 10,
         width: 50,
-        height: 100
-      }
+        height: 100,
+      },
     },
     {
       iconName: 'rotate180',
@@ -384,8 +384,8 @@ describe('loadIconFromJson', () => {
         left: 5,
         top: 10,
         width: 50,
-        height: 100
-      }
+        height: 100,
+      },
     },
     {
       iconName: 'h-flip',
@@ -396,8 +396,8 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 3,
-        height: 4
-      }
+        height: 4,
+      },
     },
     {
       iconName: 'v-flip',
@@ -408,9 +408,9 @@ describe('loadIconFromJson', () => {
         left: 1,
         top: 2,
         width: 3,
-        height: 4
-      }
-    }
+        height: 4,
+      },
+    },
   ])('$iconName', ({ iconName, expected }) => {
     const actual = loadIconFromIconifyJson(iconifyJson, iconName)
     expect(actual).toStrictEqual(expected)

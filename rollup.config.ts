@@ -9,15 +9,15 @@ import { rootDir } from './scripts/utils'
 const plugin = {
   dts: dts(),
   esbuild: esbuild({
-    target: 'ES2019'
+    target: 'ES2019',
   }),
   minify: minify({
-    target: 'ES2019'
+    target: 'ES2019',
   }),
   nodeResolve: nodeResolve({
     rootDir,
-    resolveOnly: [/^@internal\//]
-  })
+    resolveOnly: [/^@internal\//],
+  }),
 } as const
 
 type PackageName = 'tailwindcss-plugin-icons' | 'shared'
@@ -33,7 +33,7 @@ const baseExternals: ExternalOption = [
   'https',
   'child_process',
   'crypto',
-  /tailwindcss\/.+/
+  /tailwindcss\/.+/,
 ]
 
 const shared: RollupOptionsWithPlugins[] = [
@@ -41,18 +41,18 @@ const shared: RollupOptionsWithPlugins[] = [
     input: input('shared'),
     output: {
       file: 'packages/shared/dist/index.mjs',
-      format: 'esm'
+      format: 'esm',
     },
-    plugins: [plugin.esbuild]
+    plugins: [plugin.esbuild],
   },
   {
     input: input('shared'),
     output: {
       file: 'packages/shared/dist/index.d.ts',
-      format: 'esm'
+      format: 'esm',
     },
-    plugins: [plugin.dts]
-  }
+    plugins: [plugin.dts],
+  },
 ]
 
 const tailwindcssPluginIcons: RollupOptionsWithPlugins[] = [
@@ -62,12 +62,12 @@ const tailwindcssPluginIcons: RollupOptionsWithPlugins[] = [
       dir: 'packages/tailwindcss-plugin-icons/dist',
       format: 'esm',
       manualChunks: {
-        'internal/shared': ['@internal/shared']
+        'internal/shared': ['@internal/shared'],
       },
       entryFileNames: '[name].mjs',
-      chunkFileNames: '[name].mjs'
+      chunkFileNames: '[name].mjs',
     },
-    plugins: [plugin.nodeResolve, plugin.esbuild]
+    plugins: [plugin.nodeResolve, plugin.esbuild],
   },
   {
     input: input('tailwindcss-plugin-icons'),
@@ -75,12 +75,12 @@ const tailwindcssPluginIcons: RollupOptionsWithPlugins[] = [
       dir: 'packages/tailwindcss-plugin-icons/dist',
       format: 'esm',
       manualChunks: {
-        'internal/shared': ['@internal/shared']
+        'internal/shared': ['@internal/shared'],
       },
       entryFileNames: '[name].mjs',
-      chunkFileNames: '[name].mjs'
+      chunkFileNames: '[name].mjs',
     },
-    plugins: [plugin.nodeResolve, plugin.esbuild]
+    plugins: [plugin.nodeResolve, plugin.esbuild],
   },
   {
     input: input('tailwindcss-plugin-icons'),
@@ -88,27 +88,27 @@ const tailwindcssPluginIcons: RollupOptionsWithPlugins[] = [
       dir: 'packages/tailwindcss-plugin-icons/dist',
       format: 'cjs',
       manualChunks: {
-        'internal/shared': ['@internal/shared']
+        'internal/shared': ['@internal/shared'],
       },
       interop: 'auto',
       entryFileNames: '[name].cjs',
-      chunkFileNames: '[name].cjs'
+      chunkFileNames: '[name].cjs',
     },
-    plugins: [plugin.nodeResolve, plugin.esbuild]
+    plugins: [plugin.nodeResolve, plugin.esbuild],
   },
   {
     input: input('tailwindcss-plugin-icons'),
     output: {
       file: 'packages/tailwindcss-plugin-icons/dist/index.d.ts',
-      format: 'esm'
+      format: 'esm',
     },
-    plugins: [plugin.dts]
-  }
+    plugins: [plugin.dts],
+  },
 ]
 
 const configs: RollupOptionsWithPlugins[] = [
   ...shared,
-  ...tailwindcssPluginIcons
+  ...tailwindcssPluginIcons,
 ]
 
 configs.forEach(config => {

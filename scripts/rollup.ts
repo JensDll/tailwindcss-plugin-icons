@@ -30,22 +30,22 @@ export type AliasWithoutResolver = Omit<Alias, 'customResolver'>
 
 export const packagesAlias: AliasWithoutResolver = {
   find: /^~([a-z-]+?)\/(.+)/,
-  replacement: path.resolve(rootDir, 'packages/$1/src/$2')
+  replacement: path.resolve(rootDir, 'packages/$1/src/$2'),
 }
 
 export const scriptsAlias: AliasWithoutResolver = {
   find: /^~\/scripts\/(.+)/,
-  replacement: path.resolve(rootDir, 'scripts/$1')
+  replacement: path.resolve(rootDir, 'scripts/$1'),
 }
 
 const resolveTs = resolveExtensions(['.ts'])
 
 export const packagesAliasPlugin = alias({
   customResolver: resolveTs,
-  entries: [packagesAlias]
+  entries: [packagesAlias],
 })
 
 export const scriptsAliasPlugin = alias({
   customResolver: resolveTs,
-  entries: [scriptsAlias]
+  entries: [scriptsAlias],
 })

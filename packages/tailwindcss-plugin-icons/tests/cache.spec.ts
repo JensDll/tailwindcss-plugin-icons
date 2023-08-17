@@ -66,16 +66,16 @@ describe('get', () => {
   test.each([
     {
       key: 'cache1.json',
-      expected: () => readFixture('cache1.json')
+      expected: () => readFixture('cache1.json'),
     },
     {
       key: 'cache2.json',
-      expected: () => readFixture('cache2.json')
+      expected: () => readFixture('cache2.json'),
     },
     {
       key: 'undefined',
-      expected: () => undefined
-    }
+      expected: () => undefined,
+    },
   ])('$key', ({ key, expected }) => {
     const actual = cache.get(key)
     expect(actual).toStrictEqual(expected())
@@ -86,16 +86,16 @@ describe('has', () => {
   test.each([
     {
       key: 'cache1.json',
-      expected: true
+      expected: true,
     },
     {
       key: 'cache2.json',
-      expected: true
+      expected: true,
     },
     {
       key: 'undefined',
-      expected: false
-    }
+      expected: false,
+    },
   ])('$key', ({ key, expected }) => {
     const actual = cache.has(key)
     expect(actual).toBe(expected)

@@ -14,13 +14,13 @@ const URL_VAR_NAME = '--tw-plugin-icons-url'
 function getIconDimensions(icon: LoadedIcon, scale: number) {
   return {
     width: `${(icon.width / icon.height) * scale}em`,
-    height: `${scale}em`
+    height: `${scale}em`,
   }
 }
 
 export function getIconCss(
   icon: LoadedIcon,
-  cssDefaults: CSSRuleObjectWithScale
+  cssDefaults: CSSRuleObjectWithScale,
 ) {
   const iconUrl = iconToDataUrl(icon)
   const iconDimensions = getIconDimensions(icon, cssDefaults[SCALE])
@@ -32,7 +32,7 @@ export function getIconCss(
       maskSize: '100% 100%',
       backgroundColor: 'currentColor',
       ...iconDimensions,
-      ...cssDefaults
+      ...cssDefaults,
     }
   }
 
@@ -41,7 +41,7 @@ export function getIconCss(
     background: `var(${URL_VAR_NAME}) no-repeat`,
     backgroundSize: '100% 100%',
     ...iconDimensions,
-    ...cssDefaults
+    ...cssDefaults,
   }
 }
 
@@ -49,23 +49,23 @@ export type ColorFunction = (
   color: string,
   extra: {
     modifier: unknown
-  }
+  },
 ) => CSSRuleObject | null
 
 export function getIconCssAsColorFunction(
   icon: LoadedIcon,
-  cssDefaults: CSSRuleObjectWithScale
+  cssDefaults: CSSRuleObjectWithScale,
 ): ColorFunction {
   return color => {
     return {
       [URL_VAR_NAME]: iconToDataUrl(
         icon,
-        icon.body.replace(/currentColor/g, color)
+        icon.body.replace(/currentColor/g, color),
       ),
       background: `var(${URL_VAR_NAME}) no-repeat`,
       backgroundSize: '100% 100%',
       ...getIconDimensions(icon, cssDefaults[SCALE]),
-      ...cssDefaults
+      ...cssDefaults,
     }
   }
 }

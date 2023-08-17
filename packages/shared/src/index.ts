@@ -5,7 +5,7 @@ import type {
   ExtendedIconifyIcon,
   IconifyDimenisons as IconifyDimensions,
   IconifyJSON,
-  IconifyTransformations
+  IconifyTransformations,
 } from '@iconify/types'
 
 export type Nullable<T> = T | null | undefined
@@ -89,7 +89,7 @@ export function parseIconName(iconName: string): ParsedIconName {
     (...values) => {
       iconMode = values[1]
       return ''
-    }
+    },
   )
 
   return { normalizedIconName, iconMode }
@@ -102,7 +102,7 @@ export function iconToDataUrl(icon: LoadedIcon, body = icon.body) {
 
 export function loadIconFromIconifyJson(
   iconifyJson: IconifyJSON,
-  iconName: string
+  iconName: string,
 ): LoadedIcon {
   const { icons, aliases, info } = iconifyJson
   let { left, top, width, height } = iconifyJson
@@ -122,13 +122,13 @@ export function loadIconFromIconifyJson(
 
     icon = {
       ...icons[parent],
-      ...aliasedIcon
+      ...aliasedIcon,
     }
   } else {
     throw new TailwindcssPluginIconsError(
       `Icon "${normalizedIconName}" not found${
         info ? ` in "${info.name}"` : ''
-      }`
+      }`,
     )
   }
 
@@ -154,13 +154,13 @@ export function loadIconFromIconifyJson(
       height,
       rotate: icon.rotate,
       hFlip: icon.hFlip,
-      vFlip: icon.vFlip
+      vFlip: icon.vFlip,
     }),
     mode: iconMode,
     left,
     top,
     width,
-    height
+    height,
   }
 }
 
@@ -170,7 +170,7 @@ interface IconifyPartialOptional
 
 function applyTransformations(
   body: string,
-  { left, top, width, height, rotate, hFlip, vFlip }: IconifyPartialOptional
+  { left, top, width, height, rotate, hFlip, vFlip }: IconifyPartialOptional,
 ): string {
   const transform: string[] = []
 

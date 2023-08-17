@@ -45,9 +45,9 @@ export class IconifyFileCache implements Map<string, IconifyJSON> {
     callbackfn: (
       value: IconifyJSON,
       key: string,
-      map: Map<string, IconifyJSON>
+      map: Map<string, IconifyJSON>,
     ) => void,
-    thisArg: any = this
+    thisArg: any = this,
   ): void {
     for (const [key, value] of this) {
       callbackfn.call(thisArg, value, key, this)

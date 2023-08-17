@@ -14,7 +14,7 @@ await run('pnpm', [
   'exec',
   'prettier',
   '--write',
-  'packages/**/dist/index.d.ts'
+  'packages/**/dist/index.d.ts',
 ])
 
 console.log()
@@ -25,8 +25,8 @@ await Promise.all([
   fs.copy(`${mainPath}/package.json`, 'publish/package.json'),
   fs.copy(`${mainPath}/dist`, 'publish/dist', {
     // Do not copy the cache folder
-    filter: path => !path.endsWith('cache')
-  })
+    filter: path => !path.endsWith('cache'),
+  }),
 ])
 
 console.log()
