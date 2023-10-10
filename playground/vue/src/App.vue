@@ -6,7 +6,7 @@
       class="flex flex-wrap items-center text-2xl lg:text-3xl [&>li]:m-2 [&>li]:shrink-0"
     >
       <li
-        class="i-heroicons-outline-trash-purple-500 hover:i-heroicons-outline-trash-purple-700"
+        class="bg-heroicons-outline-trash-purple-500 hover:bg-heroicons-outline-trash-purple-700"
       ></li>
       <li
         class="i-heroicons-solid-trash text-slate-400 hover:text-slate-600"
