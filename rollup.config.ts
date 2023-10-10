@@ -98,10 +98,16 @@ const tailwindcssPluginIcons: RollupOptionsWithPlugins[] = [
   },
   {
     input: input('tailwindcss-plugin-icons'),
-    output: {
-      file: 'packages/tailwindcss-plugin-icons/dist/index.d.ts',
-      format: 'esm',
-    },
+    output: [
+      {
+        file: 'packages/tailwindcss-plugin-icons/dist/index.d.mts',
+        format: 'esm',
+      },
+      {
+        file: 'packages/tailwindcss-plugin-icons/dist/index.d.cts',
+        format: 'esm',
+      },
+    ],
     plugins: [plugin.dts],
   },
 ]
