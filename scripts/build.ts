@@ -11,10 +11,10 @@ await run('rollup', ['--config', '--configPlugin', 'esbuild'])
 console.log()
 console.log('Formatting declaration files ...')
 await run('pnpm', [
-  'exec',
   'prettier',
+  'packages/*/dist/index.d.*',
   '--write',
-  'packages/**/dist/index.d.ts',
+  '--ignore-path',
 ])
 
 console.log()
