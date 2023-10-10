@@ -57,6 +57,11 @@ export default {
         scale: 1.25,
         // You can choose to include every icon in the icon set
         includeAll: true,
+        // You can adjust the class name prefix for both mask and background icons
+        prefix: {
+          mask: '',
+          background: '',
+        },
       },
       lineMd: {
         icons: {

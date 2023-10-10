@@ -10,7 +10,7 @@ jobs:
   testing:
     runs-on: ubuntu-22.04
     env:
-      PNPM_VERSION: 8.8.0
+      PNPM_VERSION: 8.9.0
     strategy:
       matrix:
         node_version: [16, 18, 20]

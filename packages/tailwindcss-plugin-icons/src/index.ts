@@ -159,7 +159,8 @@ type AddIconOptions = {
   iconifyJson: IconifyJSON
   iconSetName: string
   iconName: string
-  scale?: number | ScaleFactory
+  scale: IconSetOptionsScale
+  prefix: Required<IconSetOptionsPrefix>
   cssDefaults?: CSSRuleObjectWithMaybeScale
 }
 
@@ -169,8 +170,9 @@ const addIconToComponents =
     iconifyJson,
     iconName,
     iconSetName,
+    prefix,
+    scale,
     cssDefaults = {},
-    scale = 1,
   }: AddIconOptions) => {
     const loadedIcon = loadIconFromIconifyJson(iconifyJson, iconName)
 
@@ -184,16 +186,15 @@ const addIconToComponents =
     })
 
     if (loadedIcon.mode === 'bg') {
-      backgroundComponents[`bg-${iconSetName}-${loadedIcon.normalizedName}`] =
-        getIconCssAsColorFunction(
-          loadedIcon,
-          cssDefaults as CSSRuleObjectWithScale,
-        )
-    } else {
-      components[`.i-${iconSetName}-${loadedIcon.normalizedName}`] = getIconCss(
+      backgroundComponents[
+        `${prefix.background}${iconSetName}-${loadedIcon.normalizedName}`
+      ] = getIconCssAsColorFunction(
         loadedIcon,
         cssDefaults as CSSRuleObjectWithScale,
       )
+    } else {
+      components[`.${prefix.mask}${iconSetName}-${loadedIcon.normalizedName}`] =
+        getIconCss(loadedIcon, cssDefaults as CSSRuleObjectWithScale)
     }
 
     return loadedIcon
@@ -206,23 +207,47 @@ export const Icons = plugin.withOptions<Options>(options => pluginApi => {
 
   const onResolve: ResolveIconSetsCallback = (
     iconSetName,
-    { icons, scale, includeAll },
+    {
+      icons,
+      includeAll,
+      prefix: { mask = 'i-', background = 'bg-' } = {},
+      scale = 1,
+    },
     iconifyJson,
   ) => {
     if (includeAll) {
       Object.keys(iconifyJson.icons).forEach(iconName => {
-        addIcon({ iconifyJson, iconName, iconSetName, scale })
+        addIcon({
+          iconifyJson,
+          iconName,
+          iconSetName,
+          scale,
+          prefix: { mask, background },
+        })
       })
 
       if (iconifyJson.aliases) {
         Object.keys(iconifyJson.aliases).forEach(iconName => {
-          addIcon({ iconifyJson, iconName, iconSetName, scale })
+          addIcon({
+            iconifyJson,
+            iconName,
+            iconSetName,
+            scale,
+            prefix: { mask, background },
+          })
         })
       }
     }
 
     Object.entries(icons).forEach(([iconName, cssDefaults]) => {
-      addIcon({ iconifyJson, iconName, iconSetName, cssDefaults, scale })
+      addIcon({
+        iconifyJson,
+        iconName,
+        iconSetName,
+        cssDefaults,
+        scale,
+        prefix: { mask, background },
+      })
     })
   }
 
@@ -243,18 +268,16 @@ export const Icons = plugin.withOptions<Options>(options => pluginApi => {
   })
 })
 
-export type ScaleFactory = (iconName: string) => number
-
 export type IconSetOptions = {
   /**
    * An object describing the selected icons with optional default CSS.
    */
-  icons?: Record<string, CSSRuleObjectWithMaybeScale>
+  icons?: IconSetOptionsIcons
   /**
    * A default scale used for all selected icons.
    * @default 1
    */
-  scale?: number | ScaleFactory
+  scale?: IconSetOptionsScale
   /**
    * The location of the icon source in Iconify JSON format. Can be any URI, local path, or module name.
    * @default "@iconify/json" or "@iconify-json/[name]"
@@ -265,6 +288,29 @@ export type IconSetOptions = {
    * @default false
    */
   includeAll?: boolean
+  /**
+   * A prefix for the generated CSS classes.
+   */
+  prefix?: IconSetOptionsPrefix
+}
+
+export type IconSetOptionsIcons = Record<string, CSSRuleObjectWithMaybeScale>
+
+export type ScaleFactory = (iconName: string) => number
+
+export type IconSetOptionsScale = number | ScaleFactory
+
+export type IconSetOptionsPrefix = {
+  /**
+   * The prefix for mask icons.
+   * @default "i-"
+   */
+  mask?: string
+  /**
+   * The prefix for background icons.
+   * @default "bg-"
+   */
+  background?: string
 }
 
 export type IconSetOptionsRecord = Record<string, IconSetOptions>
