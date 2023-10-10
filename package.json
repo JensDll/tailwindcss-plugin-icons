@@ -1,18 +1,17 @@
 {
   "private": true,
   "scripts": {
-    "build": "node --loader @esbuild-kit/esm-loader scripts/build.ts",
-    "build:vue": "pnpm run --filter \"vue-playground\" build",
+    "build": "node --loader tsx/esm scripts/build.ts",
+    "build:vue": "pnpm run --filter 'vue-playground' build",
     "dev": "rollup --config --watch --configPlugin esbuild",
-    "dev:vue": "pnpm run --filter \"vue-playground\" dev",
+    "dev:vue": "pnpm run --filter 'vue-playground' dev",
     "test": "vitest",
     "test:run": "vitest run",
-    "lint": "eslint . --ignore-pattern \"/scripts/*\" --rule \"no-console: [\"error\", { allow: [\"warn\", \"error\"] }]\" --max-warnings 0 & eslint \"./scripts/**\" --max-warnings 0",
+    "lint": "eslint . --ignore-pattern '/scripts/*' --rule 'no-console: ['error', { allow: ['warn', 'error'] }]' --max-warnings 0 & eslint './scripts/**' --max-warnings 0",
     "format": "prettier --write ."
   },
   "type": "module",
   "dependencies": {
-    "@esbuild-kit/esm-loader": "2.6.5",
     "@iconify/types": "2.0.0",
     "@internal/shared": "workspace:*",
     "@rollup/plugin-alias": "5.0.1",
@@ -36,6 +35,7 @@
     "rollup-plugin-esbuild": "6.1.0",
     "tailwindcss": "3.3.3",
     "tailwindcss-plugin-icons": "workspace:*",
+    "tsx": "3.13.0",
     "typescript": "5.2.2",
     "vite": "4.4.11",
     "vitest": "0.34.6"
