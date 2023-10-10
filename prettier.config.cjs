@@ -1,8 +1,8 @@
 /** @type {import("prettier").Options} */
-export default {
+module.exports = {
   singleQuote: true,
   arrowParens: 'avoid',
   trailingComma: 'all',
   semi: false,
-  plugins: [import('prettier-plugin-tailwindcss')],
+  plugins: ['prettier-plugin-tailwindcss'],
 }
