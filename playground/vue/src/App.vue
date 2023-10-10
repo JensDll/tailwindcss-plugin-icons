@@ -6,7 +6,7 @@
       class="flex flex-wrap items-center text-2xl lg:text-3xl [&>li]:m-2 [&>li]:shrink-0"
     >
       <li
-        class="bg-heroicons-outline-trash-purple-500 hover:bg-heroicons-outline-trash-purple-700"
+        class="i-heroicons-outline-trash-purple-500 hover:i-heroicons-outline-trash-purple-700"
       ></li>
       <li
         class="i-heroicons-solid-trash text-slate-400 hover:text-slate-600"
@@ -30,10 +30,10 @@
       <li class="i-line-md-arrow-align-bottom"></li>
       <li class="i-line-md-check-list-3"></li>
       <li class="i-vscode-icons-file-type-light-db text-pink-500"></li>
-      <li class="i-bi-backspace"></li>
-      <li class="i-bi-backspace-reverse"></li>
-      <li class="i-bi-people-circle text-green-700"></li>
-      <li class="bg-bi-people-circle-amber-700"></li>
+      <li class="bi-backspace"></li>
+      <li class="bi-backspace-reverse"></li>
+      <li class="bi-people-circle text-green-700"></li>
+      <li class="bi-people-circle-amber-700"></li>
       <li class="i-logos-ember-tomster"></li>
       <li class="i-logos-vue"></li>
       <li class="i-logos-stackblitz"></li>

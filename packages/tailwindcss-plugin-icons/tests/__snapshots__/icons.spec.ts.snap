@@ -236,6 +236,225 @@ exports[`include all > without icons 2`] = `
 
 exports[`include all > without icons 3`] = `{}`;
 
+exports[`prefix > background 1`] = `
+[
+  {
+    ".i-test-icons-colored": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "background": "var(--tw-plugin-icons-url) no-repeat",
+      "backgroundSize": "100% 100%",
+      "height": "1em",
+      "width": "1em",
+    },
+    ".i-test-icons-colored-h-flip": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "background": "var(--tw-plugin-icons-url) no-repeat",
+      "backgroundSize": "100% 100%",
+      "height": "1em",
+      "width": "1em",
+    },
+    ".i-test-icons-colorless": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "backgroundColor": "currentColor",
+      "height": "1em",
+      "mask": "var(--tw-plugin-icons-url) no-repeat",
+      "maskSize": "100% 100%",
+      "width": "1em",
+    },
+    ".i-test-icons-colorless-rotate": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "backgroundColor": "currentColor",
+      "height": "1em",
+      "mask": "var(--tw-plugin-icons-url) no-repeat",
+      "maskSize": "100% 100%",
+      "width": "1em",
+    },
+  },
+]
+`;
+
+exports[`prefix > background 2`] = `
+[
+  {
+    "i-background-test-icons-colored": [Function],
+  },
+  {
+    "type": [
+      "color",
+      "any",
+    ],
+    "values": {},
+  },
+]
+`;
+
+exports[`prefix > background 3`] = `
+{
+  "i-background-test-icons-colored-green": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "color": "red",
+    "height": "1em",
+    "width": "1em",
+  },
+  "i-background-test-icons-colored-red": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "color": "red",
+    "height": "1em",
+    "width": "1em",
+  },
+}
+`;
+
+exports[`prefix > mask + background 1`] = `
+[
+  {
+    ".test-icons-colored": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "background": "var(--tw-plugin-icons-url) no-repeat",
+      "backgroundSize": "100% 100%",
+      "height": "1em",
+      "width": "1em",
+    },
+    ".test-icons-colored-h-flip": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "background": "var(--tw-plugin-icons-url) no-repeat",
+      "backgroundSize": "100% 100%",
+      "height": "1em",
+      "width": "1em",
+    },
+    ".test-icons-colorless": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "backgroundColor": "currentColor",
+      "height": "1em",
+      "mask": "var(--tw-plugin-icons-url) no-repeat",
+      "maskSize": "100% 100%",
+      "width": "1em",
+    },
+    ".test-icons-colorless-rotate": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "backgroundColor": "currentColor",
+      "height": "1em",
+      "mask": "var(--tw-plugin-icons-url) no-repeat",
+      "maskSize": "100% 100%",
+      "width": "1em",
+    },
+  },
+]
+`;
+
+exports[`prefix > mask + background 2`] = `
+[
+  {
+    "test-icons-colored": [Function],
+  },
+  {
+    "type": [
+      "color",
+      "any",
+    ],
+    "values": {},
+  },
+]
+`;
+
+exports[`prefix > mask + background 3`] = `
+{
+  "test-icons-colored-green": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "color": "red",
+    "height": "1em",
+    "width": "1em",
+  },
+  "test-icons-colored-red": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "color": "red",
+    "height": "1em",
+    "width": "1em",
+  },
+}
+`;
+
+exports[`prefix > mask 1`] = `
+[
+  {
+    ".i-mask-test-icons-colored": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "background": "var(--tw-plugin-icons-url) no-repeat",
+      "backgroundSize": "100% 100%",
+      "height": "1em",
+      "width": "1em",
+    },
+    ".i-mask-test-icons-colored-h-flip": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "background": "var(--tw-plugin-icons-url) no-repeat",
+      "backgroundSize": "100% 100%",
+      "height": "1em",
+      "width": "1em",
+    },
+    ".i-mask-test-icons-colorless": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "backgroundColor": "currentColor",
+      "height": "1em",
+      "mask": "var(--tw-plugin-icons-url) no-repeat",
+      "maskSize": "100% 100%",
+      "width": "1em",
+    },
+    ".i-mask-test-icons-colorless-rotate": {
+      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "backgroundColor": "currentColor",
+      "height": "1em",
+      "mask": "var(--tw-plugin-icons-url) no-repeat",
+      "maskSize": "100% 100%",
+      "width": "1em",
+    },
+  },
+]
+`;
+
+exports[`prefix > mask 2`] = `
+[
+  {
+    "bg-test-icons-colored": [Function],
+  },
+  {
+    "type": [
+      "color",
+      "any",
+    ],
+    "values": {},
+  },
+]
+`;
+
+exports[`prefix > mask 3`] = `
+{
+  "bg-test-icons-colored-green": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "color": "red",
+    "height": "1em",
+    "width": "1em",
+  },
+  "bg-test-icons-colored-red": {
+    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "background": "var(--tw-plugin-icons-url) no-repeat",
+    "backgroundSize": "100% 100%",
+    "color": "red",
+    "height": "1em",
+    "width": "1em",
+  },
+}
+`;
+
 exports[`scale width and height > when passed per icon 1`] = `
 [
   {

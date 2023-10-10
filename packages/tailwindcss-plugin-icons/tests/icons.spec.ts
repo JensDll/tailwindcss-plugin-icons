@@ -238,3 +238,68 @@ describe('include all', () => {
     }).handler(mockPluginApi)
   })
 })
+
+describe('prefix', () => {
+  afterEach(() => {
+    expect(mockPluginApi.addComponents).toBeCalledTimes(1)
+    expect(mockPluginApi.matchComponents).toBeCalledTimes(1)
+  })
+
+  test('mask', () => {
+    Icons(() => {
+      return {
+        testIcons: {
+          icons: {
+            'colored?bg': {
+              color: 'red',
+            },
+          },
+          includeAll: true,
+          location,
+          prefix: {
+            mask: 'i-mask-',
+          },
+        },
+      }
+    }).handler(mockPluginApi)
+  })
+
+  test('background', () => {
+    Icons(() => {
+      return {
+        testIcons: {
+          icons: {
+            'colored?bg': {
+              color: 'red',
+            },
+          },
+          includeAll: true,
+          location,
+          prefix: {
+            background: 'i-background-',
+          },
+        },
+      }
+    }).handler(mockPluginApi)
+  })
+
+  test('mask + background', () => {
+    Icons(() => {
+      return {
+        testIcons: {
+          icons: {
+            'colored?bg': {
+              color: 'red',
+            },
+          },
+          includeAll: true,
+          location,
+          prefix: {
+            mask: '',
+            background: '',
+          },
+        },
+      }
+    }).handler(mockPluginApi)
+  })
+})
