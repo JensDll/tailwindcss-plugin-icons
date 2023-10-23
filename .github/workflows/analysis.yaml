@@ -13,7 +13,7 @@ jobs:
       PNPM_VERSION: 8.9.0
     steps:
       - name: Checking out the repository
-        uses: actions/checkout@v4.1.0
+        uses: actions/checkout@v4.1.1
 
       - name: Using pnpm version ${{ env.PNPM_VERSION }}
         uses: pnpm/action-setup@v2.4.0
