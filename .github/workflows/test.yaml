@@ -12,6 +12,7 @@ jobs:
     env:
       PNPM_VERSION: 8.9.0
     strategy:
+      fail-fast: false
       matrix:
         node_version: [18, 20]
     steps:

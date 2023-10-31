@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "build": "node --import tsx/esm scripts/build.ts",
+    "build": "tsx scripts/build.ts",
     "build:vue": "pnpm run --filter \"vue-playground\" build",
     "dev": "rollup --config --watch --configPlugin esbuild",
     "dev:vue": "pnpm run --filter \"vue-playground\" dev",
