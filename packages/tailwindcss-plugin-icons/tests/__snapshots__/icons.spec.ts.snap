@@ -8,21 +8,21 @@ exports[`include all > when forced as bg 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colored-h-flip": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -30,7 +30,7 @@ exports[`include all > when forced as bg 1`] = `
       "width": "1em",
     },
     ".i-test-icons-colorless-rotate": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -59,7 +59,7 @@ exports[`include all > when forced as bg 2`] = `
 exports[`include all > when forced as bg 3`] = `
 {
   "bg-test-icons-colored-green": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "color": "red",
@@ -67,7 +67,7 @@ exports[`include all > when forced as bg 3`] = `
     "width": "1em",
   },
   "bg-test-icons-colored-red": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "color": "red",
@@ -81,7 +81,7 @@ exports[`include all > when forced as mask 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "color": "red",
       "height": "1em",
@@ -90,14 +90,14 @@ exports[`include all > when forced as mask 1`] = `
       "width": "1em",
     },
     ".i-test-icons-colored-h-flip": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -105,7 +105,7 @@ exports[`include all > when forced as mask 1`] = `
       "width": "1em",
     },
     ".i-test-icons-colorless-rotate": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -135,21 +135,21 @@ exports[`include all > with default CSS 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colored-h-flip": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "color": "red",
       "height": "1em",
@@ -158,7 +158,7 @@ exports[`include all > with default CSS 1`] = `
       "width": "1em",
     },
     ".i-test-icons-colorless-rotate": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -188,21 +188,21 @@ exports[`include all > without icons 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colored-h-flip": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -210,7 +210,7 @@ exports[`include all > without icons 1`] = `
       "width": "1em",
     },
     ".i-test-icons-colorless-rotate": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -240,21 +240,21 @@ exports[`prefix > background 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colored-h-flip": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -262,7 +262,7 @@ exports[`prefix > background 1`] = `
       "width": "1em",
     },
     ".i-test-icons-colorless-rotate": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -291,7 +291,7 @@ exports[`prefix > background 2`] = `
 exports[`prefix > background 3`] = `
 {
   "i-background-test-icons-colored-green": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "color": "red",
@@ -299,7 +299,7 @@ exports[`prefix > background 3`] = `
     "width": "1em",
   },
   "i-background-test-icons-colored-red": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "color": "red",
@@ -313,21 +313,21 @@ exports[`prefix > mask + background 1`] = `
 [
   {
     ".test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".test-icons-colored-h-flip": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -335,7 +335,7 @@ exports[`prefix > mask + background 1`] = `
       "width": "1em",
     },
     ".test-icons-colorless-rotate": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -364,7 +364,7 @@ exports[`prefix > mask + background 2`] = `
 exports[`prefix > mask + background 3`] = `
 {
   "test-icons-colored-green": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "color": "red",
@@ -372,7 +372,7 @@ exports[`prefix > mask + background 3`] = `
     "width": "1em",
   },
   "test-icons-colored-red": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "color": "red",
@@ -386,21 +386,21 @@ exports[`prefix > mask 1`] = `
 [
   {
     ".i-mask-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-mask-test-icons-colored-h-flip": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='translate(24 0) scale(-1 1)'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/g%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-mask-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -408,7 +408,7 @@ exports[`prefix > mask 1`] = `
       "width": "1em",
     },
     ".i-mask-test-icons-colorless-rotate": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cg transform='rotate(270 12 12)'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/g%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -437,7 +437,7 @@ exports[`prefix > mask 2`] = `
 exports[`prefix > mask 3`] = `
 {
   "bg-test-icons-colored-green": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "color": "red",
@@ -445,7 +445,7 @@ exports[`prefix > mask 3`] = `
     "width": "1em",
   },
   "bg-test-icons-colored-red": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "color": "red",
@@ -459,14 +459,14 @@ exports[`scale width and height > when passed per icon 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "2em",
       "width": "2em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "3em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -496,14 +496,14 @@ exports[`scale width and height > when passed per icon set 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1.5em",
       "width": "1.5em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1.5em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -533,14 +533,14 @@ exports[`scale width and height > when passed per icon set as function 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "2em",
       "width": "2em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "42em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -570,14 +570,14 @@ exports[`use addComponent when not forced otherwise 1`] = `
 [
   {
     ".i-test-icons-colored": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
       "background": "var(--tw-plugin-icons-url) no-repeat",
       "backgroundSize": "100% 100%",
       "height": "1em",
       "width": "1em",
     },
     ".i-test-icons-colorless": {
-      "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E\\")",
+      "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='currentColor'/%3E%3C/svg%3E")",
       "backgroundColor": "currentColor",
       "height": "1em",
       "mask": "var(--tw-plugin-icons-url) no-repeat",
@@ -628,28 +628,28 @@ exports[`use matchComponents when forced as bg 2`] = `
 exports[`use matchComponents when forced as bg 3`] = `
 {
   "bg-test-icons-colored-green": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "height": "1em",
     "width": "1em",
   },
   "bg-test-icons-colored-red": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='%23fff'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "height": "1em",
     "width": "1em",
   },
   "bg-test-icons-colorless-green": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='green'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='green'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "height": "1em",
     "width": "1em",
   },
   "bg-test-icons-colorless-red": {
-    "--tw-plugin-icons-url": "url(\\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='red'/%3E%3C/svg%3E\\")",
+    "--tw-plugin-icons-url": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='1' fill='red'/%3E%3C/svg%3E")",
     "background": "var(--tw-plugin-icons-url) no-repeat",
     "backgroundSize": "100% 100%",
     "height": "1em",
