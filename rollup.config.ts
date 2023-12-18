@@ -4,7 +4,7 @@ import dts from 'rollup-plugin-dts'
 import esbuild, { minify } from 'rollup-plugin-esbuild'
 
 import { packagesAliasPlugin } from './scripts/rollup'
-import { rootDir } from './scripts/utils'
+import { rootDir } from './scripts/utils.mjs'
 
 const plugin = {
   dts: dts(),

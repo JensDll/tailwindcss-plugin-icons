@@ -3,7 +3,7 @@ import path from 'node:path'
 
 import alias, { type Alias, type ResolverFunction } from '@rollup/plugin-alias'
 
-import { rootDir } from './utils'
+import { rootDir } from './utils.mjs'
 
 function resolveExtensions(extensions: string[]): ResolverFunction {
   return async function (source) {
