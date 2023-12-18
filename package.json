@@ -3,6 +3,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:vue": "pnpm run --filter \"vue-playground\" build",
+    "build:stackblitz": "rollup --config --configPlugin esbuild",
     "dev": "rollup --config --watch --configPlugin esbuild",
     "dev:vue": "pnpm run --filter \"vue-playground\" dev",
     "test": "vitest",
@@ -13,7 +14,7 @@
   "type": "module",
   "stackblitz": {
     "installDependencies": false,
-    "startCommand": "pnpm install --frozen-lockfile && pnpm run build && pnpm run dev:vue"
+    "startCommand": "pnpm install --frozen-lockfile && pnpm run build:stackblitz && pnpm run dev:vue"
   },
   "dependencies": {
     "@iconify/types": "2.0.0",
