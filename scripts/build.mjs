@@ -2,7 +2,7 @@ import path from 'node:path'
 
 import fs from 'fs-extra'
 
-import { rootDir, run } from './utils'
+import { rootDir, run } from './utils.mjs'
 
 const mainPath = path.join(rootDir, 'packages', 'tailwindcss-plugin-icons')
 

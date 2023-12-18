@@ -1,8 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "build": "tsx scripts/build.ts",
+    "build": "node scripts/build.mjs",
     "build:vue": "pnpm run --filter \"vue-playground\" build",
+    "build:stackblitz": "rollup --config --configPlugin esbuild",
     "dev": "rollup --config --watch --configPlugin esbuild",
     "dev:vue": "pnpm run --filter \"vue-playground\" dev",
     "test": "vitest",
@@ -11,6 +12,10 @@
     "format": "prettier --write ."
   },
   "type": "module",
+  "stackblitz": {
+    "installDependencies": false,
+    "startCommand": "pnpm install --frozen-lockfile && pnpm run build:stackblitz && pnpm run dev:vue"
+  },
   "dependencies": {
     "@iconify/types": "2.0.0",
     "@internal/shared": "workspace:*",
@@ -18,26 +23,25 @@
     "@rollup/plugin-node-resolve": "15.2.3",
     "@rollup/plugin-replace": "5.0.5",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "20.10.3",
-    "@typescript-eslint/eslint-plugin": "6.13.2",
-    "@typescript-eslint/parser": "6.13.2",
-    "@vitest/coverage-v8": "1.0.1",
-    "esbuild": "0.19.8",
-    "eslint": "8.55.0",
-    "eslint-plugin-import": "2.29.0",
+    "@types/node": "20.10.5",
+    "@typescript-eslint/eslint-plugin": "6.14.0",
+    "@typescript-eslint/parser": "6.14.0",
+    "@vitest/coverage-v8": "1.0.4",
+    "esbuild": "0.19.9",
+    "eslint": "8.56.0",
+    "eslint-plugin-import": "2.29.1",
     "execa": "8.0.1",
     "fs-extra": "11.2.0",
     "postcss": "8.4.32",
-    "prettier": "3.1.0",
-    "prettier-plugin-tailwindcss": "0.5.7",
-    "rollup": "4.6.1",
+    "prettier": "3.1.1",
+    "prettier-plugin-tailwindcss": "0.5.9",
+    "rollup": "4.9.1",
     "rollup-plugin-dts": "6.1.0",
     "rollup-plugin-esbuild": "6.1.0",
     "tailwindcss": "3.3.6",
     "tailwindcss-plugin-icons": "workspace:*",
-    "tsx": "4.6.2",
-    "typescript": "5.3.2",
-    "vite": "5.0.5",
-    "vitest": "1.0.1"
+    "typescript": "5.3.3",
+    "vite": "5.0.10",
+    "vitest": "1.0.4"
   }
 }

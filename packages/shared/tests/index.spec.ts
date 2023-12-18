@@ -1,4 +1,4 @@
-import { html } from '~/scripts/utils'
+import { html } from '~/scripts/utils.mjs'
 import {
   isUri,
   loadIconFromIconifyJson,

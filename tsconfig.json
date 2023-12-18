@@ -1,11 +1,10 @@
 {
   "compilerOptions": {
+    "outDir": "dist",
     "baseUrl": "./",
     "target": "ESNext",
     "module": "ESNext",
     "moduleResolution": "bundler",
-    // Replaces the older "isolatedModules", "preserveValueImports",
-    // and "importsNotUsedAsValues" options
     "verbatimModuleSyntax": true,
     "allowJs": true,
     "checkJs": true,
