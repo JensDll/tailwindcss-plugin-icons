@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config'
 
-import { packagesAlias, scriptsAlias } from './scripts/rollup'
+import { tildeAlias } from './scripts/rollup'
 
 export default defineConfig({
   test: {
@@ -12,6 +12,6 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: [packagesAlias, scriptsAlias],
+    alias: [tildeAlias],
   },
 })

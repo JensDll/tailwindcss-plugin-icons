@@ -1,7 +1,6 @@
-import { type LoadedIcon, iconToDataUrl } from '@internal/shared'
+import { type LoadedIcon, iconToDataUrl } from '@chunks/shared'
+import { SCALE } from '@chunks/state'
 import type { CSSRuleObject } from 'tailwindcss/types/config'
-
-export const SCALE = Symbol('Icon-specific scaling')
 
 export interface CSSRuleObjectWithMaybeScale extends CSSRuleObject {
   [SCALE]?: number

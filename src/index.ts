@@ -2,7 +2,6 @@ import child_process from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
-import type { IconifyJSON } from '@iconify/types'
 import {
   TailwindcssPluginIconsError,
   isUri,
@@ -10,24 +9,23 @@ import {
   toKebabCase,
   readJson,
   type WithRequired,
-} from '@internal/shared'
+} from '@chunks/shared'
+import { SCALE, cache } from '@chunks/state'
+import type { IconifyJSON } from '@iconify/types'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
 import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 
-import { IconifyFileCache } from '~tailwindcss-plugin-icons/cache'
 import {
   type CSSRuleObjectWithMaybeScale,
   type CSSRuleObjectWithScale,
   type ColorFunction,
-  SCALE,
   getIconCss,
   getIconCssAsColorFunction,
-} from '~tailwindcss-plugin-icons/css'
+} from '~/src/css'
 
-export { SCALE } from '~tailwindcss-plugin-icons/css'
-
-const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
+export { SCALE } from '@chunks/state'
+export { iconToDataUrl, type Icon } from '@chunks/shared'
 
 type IconSetOptionsWithIcons = WithRequired<IconSetOptions, 'icons'>
 

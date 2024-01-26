@@ -17,14 +17,12 @@
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
     "types": ["vitest/globals", "node"],
     "paths": {
-      "@internal/shared": ["packages/shared/src"],
-      "~shared/*": ["packages/shared/src/*"],
-      "~tailwindcss-plugin-icons/*": [
-        "packages/tailwindcss-plugin-icons/src/*"
-      ],
-      "~/scripts/*": ["scripts/*"]
-    }
+      "~/src/*": ["src/*"],
+      "~/scripts/*": ["scripts/*"],
+      "@chunks/shared": ["src/chunks/shared"],
+      "@chunks/state": ["src/chunks/state"],
+    },
   },
-  "include": ["*.ts", "scripts", "dts", "packages/*/src", "packages/*/tests"],
-  "exclude": ["**/dist/**/*"]
+  "include": ["*.ts", "scripts", "src", "tests", "dts"],
+  "exclude": ["**/dist/**/*"],
 }

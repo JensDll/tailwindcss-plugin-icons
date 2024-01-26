@@ -1,9 +1,0 @@
-// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
-
-exports[`encodeSvg > matches url encoded 1`] = `"%3Csvg viewBox='0 0 10 10' xmlns='http://www.w3.org/2000/svg' %3E%3C/svg%3E"`;
-
-exports[`encodeSvg > needs xlink namespace 1`] = `"%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'%3E%3Cuse xlink:href='test'%3E%3C/use%3E%3C/svg%3E"`;
-
-exports[`encodeSvg > without namespace 1`] = `"%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 10'%3E%3C/svg%3E"`;
-
-exports[`encodeSvg > without namespace and empty 1`] = `"%3Csvg xmlns='http://www.w3.org/2000/svg'%3E%3C/svg%3E"`;

@@ -1,31 +1,27 @@
-import { nodeResolve } from '@rollup/plugin-node-resolve'
-import type { ExternalOption, InputPluginOption, RollupOptions } from 'rollup'
-import dts from 'rollup-plugin-dts'
-import esbuild, { minify } from 'rollup-plugin-esbuild'
+import type {
+  ExternalOption,
+  InputPluginOption,
+  RollupOptions,
+  GetManualChunk,
+} from 'rollup'
+import { dts } from 'rollup-plugin-dts'
+import esbuild from 'rollup-plugin-esbuild'
 
-import { packagesAliasPlugin } from './scripts/rollup'
-import { rootDir } from './scripts/utils.mjs'
+import {
+  tildeAliasPlugin,
+  sharedChunkAliasPlugin,
+  stateChunkAliasPlugin,
+} from './scripts/rollup'
 
-const plugin = {
-  dts: dts(),
-  esbuild: esbuild({
-    target: 'ES2019',
-  }),
-  minify: minify({
-    target: 'ES2019',
-  }),
-  nodeResolve: nodeResolve({
-    rootDir,
-    resolveOnly: [/^@internal\//],
-  }),
-} as const
+const dtsPlugin = dts({
+  respectExternal: true,
+})
 
-type PackageName = 'tailwindcss-plugin-icons' | 'shared'
+const esbuildPlugin = esbuild({
+  target: 'ES2019',
+})
 
-const input = (name: PackageName, file = 'index') =>
-  `packages/${name}/src/${file}.ts`
-
-const baseExternals: ExternalOption = [
+const externals: ExternalOption = [
   'fs',
   'fs/promises',
   'path',
@@ -36,99 +32,85 @@ const baseExternals: ExternalOption = [
   /tailwindcss\/.+/,
 ]
 
-const shared: RollupOptionsWithPlugins[] = [
-  {
-    input: input('shared'),
-    output: {
-      file: 'packages/shared/dist/index.mjs',
-      format: 'esm',
-    },
-    plugins: [plugin.esbuild],
-  },
-  {
-    input: input('shared'),
-    output: {
-      file: 'packages/shared/dist/index.d.ts',
-      format: 'esm',
-    },
-    plugins: [plugin.dts],
-  },
-]
+const manualChunks: GetManualChunk = id => {
+  if (id.includes('chunks/shared')) {
+    return 'chunks/shared'
+  }
+}
 
-const tailwindcssPluginIcons: RollupOptionsWithPlugins[] = [
+const configs: RollupOptionsWithPlugins[] = [
   {
-    input: input('tailwindcss-plugin-icons', 'fetch'),
+    input: 'src/fetch.ts',
     output: {
-      dir: 'packages/tailwindcss-plugin-icons/dist',
+      dir: 'dist',
       format: 'esm',
-      manualChunks: {
-        'internal/shared': ['@internal/shared'],
-      },
+      manualChunks,
       entryFileNames: '[name].mjs',
       chunkFileNames: '[name].mjs',
     },
-    plugins: [plugin.nodeResolve, plugin.esbuild],
+    external: [...externals],
+    plugins: [tildeAliasPlugin, sharedChunkAliasPlugin, esbuildPlugin],
   },
   {
-    input: input('tailwindcss-plugin-icons'),
+    input: 'src/chunks/state/index.ts',
     output: {
-      dir: 'packages/tailwindcss-plugin-icons/dist',
-      format: 'esm',
-      manualChunks: {
-        'internal/shared': ['@internal/shared'],
-      },
-      entryFileNames: '[name].mjs',
-      chunkFileNames: '[name].mjs',
-    },
-    plugins: [plugin.nodeResolve, plugin.esbuild],
-  },
-  {
-    input: input('tailwindcss-plugin-icons'),
-    output: {
-      dir: 'packages/tailwindcss-plugin-icons/dist',
+      dir: 'dist',
       format: 'cjs',
-      manualChunks: {
-        'internal/shared': ['@internal/shared'],
-      },
-      interop: 'auto',
-      entryFileNames: '[name].cjs',
+      manualChunks,
+      entryFileNames: 'chunks/state.cjs',
       chunkFileNames: '[name].cjs',
     },
-    plugins: [plugin.nodeResolve, plugin.esbuild],
+    external: [...externals],
+    plugins: [tildeAliasPlugin, sharedChunkAliasPlugin, esbuildPlugin],
   },
   {
-    input: input('tailwindcss-plugin-icons'),
+    input: 'src/index.ts',
     output: [
       {
-        file: 'packages/tailwindcss-plugin-icons/dist/index.d.mts',
+        dir: 'dist',
+        format: 'cjs',
+        manualChunks,
+        paths: {
+          '@chunks/state': './chunks/state.cjs',
+        },
+        entryFileNames: '[name].cjs',
+        chunkFileNames: '[name].cjs',
+      },
+      {
+        dir: 'dist',
+        format: 'esm',
+        manualChunks,
+        paths: {
+          '@chunks/state': './chunks/state.cjs',
+        },
+        entryFileNames: '[name].mjs',
+        chunkFileNames: '[name].mjs',
+      },
+    ],
+    external: [...externals, '@chunks/state'],
+    plugins: [tildeAliasPlugin, sharedChunkAliasPlugin, esbuildPlugin],
+  },
+  {
+    input: 'src/index.ts',
+    output: [
+      {
+        file: 'dist/index.d.cts',
         format: 'esm',
       },
       {
-        file: 'packages/tailwindcss-plugin-icons/dist/index.d.cts',
+        file: 'dist/index.d.mts',
         format: 'esm',
       },
     ],
-    plugins: [plugin.dts],
+    external: [...externals],
+    plugins: [
+      tildeAliasPlugin,
+      sharedChunkAliasPlugin,
+      stateChunkAliasPlugin,
+      dtsPlugin,
+    ],
   },
 ]
-
-const configs: RollupOptionsWithPlugins[] = [
-  ...shared,
-  ...tailwindcssPluginIcons,
-]
-
-configs.forEach(config => {
-  config.plugins.unshift(packagesAliasPlugin)
-
-  if (config.external) {
-    if (!Array.isArray(config.external)) {
-      throw new Error('External option must be an array')
-    }
-    config.external.push(...baseExternals)
-  } else {
-    config.external = baseExternals
-  }
-})
 
 export default configs
 

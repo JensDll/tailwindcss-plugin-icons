@@ -3,10 +3,10 @@ import os from 'node:os'
 import path from 'node:path'
 
 import type { IconifyJSON } from '@iconify/types'
-import { readJson, uriToFilename } from '@internal/shared'
 import fs from 'fs-extra'
 
-import { IconifyFileCache } from '~tailwindcss-plugin-icons/cache'
+import { readJson, uriToFilename } from '~/src/chunks/shared/index'
+import { IconifyFileCache } from '~/src/chunks/state/cache'
 
 const readFixture = (fixture: string) =>
   readJson(path.resolve(__dirname, '__fixtures__', fixture)) as IconifyJSON

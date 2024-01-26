@@ -2,7 +2,7 @@ import { createWriteStream } from 'fs'
 import fs from 'fs/promises'
 import path from 'path'
 
-import { TailwindcssPluginIconsError, uriToFilename } from '@internal/shared'
+import { TailwindcssPluginIconsError, uriToFilename } from '@chunks/shared'
 
 const [cacheDir, ...uris] = process.argv.slice(2)
 

@@ -28,24 +28,31 @@ function resolveExtensions(extensions: string[]): ResolverFunction {
 
 export type AliasWithoutResolver = Omit<Alias, 'customResolver'>
 
-export const packagesAlias: AliasWithoutResolver = {
-  find: /^~([a-z-]+?)\/(.+)/,
-  replacement: path.resolve(rootDir, 'packages/$1/src/$2'),
-}
-
-export const scriptsAlias: AliasWithoutResolver = {
-  find: /^~\/scripts\/(.+)/,
-  replacement: path.resolve(rootDir, 'scripts/$1'),
-}
-
 const resolveTs = resolveExtensions(['.ts'])
 
-export const packagesAliasPlugin = alias({
+export const tildeAlias: AliasWithoutResolver = {
+  find: /^~\/(.+)/,
+  replacement: path.resolve(rootDir, '$1'),
+}
+export const tildeAliasPlugin = alias({
   customResolver: resolveTs,
-  entries: [packagesAlias],
+  entries: [tildeAlias],
 })
 
-export const scriptsAliasPlugin = alias({
+export const sharedChunkAlias: AliasWithoutResolver = {
+  find: '@chunks/shared',
+  replacement: path.resolve(rootDir, 'src/chunks/shared'),
+}
+export const sharedChunkAliasPlugin = alias({
   customResolver: resolveTs,
-  entries: [scriptsAlias],
+  entries: [sharedChunkAlias],
+})
+
+export const stateChunkAlias: AliasWithoutResolver = {
+  find: '@chunks/state',
+  replacement: path.resolve(rootDir, 'src/chunks/state'),
+}
+export const stateChunkAliasPlugin = alias({
+  customResolver: resolveTs,
+  entries: [stateChunkAlias],
 })
