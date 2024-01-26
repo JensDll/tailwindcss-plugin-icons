@@ -1,9 +1,4 @@
-import type {
-  ExternalOption,
-  InputPluginOption,
-  RollupOptions,
-  GetManualChunk,
-} from 'rollup'
+import type { ExternalOption, InputPluginOption, RollupOptions } from 'rollup'
 import { dts } from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
 
@@ -32,33 +27,31 @@ const externals: ExternalOption = [
   /tailwindcss\/.+/,
 ]
 
-const manualChunks: GetManualChunk = id => {
-  if (id.includes('chunks/shared')) {
-    return 'chunks/shared'
-  }
-}
-
-const configs: RollupOptionsWithPlugins[] = [
+export default [
   {
-    input: 'src/fetch.ts',
+    input: 'src/chunks/state/index.ts',
     output: {
-      dir: 'dist',
-      format: 'esm',
-      manualChunks,
-      entryFileNames: '[name].mjs',
-      chunkFileNames: '[name].mjs',
+      dir: 'src/dist',
+      format: 'cjs',
+      manualChunks: {
+        'chunks/shared': ['src/chunks/shared/index.ts'],
+      },
+      entryFileNames: 'chunks/state.cjs',
+      chunkFileNames: '[name]-[hash].cjs',
     },
     external: [...externals],
     plugins: [tildeAliasPlugin, sharedChunkAliasPlugin, esbuildPlugin],
   },
   {
-    input: 'src/chunks/state/index.ts',
+    input: 'src/fetch.ts',
     output: {
-      dir: 'dist',
-      format: 'cjs',
-      manualChunks,
-      entryFileNames: 'chunks/state.cjs',
-      chunkFileNames: '[name].cjs',
+      dir: 'src/dist',
+      format: 'esm',
+      manualChunks: {
+        'chunks/shared': ['src/chunks/shared/index.ts'],
+      },
+      entryFileNames: '[name].mjs',
+      chunkFileNames: '[name]-[hash].mjs',
     },
     external: [...externals],
     plugins: [tildeAliasPlugin, sharedChunkAliasPlugin, esbuildPlugin],
@@ -67,24 +60,29 @@ const configs: RollupOptionsWithPlugins[] = [
     input: 'src/index.ts',
     output: [
       {
-        dir: 'dist',
+        dir: 'src/dist',
         format: 'cjs',
-        manualChunks,
+        interop: 'auto',
         paths: {
           '@chunks/state': './chunks/state.cjs',
+        },
+        manualChunks: {
+          'chunks/shared': ['src/chunks/shared/index.ts'],
         },
         entryFileNames: '[name].cjs',
-        chunkFileNames: '[name].cjs',
+        chunkFileNames: '[name]-[hash].cjs',
       },
       {
-        dir: 'dist',
+        dir: 'src/dist',
         format: 'esm',
-        manualChunks,
         paths: {
           '@chunks/state': './chunks/state.cjs',
         },
+        manualChunks: {
+          'chunks/shared': ['src/chunks/shared/index.ts'],
+        },
         entryFileNames: '[name].mjs',
-        chunkFileNames: '[name].mjs',
+        chunkFileNames: '[name]-[hash].mjs',
       },
     ],
     external: [...externals, '@chunks/state'],
@@ -94,11 +92,11 @@ const configs: RollupOptionsWithPlugins[] = [
     input: 'src/index.ts',
     output: [
       {
-        file: 'dist/index.d.cts',
+        file: 'src/dist/index.d.cts',
         format: 'esm',
       },
       {
-        file: 'dist/index.d.mts',
+        file: 'src/dist/index.d.mts',
         format: 'esm',
       },
     ],
@@ -110,9 +108,7 @@ const configs: RollupOptionsWithPlugins[] = [
       dtsPlugin,
     ],
   },
-]
-
-export default configs
+] as RollupOptionsWithPlugins[]
 
 interface RollupOptionsWithPlugins extends RollupOptions {
   plugins: InputPluginOption[]

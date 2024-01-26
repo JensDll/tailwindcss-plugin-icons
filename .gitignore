@@ -3,6 +3,7 @@ coverage/
 dist/
 node_modules/
 publish/
+cache/
 
 .vscode/*
 !.vscode/tasks.json

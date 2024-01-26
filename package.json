@@ -25,7 +25,7 @@
     "@types/node": "20.11.7",
     "@typescript-eslint/eslint-plugin": "6.19.1",
     "@typescript-eslint/parser": "6.19.1",
-    "@vitest/coverage-v8": "1.2.1",
+    "@vitest/coverage-v8": "1.2.2",
     "esbuild": "0.19.12",
     "eslint": "8.56.0",
     "eslint-plugin-import": "2.29.1",
@@ -41,6 +41,6 @@
     "tailwindcss-plugin-icons": "workspace:*",
     "typescript": "5.3.3",
     "vite": "5.0.12",
-    "vitest": "1.2.1"
+    "vitest": "1.2.2"
   }
 }
