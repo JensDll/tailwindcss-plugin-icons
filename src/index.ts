@@ -17,8 +17,8 @@ import plugin from 'tailwindcss/plugin'
 import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 
 import {
-  type CSSRuleObjectWithMaybeScale,
-  type CSSRuleObjectWithScale,
+  type CssRecordWithMaybeScale,
+  type CssRecordWithScale,
   type ColorFunction,
   getIconCss,
   getIconCssAsColorFunction,
@@ -159,7 +159,7 @@ type AddIconOptions = {
   iconName: string
   scale: IconSetOptionsScale
   prefix: Required<IconSetOptionsPrefix>
-  cssDefaults?: CSSRuleObjectWithMaybeScale
+  cssDefaults?: CssRecordWithMaybeScale
 }
 
 const addIconToComponents =
@@ -188,11 +188,11 @@ const addIconToComponents =
         `${prefix.background}${iconSetName}-${loadedIcon.normalizedName}`
       ] = getIconCssAsColorFunction(
         loadedIcon,
-        cssDefaults as CSSRuleObjectWithScale,
+        cssDefaults as CssRecordWithScale,
       )
     } else {
       components[`.${prefix.mask}${iconSetName}-${loadedIcon.normalizedName}`] =
-        getIconCss(loadedIcon, cssDefaults as CSSRuleObjectWithScale)
+        getIconCss(loadedIcon, cssDefaults as CssRecordWithScale)
     }
 
     return loadedIcon
@@ -292,7 +292,7 @@ export type IconSetOptions = {
   prefix?: IconSetOptionsPrefix
 }
 
-export type IconSetOptionsIcons = Record<string, CSSRuleObjectWithMaybeScale>
+export type IconSetOptionsIcons = Record<string, CssRecordWithMaybeScale>
 
 export type ScaleFactory = (iconName: string) => number
 

@@ -2,11 +2,11 @@ import { type LoadedIcon, iconToDataUrl } from '@chunks/shared'
 import { SCALE } from '@chunks/state'
 import type { CSSRuleObject } from 'tailwindcss/types/config'
 
-export interface CSSRuleObjectWithMaybeScale extends CSSRuleObject {
+export interface CssRecordWithMaybeScale extends Record<string, unknown> {
   [SCALE]?: number
 }
 
-export type CSSRuleObjectWithScale = Required<CSSRuleObjectWithMaybeScale>
+export type CssRecordWithScale = Required<CssRecordWithMaybeScale>
 
 const URL_VAR_NAME = '--tw-plugin-icons-url'
 
@@ -17,10 +17,7 @@ function getIconDimensions(icon: LoadedIcon, scale: number) {
   }
 }
 
-export function getIconCss(
-  icon: LoadedIcon,
-  cssDefaults: CSSRuleObjectWithScale,
-) {
+export function getIconCss(icon: LoadedIcon, cssDefaults: CssRecordWithScale) {
   const iconUrl = iconToDataUrl(icon)
   const iconDimensions = getIconDimensions(icon, cssDefaults[SCALE])
 
@@ -53,7 +50,7 @@ export type ColorFunction = (
 
 export function getIconCssAsColorFunction(
   icon: LoadedIcon,
-  cssDefaults: CSSRuleObjectWithScale,
+  cssDefaults: CssRecordWithScale,
 ): ColorFunction {
   return color => {
     return {
