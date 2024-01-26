@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitest/config'
 
-import { tildeAlias } from './scripts/rollup'
+import { sharedChunkAlias, stateChunkAlias, tildeAlias } from './scripts/rollup'
 
 export default defineConfig({
   test: {
@@ -12,6 +12,6 @@ export default defineConfig({
     },
   },
   resolve: {
-    alias: [tildeAlias],
+    alias: [tildeAlias, sharedChunkAlias, stateChunkAlias],
   },
 })
