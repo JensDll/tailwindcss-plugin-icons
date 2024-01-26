@@ -6,7 +6,7 @@ import {
   toKebabCase,
   encodeSvg,
   type ParsedIconName,
-} from '~shared/index'
+} from '~/src/chunks/shared/index'
 
 describe('toKebabCase', () => {
   test.each([

@@ -2,7 +2,6 @@ import child_process from 'child_process'
 import fs from 'fs'
 import path from 'path'
 
-import type { IconifyJSON } from '@iconify/types'
 import {
   TailwindcssPluginIconsError,
   isUri,
@@ -10,24 +9,23 @@ import {
   toKebabCase,
   readJson,
   type WithRequired,
-} from '@internal/shared'
+} from '@chunks/shared'
+import { SCALE, cache } from '@chunks/state'
+import type { IconifyJSON } from '@iconify/types'
 import flattenColorPalette from 'tailwindcss/lib/util/flattenColorPalette'
 import plugin from 'tailwindcss/plugin'
 import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 
-import { IconifyFileCache } from '~tailwindcss-plugin-icons/cache'
 import {
-  type CSSRuleObjectWithMaybeScale,
-  type CSSRuleObjectWithScale,
+  type CssRecordWithMaybeScale,
+  type CssRecordWithScale,
   type ColorFunction,
-  SCALE,
   getIconCss,
   getIconCssAsColorFunction,
-} from '~tailwindcss-plugin-icons/css'
+} from '~/src/css'
 
-export { SCALE } from '~tailwindcss-plugin-icons/css'
-
-const cache = new IconifyFileCache(path.resolve(__dirname, 'cache'))
+export { SCALE } from '@chunks/state'
+export { iconUrl, type IconUrlOptions } from '@chunks/shared'
 
 type IconSetOptionsWithIcons = WithRequired<IconSetOptions, 'icons'>
 
@@ -161,7 +159,7 @@ type AddIconOptions = {
   iconName: string
   scale: IconSetOptionsScale
   prefix: Required<IconSetOptionsPrefix>
-  cssDefaults?: CSSRuleObjectWithMaybeScale
+  cssDefaults?: CssRecordWithMaybeScale
 }
 
 const addIconToComponents =
@@ -190,11 +188,11 @@ const addIconToComponents =
         `${prefix.background}${iconSetName}-${loadedIcon.normalizedName}`
       ] = getIconCssAsColorFunction(
         loadedIcon,
-        cssDefaults as CSSRuleObjectWithScale,
+        cssDefaults as CssRecordWithScale,
       )
     } else {
       components[`.${prefix.mask}${iconSetName}-${loadedIcon.normalizedName}`] =
-        getIconCss(loadedIcon, cssDefaults as CSSRuleObjectWithScale)
+        getIconCss(loadedIcon, cssDefaults as CssRecordWithScale)
     }
 
     return loadedIcon
@@ -294,7 +292,7 @@ export type IconSetOptions = {
   prefix?: IconSetOptionsPrefix
 }
 
-export type IconSetOptionsIcons = Record<string, CSSRuleObjectWithMaybeScale>
+export type IconSetOptionsIcons = Record<string, CssRecordWithMaybeScale>
 
 export type ScaleFactory = (iconName: string) => number
 

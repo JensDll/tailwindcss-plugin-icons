@@ -1,8 +1,8 @@
 import fs from 'fs'
 import path from 'path'
 
+import { readJson, uriToFilename } from '@chunks/shared'
 import type { IconifyJSON } from '@iconify/types'
-import { readJson, uriToFilename } from '@internal/shared'
 
 export class IconifyFileCache implements Map<string, IconifyJSON> {
   readonly cacheDir: string
