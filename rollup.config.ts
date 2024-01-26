@@ -1,4 +1,4 @@
-import type { ExternalOption, InputPluginOption, RollupOptions } from 'rollup'
+import type { ExternalOption, RollupOptions } from 'rollup'
 import { dts } from 'rollup-plugin-dts'
 import esbuild from 'rollup-plugin-esbuild'
 
@@ -8,9 +8,7 @@ import {
   stateChunkAliasPlugin,
 } from './scripts/rollup'
 
-const dtsPlugin = dts({
-  respectExternal: true,
-})
+const dtsPlugin = dts()
 
 const esbuildPlugin = esbuild({
   target: 'ES2019',
@@ -27,15 +25,21 @@ const externals: ExternalOption = [
   /tailwindcss\/.+/,
 ]
 
+const manualChunks = {
+  'chunks/shared': ['src/chunks/shared/index.ts'],
+}
+
+const paths = {
+  '@chunks/state': './chunks/state.cjs',
+}
+
 export default [
   {
     input: 'src/chunks/state/index.ts',
     output: {
       dir: 'src/dist',
       format: 'cjs',
-      manualChunks: {
-        'chunks/shared': ['src/chunks/shared/index.ts'],
-      },
+      manualChunks,
       entryFileNames: 'chunks/state.cjs',
       chunkFileNames: '[name]-[hash].cjs',
     },
@@ -47,9 +51,7 @@ export default [
     output: {
       dir: 'src/dist',
       format: 'esm',
-      manualChunks: {
-        'chunks/shared': ['src/chunks/shared/index.ts'],
-      },
+      manualChunks,
       entryFileNames: '[name].mjs',
       chunkFileNames: '[name]-[hash].mjs',
     },
@@ -63,24 +65,16 @@ export default [
         dir: 'src/dist',
         format: 'cjs',
         interop: 'auto',
-        paths: {
-          '@chunks/state': './chunks/state.cjs',
-        },
-        manualChunks: {
-          'chunks/shared': ['src/chunks/shared/index.ts'],
-        },
+        paths,
+        manualChunks,
         entryFileNames: '[name].cjs',
         chunkFileNames: '[name]-[hash].cjs',
       },
       {
         dir: 'src/dist',
         format: 'esm',
-        paths: {
-          '@chunks/state': './chunks/state.cjs',
-        },
-        manualChunks: {
-          'chunks/shared': ['src/chunks/shared/index.ts'],
-        },
+        paths,
+        manualChunks,
         entryFileNames: '[name].mjs',
         chunkFileNames: '[name]-[hash].mjs',
       },
@@ -108,8 +102,4 @@ export default [
       dtsPlugin,
     ],
   },
-] as RollupOptionsWithPlugins[]
-
-interface RollupOptionsWithPlugins extends RollupOptions {
-  plugins: InputPluginOption[]
-}
+] as RollupOptions[]

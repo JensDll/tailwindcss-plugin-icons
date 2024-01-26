@@ -95,11 +95,42 @@ export function parseIconName(iconName: string): ParsedIconName {
   return { normalizedIconName, iconMode }
 }
 
-export type Icon = Omit<LoadedIcon, 'normalizedName' | 'mode'>
+export interface IconUrlOptions {
+  /**
+   * The left coordinate of the viewBox.
+   */
+  readonly left?: number
+  /**
+   * The top coordinate of the viewBox.
+   */
+  readonly top?: number
+  /**
+   * The width of the viewBox.
+   */
+  readonly width: number
+  /**
+   * The height of the viewBox.
+   */
+  readonly height: number
+  /**
+   * The body of the SVG.
+   */
+  readonly body: string
+}
 
-export function iconToDataUrl(icon: Icon, body = icon.body) {
+export function iconToDataUrl(icon: IconUrlOptions, body = icon.body) {
   const svg = `<svg viewBox="${icon.left} ${icon.top} ${icon.width} ${icon.height}">${body}</svg>`
   return `url("data:image/svg+xml,${encodeSvg(svg)}")`
+}
+
+export function iconUrl({
+  left = 0,
+  top = 0,
+  width,
+  height,
+  body,
+}: IconUrlOptions) {
+  return iconToDataUrl({ left, top, width, height, body })
 }
 
 export function loadIconFromIconifyJson(

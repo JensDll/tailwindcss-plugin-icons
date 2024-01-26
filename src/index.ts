@@ -25,7 +25,7 @@ import {
 } from '~/src/css'
 
 export { SCALE } from '@chunks/state'
-export { iconToDataUrl, type Icon } from '@chunks/shared'
+export { iconUrl, type IconUrlOptions } from '@chunks/shared'
 
 type IconSetOptionsWithIcons = WithRequired<IconSetOptions, 'icons'>
 
