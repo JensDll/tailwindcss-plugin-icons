@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/JensDll/tailwindcss-plugin-icons",
+    "url": "git+https://github.com/JensDll/tailwindcss-plugin-icons.git",
     "directory": "packages/tailwindcss-plugin-icons"
   },
   "keywords": [
