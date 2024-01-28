@@ -5,13 +5,11 @@
   "license": "MIT",
   "author": {
     "name": "Jens Döllmann",
-    "email": "jens@doellmann.com",
-    "url": "https://github.com/JensDll"
+    "email": "jens@doellmann.com"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JensDll/tailwindcss-plugin-icons.git",
-    "directory": "packages/tailwindcss-plugin-icons"
+    "url": "git+https://github.com/JensDll/tailwindcss-plugin-icons.git"
   },
   "keywords": [
     "tailwindcss",

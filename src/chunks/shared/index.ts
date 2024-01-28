@@ -97,11 +97,13 @@ export function parseIconName(iconName: string): ParsedIconName {
 
 export interface IconUrlOptions {
   /**
-   * The left coordinate of the viewBox.
+   * The left part of the top-left coordinate of the viewBox.
+   * @default 0
    */
   readonly left?: number
   /**
-   * The top coordinate of the viewBox.
+   * The top part of the top-left coordinate of the viewBox.
+   * @default 0
    */
   readonly top?: number
   /**

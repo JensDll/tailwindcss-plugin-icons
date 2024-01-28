@@ -25,62 +25,71 @@ const externals: ExternalOption = [
   /tailwindcss\/.+/,
 ]
 
-const manualChunks = {
-  'chunks/shared': ['src/chunks/shared/index.ts'],
-}
-
-const paths = {
-  '@chunks/state': './chunks/state.cjs',
-}
-
 export default [
+  {
+    input: 'src/chunks/shared/index.ts',
+    output: [
+      {
+        file: 'src/dist/chunks/shared.cjs',
+        format: 'cjs',
+      },
+      {
+        file: 'src/dist/chunks/shared.mjs',
+        format: 'esm',
+      },
+    ],
+    external: [...externals],
+    plugins: [tildeAliasPlugin, esbuildPlugin],
+  },
   {
     input: 'src/chunks/state/index.ts',
     output: {
-      dir: 'src/dist',
+      file: 'src/dist/chunks/state.cjs',
       format: 'cjs',
-      manualChunks,
-      entryFileNames: 'chunks/state.cjs',
-      chunkFileNames: '[name]-[hash].cjs',
+      paths: {
+        '@chunks/shared': './shared.cjs',
+      },
     },
-    external: [...externals],
-    plugins: [tildeAliasPlugin, sharedChunkAliasPlugin, esbuildPlugin],
+    external: [...externals, '@chunks/shared'],
+    plugins: [tildeAliasPlugin, esbuildPlugin],
   },
   {
     input: 'src/fetch.ts',
     output: {
-      dir: 'src/dist',
+      file: 'src/dist/fetch.mjs',
       format: 'esm',
-      manualChunks,
-      entryFileNames: '[name].mjs',
-      chunkFileNames: '[name]-[hash].mjs',
+      paths: {
+        '@chunks/shared': './chunks/shared.mjs',
+      },
     },
-    external: [...externals],
-    plugins: [tildeAliasPlugin, sharedChunkAliasPlugin, esbuildPlugin],
+    external: [...externals, '@chunks/shared'],
+    plugins: [tildeAliasPlugin, esbuildPlugin],
   },
   {
     input: 'src/index.ts',
     output: [
       {
-        dir: 'src/dist',
+        file: 'src/dist/index.cjs',
         format: 'cjs',
         interop: 'auto',
-        paths,
-        manualChunks,
-        entryFileNames: '[name].cjs',
-        chunkFileNames: '[name]-[hash].cjs',
+        intro: "require('crypto');",
+        paths: {
+          '@chunks/shared': './chunks/shared.cjs',
+          '@chunks/state': './chunks/state.cjs',
+        },
       },
       {
-        dir: 'src/dist',
+        file: 'src/dist/index.mjs',
         format: 'esm',
-        paths,
-        manualChunks,
-        entryFileNames: '[name].mjs',
-        chunkFileNames: '[name]-[hash].mjs',
+        intro: "import 'crypto';",
+        paths: {
+          '@chunks/shared': './chunks/shared.mjs',
+          '@chunks/state': './chunks/state.cjs',
+        },
       },
     ],
-    external: [...externals, '@chunks/state'],
-    plugins: [tildeAliasPlugin, sharedChunkAliasPlugin, esbuildPlugin],
+    external: [...externals, '@chunks/state', '@chunks/shared'],
+    plugins: [tildeAliasPlugin, esbuildPlugin],
   },
   {
     input: 'src/index.ts',
