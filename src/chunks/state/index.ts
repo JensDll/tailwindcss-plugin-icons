@@ -1,6 +1,6 @@
 import path from 'path'
 
-import { IconifyFileCache } from '~/src/chunks/state/cache'
+import { IconifyFileCache } from '~/src/chunks/state/cache.ts'
 
 export const SCALE = Symbol('Icon-specific scaling')
 
