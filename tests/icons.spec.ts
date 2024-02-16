@@ -8,7 +8,7 @@ import { Icons, SCALE, type ScaleFactory } from '~/src/index.ts'
 
 const consoleErrorMock = vi.spyOn(console, 'error')
 
-vi.mock('~tailwindcss-plugin-icons/cache', () => {
+vi.mock('~/src/chunks/state/cache.ts', () => {
   return {
     IconifyFileCache: class {},
   }
