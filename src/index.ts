@@ -22,7 +22,7 @@ import {
   type ColorFunction,
   getIconCss,
   getIconCssAsColorFunction,
-} from '~/src/css'
+} from '~/src/css.ts'
 
 export { SCALE } from '@chunks/state'
 export { iconUrl, type IconUrlOptions } from '@chunks/shared'

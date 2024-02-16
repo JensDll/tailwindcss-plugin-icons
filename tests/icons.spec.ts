@@ -3,8 +3,8 @@ import path from 'node:path'
 import type { CSSRuleObject, PluginAPI } from 'tailwindcss/types/config'
 import type { Mocked } from 'vitest'
 
-import type { ColorFunction } from '~/src/css'
-import { Icons, SCALE, type ScaleFactory } from '~/src/index'
+import type { ColorFunction } from '~/src/css.ts'
+import { Icons, SCALE, type ScaleFactory } from '~/src/index.ts'
 
 const consoleErrorMock = vi.spyOn(console, 'error')
 

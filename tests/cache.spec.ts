@@ -1,12 +1,12 @@
 import crypto from 'node:crypto'
+import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
 
 import type { IconifyJSON } from '@iconify/types'
-import fs from 'fs-extra'
 
-import { readJson, uriToFilename } from '~/src/chunks/shared/index'
-import { IconifyFileCache } from '~/src/chunks/state/cache'
+import { readJson, uriToFilename } from '~/src/chunks/shared/index.ts'
+import { IconifyFileCache } from '~/src/chunks/state/cache.ts'
 
 const readFixture = (fixture: string) =>
   readJson(path.resolve(__dirname, '__fixtures__', fixture)) as IconifyJSON
