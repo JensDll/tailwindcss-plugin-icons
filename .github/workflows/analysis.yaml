@@ -10,7 +10,7 @@ jobs:
   linting:
     runs-on: ubuntu-22.04
     env:
-      PNPM_VERSION: 8.11.0
+      PNPM_VERSION: 9.0.2
     steps:
       - name: Checking out the repository
         uses: actions/checkout@v4.1.2

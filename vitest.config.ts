@@ -8,7 +8,7 @@ export default defineConfig({
     clearMocks: true,
     coverage: {
       extension: 'ts',
-      include: ['packages/'],
+      include: ['src/'],
     },
   },
   resolve: {
