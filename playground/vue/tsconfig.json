@@ -15,8 +15,8 @@
     "skipLibCheck": true,
     "lib": ["ESNext", "DOM", "DOM.Iterable", "ScriptHost"],
     "paths": {
-      "~/*": ["src/*"],
-    },
+      "~/*": ["src/*"]
+    }
   },
-  "include": ["*.ts", "dts/*.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["*.ts", "dts/*.d.ts", "src/**/*", "src/**/*.vue"]
 }

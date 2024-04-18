@@ -22,9 +22,9 @@
       "~/src/*": ["src/*"],
       "~/scripts/*": ["scripts/*"],
       "@chunks/shared": ["src/chunks/shared"],
-      "@chunks/state": ["src/chunks/state"],
-    },
+      "@chunks/state": ["src/chunks/state"]
+    }
   },
   "include": ["*.ts", "scripts", "src", "tests", "dts"],
-  "exclude": ["**/dist/**/*"],
+  "exclude": ["**/dist/**/*"]
 }
