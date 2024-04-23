@@ -1,6 +1,6 @@
 {
   "private": true,
-  "packageManager": "pnpm@9.0.2+sha256.d6fc013639b81658ff175829ebb9435bcb89eff206769e460fd3ae27c2054df6",
+  "packageManager": "pnpm@9.0.5+sha256.61bd66913b52012107ec25a6ee4d6a161021ab99e04f6acee3aa50d0e34b4af9",
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:vue": "pnpm run --filter \"vue-playground\" build",
