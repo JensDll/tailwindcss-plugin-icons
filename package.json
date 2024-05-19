@@ -1,10 +1,9 @@
 {
   "private": true,
-  "packageManager": "pnpm@9.0.5+sha256.61bd66913b52012107ec25a6ee4d6a161021ab99e04f6acee3aa50d0e34b4af9",
+  "packageManager": "pnpm@9.1.1+sha256.9551e803dcb7a1839fdf5416153a844060c7bce013218ce823410532504ac10b",
   "scripts": {
     "build": "node scripts/build.mjs",
     "build:vue": "pnpm run --filter \"vue-playground\" build",
-    "build:stackblitz": "rollup --config --configPlugin esbuild",
     "dev": "rollup --config --watch --configPlugin esbuild",
     "dev:vue": "pnpm run --filter \"vue-playground\" dev",
     "test": "vitest",
@@ -15,7 +14,7 @@
   "type": "module",
   "stackblitz": {
     "installDependencies": false,
-    "startCommand": "pnpm install --frozen-lockfile && pnpm run build:stackblitz && pnpm run dev:vue"
+    "startCommand": "pnpm install --frozen-lockfile && rollup --config --configPlugin esbuild && pnpm run dev:vue"
   },
   "dependencies": {
     "@iconify/types": "2.0.0",
