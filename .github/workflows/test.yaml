@@ -15,7 +15,7 @@ jobs:
         node_version: [18, 20]
     steps:
       - name: Checking out the repository
-        uses: actions/checkout@v4.1.6
+        uses: actions/checkout@v4.1.7
 
       - name: Using pnpm
         uses: pnpm/action-setup@v4.0.0
