@@ -1,0 +1,20 @@
+{
+  "name": "v4",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@iconify-json/heroicons": "catalog:",
+    "@iconify-json/logos": "catalog:",
+    "@tailwindcss/vite": "4.0.5",
+    "tailwindcss": "4.0.5",
+    "tailwindcss-plugin-icons": "workspace:*",
+    "typescript": "catalog:",
+    "vite": "catalog:"
+  }
+}

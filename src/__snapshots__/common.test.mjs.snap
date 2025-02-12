@@ -1,0 +1,25 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`iconTransform > 0 1`] = `"body"`;
+
+exports[`iconTransform > 1 1`] = `"<g transform="rotate(90 30 60)">body</g>"`;
+
+exports[`iconTransform > 2 1`] = `"<g transform="rotate(180 30 60)">body</g>"`;
+
+exports[`iconTransform > 3 1`] = `"<g transform="translate(3 0) scale(-1 1)"></g>"`;
+
+exports[`iconTransform > 4 1`] = `"<g transform="translate(0 3) scale(1 -1)"></g>"`;
+
+exports[`iconTransform > 5 1`] = `"<g transform="rotate(180 2.5 4)"></g>"`;
+
+exports[`iconTransform > 6 1`] = `"<g transform="rotate(180 2.5 4) translate(0 8) scale(1 -1)"></g>"`;
+
+exports[`iconTransform > 7 1`] = `"<g transform="rotate(180 2.5 4) translate(5 0) scale(-1 1)"></g>"`;
+
+exports[`iconTransform > 8 1`] = `"<g transform="rotate(180 2.5 4) translate(5 0) scale(-1 1) translate(0 8) scale(1 -1)"></g>"`;
+
+exports[`iconUrl > 0 1`] = `"url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='1 2 3 4'%3E%3C/svg%3E")"`;
+
+exports[`iconUrl > 1 1`] = `"url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 20 30 40'%3E%3Cpath d='1 2 3'%3E%3C/path%3E%3C/svg%3E")"`;
+
+exports[`iconUrl > 2 1`] = `"url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='3 5 7 11'%3E%3Cuse xlink:href='test'%3E%3C/use%3E%3C/svg%3E")"`;

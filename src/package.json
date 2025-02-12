@@ -1,6 +1,6 @@
 {
   "name": "tailwindcss-plugin-icons",
-  "version": "2.2.2",
+  "version": "3.0.0",
   "description": "Tailwind CSS icons with classes",
   "license": "MIT",
   "author": {
@@ -9,7 +9,8 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/JensDll/tailwindcss-plugin-icons.git"
+    "url": "git+https://github.com/JensDll/tailwindcss-plugin-icons.git",
+    "directory": "src"
   },
   "keywords": [
     "tailwindcss",
@@ -19,13 +20,15 @@
   "sideEffects": false,
   "exports": {
     ".": {
-      "require": "./dist/index.cjs",
-      "import": "./dist/index.mjs"
+      "import": "./dist/plugin.mjs",
+      "style": "./dist/plugin.css"
     }
   },
-  "main": "./dist/index.cjs",
-  "module": "./dist/index.mjs",
   "peerDependencies": {
-    "tailwindcss": "3.x"
+    "tailwindcss": "4.x",
+    "vite": "5.x || 6.x"
+  },
+  "engines": {
+    "node": ">= 18"
   }
 }

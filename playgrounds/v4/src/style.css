@@ -1,0 +1,12 @@
+@import 'tailwindcss';
+@import 'tailwindcss-plugin-icons';
+
+@layer utilities {
+  .mi-heroicons-plus-circle {
+    color: var(--color-green-600);
+  }
+
+  .mi-heroicons-minus-circle {
+    color: var(--color-red-600);
+  }
+}
