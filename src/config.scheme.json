@@ -5,20 +5,24 @@
   "required": ["iconSets"],
   "properties": {
     "iconSets": {
-      "type": "object",
-      "additionalProperties": {
+      "type": "array",
+      "items": {
         "type": "object",
-        "description": "The icon set name. Camel case names are converted to kebab case.",
+        "required": ["name"],
         "properties": {
+          "name": {
+            "description": "The icon set name. Camel case names are converted to kebab case.",
+            "type": "string"
+          },
           "icons": {
+            "description": "The icon names to include. Leave out this property to include every icon in the icon set.",
             "type": "array",
-            "items": { "type": "string" },
-            "description": "The icon names to include. Leave out this property to include every icon in the icon set."
+            "items": { "type": "string" }
           },
           "location": {
+            "description": "The location of the icon set in Iconify JSON format. Can be any HTTP location, module name, or local path.",
             "type": "string",
-            "format": "uri-reference",
-            "description": "The location of the icon set in Iconify JSON format. Can be any HTTP location, module name, or local path."
+            "format": "uri-reference"
           }
         }
       }

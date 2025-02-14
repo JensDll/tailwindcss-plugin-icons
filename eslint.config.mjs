@@ -5,7 +5,7 @@ import globals from 'globals'
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    ignores: ['src/dist'],
+    ignores: ['src/dist', 'proto'],
   },
   eslint.configs.recommended,
   importPlugin.flatConfigs.recommended,

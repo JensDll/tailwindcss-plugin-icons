@@ -3,10 +3,11 @@
   "compilerOptions": {
     "noEmit": true,
     "checkJs": true,
-    "strictNullChecks": false,
+    "strict": false,
     "declaration": true,
     "declarationMap": true,
-    "emitDeclarationOnly": true
+    "emitDeclarationOnly": true,
+    "types": ["vitest/importMeta"]
   },
   "include": ["src/**/*.mjs"],
   "exclude": ["src/dist"]
