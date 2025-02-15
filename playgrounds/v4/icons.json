@@ -24,6 +24,11 @@
     {
       "name": "local",
       "location": "./src/icon-set.json"
+    },
+    {
+      "name": "m",
+      "icons": ["settings-outline"],
+      "location": "@iconify-json/material-symbols/icons.json"
     }
   ],
   "prefix": { "mask": "mi", "background": "bi" }

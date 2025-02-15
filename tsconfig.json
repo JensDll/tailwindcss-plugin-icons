@@ -3,12 +3,14 @@
   "compilerOptions": {
     "noEmit": true,
     "checkJs": true,
-    "strict": false,
+    "strict": true,
     "declaration": true,
     "declarationMap": true,
     "emitDeclarationOnly": true,
-    "types": ["vitest/importMeta"]
+    "paths": {
+      "~/src/*": ["./src/*"]
+    }
   },
-  "include": ["src/**/*.mjs"],
+  "include": ["src/**/*.mjs", "tests"],
   "exclude": ["src/dist"]
 }

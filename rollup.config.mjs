@@ -5,7 +5,7 @@ const external = [/node:.+/, /tailwindcss\/.+/]
  */
 export default [
   {
-    input: ['src/plugin.mjs'],
+    input: ['src/plugin.mjs', 'src/lib.mjs'],
     output: {
       dir: 'src/dist',
       entryFileNames: '[name].mjs',

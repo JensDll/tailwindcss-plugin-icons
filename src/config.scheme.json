@@ -15,7 +15,7 @@
             "type": "string"
           },
           "icons": {
-            "description": "The icon names to include. Leave out this property to include every icon in the icon set.",
+            "description": "List of icon names. Leave out this property to include every icon in the icon set.",
             "type": "array",
             "items": { "type": "string" }
           },
