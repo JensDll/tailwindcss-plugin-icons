@@ -72,25 +72,6 @@ exports[`loads from https location and caches result to file system 2`] = `
 }
 `;
 
-exports[`loads from local path (subdirectory) 1`] = `
-{
-  "aliases": undefined,
-  "height": 24,
-  "icons": {
-    "icon": {
-      "body": "",
-    },
-  },
-  "left": undefined,
-  "name": "name",
-  "names": [
-    "xyz",
-  ],
-  "top": undefined,
-  "width": 24,
-}
-`;
-
 exports[`loads from local path 1`] = `
 {
   "aliases": undefined,
@@ -101,7 +82,7 @@ exports[`loads from local path 1`] = `
     },
   },
   "left": undefined,
-  "name": "name",
+  "name": "abc",
   "names": [
     "abc",
   ],
@@ -133,7 +114,7 @@ exports[`loads from module by location 1`] = `
   "height": undefined,
   "icons": undefined,
   "left": undefined,
-  "name": "test-icons",
+  "name": "xyz",
   "names": undefined,
   "top": undefined,
   "width": undefined,

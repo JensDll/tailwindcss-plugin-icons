@@ -1,6 +1,6 @@
 import { HttpResponse, http } from 'msw'
 import { setupServer } from 'msw/node'
-import { Mock, vi } from 'vitest'
+import { vi, beforeAll, afterAll } from 'vitest'
 
 export const iconSet = {
   prefix: '🔥',
@@ -21,7 +21,8 @@ export const handlers = {
   },
   httpNetworkError: {
     path: 'https://localhost/error',
-    mock: vi.fn(() => HttpResponse.error()) as Mock<any>,
+    /** @type {import('vitest').Mock<any>} */
+    mock: vi.fn(() => HttpResponse.error()),
   },
   httpBadRequest: {
     path: 'https://localhost/bad',
@@ -30,7 +31,15 @@ export const handlers = {
 }
 
 export const server = setupServer(
-  ...Object.values(handlers).map(value =>
-    http.get(value.path, value.mock as never),
+  ...Object.values(handlers).map(handler =>
+    http.get(handler.path, /** @type {never} */ (handler.mock)),
   ),
 )
+
+beforeAll(() => {
+  server.listen({ onUnhandledRequest: 'error' })
+})
+
+afterAll(() => {
+  server.close()
+})

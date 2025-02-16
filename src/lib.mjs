@@ -162,6 +162,44 @@ export function iconTransform(
   return body
 }
 
+export class TempFile {
+  /** @type {URL} */
+  #tempPath
+  /** @type {string} */
+  #commitName
+  /** @type {import('fs/promises').FileHandle | undefined} */
+  #fileHandle
+
+  /**
+   * @param {string} commitName
+   */
+  constructor(commitName) {
+    this.#tempPath = new URL(crypto.randomUUID(), import.meta.url)
+    this.#commitName = commitName
+  }
+
+  /**
+   * @param {import('fs/promises').CreateWriteStreamOptions['encoding']} encoding
+   */
+  async open(encoding) {
+    this.#fileHandle = await fs.open(this.#tempPath, 'w')
+    return this.#fileHandle.createWriteStream({
+      autoClose: false,
+      encoding,
+    })
+  }
+
+  async [Symbol.asyncDispose]() {
+    if (this.#fileHandle) {
+      await this.#fileHandle.close()
+      return fs.rename(
+        this.#tempPath,
+        new URL(this.#commitName, import.meta.url),
+      )
+    }
+  }
+}
+
 /**
  * @typedef {object} IconsConfig
  * @prop {IconsConfigIconSet[]} iconSets
@@ -488,90 +526,77 @@ export function writeToFile(prefix = {}) {
    * @param {AsyncIterable<TransformIconData>} source
    */
   return async source => {
-    const tempPath = new URL(crypto.randomUUID(), import.meta.url)
+    const temp = new TempFile('plugin.css')
 
-    const { promise, resolve, reject } = withResolvers()
+    try {
+      const file = await temp.open('ascii')
 
-    const file = createWriteStream(tempPath, {
-      encoding: 'ascii',
-    })
-      .on('finish', async () => {
-        console.log('commit file')
-        await fs.rename(tempPath, new URL('plugin.css', import.meta.url))
-        resolve()
-      })
-      .on('error', reject)
+      for await (const { iconSetName, icons } of source) {
+        const writeTheme = () => {
+          let ok = true
 
-    for await (const { iconSetName, icons } of source) {
-      const { promise: writeThemePromise, resolve: resolveWriteTheme } =
-        withResolvers()
+          while (ok && i < icons.length) {
+            const { name, data } = icons[i++]
+            file.write('  --i-')
+            file.write(iconSetName)
+            file.write('-')
+            file.write(name)
+            file.write(': ')
+            file.write(data)
+            ok = file.write(';\n')
+          }
 
-      const writeTheme = () => {
-        let ok = true
-
-        while (i < icons.length && ok) {
-          const { name, data } = icons[i++]
-          file.write('  --i-')
-          file.write(iconSetName)
-          file.write('-')
-          file.write(name)
-          file.write(': ')
-          file.write(data)
-          ok = file.write(';\n')
+          if (i < icons.length) {
+            file.once('drain', writeTheme)
+          } else {
+            resolve()
+          }
         }
 
-        if (i < icons.length) {
-          file.once('drain', writeTheme)
-        } else {
-          resolveWriteTheme()
-        }
-      }
+        const writeInlineTheme = () => {
+          let ok = true
 
-      const {
-        promise: writeInlineThemePromise,
-        resolve: resolveWriteInlineTheme,
-      } = withResolvers()
+          while (ok && i < icons.length) {
+            const { name, width, height } = icons[i++]
+            file.write('  --i-')
+            file.write(iconSetName)
+            file.write('-')
+            file.write(name)
+            file.write('--aspect: ')
+            file.write(width === height ? '1' : (width / height).toFixed(4))
+            ok = file.write(';\n')
+          }
 
-      const writeInlineTheme = () => {
-        let ok = true
-
-        while (i < icons.length && ok) {
-          const { name, width, height } = icons[i++]
-          file.write('  --i-')
-          file.write(iconSetName)
-          file.write('-')
-          file.write(name)
-          file.write('--aspect: ')
-          file.write(width === height ? '1' : (width / height).toFixed(4))
-          ok = file.write(';\n')
+          if (i < icons.length) {
+            file.once('drain', writeInlineTheme)
+          } else {
+            resolve()
+          }
         }
 
-        if (i < icons.length) {
-          file.once('drain', writeInlineTheme)
-        } else {
-          resolveWriteInlineTheme()
-        }
-      }
+        file.write('@theme {\n')
 
-      file.write('@theme {\n')
+        let i = 0
+        let { promise, resolve } = withResolvers()
 
-      let i = 0
-      writeTheme()
-      await writeThemePromise
+        writeTheme()
+        await promise
 
-      file.write(`}
+        file.write(`}
 
 @theme inline reference {
 `)
 
-      i = 0
-      writeInlineTheme()
-      await writeInlineThemePromise
+        i = 0
+        ;({ promise, resolve } = withResolvers())
 
-      file.write('}\n\n')
-    }
+        writeInlineTheme()
+        await promise
 
-    file.end(`@utility ${mask}-* {
+        file.write('}\n\n')
+      }
+
+      file.end(`@utility ${mask}-* {
   & {
     mask-image: --value(--i-*);
     mask-repeat: no-repeat;
@@ -589,10 +614,11 @@ export function writeToFile(prefix = {}) {
     background-size: 100% 100%;
     height: 1em;
     aspect-ratio: --value(--i-*--aspect);
-  }
+   }
 }
 `)
-
-    return promise
+    } finally {
+      await temp[Symbol.asyncDispose]()
+    }
   }
 }

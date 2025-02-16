@@ -1,22 +1,15 @@
-import { fs, vol } from 'memfs'
-import { afterEach, beforeEach, describe, expect, test, vi } from 'vitest'
-import { writeToFile, type TransformIconData } from '~/src/lib.mjs'
+import { describe, test, expect } from 'vitest'
 
-vi.mock('node:fs')
-vi.mock('node:fs/promises')
+import { tempDirSnapshot } from './tempDir.mjs'
+import { writeToFile } from '../src/lib.mjs'
 
-type TransformIconDataGenerator = AsyncGenerator<
-  TransformIconData,
-  void,
-  unknown
->
-
-beforeEach(() => {
-  vol.reset()
-})
+/** @typedef {AsyncGenerator<import('../src/lib.mjs').TransformIconData, void, unknown>} TransformIconDataGenerator */
 
 describe('write to file with prefix', () => {
-  async function* generator(): TransformIconDataGenerator {
+  /**
+   * @returns {TransformIconDataGenerator}
+   */
+  async function* generator() {
     yield {
       iconSetName: 'icon-set-one',
       icons: [
@@ -61,12 +54,14 @@ describe('write to file with prefix', () => {
 
   test('default', async () => {
     await writeToFile()(generator())
+    expect(await tempDirSnapshot()).toMatchSnapshot()
   })
 
   test('mask', async () => {
     await writeToFile({
       mask: 'mask-icon-prefix',
     })(generator())
+    expect(await tempDirSnapshot()).toMatchSnapshot()
   })
 
   test('mask and background', async () => {
@@ -74,9 +69,6 @@ describe('write to file with prefix', () => {
       mask: 'mask-icon-prefix',
       background: 'background-icon-prefix',
     })(generator())
-  })
-
-  afterEach(() => {
-    expect(fs.readFileSync('/plugin.css').toString()).toMatchSnapshot()
+    expect(await tempDirSnapshot()).toMatchSnapshot()
   })
 })

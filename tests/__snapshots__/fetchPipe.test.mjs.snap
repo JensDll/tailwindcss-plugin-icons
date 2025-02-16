@@ -1,0 +1,27 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`fails with bad request 1`] = `[Error: Failed to fetch remote icon set at "https://localhost/bad"]`;
+
+exports[`fails with bad request 2`] = `[]`;
+
+exports[`fails with network error 1`] = `[Error: Failed to fetch remote icon set at "https://localhost/error"]`;
+
+exports[`fails with network error 2`] = `[]`;
+
+exports[`works with http 1`] = `
+[
+  [
+    "fb746dac53d593f1621f8558482e2bd4e23b5749.json",
+    "{"prefix":"🔥","info":{"name":"💯"},"icons":{"icon":{"body":""}},"width":24,"height":24}",
+  ],
+]
+`;
+
+exports[`works with https 1`] = `
+[
+  [
+    "8cc51bd38ea66f433eaf69fa37a2cd34a48601ec.json",
+    "{"prefix":"🔥","info":{"name":"💯"},"icons":{"icon":{"body":""}},"width":24,"height":24}",
+  ],
+]
+`;

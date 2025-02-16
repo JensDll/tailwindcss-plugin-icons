@@ -6,11 +6,8 @@
     "strict": true,
     "declaration": true,
     "declarationMap": true,
-    "emitDeclarationOnly": true,
-    "paths": {
-      "~/src/*": ["./src/*"]
-    }
+    "emitDeclarationOnly": true
   },
-  "include": ["src/**/*.mjs", "tests"],
+  "include": ["src/**/*.mjs", "tests/**/*.mjs"],
   "exclude": ["src/dist"]
 }
