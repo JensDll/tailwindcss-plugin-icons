@@ -54,14 +54,14 @@ describe('write to file with prefix', () => {
 
   test('default', async () => {
     await writeToFile()(generator())
-    expect(await tempDirSnapshot()).toMatchSnapshot()
+    await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
   })
 
   test('mask', async () => {
     await writeToFile({
       mask: 'mask-icon-prefix',
     })(generator())
-    expect(await tempDirSnapshot()).toMatchSnapshot()
+    await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
   })
 
   test('mask and background', async () => {
@@ -69,7 +69,7 @@ describe('write to file with prefix', () => {
       mask: 'mask-icon-prefix',
       background: 'background-icon-prefix',
     })(generator())
-    expect(await tempDirSnapshot()).toMatchSnapshot()
+    await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
   })
 })
 
@@ -90,7 +90,7 @@ test.each([1000, 5000])('%i icons', async n => {
   }
 
   await writeToFile()(generator())
-  await expect(await tempDirSnapshot()).toMatchFileSnapshot(
+  await expect(tempDirSnapshot()).resolves.toMatchFileSnapshot(
     `./__snapshots__/${n}-icons.snap`,
   )
 })
@@ -115,5 +115,5 @@ test('empty icons', async () => {
   }
 
   await writeToFile()(generator())
-  expect(await tempDirSnapshot()).toMatchSnapshot()
+  await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
 })

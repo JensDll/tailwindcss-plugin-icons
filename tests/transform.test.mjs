@@ -196,5 +196,5 @@ test('logs error when icon name not found', async () => {
   for await (const _ of transform(source())) {
   }
 
-  expect(consoleErrorMock).toBeCalledTimes(3)
+  expect(consoleErrorMock.mock.calls).toMatchSnapshot()
 })

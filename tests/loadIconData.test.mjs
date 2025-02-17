@@ -34,11 +34,11 @@ vi.mock('icons-module', () => ({
 }))
 
 test('without location loads from @iconify-json by name', async () => {
-  expect(await _loadIconData({ name: 'foo' }, '')).toMatchSnapshot()
+  await expect(_loadIconData({ name: 'foo' }, '')).resolves.toMatchSnapshot()
 })
 
 test('without location loads from @iconify/json by name', async () => {
-  expect(await _loadIconData({ name: 'bar' }, '')).toMatchSnapshot()
+  await expect(_loadIconData({ name: 'bar' }, '')).resolves.toMatchSnapshot()
 })
 
 test('fails to load without location with invalid name', async () => {
@@ -92,18 +92,18 @@ test('loads from https location and caches result to file system', async () => {
 })
 
 test('loads from module by location', async () => {
-  expect(
-    await _loadIconData({ name: 'xyz', location: 'icons-module' }, ''),
-  ).toMatchSnapshot()
+  await expect(
+    _loadIconData({ name: 'xyz', location: 'icons-module' }, ''),
+  ).resolves.toMatchSnapshot()
 })
 
 test('loads from module by location (rename default location)', async () => {
-  expect(
-    await _loadIconData(
+  await expect(
+    _loadIconData(
       { name: 'rename', location: '@iconify-json/foo/icons.json' },
       '',
     ),
-  ).toMatchSnapshot()
+  ).resolves.toMatchSnapshot()
 })
 
 test('loads from local path', async () => {
@@ -111,12 +111,13 @@ test('loads from local path', async () => {
     new URL('local.json', import.meta.url),
     JSON.stringify(iconSet),
   )
-  expect(
-    await _loadIconData(
+
+  await expect(
+    _loadIconData(
       { name: 'abc', location: './local.json', icons: ['abc'] },
       tempDirPath,
     ),
-  ).toMatchSnapshot()
+  ).resolves.toMatchSnapshot()
 })
 
 test('fails to load from local path', async () => {

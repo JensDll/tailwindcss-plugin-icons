@@ -1147,6 +1147,20 @@ exports[`default width 1`] = `
 
 exports[`logs error when icon name not found 1`] = `
 [
+  [
+    "[tailwindcss-plugin-icons] Icon "invalid" not found in icon set foo",
+  ],
+  [
+    "[tailwindcss-plugin-icons] Icon "x" not found in icon set foo",
+  ],
+  [
+    "[tailwindcss-plugin-icons] Icon "wrong" not found in icon set foo",
+  ],
+]
+`;
+
+exports[`logs error when icon name not found 2`] = `
+[
   {
     "iconSetName": "foo",
     "icons": [

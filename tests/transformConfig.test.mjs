@@ -54,8 +54,8 @@ test('working example', async () => {
 
   await transformConfig(config, '')
 
-  expect(await tempDirSnapshot()).toMatchSnapshot()
-  expect(consoleErrorMock).toBeCalledTimes(0)
+  await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
+  expect(consoleErrorMock).toHaveBeenCalledTimes(0)
 })
 
 test('invalid without location', async () => {
@@ -70,7 +70,7 @@ test('invalid without location', async () => {
 
   await transformConfig(config, '')
 
-  expect(await tempDirSnapshot()).toMatchSnapshot()
+  await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
   expect(consoleErrorMock.mock.calls).toMatchSnapshot()
 })
 
@@ -87,6 +87,6 @@ test('invalid with location', async () => {
 
   await transformConfig(config, '')
 
-  expect(await tempDirSnapshot()).toMatchSnapshot()
+  await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
   expect(consoleErrorMock.mock.calls).toMatchSnapshot()
 })
