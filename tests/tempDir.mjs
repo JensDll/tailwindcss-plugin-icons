@@ -1,3 +1,4 @@
+import { strict as assert } from 'node:assert'
 import fs from 'node:fs/promises'
 import os from 'node:os'
 import path from 'node:path'
@@ -44,6 +45,7 @@ export async function tempDirSnapshot() {
   const result = []
   const dir = await fs.opendir(tempDirPath)
   for await (const dirent of dir) {
+    assert.equal(dirent.isFile(), true)
     result.push([
       dirent.name,
       await fs.readFile(path.join(dirent.parentPath, dirent.name), {
