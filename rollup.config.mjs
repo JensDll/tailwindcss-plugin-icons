@@ -1,4 +1,4 @@
-const external = [/node:.+/, /tailwindcss\/.+/]
+const external = [/node:.+/, /tailwindcss\/.+/, 'vite']
 
 /**
  * @type {import('rollup').RollupOptions[]}

@@ -57,7 +57,7 @@ exports[`working example 1`] = `
 @theme inline reference {
   --i-ebou-dar-a--aspect: 1;
   --i-ebou-dar-b--aspect: 1;
-  --i-ebou-dar-c--aspect: 0.5000;
+  --i-ebou-dar-c--aspect: 0.5;
 }
 
 @utility mi-* {

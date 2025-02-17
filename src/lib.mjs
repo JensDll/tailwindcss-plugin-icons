@@ -39,6 +39,16 @@ export function withResolvers() {
 }
 
 /**
+ * @param {number} n
+ */
+export function toFixedRemoveTrailingZeros(n) {
+  const result = n.toFixed(4)
+  let i = result.length
+  while (result[--i] === '0') {}
+  return result.substring(0, i + 1)
+}
+
+/**
  * @param {string} str
  */
 export function toKebabCase(str) {
@@ -102,7 +112,7 @@ function encodeSvg(svg) {
 }
 
 /**
- * Converts an icon to a percent-encoded `<svg></svg>` CSS data URL.
+ * Converts an icon to a percent-encoded CSS data URL.
  * @param {string} body The icon body.
  * @param {number} left The left part of the top-left coordinate of the `viewBox`.
  * @param {number} top The top part of the top-left coordinate of the `viewBox`.
@@ -191,6 +201,7 @@ export class TempFile {
 
   async [Symbol.asyncDispose]() {
     if (this.#fileHandle) {
+      console.log('commit file')
       await this.#fileHandle.close()
       return fs.rename(
         this.#tempPath,
@@ -564,7 +575,11 @@ export function writeToFile(prefix = {}) {
             file.write('-')
             file.write(name)
             file.write('--aspect: ')
-            file.write(width === height ? '1' : (width / height).toFixed(4))
+            file.write(
+              width === height
+                ? '1'
+                : toFixedRemoveTrailingZeros(width / height),
+            )
             ok = file.write(';\n')
           }
 

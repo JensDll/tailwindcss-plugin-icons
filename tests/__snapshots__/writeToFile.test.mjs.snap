@@ -69,8 +69,8 @@ exports[`write to file with prefix > default 1`] = `
 }
 
 @theme inline reference {
-  --i-icon-set-two-icon-1--aspect: 0.5000;
-  --i-icon-set-two-icon-2--aspect: 0.7500;
+  --i-icon-set-two-icon-1--aspect: 0.5;
+  --i-icon-set-two-icon-2--aspect: 0.75;
 }
 
 @utility mi-* {
@@ -120,8 +120,8 @@ exports[`write to file with prefix > mask 1`] = `
 }
 
 @theme inline reference {
-  --i-icon-set-two-icon-1--aspect: 0.5000;
-  --i-icon-set-two-icon-2--aspect: 0.7500;
+  --i-icon-set-two-icon-1--aspect: 0.5;
+  --i-icon-set-two-icon-2--aspect: 0.75;
 }
 
 @utility mask-icon-prefix-* {
@@ -171,8 +171,8 @@ exports[`write to file with prefix > mask and background 1`] = `
 }
 
 @theme inline reference {
-  --i-icon-set-two-icon-1--aspect: 0.5000;
-  --i-icon-set-two-icon-2--aspect: 0.7500;
+  --i-icon-set-two-icon-1--aspect: 0.5;
+  --i-icon-set-two-icon-2--aspect: 0.75;
 }
 
 @utility mask-icon-prefix-* {

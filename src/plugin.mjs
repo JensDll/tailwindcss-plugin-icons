@@ -1,5 +1,7 @@
 import fs from 'node:fs/promises'
 
+import { normalizePath } from 'vite'
+
 import { transformConfig } from './lib.mjs'
 
 /**
@@ -23,7 +25,7 @@ export function icons(options = {}) {
     name: 'tailwindcss-plugin-icons',
     configResolved(config) {
       root = config.root
-      iconsConfigPath = config.root + '/' + iconsConfigName
+      iconsConfigPath = normalizePath(config.root + '/' + iconsConfigName)
     },
     async buildStart() {
       const config = JSON.parse(await fs.readFile(iconsConfigPath, 'utf8'))
