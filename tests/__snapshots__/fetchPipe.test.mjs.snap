@@ -12,7 +12,7 @@ exports[`works with http 1`] = `
 [
   [
     "fb746dac53d593f1621f8558482e2bd4e23b5749.json",
-    "{"prefix":"🔥","info":{"name":"💯"},"icons":{"icon":{"body":""}},"width":24,"height":24}",
+    "{"icons":{"icon":{"body":"🔥💯🔥"}},"width":24,"height":24}",
   ],
 ]
 `;
@@ -21,7 +21,7 @@ exports[`works with https 1`] = `
 [
   [
     "8cc51bd38ea66f433eaf69fa37a2cd34a48601ec.json",
-    "{"prefix":"🔥","info":{"name":"💯"},"icons":{"icon":{"body":""}},"width":24,"height":24}",
+    "{"icons":{"icon":{"body":"🔥💯🔥"}},"width":24,"height":24}",
   ],
 ]
 `;

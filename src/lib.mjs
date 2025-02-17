@@ -6,7 +6,7 @@ import https from 'node:https'
 import path from 'node:path'
 import stream from 'node:stream/promises'
 
-const CONSOLE_ERROR_NAMESPACE = '[tailwindcss-plugin-icons]'
+export const CONSOLE_ERROR_NAMESPACE = '[tailwindcss-plugin-icons]'
 
 /**
  * @template T
@@ -46,7 +46,7 @@ export function toKebabCase(str) {
 }
 
 /**
- * @param {string} [str]
+ * @param {string | null} [str]
  * @returns {str is string}
  */
 export function isUri(str) {
@@ -372,6 +372,7 @@ export async function _loadIconData(description, root) {
 
 /**
  * @param {AsyncIterable<IconData>} source
+ * @return {AsyncIterable<TransformIconData>}
  */
 export async function* transform(source) {
   for await (const {

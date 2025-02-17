@@ -9,18 +9,27 @@ import { _loadIconData, uriToFilename } from '../src/lib.mjs'
 
 vi.mock('@iconify-json/foo/icons.json', () => ({
   default: {
-    info: { name: 'foo' },
     icons: { a: { body: '' } },
   },
 }))
 
 vi.mock('@iconify/json/json/bar.json', () => ({
   default: {
-    info: { name: 'bar' },
     icons: { a: { body: '' } },
     aliases: { b: { parent: 'a', width: 16, height: 16, rotate: 1 } },
     width: 24,
     height: 24,
+  },
+}))
+
+vi.mock('icons-module', () => ({
+  default: {
+    icon: {
+      x: { body: 'x' },
+      y: { body: 'y' },
+    },
+    left: 10,
+    top: 11,
   },
 }))
 
@@ -82,8 +91,6 @@ test('loads from https location and caches result to file system', async () => {
   expect(mock).toHaveBeenCalledOnce()
 })
 
-vi.mock('icons-module', () => ({ default: { info: { name: 'icons-module' } } }))
-
 test('loads from module by location', async () => {
   expect(
     await _loadIconData({ name: 'xyz', location: 'icons-module' }, ''),
@@ -100,7 +107,10 @@ test('loads from module by location (rename default location)', async () => {
 })
 
 test('loads from local path', async () => {
-  await fs.writeFile(new URL('local.json'), JSON.stringify(iconSet))
+  await fs.writeFile(
+    new URL('local.json', import.meta.url),
+    JSON.stringify(iconSet),
+  )
   expect(
     await _loadIconData(
       { name: 'abc', location: './local.json', icons: ['abc'] },

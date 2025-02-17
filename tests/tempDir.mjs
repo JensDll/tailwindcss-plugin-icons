@@ -21,11 +21,11 @@ beforeEach(async () => {
        * @param {string | URL} base
        */
       constructor(input, base) {
-        const tempDirBase =
+        const isFile =
           base instanceof URL
             ? base.protocol === 'file:'
-            : !base || base.startsWith('file:')
-        super(input, tempDirBase ? pathToFileURL(tempDirPath + path.sep) : base)
+            : base?.startsWith('file:')
+        super(input, isFile ? pathToFileURL(tempDirPath + path.sep) : base)
       }
     },
   )

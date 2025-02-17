@@ -1,0 +1,19 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`transform 0 1`] = `"body"`;
+
+exports[`transform 1 1`] = `"<g transform="rotate(90 30 60)">body</g>"`;
+
+exports[`transform 2 1`] = `"<g transform="rotate(180 30 60)">body</g>"`;
+
+exports[`transform 3 1`] = `"<g transform="translate(3 0) scale(-1 1)"></g>"`;
+
+exports[`transform 4 1`] = `"<g transform="translate(0 3) scale(1 -1)"></g>"`;
+
+exports[`transform 5 1`] = `"<g transform="rotate(180 2.5 4)"></g>"`;
+
+exports[`transform 6 1`] = `"<g transform="rotate(180 2.5 4) translate(0 8) scale(1 -1)"></g>"`;
+
+exports[`transform 7 1`] = `"<g transform="rotate(180 2.5 4) translate(5 0) scale(-1 1)"></g>"`;
+
+exports[`transform 8 1`] = `"<g transform="rotate(180 2.5 4) translate(5 0) scale(-1 1) translate(0 8) scale(1 -1)"></g>"`;

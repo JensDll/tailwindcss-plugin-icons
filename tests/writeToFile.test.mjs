@@ -72,3 +72,48 @@ describe('write to file with prefix', () => {
     expect(await tempDirSnapshot()).toMatchSnapshot()
   })
 })
+
+test.each([1000, 5000])('%i icons', async n => {
+  /**
+   * @returns {TransformIconDataGenerator}
+   */
+  async function* generator() {
+    yield {
+      iconSetName: `${n}-icons`,
+      icons: Array.from(Array(n), (v, i) => ({
+        data: 'url(abcdefghiklmoqrstuvwxyz123456789abcdefghiklmoqrstuvwxyz)',
+        name: `icon-${i}`,
+        width: 1,
+        height: 1,
+      })),
+    }
+  }
+
+  await writeToFile()(generator())
+  await expect(await tempDirSnapshot()).toMatchFileSnapshot(
+    `./__snapshots__/${n}-icons.snap`,
+  )
+})
+
+test('empty icons', async () => {
+  /**
+   * @returns {TransformIconDataGenerator}
+   */
+  async function* generator() {
+    yield {
+      iconSetName: 'foo',
+      icons: [],
+    }
+    yield {
+      iconSetName: 'bar',
+      icons: [],
+    }
+    yield {
+      iconSetName: 'baz',
+      icons: [],
+    }
+  }
+
+  await writeToFile()(generator())
+  expect(await tempDirSnapshot()).toMatchSnapshot()
+})

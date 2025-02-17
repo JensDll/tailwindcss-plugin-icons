@@ -10,7 +10,7 @@ exports[`loads from http location and caches result to file system 1`] = `
   "height": 24,
   "icons": {
     "icon": {
-      "body": "",
+      "body": "🔥💯🔥",
     },
   },
   "left": undefined,
@@ -27,7 +27,7 @@ exports[`loads from http location and caches result to file system 2`] = `
   "height": 24,
   "icons": {
     "icon": {
-      "body": "",
+      "body": "🔥💯🔥",
     },
   },
   "left": undefined,
@@ -44,7 +44,7 @@ exports[`loads from https location and caches result to file system 1`] = `
   "height": 24,
   "icons": {
     "icon": {
-      "body": "",
+      "body": "🔥💯🔥",
     },
   },
   "left": undefined,
@@ -61,7 +61,7 @@ exports[`loads from https location and caches result to file system 2`] = `
   "height": 24,
   "icons": {
     "icon": {
-      "body": "",
+      "body": "🔥💯🔥",
     },
   },
   "left": undefined,
@@ -78,7 +78,7 @@ exports[`loads from local path 1`] = `
   "height": 24,
   "icons": {
     "icon": {
-      "body": "",
+      "body": "🔥💯🔥",
     },
   },
   "left": undefined,
@@ -113,10 +113,10 @@ exports[`loads from module by location 1`] = `
   "aliases": undefined,
   "height": undefined,
   "icons": undefined,
-  "left": undefined,
+  "left": 10,
   "name": "xyz",
   "names": undefined,
-  "top": undefined,
+  "top": 11,
   "width": undefined,
 }
 `;

@@ -3,9 +3,7 @@ import { setupServer } from 'msw/node'
 import { vi, beforeAll, afterAll } from 'vitest'
 
 export const iconSet = {
-  prefix: '🔥',
-  info: { name: '💯' },
-  icons: { icon: { body: '' } },
+  icons: { icon: { body: '🔥💯🔥' } },
   width: 24,
   height: 24,
 }

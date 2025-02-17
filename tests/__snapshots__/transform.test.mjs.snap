@@ -1,0 +1,1162 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`default dimensions 1`] = `
+[
+  {
+    "iconSetName": "icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+    ],
+  },
+  {
+    "iconSetName": "icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "g",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "h",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "i",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "j",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "k",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E1%3C/svg%3E")",
+        "height": 6,
+        "name": "l",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "m",
+        "width": 16,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "g",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "h",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 20 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "i",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "j",
+        "width": 20,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 20'%3E5%3C/svg%3E")",
+        "height": 20,
+        "name": "k",
+        "width": 16,
+      },
+    ],
+  },
+]
+`;
+
+exports[`default height 1`] = `
+[
+  {
+    "iconSetName": "icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 3'%3E1%3C/svg%3E")",
+        "height": 3,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 3'%3E2%3C/svg%3E")",
+        "height": 3,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 3'%3E3%3C/svg%3E")",
+        "height": 3,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 3'%3E4%3C/svg%3E")",
+        "height": 3,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+    ],
+  },
+  {
+    "iconSetName": "icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 3'%3E1%3C/svg%3E")",
+        "height": 3,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 3'%3E2%3C/svg%3E")",
+        "height": 3,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 3'%3E3%3C/svg%3E")",
+        "height": 3,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 3'%3E4%3C/svg%3E")",
+        "height": 3,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 3'%3E1%3C/svg%3E")",
+        "height": 3,
+        "name": "g",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 3'%3E2%3C/svg%3E")",
+        "height": 3,
+        "name": "h",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 3'%3E3%3C/svg%3E")",
+        "height": 3,
+        "name": "i",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 3'%3E4%3C/svg%3E")",
+        "height": 3,
+        "name": "j",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "k",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E1%3C/svg%3E")",
+        "height": 6,
+        "name": "l",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 3'%3E1%3C/svg%3E")",
+        "height": 3,
+        "name": "m",
+        "width": 16,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 3'%3E1%3C/svg%3E")",
+        "height": 3,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 3'%3E2%3C/svg%3E")",
+        "height": 3,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 3'%3E3%3C/svg%3E")",
+        "height": 3,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 3'%3E4%3C/svg%3E")",
+        "height": 3,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 3'%3E1%3C/svg%3E")",
+        "height": 3,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 3'%3E2%3C/svg%3E")",
+        "height": 3,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 3'%3E3%3C/svg%3E")",
+        "height": 3,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 3'%3E4%3C/svg%3E")",
+        "height": 3,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 3'%3E1%3C/svg%3E")",
+        "height": 3,
+        "name": "g",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 16 3'%3E2%3C/svg%3E")",
+        "height": 3,
+        "name": "h",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 20 16 3'%3E3%3C/svg%3E")",
+        "height": 3,
+        "name": "i",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 3'%3E4%3C/svg%3E")",
+        "height": 3,
+        "name": "j",
+        "width": 20,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 20'%3E5%3C/svg%3E")",
+        "height": 20,
+        "name": "k",
+        "width": 16,
+      },
+    ],
+  },
+]
+`;
+
+exports[`default left 1`] = `
+[
+  {
+    "iconSetName": "icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+    ],
+  },
+  {
+    "iconSetName": "icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "g",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "h",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "i",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "j",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "k",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 5 6'%3E1%3C/svg%3E")",
+        "height": 6,
+        "name": "l",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "m",
+        "width": 16,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "g",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "h",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 20 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "i",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 20 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "j",
+        "width": 20,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='3 0 16 20'%3E5%3C/svg%3E")",
+        "height": 20,
+        "name": "k",
+        "width": 16,
+      },
+    ],
+  },
+]
+`;
+
+exports[`default top 1`] = `
+[
+  {
+    "iconSetName": "icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 3 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+    ],
+  },
+  {
+    "iconSetName": "icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 3 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "g",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 3 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "h",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "i",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "j",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "k",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 5 6'%3E1%3C/svg%3E")",
+        "height": 6,
+        "name": "l",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "m",
+        "width": 16,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 3 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 3 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "g",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 3 16 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "h",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 20 16 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "i",
+        "width": 16,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 20 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "j",
+        "width": 20,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 3 16 20'%3E5%3C/svg%3E")",
+        "height": 20,
+        "name": "k",
+        "width": 16,
+      },
+    ],
+  },
+]
+`;
+
+exports[`default width 1`] = `
+[
+  {
+    "iconSetName": "icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 3 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 3 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+    ],
+  },
+  {
+    "iconSetName": "icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 3 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 3 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E6%3C/svg%3E")",
+        "height": 6,
+        "name": "f",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "g",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 3 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "h",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 3 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "i",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "j",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "k",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 5 6'%3E1%3C/svg%3E")",
+        "height": 6,
+        "name": "l",
+        "width": 5,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "m",
+        "width": 3,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 3 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 3 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 3,
+      },
+    ],
+  },
+  {
+    "iconSetName": "names-icons-aliases",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 0 3 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "b",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 10 3 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "c",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "d",
+        "width": 10,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 10'%3E5%3C/svg%3E")",
+        "height": 10,
+        "name": "e",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "g",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='20 0 3 16'%3E2%3C/svg%3E")",
+        "height": 16,
+        "name": "h",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 20 3 16'%3E3%3C/svg%3E")",
+        "height": 16,
+        "name": "i",
+        "width": 3,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 16'%3E4%3C/svg%3E")",
+        "height": 16,
+        "name": "j",
+        "width": 20,
+      },
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 3 20'%3E5%3C/svg%3E")",
+        "height": 20,
+        "name": "k",
+        "width": 3,
+      },
+    ],
+  },
+]
+`;
+
+exports[`logs error when icon name not found 1`] = `
+[
+  {
+    "iconSetName": "foo",
+    "icons": [
+      {
+        "data": "url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E1%3C/svg%3E")",
+        "height": 16,
+        "name": "a",
+        "width": 16,
+      },
+    ],
+  },
+]
+`;
