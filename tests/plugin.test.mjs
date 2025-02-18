@@ -107,6 +107,7 @@ describe('defined config path', () => {
 
 test('build start - logs error when config not found', async () => {
   await initTempDir('not-found')
+
   const plugin = icons()
   const root = normalizePath(tempDirPath)
 

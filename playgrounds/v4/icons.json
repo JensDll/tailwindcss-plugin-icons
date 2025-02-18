@@ -23,7 +23,7 @@
     },
     {
       "name": "local",
-      "location": "./src/icon-set.json"
+      "location": "./src/local.json"
     },
     {
       "name": "m",
