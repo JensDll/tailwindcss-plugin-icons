@@ -192,7 +192,6 @@ test('logs error when icon name not found', async () => {
     }
   }
 
-  // eslint-disable-next-line no-unused-vars
   for await (const _ of transform(source())) {
   }
 

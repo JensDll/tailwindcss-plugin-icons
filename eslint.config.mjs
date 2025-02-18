@@ -14,8 +14,15 @@ export default [
   {
     languageOptions: { globals: globals.node, ecmaVersion: 'latest' },
     rules: {
+      // https://eslint.org/docs/latest/rules
       'no-empty': 'off',
-
+      'no-unused-vars': [
+        'error',
+        {
+          varsIgnorePattern: '_+',
+        },
+      ],
+      // https://github.com/import-js/eslint-plugin-import#rules
       'import/order': [
         'error',
         {
@@ -33,7 +40,7 @@ export default [
           ignore: ['vitest/config'],
         },
       ],
-
+      // https://github.com/vitest-dev/eslint-plugin-vitest#rules
       'vitest/consistent-test-it': [
         'error',
         {

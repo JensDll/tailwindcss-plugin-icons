@@ -2,11 +2,13 @@ import fs from 'node:fs/promises'
 
 import { normalizePath } from 'vite'
 
-import { transformConfig } from './lib.mjs'
+import { CONSOLE_ERROR_NAMESPACE, transformConfig } from './lib.mjs'
 
 /**
  * @typedef {object} Options
- * @prop {string} [config] The icons config name in the project root. Default `"icons.json"`.
+ * @prop {string} [config] Path to the icons config searched for in the project root.
+ *
+ * Default `"icons.json"`
  */
 
 /**
@@ -14,25 +16,33 @@ import { transformConfig } from './lib.mjs'
  * @return {import('vite').Plugin}
  */
 export function icons(options = {}) {
-  const { config: iconsConfigName = 'icons.json' } = options
+  const { config: configName = 'icons.json' } = options
 
   /** @type {string} */
   let root
   /** @type {string} */
-  let iconsConfigPath
+  let configPath
 
   return {
     name: 'tailwindcss-plugin-icons',
     configResolved(config) {
       root = config.root
-      iconsConfigPath = normalizePath(config.root + '/' + iconsConfigName)
+      configPath = normalizePath(config.root + '/' + configName)
     },
     async buildStart() {
-      const config = JSON.parse(await fs.readFile(iconsConfigPath, 'utf8'))
+      let config
+      try {
+        config = JSON.parse(await fs.readFile(configPath, 'utf8'))
+      } catch {
+        console.error(
+          `${CONSOLE_ERROR_NAMESPACE} Failed to find config at "${configPath}"`,
+        )
+        return
+      }
       return transformConfig(config, root)
     },
     async handleHotUpdate({ file, read }) {
-      if (file === iconsConfigPath) {
+      if (file === configPath) {
         const config = JSON.parse(await read())
         return transformConfig(config, root)
       }

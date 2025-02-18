@@ -201,7 +201,6 @@ export class TempFile {
 
   async [Symbol.asyncDispose]() {
     if (this.#fileHandle) {
-      console.log('commit file')
       await this.#fileHandle.close()
       return fs.rename(
         this.#tempPath,
@@ -410,7 +409,7 @@ export async function* transform(source) {
                 icon = { ...icons[parent], ...aliasedIcon }
               } else {
                 console.error(
-                  `${CONSOLE_ERROR_NAMESPACE} Icon "${name}" not found in icon set ${iconSetName}`,
+                  `${CONSOLE_ERROR_NAMESPACE} Icon "${name}" not found in icon set "${iconSetName}"`,
                 )
                 return
               }
