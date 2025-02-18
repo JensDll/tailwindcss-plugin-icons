@@ -1,7 +1,5 @@
 import fs from 'node:fs/promises'
 
-import { normalizePath } from 'vite'
-
 import { CONSOLE_ERROR_NAMESPACE, transformConfig } from './lib.mjs'
 
 /**
@@ -27,7 +25,7 @@ export function icons(options = {}) {
     name: 'tailwindcss-plugin-icons',
     configResolved(config) {
       root = config.root
-      configPath = normalizePath(config.root + '/' + configName)
+      configPath = config.root + '/' + configName
     },
     async buildStart() {
       let config

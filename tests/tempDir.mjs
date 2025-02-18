@@ -53,5 +53,5 @@ export async function tempDirSnapshot() {
       }),
     ])
   }
-  return result
+  return result.sort((a, b) => a[0].localeCompare(b[0]))
 }

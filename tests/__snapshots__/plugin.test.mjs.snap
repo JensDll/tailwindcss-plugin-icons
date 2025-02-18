@@ -3,12 +3,12 @@
 exports[`default config path > build start 1`] = `
 [
   [
-    "local.json",
-    "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
-  ],
-  [
     "icons.json",
     "{"iconSets":[{"name":"local","location":"local.json"}]}",
+  ],
+  [
+    "local.json",
+    "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
   ],
   [
     "plugin.css",
@@ -50,12 +50,12 @@ exports[`default config path > build start 1`] = `
 exports[`default config path > handle hot update 1`] = `
 [
   [
-    "local.json",
-    "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
-  ],
-  [
     "icons.json",
     "{"iconSets":[{"name":"local","location":"local.json"}]}",
+  ],
+  [
+    "local.json",
+    "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
   ],
   [
     "plugin.css",
@@ -97,6 +97,10 @@ exports[`default config path > handle hot update 1`] = `
 exports[`defined config path > build start 1`] = `
 [
   [
+    "config.json",
+    "{"iconSets":[{"name":"local","location":"local.json"}]}",
+  ],
+  [
     "local.json",
     "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
   ],
@@ -133,10 +137,6 @@ exports[`defined config path > build start 1`] = `
    }
 }
 ",
-  ],
-  [
-    "config.json",
-    "{"iconSets":[{"name":"local","location":"local.json"}]}",
   ],
 ]
 `;
@@ -144,6 +144,10 @@ exports[`defined config path > build start 1`] = `
 exports[`defined config path > handle hot update 1`] = `
 [
   [
+    "config.json",
+    "{"iconSets":[{"name":"local","location":"local.json"}]}",
+  ],
+  [
     "local.json",
     "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
   ],
@@ -180,10 +184,6 @@ exports[`defined config path > handle hot update 1`] = `
    }
 }
 ",
-  ],
-  [
-    "config.json",
-    "{"iconSets":[{"name":"local","location":"local.json"}]}",
   ],
 ]
 `;

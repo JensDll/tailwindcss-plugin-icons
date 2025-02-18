@@ -1,6 +1,7 @@
 import fs from 'node:fs/promises'
 import path from 'node:path'
 
+import { normalizePath } from 'vite'
 import { describe, expect, test, vi } from 'vitest'
 
 import { tempDirPath, tempDirSnapshot } from './tempDir.mjs'
@@ -47,9 +48,10 @@ describe('default config path', () => {
     await initTempDir('icons.json')
 
     const plugin = icons()
+    const root = normalizePath(tempDirPath)
 
     // @ts-ignore
-    await plugin.configResolved({ root: tempDirPath })
+    await plugin.configResolved({ root })
     // @ts-ignore
     await plugin.buildStart()
 
@@ -60,10 +62,11 @@ describe('default config path', () => {
     await initTempDir('icons.json')
 
     const plugin = icons()
-    const file = tempDirPath + path.sep + 'icons.json'
+    const root = normalizePath(tempDirPath)
+    const file = root + '/icons.json'
 
     // @ts-ignore
-    await plugin.configResolved({ root: tempDirPath })
+    await plugin.configResolved({ root })
     // @ts-ignore
     await plugin.handleHotUpdate({ file, read: () => fs.readFile(file) })
 
@@ -76,9 +79,10 @@ describe('defined config path', () => {
     await initTempDir('config.json')
 
     const plugin = icons({ config: 'config.json' })
+    const root = normalizePath(tempDirPath)
 
     // @ts-ignore
-    await plugin.configResolved({ root: tempDirPath })
+    await plugin.configResolved({ root })
     // @ts-ignore
     await plugin.buildStart()
 
@@ -89,10 +93,11 @@ describe('defined config path', () => {
     await initTempDir('config.json')
 
     const plugin = icons({ config: 'config.json' })
-    const file = tempDirPath + path.sep + 'config.json'
+    const root = normalizePath(tempDirPath)
+    const file = root + '/config.json'
 
     // @ts-ignore
-    await plugin.configResolved({ root: tempDirPath })
+    await plugin.configResolved({ root })
     // @ts-ignore
     await plugin.handleHotUpdate({ file, read: () => fs.readFile(file) })
 
@@ -103,9 +108,10 @@ describe('defined config path', () => {
 test('build start - logs error when config not found', async () => {
   await initTempDir('not-found')
   const plugin = icons()
+  const root = normalizePath(tempDirPath)
 
   // @ts-ignore
-  await plugin.configResolved({ root: tempDirPath })
+  await plugin.configResolved({ root })
   // @ts-ignore
   await plugin.buildStart()
 
