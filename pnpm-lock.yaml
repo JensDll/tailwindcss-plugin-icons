@@ -23,9 +23,9 @@ importers:
       '@eslint/js':
         specifier: 9.20.0
         version: 9.20.0
-      '@tsconfig/node18':
-        specifier: 18.2.4
-        version: 18.2.4
+      '@tsconfig/node20':
+        specifier: 20.1.4
+        version: 20.1.4
       '@types/node':
         specifier: 'catalog:'
         version: 22.13.4
@@ -617,8 +617,8 @@ packages:
     peerDependencies:
       vite: ^5.2.0 || ^6
 
-  '@tsconfig/node18@18.2.4':
-    resolution: {integrity: sha512-5xxU8vVs9/FNcvm3gE07fPbn9tl6tqGGWA9tSlwsUEkBxtRnTsNmwrV8gasZ9F/EobaSv9+nu8AxUKccw77JpQ==}
+  '@tsconfig/node20@20.1.4':
+    resolution: {integrity: sha512-sqgsT69YFeLWf5NtJ4Xq/xAF8p4ZQHlmGW74Nu2tD4+g5fAsposc4ZfaaPixVu4y01BEiDCWLRDCvDM5JOsRxg==}
 
   '@types/cookie@0.6.0':
     resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
@@ -2403,7 +2403,7 @@ snapshots:
       tailwindcss: 4.0.7
       vite: 6.1.0(@types/node@22.13.4)(jiti@2.4.2)(lightningcss@1.29.1)
 
-  '@tsconfig/node18@18.2.4': {}
+  '@tsconfig/node20@20.1.4': {}
 
   '@types/cookie@0.6.0': {}
 

@@ -2,7 +2,8 @@
   "$schema": "../../src/config.scheme.json",
   "iconSets": [
     {
-      "name": "heroicons"
+      "name": "heroicons",
+      "icons": ["plus-circle", "minus-circle"]
     },
     {
       "name": "logos",

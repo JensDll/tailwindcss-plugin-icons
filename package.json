@@ -23,7 +23,7 @@
   },
   "dependencies": {
     "@eslint/js": "9.20.0",
-    "@tsconfig/node18": "18.2.4",
+    "@tsconfig/node20": "20.1.4",
     "@types/node": "catalog:",
     "@vitest/coverage-v8": "3.0.6",
     "@vitest/eslint-plugin": "1.1.31",

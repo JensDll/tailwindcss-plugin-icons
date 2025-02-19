@@ -35,10 +35,15 @@ test('fails with bad request', async () => {
 })
 
 test('fs open fails', async () => {
-  vi.spyOn(fs, 'open').mockRejectedValue(new Error('open failed'))
+  const fsOpen = vi
+    .spyOn(fs, 'open')
+    .mockRejectedValue(new Error('open failed'))
+  const fsUnlink = vi.spyOn(fs, 'unlink')
   await expect(
     fetchPipe(handlers.httpBadRequest.path),
   ).rejects.toThrowErrorMatchingSnapshot()
   await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
   expect(handlers.httpBadRequest.mock).toBeCalledTimes(0)
+  expect(fsOpen).toHaveBeenCalledOnce()
+  expect(fsUnlink).toHaveBeenCalledOnce()
 })
