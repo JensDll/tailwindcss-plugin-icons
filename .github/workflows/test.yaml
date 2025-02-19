@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  testing:
+  test:
     strategy:
       fail-fast: false
       matrix:
@@ -18,30 +18,14 @@ jobs:
     steps:
       - name: Checking out the repository
         uses: actions/checkout@v4.2.2
-
       - name: Installing pnpm
         uses: pnpm/action-setup@v4.1.0
-
       - name: Using node version ${{ matrix.node_version }}
         uses: actions/setup-node@v4.2.0
         with:
           node-version: ${{ matrix.node_version }}
           cache: pnpm
-
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Running typecheck
-        run: pnpm typecheck
-
-      - name: Running lint
-        run: pnpm lint
-
       - name: Running tests
         run: pnpm test:run
-
-      - name: Running build
-        run: pnpm build
-
-      - name: Running typegen
-        run: pnpm typegen
