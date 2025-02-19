@@ -1,4 +1,6 @@
-import { test, expect } from 'vitest'
+import fs from 'node:fs/promises'
+
+import { test, expect, vi } from 'vitest'
 
 import { handlers } from './server.mjs'
 import { tempDirSnapshot } from './tempDir.mjs'
@@ -30,4 +32,13 @@ test('fails with bad request', async () => {
   ).rejects.toThrowErrorMatchingSnapshot()
   await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
   expect(handlers.httpBadRequest.mock).toHaveBeenCalledOnce()
+})
+
+test('fs open fails', async () => {
+  vi.spyOn(fs, 'open').mockRejectedValue(new Error('open failed'))
+  await expect(
+    fetchPipe(handlers.httpBadRequest.path),
+  ).rejects.toThrowErrorMatchingSnapshot()
+  await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
+  expect(handlers.httpBadRequest.mock).toBeCalledTimes(0)
 })

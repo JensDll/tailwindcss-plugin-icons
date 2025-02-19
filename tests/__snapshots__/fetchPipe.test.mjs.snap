@@ -8,6 +8,10 @@ exports[`fails with network error 1`] = `[Error: Failed to fetch remote icon set
 
 exports[`fails with network error 2`] = `[]`;
 
+exports[`fs open fails 1`] = `[Error: Failed to fetch remote icon set at "https://localhost/bad"]`;
+
+exports[`fs open fails 2`] = `[]`;
+
 exports[`works with http 1`] = `
 [
   [
