@@ -1,4 +1,4 @@
-name: Lint
+name: Linting
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  lint:
+  eslint:
     runs-on: ubuntu-latest
     steps:
       - name: Checking out the repository
@@ -55,5 +55,7 @@ jobs:
           cache: pnpm
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
+      - name: Running build
+        run: pnpm build
       - name: Running typegen
         run: pnpm typegen

@@ -1,4 +1,4 @@
-name: Test
+name: Testing
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
       - main
 
 jobs:
-  test:
+  test-run:
     strategy:
       fail-fast: false
       matrix:
