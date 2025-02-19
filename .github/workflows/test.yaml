@@ -11,7 +11,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        node_version: [18.20.6, 22.14.0]
+        node_version: [20.18.3, 22.14.0]
         runner: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.runner }}
     name: ${{ matrix.runner }}

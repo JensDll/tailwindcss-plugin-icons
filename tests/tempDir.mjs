@@ -34,7 +34,6 @@ beforeEach(async () => {
 
 afterEach(async () => {
   vi.unstubAllGlobals()
-
   await fs.rm(tempDirPath, {
     recursive: true,
   })
@@ -48,9 +47,7 @@ export async function tempDirSnapshot() {
     assert.equal(dirent.isFile(), true)
     result.push([
       dirent.name,
-      await fs.readFile(path.join(dirent.parentPath, dirent.name), {
-        encoding: 'utf8',
-      }),
+      await fs.readFile(path.join(dirent.parentPath, dirent.name), 'utf8'),
     ])
   }
   return result.sort((a, b) => a[0].localeCompare(b[0]))

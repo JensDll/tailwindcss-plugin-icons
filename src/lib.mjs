@@ -67,35 +67,49 @@ export function isUri(str) {
  * @param {string} uri
  */
 export function uriToFilename(uri) {
-  return crypto.createHash('sha1').update(uri).digest('hex') + '.json'
+  return crypto.hash('sha1', uri) + '.json'
 }
 
 /**
  * @param {string} uri
- * @returns {Promise<void>}
  */
-export function fetchPipe(uri) {
+export async function fetchPipe(uri) {
   const protocol = uri.startsWith('https') ? https : http
+
   const filePath = new URL(uriToFilename(uri), import.meta.url)
-  const file = createWriteStream(filePath)
-  const error = new Error(`Failed to fetch remote icon set at "${uri}"`)
-  return new Promise((resolve, reject) => {
-    protocol
-      .get(uri, async response => {
-        if (response.statusCode === 200) {
-          file.on('finish', resolve)
-          response.pipe(file)
-        } else {
-          response.resume()
-          await fs.unlink(filePath)
-          reject(error)
-        }
+
+  /** @type {import('fs/promises').FileHandle | undefined} */
+  let fileHandle
+  /** @type {Error | undefined} */
+  let error
+
+  try {
+    fileHandle = await fs.open(filePath, 'w')
+    const file = fileHandle.createWriteStream()
+    await /** @type {Promise<void>} */ (
+      new Promise((resolve, reject) => {
+        protocol
+          .get(uri, response => {
+            if (response.statusCode === 200) {
+              file.on('finish', resolve)
+              response.pipe(file)
+            } else {
+              response.resume()
+              reject()
+            }
+          })
+          .on('error', reject)
       })
-      .on('error', async () => {
-        await fs.unlink(filePath)
-        reject(error)
-      })
-  })
+    )
+  } catch {
+    error = new Error(`Failed to fetch remote icon set at "${uri}"`)
+  } finally {
+    await fileHandle?.close()
+  }
+
+  if (error) {
+    return fs.unlink(filePath).finally(() => Promise.reject(error))
+  }
 }
 
 /**
@@ -193,10 +207,7 @@ export class TempFile {
    */
   async open(encoding) {
     this.#fileHandle = await fs.open(this.#tempPath, 'w')
-    return this.#fileHandle.createWriteStream({
-      autoClose: false,
-      encoding,
-    })
+    return this.#fileHandle.createWriteStream({ encoding, autoClose: false })
   }
 
   async [Symbol.asyncDispose]() {
