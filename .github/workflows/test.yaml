@@ -14,7 +14,7 @@ jobs:
         node_version: [20.18.3, 22.14.0]
         runner: [ubuntu-latest, windows-latest, macos-latest]
     runs-on: ${{ matrix.runner }}
-    name: ${{ matrix.runner }}
+    name: ${{ matrix.runner }} ${{ matrix.node_version }}
     steps:
       - name: Checking out the repository
         uses: actions/checkout@v4.2.2
