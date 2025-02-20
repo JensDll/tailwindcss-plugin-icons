@@ -73,7 +73,7 @@ describe('write to file with prefix', () => {
   })
 })
 
-test.each([1000, 5000])('%i icons', async n => {
+test.each([100, 1000, 5000])('%i icons', async n => {
   /**
    * @returns {TransformIconDataGenerator}
    */
@@ -81,7 +81,7 @@ test.each([1000, 5000])('%i icons', async n => {
     yield {
       iconSetName: `${n}-icons`,
       icons: Array.from(Array(n), (v, i) => ({
-        data: 'url(abcdefghiklmoqrstuvwxyz123456789abcdefghiklmoqrstuvwxyz)',
+        data: 'url(The quick brown fox jumps over the lazy dog)',
         name: `icon-${i}`,
         width: 1,
         height: 1,

@@ -4,7 +4,7 @@ import { CONSOLE_ERROR_NAMESPACE, transformConfig } from './lib.mjs'
 
 /**
  * @typedef {object} Options
- * @prop {string} [config] Path to the icons config searched for in the project root.
+ * @prop {string} [config] Path to the icons config starting from the project root.
  *
  * Default `"icons.json"`
  */
@@ -14,7 +14,7 @@ import { CONSOLE_ERROR_NAMESPACE, transformConfig } from './lib.mjs'
  * @return {import('vite').Plugin}
  */
 export function icons(options = {}) {
-  const { config: configName = 'icons.json' } = options
+  const { config: optionsConfig = 'icons.json' } = options
 
   /** @type {string} */
   let root
@@ -25,7 +25,7 @@ export function icons(options = {}) {
     name: 'tailwindcss-plugin-icons',
     configResolved(config) {
       root = config.root
-      configPath = config.root + '/' + configName
+      configPath = config.root + '/' + optionsConfig
     },
     async buildStart() {
       let config

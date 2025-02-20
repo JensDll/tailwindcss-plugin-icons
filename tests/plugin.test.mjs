@@ -10,9 +10,9 @@ import { icons } from '../src/plugin.mjs'
 const consoleErrorMock = vi.spyOn(console, 'error')
 
 /**
- * @param {string} configPath
+ * @param {string} configName
  */
-function initTempDir(configPath) {
+function initTempDir(configName) {
   /** @type {import('../src/lib.mjs').IconsConfig} */
   const config = {
     iconSets: [
@@ -38,7 +38,7 @@ function initTempDir(configPath) {
   }
 
   return Promise.all([
-    fs.writeFile(tempDirPath + path.sep + configPath, JSON.stringify(config)),
+    fs.writeFile(tempDirPath + path.sep + configName, JSON.stringify(config)),
     fs.writeFile(tempDirPath + path.sep + 'local.json', JSON.stringify(local)),
   ])
 }
@@ -50,9 +50,9 @@ describe('default config path', () => {
     const plugin = icons()
     const root = normalizePath(tempDirPath)
 
-    // @ts-ignore
+    // @ts-expect-error
     await plugin.configResolved({ root })
-    // @ts-ignore
+    // @ts-expect-error
     await plugin.buildStart()
 
     await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
@@ -65,9 +65,9 @@ describe('default config path', () => {
     const root = normalizePath(tempDirPath)
     const file = root + '/icons.json'
 
-    // @ts-ignore
+    // @ts-expect-error
     await plugin.configResolved({ root })
-    // @ts-ignore
+    // @ts-expect-error
     await plugin.handleHotUpdate({ file, read: () => fs.readFile(file) })
 
     await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
@@ -81,9 +81,9 @@ describe('defined config path', () => {
     const plugin = icons({ config: 'config.json' })
     const root = normalizePath(tempDirPath)
 
-    // @ts-ignore
+    // @ts-expect-error
     await plugin.configResolved({ root })
-    // @ts-ignore
+    // @ts-expect-error
     await plugin.buildStart()
 
     await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
@@ -96,9 +96,9 @@ describe('defined config path', () => {
     const root = normalizePath(tempDirPath)
     const file = root + '/config.json'
 
-    // @ts-ignore
+    // @ts-expect-error
     await plugin.configResolved({ root })
-    // @ts-ignore
+    // @ts-expect-error
     await plugin.handleHotUpdate({ file, read: () => fs.readFile(file) })
 
     await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
@@ -111,9 +111,9 @@ test('build start - logs error when config not found', async () => {
   const plugin = icons()
   const root = normalizePath(tempDirPath)
 
-  // @ts-ignore
+  // @ts-expect-error
   await plugin.configResolved({ root })
-  // @ts-ignore
+  // @ts-expect-error
   await plugin.buildStart()
 
   expect(consoleErrorMock.mock.calls).toStrictEqual([

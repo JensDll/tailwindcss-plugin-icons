@@ -33,7 +33,7 @@ export function withResolvers() {
     resolve = res
     reject = rej
   })
-  // @ts-ignore
+  // @ts-expect-error
   return { promise, resolve, reject }
 }
 
@@ -340,7 +340,7 @@ export async function _loadIconData(description, root) {
     try {
       const {
         default: { icons, aliases, left, top, width, height },
-        // @ts-ignore
+        // @ts-expect-error
       } = await import(path, { with: { type: 'json' } })
       return { name, names, icons, aliases, left, top, width, height }
     } catch {}
@@ -349,7 +349,7 @@ export async function _loadIconData(description, root) {
 
     const {
       default: { icons, aliases, left, top, width, height },
-      // @ts-ignore https://github.com/microsoft/TypeScript/issues/42866
+      // @ts-expect-error https://github.com/microsoft/TypeScript/issues/42866
     } = await import(path, { with: { type: 'json' } })
     return { name, names, icons, aliases, left, top, width, height }
   }

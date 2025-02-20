@@ -1,3 +1,4 @@
+/** @type {import('rollup').ExternalOption} */
 const external = [/node:.+/, /tailwindcss\/.+/, 'vite']
 
 /**
