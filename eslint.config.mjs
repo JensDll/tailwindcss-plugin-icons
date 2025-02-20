@@ -6,7 +6,7 @@ import globals from 'globals'
 /** @type {import('eslint').Linter.Config[]} */
 export default [
   {
-    ignores: ['src/dist', 'playgrounds'],
+    ignores: ['src/dist', 'playgrounds', 'publish'],
   },
   eslint.configs.recommended,
   vitest.configs.recommended,

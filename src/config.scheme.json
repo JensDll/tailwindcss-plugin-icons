@@ -1,6 +1,7 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "title": "tailwindcss-plugin-icons configuration file",
+  "title": "Configuration File",
+  "description": "tailwindcss-plugin-icons",
   "type": "object",
   "required": ["iconSets"],
   "properties": {
