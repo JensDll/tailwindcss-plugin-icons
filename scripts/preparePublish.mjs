@@ -30,10 +30,6 @@ await Promise.all([
     new URL('package.json', publishDirPath),
   ),
   fs.copyFile(
-    new URL('../src/package.json', import.meta.url),
-    new URL('package.json', publishDirPath),
-  ),
-  fs.copyFile(
     new URL('../LICENSE', import.meta.url),
     new URL('LICENSE', publishDirPath),
   ),

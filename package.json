@@ -11,31 +11,32 @@
   },
   "scripts": {
     "build": "rollup --config",
-    "build:publish": "rollup --config && pnpm typegen && node ./scripts/preparePublish.mjs",
+    "build:publish": "pnpm build && pnpm typegen && node ./scripts/preparePublish.mjs",
     "dev": "rollup --config --watch",
     "test": "vitest",
     "test:run": "vitest run",
     "test:cover": "vitest run --coverage",
     "test:cover:preview": "vite preview --outDir coverage",
     "lint": "eslint",
-    "format": "prettier --write .",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check",
     "typecheck": "tsc",
     "typegen": "tsc --project tsconfig.typegen.json"
   },
   "dependencies": {
-    "@eslint/js": "9.20.0",
+    "@eslint/js": "9.21.0",
     "@tsconfig/node20": "20.1.4",
     "@types/node": "catalog:",
-    "@vitest/coverage-v8": "3.0.6",
+    "@vitest/coverage-v8": "3.0.7",
     "@vitest/eslint-plugin": "1.1.31",
-    "eslint": "9.20.1",
+    "eslint": "9.21.0",
     "eslint-plugin-import": "2.31.0",
-    "globals": "15.15.0",
-    "msw": "2.7.0",
-    "prettier": "3.5.1",
+    "globals": "16.0.0",
+    "msw": "2.7.3",
+    "prettier": "3.5.2",
     "rollup": "4.34.8",
     "typescript": "catalog:",
     "vite": "catalog:",
-    "vitest": "3.0.6"
+    "vitest": "3.0.7"
   }
 }

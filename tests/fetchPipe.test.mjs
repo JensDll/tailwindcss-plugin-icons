@@ -40,10 +40,26 @@ test('fs open fails', async () => {
     .mockRejectedValue(new Error('open failed'))
   const fsUnlink = vi.spyOn(fs, 'unlink')
   await expect(
-    fetchPipe(handlers.httpBadRequest.path),
+    fetchPipe(handlers.httpIcons.path),
   ).rejects.toThrowErrorMatchingSnapshot()
   await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
-  expect(handlers.httpBadRequest.mock).toBeCalledTimes(0)
+  expect(handlers.httpIcons.mock).toBeCalledTimes(0)
+  expect(fsOpen).toHaveBeenCalledOnce()
+  expect(fsUnlink).toHaveBeenCalledOnce()
+})
+
+test('fs open and unlink fails', async () => {
+  const fsOpen = vi
+    .spyOn(fs, 'open')
+    .mockRejectedValue(new Error('open failed'))
+  const fsUnlink = vi
+    .spyOn(fs, 'unlink')
+    .mockRejectedValue(new Error('unlink failed'))
+  await expect(
+    fetchPipe(handlers.httpIcons.path),
+  ).rejects.toThrowErrorMatchingSnapshot()
+  await expect(tempDirSnapshot()).resolves.toMatchSnapshot()
+  expect(handlers.httpIcons.mock).toBeCalledTimes(0)
   expect(fsOpen).toHaveBeenCalledOnce()
   expect(fsUnlink).toHaveBeenCalledOnce()
 })

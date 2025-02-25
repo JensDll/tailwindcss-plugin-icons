@@ -8,7 +8,11 @@ exports[`fails with network error 1`] = `[Error: Failed to fetch remote icon set
 
 exports[`fails with network error 2`] = `[]`;
 
-exports[`fs open fails 1`] = `[Error: Failed to fetch remote icon set at "https://localhost/bad"]`;
+exports[`fs open and unlink fails 1`] = `[Error: Failed to fetch remote icon set at "http://localhost/icons.json"]`;
+
+exports[`fs open and unlink fails 2`] = `[]`;
+
+exports[`fs open fails 1`] = `[Error: Failed to fetch remote icon set at "http://localhost/icons.json"]`;
 
 exports[`fs open fails 2`] = `[]`;
 
