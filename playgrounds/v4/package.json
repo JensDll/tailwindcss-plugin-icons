@@ -11,9 +11,9 @@
   "dependencies": {
     "@iconify-json/heroicons": "1.2.2",
     "@iconify-json/logos": " 1.2.4",
-    "@iconify-json/material-symbols": "1.2.14",
-    "@tailwindcss/vite": "4.0.8",
-    "tailwindcss": "4.0.8",
+    "@iconify-json/material-symbols": "1.2.15",
+    "@tailwindcss/vite": "4.0.13",
+    "tailwindcss": "4.0.13",
     "tailwindcss-plugin-icons": "workspace:*",
     "typescript": "catalog:",
     "vite": "catalog:"
