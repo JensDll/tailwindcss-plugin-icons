@@ -3,12 +3,13 @@ packages:
   - 'playgrounds/*'
 
 catalog:
-  vite: 6.2.1
-  typescript: 5.8.2
-  '@types/node': 22.13.10
+  vite: 7.0.4
+  typescript: 5.8.3
+  '@types/node': 24.0.3
 
 onlyBuiltDependencies:
   - esbuild
+  - '@tailwindcss/oxide'
 
 ignoredBuiltDependencies:
   - msw
