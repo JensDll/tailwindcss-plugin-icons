@@ -1,0 +1,80 @@
+name: Linting
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  eslint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out the repository
+        uses: actions/checkout@v4.2.2
+      - name: Installing pnpm
+        uses: pnpm/action-setup@v4.1.0
+      - name: Using latest node version
+        uses: actions/setup-node@v4.2.0
+        with:
+          node-version: latest
+          cache: pnpm
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Running lint
+        run: pnpm lint
+
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out the repository
+        uses: actions/checkout@v4.2.2
+      - name: Installing pnpm
+        uses: pnpm/action-setup@v4.1.0
+      - name: Using latest node version
+        uses: actions/setup-node@v4.2.0
+        with:
+          node-version: latest
+          cache: pnpm
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Running typecheck
+        run: pnpm typecheck
+
+  typegen:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out the repository
+        uses: actions/checkout@v4.2.2
+      - name: Installing pnpm
+        uses: pnpm/action-setup@v4.1.0
+      - name: Using latest node version
+        uses: actions/setup-node@v4.2.0
+        with:
+          node-version: latest
+          cache: pnpm
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Running build
+        run: pnpm build
+      - name: Running typegen
+        run: pnpm typegen
+      - name: Running typegen again
+        run: pnpm typegen
+
+  format:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checking out the repository
+        uses: actions/checkout@v4.2.2
+      - name: Installing pnpm
+        uses: pnpm/action-setup@v4.1.0
+      - name: Using latest node version
+        uses: actions/setup-node@v4.2.0
+        with:
+          node-version: latest
+          cache: pnpm
+      - name: Installing dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Running format check
+        run: pnpm format:check

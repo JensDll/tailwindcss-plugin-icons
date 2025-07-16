@@ -1,0 +1,189 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`default config path > build start 1`] = `
+[
+  [
+    "icons.json",
+    "{"iconSets":[{"name":"local","location":"local.json"}]}",
+  ],
+  [
+    "local.json",
+    "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
+  ],
+  [
+    "plugin.css",
+    "@theme {
+  --i-local-foo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3Efoo%3C/svg%3E");
+  --i-local-bar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 0 10 7'%3Ebar%3C/svg%3E");
+}
+
+@theme inline reference {
+  --i-local-foo--aspect: 0.625;
+  --i-local-bar--aspect: 1.4286;
+}
+
+@utility mi-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility bi-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;
+
+exports[`default config path > handle hot update 1`] = `
+[
+  [
+    "icons.json",
+    "{"iconSets":[{"name":"local","location":"local.json"}]}",
+  ],
+  [
+    "local.json",
+    "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
+  ],
+  [
+    "plugin.css",
+    "@theme {
+  --i-local-foo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3Efoo%3C/svg%3E");
+  --i-local-bar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 0 10 7'%3Ebar%3C/svg%3E");
+}
+
+@theme inline reference {
+  --i-local-foo--aspect: 0.625;
+  --i-local-bar--aspect: 1.4286;
+}
+
+@utility mi-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility bi-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;
+
+exports[`defined config path > build start 1`] = `
+[
+  [
+    "config.json",
+    "{"iconSets":[{"name":"local","location":"local.json"}]}",
+  ],
+  [
+    "local.json",
+    "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
+  ],
+  [
+    "plugin.css",
+    "@theme {
+  --i-local-foo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3Efoo%3C/svg%3E");
+  --i-local-bar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 0 10 7'%3Ebar%3C/svg%3E");
+}
+
+@theme inline reference {
+  --i-local-foo--aspect: 0.625;
+  --i-local-bar--aspect: 1.4286;
+}
+
+@utility mi-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility bi-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;
+
+exports[`defined config path > handle hot update 1`] = `
+[
+  [
+    "config.json",
+    "{"iconSets":[{"name":"local","location":"local.json"}]}",
+  ],
+  [
+    "local.json",
+    "{"icons":{"foo":{"body":"foo"},"bar":{"body":"bar","left":2,"height":7}},"width":10}",
+  ],
+  [
+    "plugin.css",
+    "@theme {
+  --i-local-foo: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 10 16'%3Efoo%3C/svg%3E");
+  --i-local-bar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='2 0 10 7'%3Ebar%3C/svg%3E");
+}
+
+@theme inline reference {
+  --i-local-foo--aspect: 0.625;
+  --i-local-bar--aspect: 1.4286;
+}
+
+@utility mi-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility bi-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;

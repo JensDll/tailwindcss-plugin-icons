@@ -1,9 +1,0 @@
-{
-  "icons": {
-    "loading": {
-      "body": "<path d=\"M23 12A11 11 0 0 0 8.6 1.538L9.79 5.2a7.15 7.15 0 0 1 9.36 6.8H23Z\" fill=\"currentColor\" fill-opacity=\".75\"/><path d=\"M23 12A11 11 0 1 1 8.6 1.538L9.79 5.2a7.15 7.15 0 1 0 9.36 6.8H23Z\" fill=\"currentColor\" fill-opacity=\".25\"/>"
-    }
-  },
-  "width": 24,
-  "height": 24
-}

@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`icon url 0 1`] = `"url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='1 2 3 4'%3E%3C/svg%3E")"`;
+
+exports[`icon url 1 1`] = `"url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='10 20 30 40'%3E%3Cpath d='1 2 3'%3E%3C/path%3E%3C/svg%3E")"`;
+
+exports[`icon url 2 1`] = `"url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' viewBox='3 5 7 11'%3E%3Cuse xlink:href='test'%3E%3C/use%3E%3C/svg%3E")"`;

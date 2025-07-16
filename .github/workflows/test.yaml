@@ -1,4 +1,4 @@
-name: Test
+name: Testing
 
 on:
   pull_request:
@@ -7,30 +7,25 @@ on:
       - main
 
 jobs:
-  testing:
-    runs-on: ubuntu-22.04
+  test-run:
     strategy:
       fail-fast: false
       matrix:
-        node_version: [18, 20]
+        node_version: [20.18.3, 22.14.0]
+        runner: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.runner }}
+    name: ${{ matrix.runner }} ${{ matrix.node_version }}
     steps:
       - name: Checking out the repository
         uses: actions/checkout@v4.2.2
-
-      - name: Using pnpm
-        uses: pnpm/action-setup@v4.0.0
-
+      - name: Installing pnpm
+        uses: pnpm/action-setup@v4.1.0
       - name: Using node version ${{ matrix.node_version }}
-        uses: actions/setup-node@v4.1.0
+        uses: actions/setup-node@v4.2.0
         with:
           node-version: ${{ matrix.node_version }}
           cache: pnpm
-
       - name: Installing dependencies
         run: pnpm install --frozen-lockfile
-
-      - name: Running build
-        run: pnpm run build
-
       - name: Running tests
-        run: pnpm run test:run
+        run: pnpm test:run

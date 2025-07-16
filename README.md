@@ -35,9 +35,7 @@ yarn add tailwindcss-plugin-icons
          'plus-circle': {
            cursor: 'pointer',
            color: theme('colors.emerald.600'),
-           '&:hover': {
-             color: theme('colors.emerald.800'),
-           },
+           '&:hover': { color: theme('colors.emerald.800') },
          },
          'trash?bg': {},
        },
@@ -47,9 +45,7 @@ yarn add tailwindcss-plugin-icons
      },
    })
 
-   export default {
-     plugins: [Icons(options)],
-   } as Config
+   export default { plugins: [Icons(options)] } as Config
    ```
 
    The plugin's `options` are a function. It gets forwarded the [Tailwind CSS plugin API](https://tailwindcss.com/docs/plugins) and returns the selected icons with optional default style and scale. After the icon's name, you can pass `?bg` or `?mask` to force a specific render method. Finally, you can use `includeAll: true` to have every icon in the icon set added as a Tailwind source.

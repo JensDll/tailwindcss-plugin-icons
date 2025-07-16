@@ -1,0 +1,201 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`empty icons 1`] = `
+[
+  [
+    "plugin.css",
+    "@theme {
+}
+
+@theme inline reference {
+}
+
+@theme {
+}
+
+@theme inline reference {
+}
+
+@theme {
+}
+
+@theme inline reference {
+}
+
+@utility mi-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility bi-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;
+
+exports[`write to file with prefix > default 1`] = `
+[
+  [
+    "plugin.css",
+    "@theme {
+  --i-icon-set-one-icon-1: url();
+  --i-icon-set-one-icon-2: url();
+  --i-icon-set-one-icon-3: url();
+}
+
+@theme inline reference {
+  --i-icon-set-one-icon-1--aspect: 1;
+  --i-icon-set-one-icon-2--aspect: 1;
+  --i-icon-set-one-icon-3--aspect: 1;
+}
+
+@theme {
+  --i-icon-set-two-icon-1: url();
+  --i-icon-set-two-icon-2: url();
+}
+
+@theme inline reference {
+  --i-icon-set-two-icon-1--aspect: 0.5;
+  --i-icon-set-two-icon-2--aspect: 0.75;
+}
+
+@utility mi-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility bi-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;
+
+exports[`write to file with prefix > mask 1`] = `
+[
+  [
+    "plugin.css",
+    "@theme {
+  --i-icon-set-one-icon-1: url();
+  --i-icon-set-one-icon-2: url();
+  --i-icon-set-one-icon-3: url();
+}
+
+@theme inline reference {
+  --i-icon-set-one-icon-1--aspect: 1;
+  --i-icon-set-one-icon-2--aspect: 1;
+  --i-icon-set-one-icon-3--aspect: 1;
+}
+
+@theme {
+  --i-icon-set-two-icon-1: url();
+  --i-icon-set-two-icon-2: url();
+}
+
+@theme inline reference {
+  --i-icon-set-two-icon-1--aspect: 0.5;
+  --i-icon-set-two-icon-2--aspect: 0.75;
+}
+
+@utility mask-icon-prefix-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility bi-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;
+
+exports[`write to file with prefix > mask and background 1`] = `
+[
+  [
+    "plugin.css",
+    "@theme {
+  --i-icon-set-one-icon-1: url();
+  --i-icon-set-one-icon-2: url();
+  --i-icon-set-one-icon-3: url();
+}
+
+@theme inline reference {
+  --i-icon-set-one-icon-1--aspect: 1;
+  --i-icon-set-one-icon-2--aspect: 1;
+  --i-icon-set-one-icon-3--aspect: 1;
+}
+
+@theme {
+  --i-icon-set-two-icon-1: url();
+  --i-icon-set-two-icon-2: url();
+}
+
+@theme inline reference {
+  --i-icon-set-two-icon-1--aspect: 0.5;
+  --i-icon-set-two-icon-2--aspect: 0.75;
+}
+
+@utility mask-icon-prefix-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility background-icon-prefix-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;

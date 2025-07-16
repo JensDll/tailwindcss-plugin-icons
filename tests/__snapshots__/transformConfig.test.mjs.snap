@@ -1,0 +1,86 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`invalid with location 1`] = `
+[
+  [
+    "plugin.css",
+    "",
+  ],
+]
+`;
+
+exports[`invalid with location 2`] = `
+[
+  [
+    "[tailwindcss-plugin-icons]",
+    [Error: Failed to find icon set at location "invalid"],
+  ],
+]
+`;
+
+exports[`invalid without location 1`] = `
+[
+  [
+    "plugin.css",
+    "",
+  ],
+]
+`;
+
+exports[`invalid without location 2`] = `
+[
+  [
+    "[tailwindcss-plugin-icons]",
+    [Error: Icon set "invalid" not found. Please see if the name is correct or try installing it with "npm install @iconify-json/invalid"],
+  ],
+]
+`;
+
+exports[`working example 1`] = `
+[
+  [
+    "plugin.css",
+    "@theme {
+  --i-tar-valon-a: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath%3E%3C/path%3E%3C/svg%3E");
+}
+
+@theme inline reference {
+  --i-tar-valon-a--aspect: 1;
+}
+
+@theme {
+  --i-ebou-dar-a: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath%3E%3C/path%3E%3C/svg%3E");
+  --i-ebou-dar-b: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath%3E%3C/path%3E%3C/svg%3E");
+  --i-ebou-dar-c: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1 2'%3E%3Cpath%3E%3C/path%3E%3C/svg%3E");
+}
+
+@theme inline reference {
+  --i-ebou-dar-a--aspect: 1;
+  --i-ebou-dar-b--aspect: 1;
+  --i-ebou-dar-c--aspect: 0.5;
+}
+
+@utility mi-* {
+  & {
+    mask-image: --value(--i-*);
+    mask-repeat: no-repeat;
+    mask-size: 100% 100%;
+    background-color: currentColor;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+  }
+}
+
+@utility bi-* {
+  & {
+    background-image: --value(--i-*);
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    height: 1em;
+    aspect-ratio: --value(--i-*--aspect);
+   }
+}
+",
+  ],
+]
+`;

@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`creates temporary file and renames it when disposed 1`] = `
+[
+  [
+    "test.txt",
+    "Hello, World!
+",
+  ],
+]
+`;

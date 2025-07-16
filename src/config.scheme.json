@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Configuration File",
+  "description": "tailwindcss-plugin-icons",
+  "type": "object",
+  "required": ["iconSets"],
+  "properties": {
+    "iconSets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["name"],
+        "properties": {
+          "name": {
+            "description": "The icon set name. Camel case names are converted to kebab case.",
+            "type": "string"
+          },
+          "icons": {
+            "description": "List of icon names. Leave out this property to include every icon in the icon set.",
+            "type": "array",
+            "items": { "type": "string" }
+          },
+          "location": {
+            "description": "The location of the icon set in Iconify JSON format. Can be any HTTP location, module name, or local path.",
+            "type": "string",
+            "format": "uri-reference"
+          }
+        }
+      }
+    },
+    "prefix": {
+      "type": "object",
+      "description": "Prefix configuration for the Tailwind CSS utility classes.",
+      "properties": {
+        "mask": {
+          "type": "string",
+          "description": "The prefix for the mask-image icon utility.",
+          "default": "mi"
+        },
+        "background": {
+          "type": "string",
+          "description": "The prefix for the background-image icon utility.",
+          "default": "bi"
+        }
+      }
+    }
+  }
+}

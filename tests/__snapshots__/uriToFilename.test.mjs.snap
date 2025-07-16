@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`a 1`] = `"86f7e437faa5a7fce15d1ddcb9eaeaea377667b8.json"`;
+
+exports[`b 1`] = `"e9d71f5ee7c92d6dc9e92ffdad17b8bd49418f98.json"`;
+
+exports[`c 1`] = `"84a516841ba77a5b4648de2cd0dfcb30ea46dbb4.json"`;
+
+exports[`https://example.com 1`] = `"327c3fda87ce286848a574982ddd0b7c7487f816.json"`;
